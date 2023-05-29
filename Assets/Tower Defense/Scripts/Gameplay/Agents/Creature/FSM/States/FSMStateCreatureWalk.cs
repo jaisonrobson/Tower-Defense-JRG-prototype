@@ -1,0 +1,87 @@
+using System.Collections;
+using System.Collections.Generic;
+using System.Linq;
+using UnityEngine;
+using Sirenix.OdinInspector;
+using Core.Patterns;
+using Pathfinding;
+
+public class FSMStateCreatureWalk : FiniteStateMachine
+{
+    // Private (Variables) [START]
+    private Animator anim;
+    private Creature creature;
+    private AIPath pathfinding;
+    private CreatureFsmAi fsmAi;
+    // Private (Variables) [END]
+
+    public FSMStateCreatureWalk(Animator pAnim, Creature pCreature, AIPath pPathfinding) : base()
+    {
+        anim = pAnim;
+        creature = pCreature;
+        pathfinding = pPathfinding;
+        name = AgentStateEnum.WALK;
+        fsmAi = creature.GetComponent<CreatureFsmAi>();
+    }
+
+    // Public (Methods) [START]
+    public override void Enter()
+    {
+        anim.SetTrigger("isWalking");
+
+        base.Enter();
+    }
+    /// <summary>
+    /// Things that the creature can do after Walk in hierarchical call priority:
+    /// * Die
+    /// * Attack
+    /// * Idle
+    /// </summary>
+    public override void Update()
+    {
+        if (IsCreatureDead())
+        {
+            nextState = new FSMStateCreatureDie(anim, creature, pathfinding);
+            stage = FSMEventEnum.EXIT;
+
+            return;
+        }
+
+        if (DidCreatureFoundEnemies() && IsCreatureAgressive() && fsmAi.IsAnyAttackUnderEnemyRange())
+        {
+            if (pathfinding.reachedDestination)
+            {
+                nextState = new FSMStateCreatureAttack(anim, creature, pathfinding);
+                stage = FSMEventEnum.EXIT;
+            }
+        }
+        else
+        {
+            if (pathfinding.reachedDestination)
+            {
+                nextState = new FSMStateCreatureIdle(anim, creature, pathfinding);
+                stage = FSMEventEnum.EXIT;
+            }
+        }
+    }
+    public override void Exit()
+    {
+        anim.ResetTrigger("isWalking");
+
+        base.Exit();
+    }
+    // Public (Methods) [END]
+
+    // Private (Methods) [START]
+    private bool DidCreatureFoundEnemies()
+    {
+        return (
+            creature.PriorityGoals.Count > 0
+            && creature.PriorityGoals.Any(pg => pg.ignoreBattle == false)
+            || (creature.MainGoals.Count > 0 && creature.goal == AgentGoalEnum.CORESTRUCTURES)
+        );
+    }
+    private bool IsCreatureAgressive() => creature.GetComponent<CreatureFsmAi>().IsAgressive;
+    private bool IsCreatureDead() { return creature.ActualHealth <= 0f; }
+    // Private (Methods) [END]
+}
