@@ -1,0 +1,105 @@
+At the moment this todolist is in my language but when i get the project to be at an MVP, i will translate every todo item.
+----------------------------------------------------------------------------------------------------------------------------------------------------------------
+LEGENDA:
+(O) = Esta parcialmente pronto, talvez funciona, mas precisa de coisas que vao ser implementadas no futuro
+(X) = Esta totalmente pronto ate o que foi planejado
+(-) = Foi implementado uma ideia que ao testar na pratica nao funcionou
+----------------------------------------------------------------------------------------------------------------------------------------------------------------
+(X) Criar um sistema de movimento da camera. (visao do jogador)
+(X) Criar o sistema de alinhamentos (para definir unidades aliadas e inimigas).
+(X) Fazer uma cor especifica fixa para cada alinhamento
+(X) Criar um sistema de posicionamento de torres na area jogavel.
+(X) Criar o sistema de respawn de wave.
+(X) Criar o script SpawnManager para manter um alinhamento e usa-lo no wave manager.
+(X) Verificar se possui Spawn Points para o alinhamento X, caso nao exista, verificar se existe Spawn Points Genericos, caso estes nao existam anunciar um erro. (FAZER UMA VALIDACAO NA INPUT PARA ISSO)
+(X) Caso existam Spawn points do alinhamento X, agrupa-los em uma nova lista local e selecionar um aleatorio desta nova lista para spawnar.
+(X) Caso existam Spawn points apenas do alinhamento Generico, agrupa-los em uma nova lista local e selecionar um aleatorio desta nova lista para spawnar.
+(X) Criar a funcao de caminhada dos agentes ate o objetivo.
+(X) * Fazer a area de reconhecimento dos inimigos do agente (trigger)
+(X) * Fazer com que o minion encontrado no caminho se torne a prioridade atual
+(X) * Fazer com que o script de percorrer a prioridade persiga apenas os minions e torres de alinhamentos inimigos.
+(X) * Fazer com que novas estruturas e agentes sejam calculados de tempos em tempos na rede de grafos do pathfinding. (Structures, Towers, Minions)
+(-) Enquanto estiver no estado de caminhada, fazer um codigo que vai verificar se a ultima posicao conhecida do transform foi a mesma durante os ultimos 5 segundos, caso seja, vai aumentar o tamanho da tolerancia da distancia necessaria para chegar ao objetivo.
+(-) Fazer com que ao minion chegar na distancia desejada do seu objetivo, desabilite o seu proprio pathfinding enquanto esta realizando outras funcoes (atacando) 
+(-) Fazer com que ao ter seu pathfinding desabilitado, o minion deve habilitar um script de obstaculo, onde sera considerado com obstaculo pelo pathfinding. (vai ajudar com os minions se perdendo na multidao)
+(X) Fazer um script novo para agentes (minions e torres) que vai possuir toda a parte reutilizavel dos agentes. (vida, alinhamento, velocidade, tudo o que se repete para todos os agentes.)
+(X) Criar um enumerator para saber o evento que esta ocorrendo no agente atualmente. (caminhando, atacando, morrendo, etc.) obs: utilizar esse enumerator para fazer as duas tasks do pathfinding sobre obstaculo.
+(X) Fazer com que os scripts das torres e minions herdem do script de agentes.
+
+(O) Criar a funcao de ataque dos agentes a alguma entidade inimiga proxima.
+
+( ) Structures (X) Creatures
+(O) Criar sistema de AI de Finite State Machine
+(O) Fazer o estado Idle
+(O) Fazer o estado Walk
+(O) Fazer o estado Attack
+(O) Fazer o estado Die
+(O) Criar um metodo no agent FSM ai para verificar dentre todos os ataques, se algum esta dentro do alcance com o inimigo.
+(O) Fazer com que o codigo do agent FSM ai sempre ataque o inimigo mais proximo.
+(O) Implementar o attack range no FSM Ai dos agentes
+(O) Implementar o minimum attack distance no FSM Ai dos agentes
+( ) Modificar o sistema de FSM dos agentes para que todo agente possa se mover e atacar, e para verificar quais agentes nao podem realizar essas devidas acoes, atentar-se ao atributo "IsMovable" para movimento e "IsAgressive" para ataque.
+( ) Caso o ataque esteja fora de alcance, e nao tenha mais nenhum ataque possivel (range ou cooldown) no momento, fazer com que o FSM mude de estado para Walk afim de atingir a distancia desejada ao objetivo. (testar a IA do FSM com inimigos que possuem ataques a distancia, ex: arqueiros)
+
+(O) Fazer com que os ataques causem dano e eliminem seus alvos (agentes/minions/torres)
+(X) Fazer o sistema de calculo de formulas nao apenas para ataques, mas para tudo que tiver uma formula.
+(X) Melhorar o script de formulas com insercoes automaticas entre as listas.
+(X) Criar uma nova propriedade nos agentes chamada "evade/evasion" que servira para definir se o minion devera ignorar o seu inimigo atraves de uma chance aleatoria definida de 0 a 100% na propriedade. usar rng para definir essa chance.
+(X) Fazer com que os minions ignorem a batalha com seus inimigos de prioridade baixa de acordo com uma chance declarada como "evasion" no AgentSO.
+(X) Fazer a interface de barras de vida para os agentes (Fazer um script separado do agente para controle de UI)
+(-) Criar um sistema de pooling no pool manager, para armazenar todos os tipos de interface world space, inclusive os floating values.
+(X) Entender o funcionamento do pool manager importado da Unity TDT (abrir o projeto da unity para ver como e utilizado nos assets)
+(X) Integrar os agentes com o pool manager
+(X) Integrar os valores flutuantes com o pool manager
+(X) Integrar os sliders com o pool manager
+(X) Fazer com que o agente volte ao PoolManager ao morrer
+(X) Fazer um metodo generico de reset para cada Poolable individual dentro de Poolable/Pool pois existe um problema ao agente Torre morrer e voltar para o Pool Manager, o PM nao esta resetando corretamente o funcionamento da torre.
+(X) Fazer com que o sistema de prioridades e objetivos enxergue os scripts dos "agents" ao inves de gameobjects. (isso corrigira o problema de remover prioridades dos agentes desabilitados subitamente)
+(X) Corrigir o bug ao destruir qualquer objetivo principal.
+(X) Fazer com que o dano apareca na interface de forma efemera (Floating value)
+
+(X) Refatorar o enum AgentType de (MINION, TOWER) para (CREATURE, STRUCTURE)
+(X) Criar um novo enum com duas opcoes (FIXED, MOVABLE) que servira para identificar se o agente pode se mover ou nao
+(X) Renomear o MinionSpawnSO para SubSpawnSO.
+
+(-) Fazer com que as areas de posicionamento de torres tenham uma apresentacao mais sutil no plano 3d ( dimensoes X e Z apenas).
+(X) Fazer com que as areas de posicionamento de torres fiquem invisiveis e so aparecam ao tentar posicionar uma torre.
+(X) Pesquisar como usar cursores customizados dentro do jogo
+(X) Criar um sistema de seleção de torre e possivelmente agentes na interface, com a possibilidade do jogador selecionar o ponto de interesse dos minions que nascem da torre. (Verificar aquele asset sobre selecao de agentes, obs: nao fica legal no tower defense.)
+(X) Fazer com que ao selecionar a torre, sua area de visibilidade total seja exibida no plano 3d ( nas dimensoes X e Z apenas )
+(X) Fazer o funcionamento do ponto de interesse da torre/estrutura fixa.
+(X) Fazer com que os botoes da interface nao aparecam fora de contexto (criaturas e estruturas nao jogaveis, nao devem possuir flag, por exemplo.)
+
+(X) Criar a funcao de spawn de minions das torres (possivelmente os subspawns poderao ser feitos nos minions tambem, por exemplo: um necromante invocando esqueletos como subspawn.)
+(X) Continuar a criacao do FSM State de morte, onde exibira uma animacao de morte, e depois de esperar a animacao fazer o pool do agente. ao inves da forma como esta hoje.
+(X) Criar um sistema de delimitação da area dos minions em relação as torres. (Ate onde o minions podem caminhar para defender sua torre.) (definido pelo limite da area da torre + metade do limite da area do minion)
+(X) Remover os pririty goals dos subspawns ao fugirem muito longe da area limite dos subspawns
+
+( ) Criar o sistema de evolução das torres (e seus minions spawnados.)
+
+( ) Criar a funcao de ataque das torres. (Função de ataque das estruturas)
+
+( ) Criar o funcionamento de ataques com projeteis (Criaturas e estruturas)
+( ) Criar o funcionamento de ataques em area (AOE) (Criaturas e estruturas)
+
+( ) Criar o sistema de status (lento, queimando, paralizado, etc.) (Affectors) (verificar codigo do tower defense da unity, tem bons codigos sobre isso la)
+
+( ) Fazer o funcionamento das animações em tudo no jogo.
+( ) Fazer com que o sistema de som use a tecnologia FMOD (se possivel integrar com o sistema de SO`s que ja existe)
+( ) Criar o sistema de som
+
+( ) Criar um sistema de pontos que o jogador armazena durante a partida (Experiencia ou dinheiro, recursos, qualquer coisa que se encaixe melhor.)
+
+----------------------------------------------------------------------------------------------------------------------------------------------------------------
+BUGS E VALIDAÇÕES:
+(X) A WeaknessesSO possui uma matrix de floats que nao esta sendo corretamente serializada pela UNITY nem pelo ODIN, verificar o motivo e talvez refazer a serializacao manualmente.
+(X) Fazer uma validação no MapSO, para que o "AlignmentsOpponents" possua os alinhamentos (times) de todos os alinhamentos (times) presentes nas ondas de inimigos/minions.
+(X) Arrumado bug que estava resetando errado o alignment ao respawnar o agente, no codigo AgentEnemyColliderManager
+* Existem 2 possiveis bugs relacionados as torres e os inimigos:
+(X) O primeiro acontece quando uma torre e destruida e existe outra proxima, mas o inimigo nao consegue ir ate ela e acaba se perdendo.
+* Identificado erro acima, motivo e que esta comparando diferentes gameobjects na hora da remocao dos Priority Goals, para solucionar deve-se trabalhar com "Agents" o script mesmo, la no Priority Goals ao inves de Gameobjects.
+(-) O segundo acontece quando a torre e spawnada pelo player muito rapidamente e a colisao dos inimigos detecta uma torre antes mesmo de ela existir em campo. (esse bug talvez nao exista de fato e apenas uma divagação/suposição.)
+(O) Corrigir as inconsistencias de animacao/FSM states quando o agente deveria estar andando (walk) e na verdade fica parado (idle) se movimentando sem animacao, de forma estatica. (identificado que pode haver inconsistencias ainda devido a velocidade minima que o SetWalkSpeed em algum lugar esta atribuindo)
+(X) Corrigir bug no cooldown de ataque dos agentes (simulado erro ao inimigo verde bater nas estruturas principais do jogo).
+(-) Corrigir bug das criaturas ao atacar estruturas quando estao atacando algum canto em que o codigo nao preve no distanciamento minimo.
+(-) Corrigir bug das criaturas ao uma criatura inimiga nascer dentro do range de colisao de outra inimiga.
