@@ -16,3 +16,5 @@ Technologies used:
 * Observer Pattern
 
 The differentiating factor that makes this project a framework is the fact that it is based on the way the RPG Maker tool works, centralizing all playable data in an internal database. In the case of RPG Maker, MYSQL is used, while in this project, I'm using Unity's serializable objects along with Odin Inspector to allow for more types of data and structures to be serialized, stored and validated, such as lists, etc.
+
+<img src="https://raw.githubusercontent.com/jaisonrobson/Tower-Defense-JRG-prototype/main/Assets/Github%20Assets/Internal%20Database%20View.png" width="1024" height="512" />
