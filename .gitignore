@@ -15,6 +15,14 @@
 /[Ii]mports/*
 /[Pp]lugins/*
 /TheraBytes/*
+Imports/
+Plugins/
+TheraBytes/
+Imports/*
+Plugins/*
+TheraBytes/*
+Assets/Imports/
+Assets/Imports/*
 
 # MemoryCaptures can get excessive in size.
 # They also could contain extremely sensitive data
