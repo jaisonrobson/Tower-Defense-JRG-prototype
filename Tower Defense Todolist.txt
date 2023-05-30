@@ -35,13 +35,13 @@ LEGENDA:
 (O) Fazer o estado Walk
 (O) Fazer o estado Attack
 (O) Fazer o estado Die
-(O) Criar um metodo no agent FSM ai para verificar dentre todos os ataques, se algum esta dentro do alcance com o inimigo.
-(O) Fazer com que o codigo do agent FSM ai sempre ataque o inimigo mais proximo.
-(O) Implementar o attack range no FSM Ai dos agentes
-(O) Implementar o minimum attack distance no FSM Ai dos agentes
+(X) Criar um metodo no agent FSM ai para verificar dentre todos os ataques, se algum esta dentro do alcance com o inimigo.
+(X) Fazer com que o codigo do agent FSM ai sempre ataque o inimigo mais proximo.
+(X) Implementar o attack range no FSM Ai dos agentes
+(X) Implementar o minimum attack distance no FSM Ai dos agentes
 (-) Modificar o sistema de FSM dos agentes para que todo agente possa se mover e atacar, e para verificar quais agentes nao podem realizar essas devidas acoes, atentar-se ao atributo "IsMovable" para movimento e "IsAgressive" para ataque. (estruturas nao vao poder se mover.)
 (X) Implementar a variavel "IsMovable" em cima do algoritmo de movimentação para não haver movimentação quando o agente não for "movel".
-(Y) Caso o ataque esteja fora de alcance, e nao tenha mais nenhum ataque possivel (range ou cooldown) no momento, fazer com que o FSM mude de estado para Walk afim de atingir a distancia desejada ao objetivo. (testar a IA do FSM com inimigos que possuem ataques a distancia, ex: arqueiros)
+(X) Caso o ataque esteja fora de alcance, e nao tenha mais nenhum ataque possivel (range ou cooldown) no momento, fazer com que o FSM mude de estado para Walk afim de atingir a distancia desejada ao objetivo. (testar a IA do FSM com inimigos que possuem ataques a distancia, ex: arqueiros)
 
 (O) Fazer com que os ataques causem dano e eliminem seus alvos (agentes/minions/torres)
 (X) Fazer o sistema de calculo de formulas nao apenas para ataques, mas para tudo que tiver uma formula.
@@ -105,6 +105,6 @@ BUGS E VALIDAÇÕES:
 (X) Corrigir bug no cooldown de ataque dos agentes (simulado erro ao inimigo verde bater nas estruturas principais do jogo).
 (-) Corrigir bug das criaturas ao atacar estruturas quando estao atacando algum canto em que o codigo nao preve no distanciamento minimo.
 (-) Corrigir bug das criaturas ao uma criatura inimiga nascer dentro do range de colisao de outra inimiga.
-( ) Encontrado bug ao agente aliado do jogador "team1" estiver impossibilitado de alcancar o inimigo ou muito longe, o mesmo acaba batendo na propria torre.
-( ) Encontrado bug onde a variavel isMakingAttack dentro de timedattacks esta sendo setada para true num periodo de tempo incorreto, causando animacao de ataques infinitos.
+( ) Encontrado bug quando o agente aliado do jogador "team1" estiver impossibilitado de alcancar o inimigo ou muito longe, o mesmo acaba batendo na propria torre.
+(X) Corrigir/Encontrado bug onde a variavel isMakingAttack dentro de timedattacks esta sendo setada para true num periodo de tempo incorreto, causando animacao de ataques infinitos.
 (X) corrigir/Encontrado bug no wave spawner, quando ha apenas um individuo inimigo na wave para nascer e o mesmo acaba spawnando um segundo que nao deveria existir.

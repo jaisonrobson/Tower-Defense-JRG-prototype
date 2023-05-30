@@ -51,9 +51,6 @@ public class FSMStateCreatureAttack : FiniteStateMachine
 
         if (DidCreatureFoundEnemies() && creatureFsmAi.IsAggressive)
         {
-            //Debug.Log(creatureFsmAi.IsAnyViableAttackUnderEnemyRange());
-            //Debug.Log(creatureFsmAi.IsMakingAnyAttack());
-
             if (!creatureFsmAi.IsAnyViableAttackUnderEnemyRange())
             {
                 if (creatureFsmAi.IsMovable && !pathfinding.reachedDestination)

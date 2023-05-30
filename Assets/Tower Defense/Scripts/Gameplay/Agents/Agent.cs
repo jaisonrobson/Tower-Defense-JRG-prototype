@@ -133,10 +133,6 @@ public abstract class Agent : MonoBehaviour
     // (Unity) Methods [START]
     protected virtual void Start()
     {
-        /*
-        ResetAgentStats();
-        ResetMainGoals();
-        */
     }
     protected virtual void Update()
     {
@@ -359,6 +355,20 @@ public abstract class Agent : MonoBehaviour
 
         return result;
     }
+    public Vector3 GetEnemyClosestPoint()
+    {
+        Vector3 result = this.transform.position;
+
+        Agent enemy = GetActualEnemyAgent();
+
+        if (enemy == null)
+            return result;
+
+        result = enemy.mainCollider.ClosestPointOnBounds(transform.position);
+
+        return result;
+    }
+    public float GetDistanceBetweenAgentAndEnemy() => Vector3.Distance(GetEnemyClosestPoint(), transform.position);
     public virtual void PoolRetrievalAction(Poolable poolable)
     {
         priorityGoals = new PriorityGoal[0];

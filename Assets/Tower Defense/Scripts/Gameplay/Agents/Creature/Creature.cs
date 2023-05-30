@@ -52,7 +52,6 @@ public class Creature : Agent
             aiPath.maxSpeed = Velocity;
             aiPath.maxAcceleration = 1f + Velocity * 0.25f;
             aiPath.slowdownDistance = 1f + Velocity;
-            aiPath.endReachedDistance = 2f + Velocity * 0.10f; //Essa distancia vai mudar de acordo com o tipo de inimigo. (arqueiros ou guerreiros terao valores diferentes aqui.)
         }
     }
     // Private Methods [END]

@@ -37,6 +37,8 @@ public class CreatureFsmAi : AgentFsmAi
         UpdateWalkAnimation();
 
         UpdateAIGoalAndDestination();
+
+        UpdateAIPathfindingMinimumDistance();
     }
     // (Unity) Methods [END]
 
@@ -114,6 +116,19 @@ public class CreatureFsmAi : AgentFsmAi
 
                 agent.ActualGoal = agent.MainGoals.First().goal;
             }
+        }
+    }
+    private void UpdateAIPathfindingMinimumDistance()
+    {
+        if (IsAgentDead)
+            return;
+
+        if (pathfinding != null)
+        {
+            TimedAttack nearestAttack = GetNearestNotInCooldownAttack();
+
+            if (nearestAttack.attack != null)
+                pathfinding.endReachedDistance = nearestAttack.attack.minimumAttackDistance * 0.9f;
         }
     }
     private bool IsAgentASubspawn() { return agent.Master != null; }

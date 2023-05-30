@@ -26,5 +26,11 @@ MonoBehaviour:
   newName: 
   agents:
   - {fileID: 11400000, guid: 101ed3fe9c5033a4fb1726247731e5a5, type: 2}
+  - {fileID: 11400000, guid: 101ed3fe9c5033a4fb1726247731e5a5, type: 2}
+  - {fileID: 11400000, guid: 101ed3fe9c5033a4fb1726247731e5a5, type: 2}
+  - {fileID: 11400000, guid: 101ed3fe9c5033a4fb1726247731e5a5, type: 2}
   spawnTimes:
   - 0
+  - 3
+  - 6
+  - 9

@@ -180,8 +180,10 @@ MonoBehaviour:
       Entry: 6
       Data: 
   spawnPoints:
+  - {fileID: 1539831359}
   - {fileID: 727444521}
   timeBetweenWaves:
+  - 0
   - 20
   runningWave: 
   isRunning: 0
@@ -21335,7 +21337,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1539831356
 Transform:
   m_ObjectHideFlags: 0
@@ -21413,7 +21415,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 43a5a65923d48e94badcd42554381caa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  alignment: 4
+  alignment: 2
 --- !u!1001 &1540499508
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -49,7 +49,7 @@ public abstract class AgentFsmAi : MonoBehaviour
     [ShowInInspector]
     [HideInEditorMode]
     [ReadOnly]
-    protected float timeUntilCompletelyDie;    
+    protected float timeUntilCompletelyDie;
     // Protected (Variables) [END]
 
     // Private (Variables) [START]
@@ -67,7 +67,7 @@ public abstract class AgentFsmAi : MonoBehaviour
 
     // Protected (Properties) [START]
     protected GameObject AgentGOBJ { get { return agentGOBJ; } }
-    protected Animator Anim { get { return anim; } }    
+    protected Animator Anim { get { return anim; } }
     // Protected (Properties) [END]
 
     // Public (Properties) [START]
@@ -114,17 +114,26 @@ public abstract class AgentFsmAi : MonoBehaviour
         if (attack.minimumAttackDistance > agent.AttackRange)
             return false;
 
-        Agent enemy = agent.GetActualEnemyAgent();
-
-        if (enemy == null)
+        if (agent.GetActualEnemyAgent() == null)
             return false;
 
-        Vector3 enemyClosestPoint = enemy.mainCollider.ClosestPointOnBounds(agent.transform.position);
-
-        if (Vector3.Distance(enemyClosestPoint, agent.transform.position) > attack.minimumAttackDistance)
+        if (agent.GetDistanceBetweenAgentAndEnemy() > attack.minimumAttackDistance)
             return false;
 
         return true;
+    }
+    public TimedAttack GetNearestNotInCooldownAttack()
+    {
+        TimedAttack nearestAttack = timedAttacks.First();
+
+        nearestAttack = timedAttacks
+            .Where((ta) => !ta.isMakingAttack && IsAttackReady(ta))
+            .Aggregate(
+                nearestAttack,
+                (nearest, next) => nearest.attack.minimumAttackDistance > next.attack.minimumAttackDistance ? next : nearest
+            );
+
+        return nearestAttack;
     }
     public bool IsAnyViableAttackUnderEnemyRange() => timedAttacks.Any(timedAttack => IsAttackInRange(timedAttack.attack) && IsAttackReady(timedAttack));
     public bool IsAnyAttackUnderEnemyRange() => timedAttacks.Any(timedAttack => IsAttackInRange(timedAttack.attack));
