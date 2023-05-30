@@ -12,7 +12,7 @@ public class FSMStateCreatureWalk : FiniteStateMachine
     private Animator anim;
     private Creature creature;
     private AIPath pathfinding;
-    private CreatureFsmAi fsmAi;
+    private CreatureFsmAi creatureFSMAi;
     // Private (Variables) [END]
 
     public FSMStateCreatureWalk(Animator pAnim, Creature pCreature, AIPath pPathfinding) : base()
@@ -21,7 +21,7 @@ public class FSMStateCreatureWalk : FiniteStateMachine
         creature = pCreature;
         pathfinding = pPathfinding;
         name = AgentStateEnum.WALK;
-        fsmAi = creature.GetComponent<CreatureFsmAi>();
+        creatureFSMAi = creature.GetComponent<CreatureFsmAi>();
     }
 
     // Public (Methods) [START]
@@ -47,9 +47,21 @@ public class FSMStateCreatureWalk : FiniteStateMachine
             return;
         }
 
-        if (DidCreatureFoundEnemies() && IsCreatureAgressive() && fsmAi.IsAnyAttackUnderEnemyRange())
+        if (!creatureFSMAi.IsMovable)
         {
-            if (pathfinding.reachedDestination)
+            nextState = new FSMStateCreatureIdle(anim, creature, pathfinding);
+            stage = FSMEventEnum.EXIT;
+
+            return;
+        }
+
+        if (DidCreatureFoundEnemies() && creatureFSMAi.IsAggressive)
+        {
+            if (creatureFSMAi.IsAnyViableAttackUnderEnemyRange())
+            {
+                nextState = new FSMStateCreatureAttack(anim, creature, pathfinding);
+                stage = FSMEventEnum.EXIT;
+            } else if (pathfinding.reachedDestination)
             {
                 nextState = new FSMStateCreatureAttack(anim, creature, pathfinding);
                 stage = FSMEventEnum.EXIT;
@@ -81,7 +93,6 @@ public class FSMStateCreatureWalk : FiniteStateMachine
             || (creature.MainGoals.Count > 0 && creature.goal == AgentGoalEnum.CORESTRUCTURES)
         );
     }
-    private bool IsCreatureAgressive() => creature.GetComponent<CreatureFsmAi>().IsAgressive;
     private bool IsCreatureDead() { return creature.ActualHealth <= 0f; }
     // Private (Methods) [END]
 }

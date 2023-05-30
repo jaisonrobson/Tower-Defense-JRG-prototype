@@ -47,25 +47,28 @@ public class FSMStateCreatureIdle : FiniteStateMachine
             return;
         }
 
-        if (creatureFSMAi.IsAllAttacksUnderCooldown)
-            return;
-
-        if (DidCreatureFoundEnemies() && IsCreatureAgressive() && creatureFSMAi.IsAnyAttackUnderEnemyRange())
+        if (DidCreatureFoundEnemies())
         {
-            if (!pathfinding.reachedDestination)
+            if (creatureFSMAi.IsAggressive && creatureFSMAi.IsAnyViableAttackUnderEnemyRange())
             {
-                nextState = new FSMStateCreatureWalk(anim, creature, pathfinding);
+                if (creatureFSMAi.IsAllAttacksUnderCooldown)
+                    return;
+
+                nextState = new FSMStateCreatureAttack(anim, creature, pathfinding);
                 stage = FSMEventEnum.EXIT;
             }
             else
             {
-                nextState = new FSMStateCreatureAttack(anim, creature, pathfinding);
-                stage = FSMEventEnum.EXIT;
+                if (creatureFSMAi.IsMovable && !pathfinding.reachedDestination)
+                {
+                    nextState = new FSMStateCreatureWalk(anim, creature, pathfinding);
+                    stage = FSMEventEnum.EXIT;
+                }
             }
         }
-        else
+        else if (creature.goal == AgentGoalEnum.FLAG)
         {
-            if (!pathfinding.reachedDestination)
+            if (creatureFSMAi.IsMovable && !pathfinding.reachedDestination)
             {
                 nextState = new FSMStateCreatureWalk(anim, creature, pathfinding);
                 stage = FSMEventEnum.EXIT;
@@ -88,7 +91,6 @@ public class FSMStateCreatureIdle : FiniteStateMachine
             || (creature.MainGoals.Count > 0 && creature.goal == AgentGoalEnum.CORESTRUCTURES)
         );
     }
-    private bool IsCreatureAgressive() => creatureFSMAi.IsAgressive;
     private bool IsCreatureDead() { return creature.ActualHealth <= 0f; }
     // Private (Methods) [END]
 }

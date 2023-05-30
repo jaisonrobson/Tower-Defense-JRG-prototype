@@ -63,7 +63,7 @@ public class AgentSO : BaseOptionDataSO
 
     [VerticalGroup("base/tr_1/td_1/tr_3/td_1")]
     [ToggleButtons("AGRESSIVE", "PEACEFUL", trueColor: "@new Color(0.51f, 1f, 0.65f, 1f)", falseColor: "@new Color(1f, 0.56f, 0.51f, 1f)")]
-    public bool isAgressive = true;
+    public bool isAggressive = true;
 
     [VerticalGroup("base/tr_1/td_1/tr_3/td_1")]
     [ToggleButtons("PLAYABLE", "NON PLAYABLE", trueColor: "@new Color(0.51f, 1f, 0.65f, 1f)", falseColor: "@new Color(1f, 0.56f, 0.51f, 1f)")]

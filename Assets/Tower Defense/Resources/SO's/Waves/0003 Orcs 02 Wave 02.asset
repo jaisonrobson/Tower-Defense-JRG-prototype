@@ -9,8 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4e8b1f304fbfa924aba5da5035d07353, type: 3}
-  m_Name: 0400 Alignment 004 Opponents 001
+  m_Script: {fileID: 11500000, guid: 7023808a96f25f94f8eb801917973fe3, type: 3}
+  m_Name: 0003 Orcs 02 Wave 02
   m_EditorClassIdentifier: 
   serializationData:
     SerializedFormat: 2
@@ -24,6 +24,7 @@ MonoBehaviour:
   jokerHiddenTitleField: 
   assetPath: 
   newName: 
-  alignment: {fileID: 11400000, guid: 4c9eefaf4f857a246b53e1191571be01, type: 2}
-  opponents:
-  - {fileID: 11400000, guid: 42320215e4f4f594995739e465c3bee5, type: 2}
+  agents:
+  - {fileID: 11400000, guid: 101ed3fe9c5033a4fb1726247731e5a5, type: 2}
+  spawnTimes:
+  - 0

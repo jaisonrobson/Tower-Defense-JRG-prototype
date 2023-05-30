@@ -10,12 +10,14 @@ using Pathfinding;
 public struct TimedAttack
 {
     public float nextTimeToExecute;
+    public bool isMakingAttack;
     public AttackSO attack;
 
-    public TimedAttack(AttackSO pAttack, float pNextTimeToExecute = 0)
+    public TimedAttack(AttackSO pAttack, float pNextTimeToExecute = 0, bool pIsMakingAttack = false)
     {
         attack = pAttack;
         nextTimeToExecute = pNextTimeToExecute;
+        isMakingAttack = pIsMakingAttack;
     }
 }
 
@@ -47,12 +49,7 @@ public abstract class AgentFsmAi : MonoBehaviour
     [ShowInInspector]
     [HideInEditorMode]
     [ReadOnly]
-    protected float timeUntilCompletelyDie;
-    [BoxGroup("Agent FSM Identity")]
-    [ShowInInspector]
-    [HideInEditorMode]
-    [ReadOnly]
-    protected AIPath pathfinding;
+    protected float timeUntilCompletelyDie;    
     // Protected (Variables) [END]
 
     // Private (Variables) [START]
@@ -66,10 +63,6 @@ public abstract class AgentFsmAi : MonoBehaviour
     [HideInEditorMode]
     [ReadOnly]
     private bool isAllAttacksUnderCooldown = false;
-    [ShowInInspector]
-    [HideInEditorMode]
-    [ReadOnly]
-    private bool isMakingAttack = false;
     // Private (Variables) [END]    
 
     // Protected (Properties) [START]
@@ -80,7 +73,9 @@ public abstract class AgentFsmAi : MonoBehaviour
     // Public (Properties) [START]
     public bool IsAllAttacksUnderCooldown { get { return isAllAttacksUnderCooldown; } }
     public bool IsAgentDead { get { return agent.ActualHealth <= 0f; } }
-    public bool IsAgressive { get { return agentSO.isAgressive; } }
+    public bool IsAggressive { get { return agentSO.isAggressive; } }
+    public bool IsMovable { get { return agentSO.isMovable; } }
+    public bool IsPlayable { get { return agentSO.isPlayable; } }
     // Public (Properties) [END]
 
     // (Unity) Methods [START]
@@ -98,10 +93,6 @@ public abstract class AgentFsmAi : MonoBehaviour
         HandleAttacking();
 
         HandleDying();
-
-        UpdateWalkAnimation();
-
-        UpdateAIDestination();
     }
     // (Unity) Methods [END]
 
@@ -111,7 +102,6 @@ public abstract class AgentFsmAi : MonoBehaviour
     {
         timedAttacks = null;
         isAllAttacksUnderCooldown = false;
-        isMakingAttack = false;
         isDying = false;
     }
     public void StartDying()
@@ -136,7 +126,10 @@ public abstract class AgentFsmAi : MonoBehaviour
 
         return true;
     }
+    public bool IsAnyViableAttackUnderEnemyRange() => timedAttacks.Any(timedAttack => IsAttackInRange(timedAttack.attack) && IsAttackReady(timedAttack));
     public bool IsAnyAttackUnderEnemyRange() => timedAttacks.Any(timedAttack => IsAttackInRange(timedAttack.attack));
+    public bool IsAllAttacksUnderEnemyRange() => timedAttacks.All(timedAttack => IsAttackInRange(timedAttack.attack));
+    public bool IsMakingAnyAttack() => timedAttacks.Any(timedAttack => timedAttack.isMakingAttack);
     // Public (Methods) [END]
 
     // Private (Methods) [START]
@@ -144,12 +137,9 @@ public abstract class AgentFsmAi : MonoBehaviour
     {
         isDying = false;
         timeUntilCompletelyDie = 0f;
-        isMakingAttack = false;
         isAllAttacksUnderCooldown = false;
         agentGOBJ = gameObject;
         anim = gameObject.GetComponentInChildren<Animator>();
-        pathfinding = AgentGOBJ.GetComponent<AIPath>();
-        pathfinding.destination = transform.position;
 
         if (GetComponent<Creature>() != null)
             agentSO = GetComponent<Creature>().agent;
@@ -162,122 +152,13 @@ public abstract class AgentFsmAi : MonoBehaviour
 
         CreateTimedAttacks();
     }
-    private void UpdateWalkAnimation()
-    {
-        if (IsAgentDead)
-            return;
-
-        if (pathfinding != null && currentState.name == AgentStateEnum.WALK)
-        {
-            Vector3 relVelocity = transform.InverseTransformDirection(pathfinding.velocity);
-            relVelocity.y = 0f;
-
-            float maxAnimationVelocity = pathfinding.maxSpeed < 5f ? 1f : 2f;
-
-            Anim.SetFloat("walkSpeed", Mathf.Clamp(relVelocity.magnitude / Anim.transform.lossyScale.x, 0f, maxAnimationVelocity));
-        }
-    }
-    private void UpdateAIDestination()
-    {
-        if (IsAgentDead)
-            return;
-
-        if (pathfinding != null)
-        {
-            List<PriorityGoal> creaturePriorityEnemies = agent.GetAgentViablePriorityEnemies();
-
-            if (creaturePriorityEnemies.Count > 0 && IsSubspawnInsideAreaLimits() && IsAgressive || creaturePriorityEnemies.Count > 0 && !IsAgentASubspawn() && IsAgressive)
-            {
-                PriorityGoal nearestPriorityEnemy = agent.GetAgentNearestViablePriorityEnemy();
-
-                Agent enemyAgent = nearestPriorityEnemy.goal.GetComponent<Agent>();
-
-                if (enemyAgent == null)
-                    enemyAgent = nearestPriorityEnemy.goal.GetComponentInParent<Agent>();
-                if (enemyAgent == null)
-                    enemyAgent = nearestPriorityEnemy.goal.GetComponentInChildren<Agent>();
-
-                if (enemyAgent != null)
-                {
-                    pathfinding.destination = GetGoalDestination(enemyAgent.mainCollider.bounds, nearestPriorityEnemy.destination);
-                }
-                else
-                    pathfinding.destination = nearestPriorityEnemy.goal.transform.position;
-
-                agent.ActualGoal = nearestPriorityEnemy.goal;
-            }
-            else if (agent.MainGoals.Count > 0)
-            {
-                if (IsAgentASubspawn())
-                {
-                    PlayableStructure ps = agent.Master.GetComponent<PlayableStructure>();
-
-                    if (ps)
-                        pathfinding.destination = ps.GoalFlag.position;
-                }
-                else
-                {
-                    Collider goalCollider = agent.MainGoals.First().goal.GetComponent<Collider>();
-
-                    if (goalCollider != null)
-                    {
-                        pathfinding.destination = GetGoalDestination(goalCollider.bounds, agent.MainGoals.First().destination);
-                    }
-                    else
-                        pathfinding.destination = agent.MainGoals.First().goal.transform.position;
-                }
-
-                agent.ActualGoal = agent.MainGoals.First().goal;
-            }
-        }
-    }
-    private bool IsAgentASubspawn() { return agent.Master != null; }
-    private bool IsSubspawnInsideAreaLimits()
-    {
-        bool result = false;
-
-        if (agent.Master != null)
-        {
-            if (Vector3.Distance(agent.Master.transform.position, agent.transform.position)
-                <= (
-                    (agent.Master.GetComponentInChildren<AgentEnemyColliderManager>(true).DetectionCollider.bounds.extents.magnitude / 2)
-                    + (agent.GetComponentInChildren<AgentEnemyColliderManager>(true).DetectionCollider.bounds.extents.magnitude / 2)
-                   )
-               )
-                result = true;
-        }
-
-        return result;
-    }
-    private Vector3 GetGoalDestination(Bounds b, int choice)
-    {
-        Vector3 result;
-
-        switch (choice)
-        {
-            case 0:
-                result = new Vector3(b.max.x, 0f, b.max.z);
-                break;
-            case 1:
-                result = new Vector3(b.max.x, 0f, b.min.z);
-                break;
-            case 2:
-                result = new Vector3(b.min.x, 0f, b.max.z);
-                break;
-            default:
-                result = b.min;
-                break;
-        }
-
-        return result;
-    }
     private void UpdateFSMStates()
     {
         currentState = currentState.Process();
     }
     private void UpdateAttackCooldown()
     {
-        if (IsAgentDead || !IsAgressive)
+        if (IsAgentDead || !IsAggressive)
             return;
 
         if (CheckIsAllAttacksUnderCooldown())
@@ -290,15 +171,16 @@ public abstract class AgentFsmAi : MonoBehaviour
             isAllAttacksUnderCooldown = false;
         }
     }
+    private void ResetAllTimedAttacksFlag() => timedAttacks.ToList().ForEach(ta => ta.isMakingAttack = false);
     private void HandleAttacking()
     {
-        if (IsAgentDead || !IsAgressive)
+        if (IsAgentDead || !IsAggressive)
             return;
 
         if (currentState.name == AgentStateEnum.ATTACK)
         {
             if (IsAllAttacksReady())
-                isMakingAttack = false;
+                ResetAllTimedAttacksFlag();
 
             for (int i = 0; i < timedAttacks.Length; i++)
             {
@@ -309,9 +191,9 @@ public abstract class AgentFsmAi : MonoBehaviour
 
                 if (Time.fixedTime >= (timedAttacks[i].nextTimeToExecute + timedAttacks[i].attack.cooldown))
                 {
-                    if (!isMakingAttack)
+                    if (!IsMakingAnyAttack())
                     {
-                        isMakingAttack = true;
+                        timedAttacks[i].isMakingAttack = true;
                         
                         timedAttacks[i].nextTimeToExecute = CalculateAttackTiming(timedAttacks[i].attack, false);
 
@@ -322,15 +204,10 @@ public abstract class AgentFsmAi : MonoBehaviour
                     }
                 }
 
-                
                 if (Time.fixedTime < timedAttacks[i].nextTimeToExecute)
-                {
                     UpdateAttackAnimation(timedAttacks[i].attack);
-                }
                 else
-                {
-                    isMakingAttack = false;
-                }
+                    timedAttacks[i].isMakingAttack = false;
             }
         }
     }
@@ -356,7 +233,7 @@ public abstract class AgentFsmAi : MonoBehaviour
 
     private void CreateTimedAttacks()
     {
-        if (!IsAgressive)
+        if (!IsAggressive)
             return;
 
         if (timedAttacks == null)

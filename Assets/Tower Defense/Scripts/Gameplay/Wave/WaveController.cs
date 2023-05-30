@@ -184,9 +184,12 @@ public class WaveController : OdinSingleton<WaveController>
         for (int i = 0; i < GetMapAlignedWaves().Length; i++)
         {
             actualAgentSpawningIndex = i;
+
             if (DidAllWavesInSequence(actualAgentSpawningIndex)) continue;
 
             if (isUnderWaitTime[actualAgentSpawningIndex]) IncrementRunningWave(actualAgentSpawningIndex);
+
+            if (!isRunningSequence[actualAgentSpawningIndex]) return;
 
             if (!isUnderWaitTime[actualAgentSpawningIndex] && actualWaveRunningTime[actualAgentSpawningIndex] >= GetRunningWave(actualAgentSpawningIndex).spawnTimes.ElementAt(nextIndexToSpawn[actualAgentSpawningIndex]))
             {

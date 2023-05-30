@@ -29,3 +29,4 @@ MonoBehaviour:
   opponents:
   - {fileID: 11400000, guid: f0c47d80a9552f344b6d14061c69bbc2, type: 2}
   - {fileID: 11400000, guid: 79f57b8bde3323e48b0e4d0723e0eab8, type: 2}
+  - {fileID: 11400000, guid: 4c9eefaf4f857a246b53e1191571be01, type: 2}

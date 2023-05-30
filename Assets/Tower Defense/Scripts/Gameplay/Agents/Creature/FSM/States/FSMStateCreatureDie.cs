@@ -11,6 +11,7 @@ public class FSMStateCreatureDie : FiniteStateMachine
     private Animator anim;
     private Creature creature;
     private AIPath pathfinding;
+    private CreatureFsmAi creatureFsmAi;
     // Private (Variables) [END]
 
     public FSMStateCreatureDie(Animator pAnim, Creature pCreature, AIPath pPathfinding) : base()
@@ -19,6 +20,7 @@ public class FSMStateCreatureDie : FiniteStateMachine
         creature = pCreature;
         pathfinding = pPathfinding;
         name = AgentStateEnum.DIE;
+        creatureFsmAi = creature.GetComponent<CreatureFsmAi>();
     }
 
     // Public (Methods) [START]
@@ -31,7 +33,7 @@ public class FSMStateCreatureDie : FiniteStateMachine
 
         creature.mainCollider.enabled = false;
 
-        creature.GetComponent<CreatureFsmAi>().StartDying();
+        creatureFsmAi.StartDying();
 
         base.Enter();
     }

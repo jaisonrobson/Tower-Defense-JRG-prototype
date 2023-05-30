@@ -17,15 +17,13 @@ using Core.Patterns;
 [RequireComponent(typeof(CreatureFsmAi))]
 public class Creature : Agent
 {
+    // Public (Variables) [START]    
     [BoxGroup("Agent Identity")]
     [PropertyOrder(-1)]
     [Required]
     [ValidateInput("Validate_IsCreature_Agent", "The agent you selected is not a creature.")]    
     public AgentSO agent;
-    // Public (Properties) [START]
-    
-    // Public (Properties) [END]
-
+    // Public (Variables) [END]
 
     // Private (Variables) [START]    
     private AIPath aiPath;
@@ -36,7 +34,7 @@ public class Creature : Agent
     {
         base.Start();
 
-        InitializeLinks();        
+        InitializeLinks();
         ResetCreatureStats();
     }
     // Unity Methods [END]

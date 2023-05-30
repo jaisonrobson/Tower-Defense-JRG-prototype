@@ -58,8 +58,6 @@ public abstract class Agent : MonoBehaviour
     [HideInEditorMode]
     [ReadOnly]
     private AlignmentEnum alignment;
-    private bool isMovable = false;
-    private bool isPlayable = false;
     [BoxGroup("Agent Identity")]
     [PropertyOrder(-1)]
     [ShowInInspector]
@@ -113,8 +111,6 @@ public abstract class Agent : MonoBehaviour
     // Protected (Variables) [END]
 
     // Public (Properties) [START]
-    public bool IsMovable { get { return isMovable; } }
-    public bool IsPlayable { get { return isPlayable; } }
     public float ActualHealth { get { return actualHealth; } }
     public float MaxHealth { get { return maxHealth; } }
     public float Damage { get { return damage; } }
@@ -208,8 +204,6 @@ public abstract class Agent : MonoBehaviour
     }
     private void ResetAgentStats()
     {
-        isMovable = GetAgent().isMovable;
-        isPlayable = GetAgent().isPlayable;
         actualHealth = GetAgent().health;
         maxHealth= GetAgent().health;
         damage = GetAgent().damage;

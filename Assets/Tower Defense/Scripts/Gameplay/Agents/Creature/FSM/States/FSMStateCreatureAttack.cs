@@ -12,7 +12,7 @@ public class FSMStateCreatureAttack : FiniteStateMachine
     private Animator anim;
     private Creature creature;
     private AIPath pathfinding;
-    private CreatureFsmAi fsmAi;
+    private CreatureFsmAi creatureFsmAi;
     // Private (Variables) [END]
 
     public FSMStateCreatureAttack(Animator pAnim, Creature pCreature, AIPath pPathfinding) : base()
@@ -20,7 +20,7 @@ public class FSMStateCreatureAttack : FiniteStateMachine
         anim = pAnim;
         creature = pCreature;
         pathfinding = pPathfinding;
-        fsmAi = creature.GetComponent<CreatureFsmAi>();
+        creatureFsmAi = creature.GetComponent<CreatureFsmAi>();
         name = AgentStateEnum.ATTACK;
     }
 
@@ -49,12 +49,23 @@ public class FSMStateCreatureAttack : FiniteStateMachine
 
         LookAtGoal();
 
-        if (DidCreatureFoundEnemies() && IsCreatureAgressive() && fsmAi.IsAnyAttackUnderEnemyRange())
+        if (DidCreatureFoundEnemies() && creatureFsmAi.IsAggressive)
         {
-            if (!pathfinding.reachedDestination)
+            //Debug.Log(creatureFsmAi.IsAnyViableAttackUnderEnemyRange());
+            //Debug.Log(creatureFsmAi.IsMakingAnyAttack());
+
+            if (!creatureFsmAi.IsAnyViableAttackUnderEnemyRange())
             {
-                nextState = new FSMStateCreatureWalk(anim, creature, pathfinding);
-                stage = FSMEventEnum.EXIT;
+                if (creatureFsmAi.IsMovable && !pathfinding.reachedDestination)
+                {
+                    nextState = new FSMStateCreatureWalk(anim, creature, pathfinding);
+                    stage = FSMEventEnum.EXIT;
+                }
+                else if (!creatureFsmAi.IsMakingAnyAttack())
+                {
+                    nextState = new FSMStateCreatureIdle(anim, creature, pathfinding);
+                    stage = FSMEventEnum.EXIT;
+                }
             }
         }
         else
@@ -87,7 +98,6 @@ public class FSMStateCreatureAttack : FiniteStateMachine
             || (creature.MainGoals.Count > 0 && creature.goal == AgentGoalEnum.CORESTRUCTURES)
         );
     }
-    private bool IsCreatureAgressive() => creature.GetComponent<CreatureFsmAi>().IsAgressive;
     private bool IsCreatureDead() { return creature.ActualHealth <= 0f; }
     // Private (Methods) [END]
 }

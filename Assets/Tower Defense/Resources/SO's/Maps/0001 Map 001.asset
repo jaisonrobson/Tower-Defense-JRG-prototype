@@ -16,8 +16,7 @@ MonoBehaviour:
     SerializedFormat: 2
     SerializedBytes: 
     ReferencedUnityObjects:
-    - {fileID: 11400000, guid: 4e2c305a491d0a242a43a2bf3f220424, type: 2}
-    - {fileID: 11400000, guid: 6f1b1268a8fa1044d95237fdd76caccd, type: 2}
+    - {fileID: 11400000, guid: 530329505bfad3548b900e0dfc3cb19d, type: 2}
     SerializedBytesString: 
     Prefab: {fileID: 0}
     PrefabModificationsReferencedUnityObjects: []
@@ -28,37 +27,16 @@ MonoBehaviour:
       Data: 0|AlignedWaveSO[][], Assembly-CSharp
     - Name: 
       Entry: 12
-      Data: 2
+      Data: 1
     - Name: 
       Entry: 7
       Data: 1|AlignedWaveSO[], Assembly-CSharp
     - Name: 
       Entry: 12
-      Data: 2
-    - Name: 
-      Entry: 10
-      Data: 0
-    - Name: 
-      Entry: 10
-      Data: 0
-    - Name: 
-      Entry: 13
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 7
-      Data: 2|AlignedWaveSO[], Assembly-CSharp
-    - Name: 
-      Entry: 12
-      Data: 2
-    - Name: 
-      Entry: 10
       Data: 1
     - Name: 
       Entry: 10
-      Data: 1
+      Data: 0
     - Name: 
       Entry: 13
       Data: 
@@ -83,6 +61,5 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 70a9899fa8622bd4e957eb46d9e5ba63, type: 2}
   alignmentsOpponents:
   - {fileID: 11400000, guid: 0e65c97e59b1b404bb4fcecc8db6c25f, type: 2}
-  - {fileID: 11400000, guid: 56ed35ab0e12bb342990a80fb88e998f, type: 2}
   - {fileID: 11400000, guid: ad6edece0fa1ae241a499f0447694edf, type: 2}
   weaknesses: {fileID: 11400000, guid: abc87d597315edc45a703ccc429e9e0f, type: 2}
