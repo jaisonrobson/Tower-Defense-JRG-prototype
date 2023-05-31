@@ -29,6 +29,12 @@ public class AlignmentManager : Singleton<AlignmentManager>
 
     // Public (Methods) [START]
     public AlignmentSO GetAlignment(AlignmentEnum al) => Alignments.Where(ag => ag.alignment == al).First();
+    public List<AlignmentSO> GetOpponents(AlignmentEnum pAlignment) { return MapManager.instanceExists && pAlignment != AlignmentEnum.GENERIC ? MapManager.instance.map.alignmentsOpponents.Where(ao => ao.alignment.alignment == pAlignment).First().opponents : null; }
+    public bool IsAlignmentAnOpponent(AlignmentEnum pAlignmentOne, AlignmentEnum pAlignmentTwo) {
+        List<AlignmentSO> opponents = GetOpponents(pAlignmentOne);
+
+        return opponents != null ? opponents.Any(opponent => opponent.alignment == pAlignmentTwo) : false;
+    }
     // Public (Methods) [END]
 
     // Private (Methods) [START]

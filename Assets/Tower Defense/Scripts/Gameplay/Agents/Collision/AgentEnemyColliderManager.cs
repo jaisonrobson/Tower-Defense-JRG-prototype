@@ -93,8 +93,7 @@ public class AgentEnemyColliderManager : MonoBehaviour
     private bool IsSelfGameObjectCollider(Transform collider) => Utils.IsGameObjectInsideAnother(collider, transform.parent);
     private void ResetAgent() { agent = GetComponentInParent<Agent>(true); }
     private void ResetAlignment() { alignment = transform.parent.GetComponent<Agent>().Alignment; }
-    private List<AlignmentSO> GetOpponents() { return MapManager.instanceExists && alignment != AlignmentEnum.GENERIC ? MapManager.instance.map.alignmentsOpponents.Where(ao => ao.alignment.alignment == alignment).First().opponents : null; }
-    private bool IsAlignmentAnOpponent(AlignmentEnum pAlignment) { return GetOpponents() != null ? GetOpponents().Any(opponent => opponent.alignment == pAlignment) : false; }
+    private bool IsAlignmentAnOpponent(AlignmentEnum pAlignment) { return AlignmentManager.instance.IsAlignmentAnOpponent(pAlignment, alignment); }
     private bool IsMainGoal(Agent targetAgent) { return agent.IsMainGoal(targetAgent); }
     private bool IsPriorityGoal(Agent targetAgent) { return agent.IsPriorityGoal(targetAgent); }
     // Private Methods [END]

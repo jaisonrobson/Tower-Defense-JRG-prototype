@@ -320,9 +320,14 @@ public abstract class Agent : MonoBehaviour
     }
     public int GenerateEvasionChance() { return RNG.Int(evasion.x, evasion.y); }
     public bool TryToEvade() { return RNG.Int(0, 100) < GenerateEvasionChance(); }
-    public bool OnReceiveDamage(float rawValue, AttackSO dealerAttack)
+    public bool OnReceiveDamage(Agent dealer, AttackSO dealerAttack)
     {
         bool result = false;
+
+        if (!AlignmentManager.instance.IsAlignmentAnOpponent(dealer.alignment, alignment))
+            return result;
+
+        float rawValue = dealer.Damage;
 
         if (!TryToEvade() && rawValue > 0f)
         {
