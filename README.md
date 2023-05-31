@@ -8,6 +8,7 @@ Technologies used:
 * Odin Inspector
 * Odin Validator
 * Odin Serialized Structures
+* System LINQ
 
 --- Design Patterns
 * Singleton Pattern
