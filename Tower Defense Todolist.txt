@@ -29,12 +29,14 @@ LEGENDA:
 
 (O) Criar a funcao de ataque dos agentes a alguma entidade inimiga proxima.
 
-( ) Structures (X) Creatures
-(O) Criar sistema de AI de Finite State Machine
-(O) Fazer o estado Idle
-(O) Fazer o estado Walk
-(O) Fazer o estado Attack
-(O) Fazer o estado Die
+(X) Criar sistema de AI de Finite State Machine
+(X) Fazer o estado Idle para criaturas
+(X) Fazer o estado Walk para criaturas
+(X) Fazer o estado Attack para criaturas
+(X) Fazer o estado Die para criaturas
+( ) Fazer o estado Idle para estruturas
+( ) Fazer o estado Attack para estruturas
+( ) Fazer o estado Die para estruturas
 (X) Criar um metodo no agent FSM ai para verificar dentre todos os ataques, se algum esta dentro do alcance com o inimigo.
 (X) Fazer com que o codigo do agent FSM ai sempre ataque o inimigo mais proximo.
 (X) Implementar o attack range no FSM Ai dos agentes
