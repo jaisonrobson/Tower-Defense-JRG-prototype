@@ -127,7 +127,7 @@ MonoBehaviour:
   velocity: 4.978261
   damage: 3
   health: 10
-  visibilityArea: 24.967392
+  visibilityArea: 8.089172
   evasion: {x: 0, y: 10}
   evolutionTree: []
   attacks:

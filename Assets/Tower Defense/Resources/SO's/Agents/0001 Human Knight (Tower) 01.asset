@@ -123,16 +123,16 @@ MonoBehaviour:
   isAggressive: 1
   isPlayable: 1
   experienceToEvolve: 15
-  attackVelocity: 0.3
-  attackRange: 1.5
+  attackVelocity: 1.0484077
+  attackRange: 9.995223
   velocity: 3
   damage: 15
   health: 25
-  visibilityArea: 7.0869565
+  visibilityArea: 14.974523
   evasion: {x: 0, y: 10}
   evolutionTree:
   - {fileID: 11400000, guid: 3111548a9635bd943ad329ba3538bf0c, type: 2}
   attacks:
-  - {fileID: 11400000, guid: f34eaf47e97cbb047905a8c8d999d820, type: 2}
+  - {fileID: 11400000, guid: ee527f0a67e809846815e8a4fcc28fb7, type: 2}
   subspawns:
   - {fileID: 11400000, guid: b5f188264af5b5c40aa53f4f0e673d88, type: 2}

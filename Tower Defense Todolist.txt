@@ -27,16 +27,16 @@ LEGENDA:
 (X) Criar um enumerator para saber o evento que esta ocorrendo no agente atualmente. (caminhando, atacando, morrendo, etc.) obs: utilizar esse enumerator para fazer as duas tasks do pathfinding sobre obstaculo.
 (X) Fazer com que os scripts das torres e minions herdem do script de agentes.
 
-(O) Criar a funcao de ataque dos agentes a alguma entidade inimiga proxima.
+(X) Criar a funcao de ataque dos agentes a alguma entidade inimiga proxima.
 
 (X) Criar sistema de AI de Finite State Machine
 (X) Fazer o estado Idle para criaturas
 (X) Fazer o estado Walk para criaturas
 (X) Fazer o estado Attack para criaturas
 (X) Fazer o estado Die para criaturas
-( ) Fazer o estado Idle para estruturas
-( ) Fazer o estado Attack para estruturas
-( ) Fazer o estado Die para estruturas
+(X) Fazer o estado Idle para estruturas
+(X) Fazer o estado Attack para estruturas
+(X) Fazer o estado Die para estruturas
 (X) Criar um metodo no agent FSM ai para verificar dentre todos os ataques, se algum esta dentro do alcance com o inimigo.
 (X) Fazer com que o codigo do agent FSM ai sempre ataque o inimigo mais proximo.
 (X) Implementar o attack range no FSM Ai dos agentes
@@ -46,9 +46,9 @@ LEGENDA:
 (X) Caso o ataque esteja fora de alcance, e nao tenha mais nenhum ataque possivel (range ou cooldown) no momento, fazer com que o FSM mude de estado para Walk afim de atingir a distancia desejada ao objetivo. (testar a IA do FSM com inimigos que possuem ataques a distancia, ex: arqueiros)
 (O) Criar um animator para as estruturas
 (X) Criar os FSMAI e states para Playable Structures pois estes devem verificar quando a estrutura esta posicionada antes de iniciar os estados
-( ) Fazer com que as estruturas executem ataques
+(X) Fazer com que as estruturas executem ataques
 
-(O) Fazer com que os ataques causem dano e eliminem seus alvos (agentes/minions/torres)
+(X) Fazer com que os ataques causem dano e eliminem seus alvos (agentes/minions/torres)
 (X) Fazer o sistema de calculo de formulas nao apenas para ataques, mas para tudo que tiver uma formula.
 (X) Melhorar o script de formulas com insercoes automaticas entre as listas.
 (X) Criar uma nova propriedade nos agentes chamada "evade/evasion" que servira para definir se o minion devera ignorar o seu inimigo atraves de uma chance aleatoria definida de 0 a 100% na propriedade. usar rng para definir essa chance.

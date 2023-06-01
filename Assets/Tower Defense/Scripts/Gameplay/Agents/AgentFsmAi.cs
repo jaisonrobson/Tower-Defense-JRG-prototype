@@ -193,6 +193,9 @@ public abstract class AgentFsmAi : MonoBehaviour
 
             for (int i = 0; i < timedAttacks.Length; i++)
             {
+                if (Time.fixedTime >= timedAttacks[i].nextTimeToExecute)
+                    timedAttacks[i].isMakingAttack = false;
+
                 if (!IsAttackInRange(timedAttacks[i].attack))
                 {
                     continue;
@@ -215,8 +218,6 @@ public abstract class AgentFsmAi : MonoBehaviour
 
                 if (Time.fixedTime < timedAttacks[i].nextTimeToExecute)
                     UpdateAttackAnimation(timedAttacks[i].attack);
-                else
-                    timedAttacks[i].isMakingAttack = false;
             }
         }
     }

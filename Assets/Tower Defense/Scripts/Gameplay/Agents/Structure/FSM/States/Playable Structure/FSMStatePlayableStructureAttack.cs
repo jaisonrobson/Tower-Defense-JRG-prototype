@@ -37,6 +37,9 @@ public class FSMStatePlayableStructureAttack : FSMStatePlayableStructure
             return;
         }
 
+        if (playableStructureFSMAi.IsMakingAnyAttack())
+            return;
+
         if (!DidStructureFoundEnemies() || !playableStructureFSMAi.IsAggressive || !playableStructureFSMAi.IsAnyViableAttackUnderEnemyRange())
         {
             nextState = new FSMStatePlayableStructureIdle(anim, playableStructure);

@@ -180,7 +180,7 @@ public abstract class Agent : MonoBehaviour
     {
         GameObject newAgent = Poolable.TryGetPoolable(agentPrefab, OnRetrieveSubSpawnPoolableAgent);
 
-        newAgent.gameObject.GetComponent<AIPath>().Teleport(GetAgentColliderBoundsInitialPosition(newAgent.transform));        
+        newAgent.gameObject.GetComponent<AIPath>().Teleport(GetAgentColliderBoundsInitialPosition(newAgent.transform));
 
         return newAgent;
     }
@@ -201,7 +201,7 @@ public abstract class Agent : MonoBehaviour
     private void ResetAgentStats()
     {
         actualHealth = GetAgent().health;
-        maxHealth= GetAgent().health;
+        maxHealth = GetAgent().health;
         damage = GetAgent().damage;
         velocity = GetAgent().velocity;
         attackVelocity = GetAgent().attackVelocity;
@@ -360,20 +360,17 @@ public abstract class Agent : MonoBehaviour
 
         return result;
     }
-    public Vector3 GetEnemyClosestPoint()
-    {
-        Vector3 result = this.transform.position;
-
+    public float GetDistanceBetweenAgentAndEnemy() {
         Agent enemy = GetActualEnemyAgent();
 
-        if (enemy == null)
-            return result;
+        Vector3 enemyClosestPoint = enemy.mainCollider.ClosestPointOnBounds(transform.position);
+        Vector3 agentClosesPoint = mainCollider.ClosestPointOnBounds(enemyClosestPoint);
 
-        result = enemy.mainCollider.ClosestPointOnBounds(transform.position);
-
-        return result;
+        if (enemy != null)
+            return Vector3.Distance(enemyClosestPoint, agentClosesPoint);
+        else
+            return float.PositiveInfinity;
     }
-    public float GetDistanceBetweenAgentAndEnemy() => Vector3.Distance(GetEnemyClosestPoint(), transform.position);
     public virtual void PoolRetrievalAction(Poolable poolable)
     {
         priorityGoals = new PriorityGoal[0];
