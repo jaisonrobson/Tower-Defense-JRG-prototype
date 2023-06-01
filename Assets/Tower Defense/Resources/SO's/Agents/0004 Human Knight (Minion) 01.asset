@@ -118,7 +118,7 @@ MonoBehaviour:
   prefab: {fileID: 1245423106021898583, guid: e3984ec68e0c1a644b39b369a2b72d9a, type: 3}
   nature: {fileID: 11400000, guid: efc48cd36c929314495d893e09975cdd, type: 2}
   type: 0
-  isMovable: 0
+  isMovable: 1
   isAggressive: 1
   isPlayable: 1
   experienceToEvolve: 0

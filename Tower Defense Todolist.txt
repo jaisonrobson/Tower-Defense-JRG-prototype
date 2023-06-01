@@ -44,6 +44,9 @@ LEGENDA:
 (-) Modificar o sistema de FSM dos agentes para que todo agente possa se mover e atacar, e para verificar quais agentes nao podem realizar essas devidas acoes, atentar-se ao atributo "IsMovable" para movimento e "IsAgressive" para ataque. (estruturas nao vao poder se mover.)
 (X) Implementar a variavel "IsMovable" em cima do algoritmo de movimentação para não haver movimentação quando o agente não for "movel".
 (X) Caso o ataque esteja fora de alcance, e nao tenha mais nenhum ataque possivel (range ou cooldown) no momento, fazer com que o FSM mude de estado para Walk afim de atingir a distancia desejada ao objetivo. (testar a IA do FSM com inimigos que possuem ataques a distancia, ex: arqueiros)
+(O) Criar um animator para as estruturas
+(X) Criar os FSMAI e states para Playable Structures pois estes devem verificar quando a estrutura esta posicionada antes de iniciar os estados
+( ) Fazer com que as estruturas executem ataques
 
 (O) Fazer com que os ataques causem dano e eliminem seus alvos (agentes/minions/torres)
 (X) Fazer o sistema de calculo de formulas nao apenas para ataques, mas para tudo que tiver uma formula.
@@ -110,3 +113,4 @@ BUGS E VALIDAÇÕES:
 (X) Corrigir/Encontrado bug quando o agente aliado do jogador "team1" estiver impossibilitado de alcancar o inimigo ou muito longe, o mesmo acaba batendo na propria torre. (verificar de impedir o ataque a alinhamentos aliados no onreceiveDamage do agente).
 (X) Corrigir/Encontrado bug onde a variavel isMakingAttack dentro de timedattacks esta sendo setada para true num periodo de tempo incorreto, causando animacao de ataques infinitos.
 (X) corrigir/Encontrado bug no wave spawner, quando ha apenas um individuo inimigo na wave para nascer e o mesmo acaba spawnando um segundo que nao deveria existir.
+(X) Corrigir/Encontrado bug onde o colisor fisico da torre jogavel permanece desabilitado apos ser reconvocado do sistema de pooling

@@ -146,7 +146,7 @@ public abstract class Agent : MonoBehaviour
         if (SubSpawns.Count > 0 && alignment != AlignmentEnum.GENERIC)
         {
             if (GetAgent().type == AgentTypeEnum.STRUCTURE && GetComponent<PlayableStructure>() != null)
-                if (!GetComponent<PlayableStructure>().GetIsStructurePlaced())
+                if (!GetComponent<PlayableStructure>().IsPlaced)
                     return;
 
             bool modified = false;
@@ -222,12 +222,12 @@ public abstract class Agent : MonoBehaviour
                 AddMainGoal(MapManager.instance.sourceAsset);
 
                 break;
-            case AgentGoalEnum.FLAG:
-                //Subspawn of structures (towers, etc.)
+            case AgentGoalEnum.FLAG://Agents subspawned by structure Agents
                 AddMainGoal(Master);
                 break;
-            case AgentGoalEnum.MASTER:
-                //Subspawn of creatures (necromancer,etc.)
+            case AgentGoalEnum.MASTER://Agents subspawned by creature agents
+                break;
+            case AgentGoalEnum.DEFEND://Structures
                 break;
         }
     }
@@ -382,8 +382,8 @@ public abstract class Agent : MonoBehaviour
         ResetMainGoals();
         actualGoal = null;
 
-        if (GetComponent<CharacterController>() != null)
-            GetComponent<CharacterController>().enabled = true;
+        if (mainCollider != null)
+            mainCollider.enabled = true;
 
         if (GetComponent<AgentFsmAi>() != null)
             GetComponent<AgentFsmAi>().PoolRetrievalAction(poolable);

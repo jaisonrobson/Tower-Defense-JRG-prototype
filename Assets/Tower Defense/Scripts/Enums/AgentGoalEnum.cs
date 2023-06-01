@@ -2,5 +2,6 @@ public enum AgentGoalEnum
 {
     CORESTRUCTURES,
     FLAG,
-    MASTER
+    MASTER,
+    DEFEND
 }

@@ -148,7 +148,7 @@ public abstract class AgentFsmAi : MonoBehaviour
         timeUntilCompletelyDie = 0f;
         isAllAttacksUnderCooldown = false;
         agentGOBJ = gameObject;
-        anim = gameObject.GetComponentInChildren<Animator>();
+        anim = gameObject.GetComponentInChildren<Animator>(true);
 
         if (GetComponent<Creature>() != null)
             agentSO = GetComponent<Creature>().agent;

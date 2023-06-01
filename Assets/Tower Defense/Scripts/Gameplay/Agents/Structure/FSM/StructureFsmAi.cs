@@ -15,19 +15,44 @@ public class StructureFsmAi : AgentFsmAi
         base.OnEnable();
 
         structure = AgentGOBJ.GetComponent<Structure>();
+
+        currentState = new FSMStateStructureIdle(Anim, structure);
     }
 
     // Update is called once per frame
     protected override void Update()
     {
         base.Update();
+
+        UpdateAIGoal();
     }
     // (Unity) Methods [END]
+
+    // Private (Methods) [START]
+    private void UpdateAIGoal()
+    {
+        if (IsAgentDead)
+            return;
+
+        List<PriorityGoal> creaturePriorityEnemies = agent.GetAgentViablePriorityEnemies();
+
+        if (creaturePriorityEnemies.Count > 0 && IsAggressive)
+        {
+            PriorityGoal nearestPriorityEnemy = agent.GetAgentNearestViablePriorityEnemy();
+
+            agent.ActualGoal = nearestPriorityEnemy.goal;
+        }
+        else
+        {
+            agent.ActualGoal = null;
+        }
+    }
+    // Private (Methods) [END]
 
     // Protected (Methods) [START]
     protected override void GoToIdleState()
     {
-        //currentState = new FSMStateCreatureIdle(Anim, creature, pathfinding);
+        currentState = new FSMStateStructureIdle(Anim, structure);
     }
     // Protected (Methods) [END]
 }

@@ -38,7 +38,7 @@ public class AgentUI : MonoBehaviour
     }
     private void CreateHealthSlider()
     {
-        if (agent.GetComponent<PlayableStructure>() != null && !agent.GetComponent<PlayableStructure>().GetIsStructurePlaced())
+        if (agent.GetComponent<PlayableStructure>() != null && !agent.GetComponent<PlayableStructure>().IsPlaced)
             return;
 
         if (spawnedHealthSlider == null)

@@ -4,6 +4,7 @@ using UnityEngine;
 using Sirenix.OdinInspector;
 using Core.Patterns;
 
+[RequireComponent(typeof(PlayableStructureFsmAi))]
 public class PlayableStructure : Structure
 {
     [BoxGroup("Structure Identity")]
@@ -26,6 +27,7 @@ public class PlayableStructure : Structure
 
     // Public (Properties) [START]
     public Transform GoalFlag { get { return goalFlag; } }
+    public bool IsPlaced { get { return isPlaced; } }
     // Public (Properties) [END]
 
     // (Unity) Methods [START]
@@ -93,7 +95,6 @@ public class PlayableStructure : Structure
     // Private Methods [END]
 
     // Public (Methods) [START]
-    public bool GetIsStructurePlaced() { return isPlaced; }
     public void PlaceStructure() { isPlaced = true; }
     public override void PoolRetrievalAction(Poolable poolable)
     {

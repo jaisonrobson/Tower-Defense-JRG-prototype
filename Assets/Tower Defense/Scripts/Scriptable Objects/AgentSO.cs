@@ -59,6 +59,8 @@ public class AgentSO : BaseOptionDataSO
 
     [VerticalGroup("base/tr_1/td_1/tr_3/td_1")]
     [ToggleButtons("MOVABLE", "FIXED", trueColor: "@new Color(0.51f, 1f, 0.65f, 1f)", falseColor: "@new Color(1f, 0.56f, 0.51f, 1f)")]
+    [OnValueChanged("Update_NotMovableStructures")]
+    [ValidateInput("Validate_NotMovable_Structures", "Structures cannot move.")]
     public bool isMovable;
 
     [VerticalGroup("base/tr_1/td_1/tr_3/td_1")]
@@ -200,8 +202,13 @@ public class AgentSO : BaseOptionDataSO
             return true;
         });
     }
+    private void Update_NotMovableStructures()
+    {
+        if (type == AgentTypeEnum.STRUCTURE && isMovable == true)
+            isMovable = false;
+    }
 
-    #if UNITY_EDITOR
+#if UNITY_EDITOR
 
     private void Update_AfterCollectionChange_AnimationsRequiredKeys(CollectionChangeInfo info, object value)
     {
@@ -259,10 +266,11 @@ public class AgentSO : BaseOptionDataSO
                 }
         }
     }
-    #endif
+#endif
     // Helper Methods [END]
 
     // Validation Methods [START]
+    private bool Validate_NotMovable_Structures() { return !(type == AgentTypeEnum.STRUCTURE && isMovable == true); }
     private bool Validate_NotNull_AnimationsDictionaryValues() { return !animations.ContainsValue(null); }
     private bool Validate_NotNull_SoundsDictionaryValues() { return !sounds.ContainsValue(null); }
     private bool Validate_NotDistant_Attacks() { return !attacks.Any(atSO => atSO.minimumAttackDistance > attackRange); }

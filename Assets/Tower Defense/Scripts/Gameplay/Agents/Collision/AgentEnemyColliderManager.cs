@@ -35,6 +35,11 @@ public class AgentEnemyColliderManager : MonoBehaviour
         ResetAlignment();
         ResetAgent();
     }
+    private void Update()
+    {
+        if (GetComponentInParent<PlayableStructure>() != null)
+            ResetAlignment();
+    }
     private void OnTriggerEnter(Collider other)
     {
         if (IsSelfGameObjectCollider(other.transform)) return;
