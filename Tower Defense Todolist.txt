@@ -46,7 +46,7 @@ LEGENDA:
 (X) Caso o ataque esteja fora de alcance, e nao tenha mais nenhum ataque possivel (range ou cooldown) no momento, fazer com que o FSM mude de estado para Walk afim de atingir a distancia desejada ao objetivo. (testar a IA do FSM com inimigos que possuem ataques a distancia, ex: arqueiros)
 (O) Criar um animator para as estruturas
 (X) Criar os FSMAI e states para Playable Structures pois estes devem verificar quando a estrutura esta posicionada antes de iniciar os estados
-(X) Fazer com que as estruturas executem ataques
+(X) Criar a funcao de ataque das torres. (Função de ataque das estruturas)
 
 (X) Fazer com que os ataques causem dano e eliminem seus alvos (agentes/minions/torres)
 (X) Fazer o sistema de calculo de formulas nao apenas para ataques, mas para tudo que tiver uma formula.
@@ -85,8 +85,20 @@ LEGENDA:
 (X) Remover os pririty goals dos subspawns ao fugirem muito longe da area limite dos subspawns
 
 ( ) Criar o sistema de evolução das torres (e seus minions spawnados.)
-(X) Criar a funcao de ataque das torres. (Função de ataque das estruturas)
+( ) Criar um algoritmo singleton que fara o controle de evolucao de torres descritos nos passos de afazeres abaixo (Structure Evolution Manager / Controller)
+( ) Armazenar a posicao da torre
+( ) Armazenar as posições dos agentes subspawns invocados pela torre
+( ) Armazenar a posição da bandeira da torre
+( ) Armazenar a quantidade de vida restante da torre em forma de porcentagem
+( ) Repoolar a torre e seus subspawns
+( ) Poolar/Criar uma nova torre de nivel maior no lugar armazenado da primeira
+( ) Spawnar seus subspawns de acordo com a quantidade e posicionamento anteriormente armazenados
+( ) Alterar a posicao da bandeira para ser a mesma da torre anterior
+( ) Alterar a quantidade de vida da torre baseado na porcentagem no valor float que foi amazenado anteriormente da outra torre
+
+
 ( ) Criar o funcionamento de ataques com projeteis (Criaturas e estruturas)
+( ) Verificar a necessidade de repoolar projeteis caso seus agentes de origem ou destino nao existam mais
 ( ) Criar o funcionamento de ataques em area (AOE) (Criaturas e estruturas)
 
 ( ) Criar o sistema de status (lento, queimando, paralizado, etc.) (Affectors) (verificar codigo do tower defense da unity, tem bons codigos sobre isso la)
