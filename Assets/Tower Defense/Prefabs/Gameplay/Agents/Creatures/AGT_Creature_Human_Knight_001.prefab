@@ -316,7 +316,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f28c0c126c697c5449614e43103d05d5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  colliderAreaType: 1
+  colliderAreaType: 0
   layer:
     serializedVersion: 2
     m_Bits: 4096

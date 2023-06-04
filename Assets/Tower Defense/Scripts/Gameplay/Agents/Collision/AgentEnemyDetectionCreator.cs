@@ -56,9 +56,6 @@ public class AgentEnemyDetectionCreator : MonoBehaviour
     {
         switch (colliderAreaType)
         {
-            case CollisionAreaTypeEnum.TRIANGLE:
-                MoldTriangularCollider();
-                break;
             case CollisionAreaTypeEnum.CIRCULAR:
                 MoldCircularCollider();
                 break;
@@ -118,39 +115,6 @@ public class AgentEnemyDetectionCreator : MonoBehaviour
             AgentEnemyDetectionAreaDisplayManager aedadm = edcGObj.AddComponent<AgentEnemyDetectionAreaDisplayManager>();
             aedadm.AreaDisplayGameObject = edGObjAreaDisplay;
         }
-    }
-    private void MoldTriangularCollider()
-    {
-        edcGObj.AddComponent<MeshFilter>();
-        edcGObj.AddComponent<MeshCollider>();
-
-        Mesh mesh = new Mesh();
-        mesh.Clear();
-
-        edcGObj.GetComponent<MeshFilter>().mesh = mesh;
-        edcGObj.GetComponent<MeshCollider>().sharedMesh = mesh;
-        edcGObj.GetComponent<MeshCollider>().convex = true;
-        edcGObj.GetComponent<MeshCollider>().isTrigger = true;        
-
-        Vector3[] vertices = new Vector3[6]
-        {
-            new Vector3(0, 0, 0),
-            new Vector3(-areaSize/2, 0, areaSize),
-            new Vector3(areaSize/2, 0, areaSize),
-            new Vector3(0, areaSize/2, 0),
-            new Vector3(-areaSize/2, areaSize/2, areaSize),
-            new Vector3(areaSize/2, areaSize/2, areaSize)
-        };
-
-        int[] tris = new int[6]
-        {
-            0,2,1,
-            3,5,4
-        };
-
-        edcGObj.GetComponent<MeshFilter>().mesh.vertices = vertices;
-        edcGObj.GetComponent<MeshFilter>().mesh.triangles = tris;
-        edcGObj.GetComponent<AgentEnemyColliderManager>().DetectionCollider = edcGObj.GetComponent<MeshCollider>();
     }
     private void MoldCircularCollider()
     {

@@ -64,6 +64,8 @@ LEGENDA:
 (X) Fazer com que o sistema de prioridades e objetivos enxergue os scripts dos "agents" ao inves de gameobjects. (isso corrigira o problema de remover prioridades dos agentes desabilitados subitamente)
 (X) Corrigir o bug ao destruir qualquer objetivo principal.
 (X) Fazer com que o dano apareca na interface de forma efemera (Floating value)
+( ) Fazer as animacoes das estruturas nao jogaveis
+(X) Verificar se as estruturas nao jogaveis estao atacando e morrendo adequadamente
 
 (X) Refatorar o enum AgentType de (MINION, TOWER) para (CREATURE, STRUCTURE)
 (X) Criar um novo enum com duas opcoes (FIXED, MOVABLE) que servira para identificar se o agente pode se mover ou nao

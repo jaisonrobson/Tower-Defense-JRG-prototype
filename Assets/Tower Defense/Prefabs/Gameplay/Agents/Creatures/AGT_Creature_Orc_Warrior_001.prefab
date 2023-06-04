@@ -217,7 +217,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mainCollider: {fileID: 4397880691629869767}
-  goals: 0
+  goal: 0
   agent: {fileID: 11400000, guid: e6ff25750718e81409b44e7770bf3839, type: 2}
 --- !u!114 &-5296898905128312713
 MonoBehaviour:
@@ -316,11 +316,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f28c0c126c697c5449614e43103d05d5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  colliderAreaType: 1
+  colliderAreaType: 0
   layer:
     serializedVersion: 2
     m_Bits: 4096
-  areaDisplayMaterial: {fileID: 2100000, guid: aa83d2167d3fd8040ba3d9c722a75c06, type: 2}
   areaDisplayMesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!1001 &7459393292874861786
 PrefabInstance:
