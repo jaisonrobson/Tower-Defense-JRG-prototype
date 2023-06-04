@@ -15,3 +15,7 @@ public class CustomFloatTableMatrixAttribute : Attribute
         this.drawColumnsHeaderLabelsAction = columnsAction;
     }
 }
+
+////////////////////////////////////////////////////////////////////////////////
+////////////SCRIPT MADE BY JAISON ROBSON GUSAVA UNDER MIT LICENSE///////////////
+/////////////////////// https://github.com/jaisonrobson/ ///////////////////////

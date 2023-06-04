@@ -36,3 +36,7 @@ public class Structure : Agent
     private bool Validate_AgentType_IsStructure() { return agent != null && agent.type == AgentTypeEnum.STRUCTURE; }
     // Validation Methods [END]
 }
+
+////////////////////////////////////////////////////////////////////////////////
+////////////SCRIPT MADE BY JAISON ROBSON GUSAVA UNDER MIT LICENSE///////////////
+/////////////////////// https://github.com/jaisonrobson/ ///////////////////////

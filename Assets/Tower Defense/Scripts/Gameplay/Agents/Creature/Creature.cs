@@ -81,3 +81,7 @@ public class Creature : Agent
     private bool Validate_IsCreature_Agent() { return agent != null && agent.type == AgentTypeEnum.CREATURE; }
     // Validation Methods [END]
 }
+
+////////////////////////////////////////////////////////////////////////////////
+////////////SCRIPT MADE BY JAISON ROBSON GUSAVA UNDER MIT LICENSE///////////////
+/////////////////////// https://github.com/jaisonrobson/ ///////////////////////

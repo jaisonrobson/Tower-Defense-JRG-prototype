@@ -21,3 +21,7 @@ public class PlayableAgentSO : BaseOptionDataSO
     [PropertyTooltip("The cost to invoke this agent.")]
     public int cost = 1;
 }
+
+////////////////////////////////////////////////////////////////////////////////
+////////////SCRIPT MADE BY JAISON ROBSON GUSAVA UNDER MIT LICENSE///////////////
+/////////////////////// https://github.com/jaisonrobson/ ///////////////////////

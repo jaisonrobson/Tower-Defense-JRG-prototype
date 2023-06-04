@@ -72,3 +72,7 @@ public class WaveSO : BaseOptionDataSO
     private bool Validate_MustHaveElements_Spawns() { return spawnTimes.Length > 0; }
     // Validation Methods [END]
 }
+
+////////////////////////////////////////////////////////////////////////////////
+////////////SCRIPT MADE BY JAISON ROBSON GUSAVA UNDER MIT LICENSE///////////////
+/////////////////////// https://github.com/jaisonrobson/ ///////////////////////

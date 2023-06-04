@@ -98,3 +98,7 @@ public class WorldSpaceInterfaceManager : Singleton<WorldSpaceInterfaceManager>
     }
     // Public (Methods) [END]
 }
+
+////////////////////////////////////////////////////////////////////////////////
+////////////SCRIPT MADE BY JAISON ROBSON GUSAVA UNDER MIT LICENSE///////////////
+/////////////////////// https://github.com/jaisonrobson/ ///////////////////////

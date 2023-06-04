@@ -10,3 +10,7 @@ public class CameraFocusController : MonoBehaviour
             CameraController.instance.followTransform = transform;
     }
 }
+
+////////////////////////////////////////////////////////////////////////////////
+////////////SCRIPT MADE BY JAISON ROBSON GUSAVA UNDER MIT LICENSE///////////////
+/////////////////////// https://github.com/jaisonrobson/ ///////////////////////

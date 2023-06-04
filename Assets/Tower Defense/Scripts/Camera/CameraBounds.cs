@@ -11,3 +11,7 @@ public class CameraBounds : Singleton<CameraBounds>
     [SerializeField]
     private Bounds m_Bounds = new Bounds(Vector3.zero, Vector3.one * 25f);
 }
+
+////////////////////////////////////////////////////////////////////////////////
+////////////SCRIPT MADE BY JAISON ROBSON GUSAVA UNDER MIT LICENSE///////////////
+/////////////////////// https://github.com/jaisonrobson/ ///////////////////////

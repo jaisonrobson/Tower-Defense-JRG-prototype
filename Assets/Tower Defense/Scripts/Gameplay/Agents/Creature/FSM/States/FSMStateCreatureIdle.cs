@@ -94,3 +94,7 @@ public class FSMStateCreatureIdle : FiniteStateMachine
     private bool IsCreatureDead() { return creature.ActualHealth <= 0f; }
     // Private (Methods) [END]
 }
+
+////////////////////////////////////////////////////////////////////////////////
+////////////SCRIPT MADE BY JAISON ROBSON GUSAVA UNDER MIT LICENSE///////////////
+/////////////////////// https://github.com/jaisonrobson/ ///////////////////////

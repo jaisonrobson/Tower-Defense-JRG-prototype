@@ -29,3 +29,7 @@ public class AgentEnemyDetectionAreaDisplayManager : MonoBehaviour
     private bool IsSelected() => SelectionManager.instance.SelectedAgents.Any(sl => Utils.IsGameObjectInsideAnother(transform, sl.transform));
     // Private (Methods) [END]
 }
+
+////////////////////////////////////////////////////////////////////////////////
+////////////SCRIPT MADE BY JAISON ROBSON GUSAVA UNDER MIT LICENSE///////////////
+/////////////////////// https://github.com/jaisonrobson/ ///////////////////////

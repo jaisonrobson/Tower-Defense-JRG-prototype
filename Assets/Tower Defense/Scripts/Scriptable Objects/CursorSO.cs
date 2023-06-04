@@ -86,3 +86,7 @@ public class CursorSO : BaseOptionDataSO
     private bool Validate_NotEmpty_Offsets() { return offsets != null && offsets.Count > 0; }
     // (Validation) Methods [END]
 }
+
+////////////////////////////////////////////////////////////////////////////////
+////////////SCRIPT MADE BY JAISON ROBSON GUSAVA UNDER MIT LICENSE///////////////
+/////////////////////// https://github.com/jaisonrobson/ ///////////////////////

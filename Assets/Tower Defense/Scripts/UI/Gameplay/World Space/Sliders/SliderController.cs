@@ -65,3 +65,7 @@ public class SliderController : MonoBehaviour
     public void SetTargetHeightOffset(float offset) { targetHeightOffset = offset + 1f; }
     // Public (Methods) [END]
 }
+
+////////////////////////////////////////////////////////////////////////////////
+////////////SCRIPT MADE BY JAISON ROBSON GUSAVA UNDER MIT LICENSE///////////////
+/////////////////////// https://github.com/jaisonrobson/ ///////////////////////

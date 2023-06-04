@@ -27,3 +27,7 @@ public class FSMStateStructureDie : FSMStateStructure
     public override void Exit() { base.Exit(); }
     // Public (Methods) [END]
 }
+
+////////////////////////////////////////////////////////////////////////////////
+////////////SCRIPT MADE BY JAISON ROBSON GUSAVA UNDER MIT LICENSE///////////////
+/////////////////////// https://github.com/jaisonrobson/ ///////////////////////

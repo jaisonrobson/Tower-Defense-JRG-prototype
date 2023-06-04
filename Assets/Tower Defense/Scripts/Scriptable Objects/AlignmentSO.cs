@@ -39,3 +39,7 @@ public class AlignmentSO : BaseOptionDataSO
 	private bool Validate_NotValid_Alignment() { return alignment != 0; }
 	// Validation Methods [END]
 }
+
+////////////////////////////////////////////////////////////////////////////////
+////////////SCRIPT MADE BY JAISON ROBSON GUSAVA UNDER MIT LICENSE///////////////
+/////////////////////// https://github.com/jaisonrobson/ ///////////////////////

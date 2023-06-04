@@ -32,3 +32,7 @@ public class FSMStateStructure : FiniteStateMachine
     protected bool IsStructureDefeated() { return structure.ActualHealth <= 0f; }
     // Protected (Methods) [END]
 }
+
+////////////////////////////////////////////////////////////////////////////////
+////////////SCRIPT MADE BY JAISON ROBSON GUSAVA UNDER MIT LICENSE///////////////
+/////////////////////// https://github.com/jaisonrobson/ ///////////////////////

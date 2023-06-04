@@ -37,3 +37,7 @@ public class SoundSO : BaseOptionDataSO
     [BoxGroup("vertical/Box2", LabelText = "Optional")]
     public SoundSO chainedSound;
 }
+
+////////////////////////////////////////////////////////////////////////////////
+////////////SCRIPT MADE BY JAISON ROBSON GUSAVA UNDER MIT LICENSE///////////////
+/////////////////////// https://github.com/jaisonrobson/ ///////////////////////

@@ -22,3 +22,7 @@ public class AnimationSO : BaseOptionDataSO
     [PropertyTooltip("If not null, this chained animation is to be called after the execution of this own.")]
     public AnimationSO chainedAnimation;
 }
+
+////////////////////////////////////////////////////////////////////////////////
+////////////SCRIPT MADE BY JAISON ROBSON GUSAVA UNDER MIT LICENSE///////////////
+/////////////////////// https://github.com/jaisonrobson/ ///////////////////////

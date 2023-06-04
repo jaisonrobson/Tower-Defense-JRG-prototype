@@ -64,3 +64,7 @@ public class AttackSO : BaseOptionDataSO
     [PropertyTooltip("Represents the trail animation prefab.\n\nCan be used along with projectile or anything else.\n\nCan be null as it is optional.")]
     public GameObject trail;
 }
+
+////////////////////////////////////////////////////////////////////////////////
+////////////SCRIPT MADE BY JAISON ROBSON GUSAVA UNDER MIT LICENSE///////////////
+/////////////////////// https://github.com/jaisonrobson/ ///////////////////////

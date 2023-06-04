@@ -103,3 +103,7 @@ public class AgentEnemyColliderManager : MonoBehaviour
     private bool IsPriorityGoal(Agent targetAgent) { return agent.IsPriorityGoal(targetAgent); }
     // Private Methods [END]
 }
+
+////////////////////////////////////////////////////////////////////////////////
+////////////SCRIPT MADE BY JAISON ROBSON GUSAVA UNDER MIT LICENSE///////////////
+/////////////////////// https://github.com/jaisonrobson/ ///////////////////////

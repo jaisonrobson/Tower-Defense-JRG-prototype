@@ -276,3 +276,7 @@ public class AgentSO : BaseOptionDataSO
     private bool Validate_NotDistant_Attacks() { return !attacks.Any(atSO => atSO.minimumAttackDistance > attackRange); }
     // Validation Methods [END]
 }
+
+////////////////////////////////////////////////////////////////////////////////
+////////////SCRIPT MADE BY JAISON ROBSON GUSAVA UNDER MIT LICENSE///////////////
+/////////////////////// https://github.com/jaisonrobson/ ///////////////////////

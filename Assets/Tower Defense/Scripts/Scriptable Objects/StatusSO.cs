@@ -22,3 +22,7 @@ public class StatusSO : BaseOptionDataSO
     [VerticalGroup("Box1/split/right")]
     public string description;
 }
+
+////////////////////////////////////////////////////////////////////////////////
+////////////SCRIPT MADE BY JAISON ROBSON GUSAVA UNDER MIT LICENSE///////////////
+/////////////////////// https://github.com/jaisonrobson/ ///////////////////////
