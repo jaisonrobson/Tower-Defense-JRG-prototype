@@ -29,6 +29,9 @@ public class FSMStateStructureAttack : FSMStateStructure
             return;
         }
 
+        if (structureFSMAi.IsMakingAnyAttack())
+            return;
+
         if (!DidStructureFoundEnemies() || !structureFSMAi.IsAggressive || !structureFSMAi.IsAnyViableAttackUnderEnemyRange())
         {
             nextState = new FSMStateStructureIdle(anim, structure);
