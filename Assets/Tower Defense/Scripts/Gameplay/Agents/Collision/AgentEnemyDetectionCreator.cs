@@ -22,13 +22,15 @@ public class AgentEnemyDetectionCreator : MonoBehaviour
     {
         InitializeVariables();
         CreateEDCGameObject();
-        CreateEDAreaDisplayGameObject();        
-    }
-    private void Start()
-    {
+        CreateEDAreaDisplayGameObject();
+
         PrepareEDCGameObject();
         PrepareEDAreaDisplayGameObject();
         MoldCollider();
+    }
+    private void Start()
+    {
+        
     }
     private void Update()
     {

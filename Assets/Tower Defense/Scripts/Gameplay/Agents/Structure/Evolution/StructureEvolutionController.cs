@@ -1,20 +1,42 @@
 using System.Collections;
 using System.Collections.Generic;
+using Sirenix.OdinInspector;
 using UnityEngine;
+using Core.Patterns;
+using System.Linq;
 
-public class StructureEvolutionController : MonoBehaviour
+[RequireComponent(typeof(StructureEvolutionManager))]
+[HideMonoScript]
+public class StructureEvolutionController : Singleton<StructureEvolutionController>
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    // (Unity) Methods [START]
 
-    // Update is called once per frame
-    void Update()
+    // (Unity) Methods [END]
+
+
+    // Public (Methods) [START]
+    public void EvolveStructure()
     {
-        
+        StructureEvolutionManager sem = StructureEvolutionManager.instance;
+
+        AgentSO newStructureAgentSO = sem.AgentSO.evolutionTree.FirstOrDefault();
+
+        if (newStructureAgentSO != null)
+        {
+            sem.PlayableStructure.PoolAgent();
+
+            PlayableStructure newStructure = Poolable.TryGetPoolable(newStructureAgentSO.prefab).GetComponent<PlayableStructure>();
+
+            newStructure.GetComponent<Agent>().Alignment = MapManager.instance.map.playerAlignment.alignment;
+            newStructure.GetComponent<PlayableStructure>().PlaceStructure();
+            newStructure.GetComponent<PlayableStructure>().InitializeGoalFlag(true);
+
+            newStructure.transform.position = sem.Position;
+            newStructure.SetFlagPosition(sem.FlagPosition);
+            newStructure.ActualHealth = (sem.LifePercentage / 100) * newStructure.MaxHealth;
+        }
     }
+    // Public (Methods) [END]
 }
 
 ////////////////////////////////////////////////////////////////////////////////

@@ -23,11 +23,13 @@ public class PlayableStructure : Structure
     [HideInEditorMode]
     private bool isPlaced = false;
     private Transform goalFlag;
+    private bool flagPositionInitialized = false;
     // Private (Variables) [END]
 
     // Public (Properties) [START]
     public Transform GoalFlag { get { return goalFlag; } }
     public bool IsPlaced { get { return isPlaced; } }
+    public bool FlagPositionInitialized { get { return flagPositionInitialized; } set { flagPositionInitialized = value; } }
     // Public (Properties) [END]
 
     // (Unity) Methods [START]
@@ -79,14 +81,14 @@ public class PlayableStructure : Structure
     {
         InitializeGoalFlag();
     }
-    private void InitializeGoalFlag()
-    {
-        goalFlag = Instantiate(flag).transform;
-        goalFlag.SetParent(this.transform, false);        
-    }
     private void InitializeGoalFlagPosition()
     {
-        goalFlag.SetPositionAndRotation(GoalFlagInitialPosition(), Quaternion.identity);
+        if (!FlagPositionInitialized)
+        {
+            FlagPositionInitialized = true;
+
+            goalFlag.SetPositionAndRotation(GoalFlagInitialPosition(), Quaternion.identity);
+        }
     }
     private Vector3 GoalFlagInitialPosition()
     {
@@ -95,6 +97,15 @@ public class PlayableStructure : Structure
     // Private Methods [END]
 
     // Public (Methods) [START]
+    public void InitializeGoalFlag(bool pFlagPositionInitialized = false)
+    {
+        if (goalFlag == null)
+        {
+            FlagPositionInitialized = pFlagPositionInitialized;
+            goalFlag = Instantiate(flag).transform;
+            goalFlag.SetParent(this.transform, false);
+        }
+    }
     public void PlaceStructure() { isPlaced = true; }
     public override void PoolRetrievalAction(Poolable poolable)
     {

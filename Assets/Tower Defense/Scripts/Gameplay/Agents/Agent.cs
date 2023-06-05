@@ -111,7 +111,7 @@ public abstract class Agent : MonoBehaviour
     // Protected (Variables) [END]
 
     // Public (Properties) [START]
-    public float ActualHealth { get { return actualHealth; } }
+    public float ActualHealth { get { return actualHealth; } set { actualHealth = (value >= 0 && value <= maxHealth) ? value : actualHealth; } }
     public float MaxHealth { get { return maxHealth; } }
     public float Damage { get { return damage; } }
     public float Velocity { get { return velocity; } }
@@ -174,7 +174,7 @@ public abstract class Agent : MonoBehaviour
     }
     private Vector3 GetAgentColliderBoundsInitialPosition(Transform newAgent)
     {
-        return new Vector3(mainCollider.bounds.min.x - (mainCollider.bounds.extents.x * 0.5f), newAgent.localScale.y / 2, mainCollider.bounds.min.z - (mainCollider.bounds.extents.z * 0.5f));
+        return new Vector3(mainCollider.bounds.min.x - (mainCollider.bounds.extents.x * 0.5f), (newAgent.localScale.y / 2) + 0.5f, mainCollider.bounds.min.z - (mainCollider.bounds.extents.z * 0.5f));
     }
     private GameObject SubSpawnAgent(GameObject agentPrefab)
     {
@@ -246,21 +246,22 @@ public abstract class Agent : MonoBehaviour
     }
     // Private (Methods) [END]
 
-    // Protected (Methods) [START]
+    // Public (Methods) [START]
+    public abstract AgentSO GetAgent();
+    public void PoolAgent()
+    {
+        if (Master != null)
+            Master.OnInsertSubSpawnPoolableAgent(GetComponent<Poolable>());
+
+        Poolable.TryPool(gameObject);
+    }
     public virtual void HandleDeath()
     {
         if (ActualHealth <= 0f)
         {
-            if (Master != null)
-                Master.OnInsertSubSpawnPoolableAgent(GetComponent<Poolable>());
-
-            Poolable.TryPool(gameObject);
+            PoolAgent();
         }
     }
-    // Protected (Methods) [END]
-
-    // Public (Methods) [START]
-    public abstract AgentSO GetAgent();
     public List<PriorityGoal> GetAgentViablePriorityEnemies() { return PriorityGoals.Where(pg => pg.ignoreBattle == false).ToList(); }
     public PriorityGoal GetAgentNearestViablePriorityEnemy() {
         float lastDistance = float.PositiveInfinity;
