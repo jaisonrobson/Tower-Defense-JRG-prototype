@@ -4,10 +4,11 @@ using Sirenix.Utilities;
 using Sirenix.Utilities.Editor;
 using Sirenix.OdinInspector.Editor;
 using UnityEditor;
-
-public class ProgressBarWithFieldsAttributeDrawer : OdinAttributeDrawer<ProgressBarWithFieldsAttribute, float>
+using System;
+using Core.Math;
+public class ProgressBarWithFieldsAttributeDrawer<T> : OdinAttributeDrawer<ProgressBarWithFieldsAttribute, T> where T : struct
 {
-    private float internalValue = 0f;
+    private T internalValue = default;
 
     // (ODIN) Methods [START]
     protected override void DrawPropertyLayout(GUIContent label)
@@ -19,6 +20,14 @@ public class ProgressBarWithFieldsAttributeDrawer : OdinAttributeDrawer<Progress
         ValueEntry.SmartValue = internalValue;
 
         ValueEntry.Property.MarkSerializationRootDirty();
+    }
+
+    protected override bool CanDrawAttributeValueProperty(InspectorProperty property)
+    {
+        if (typeof(T) == typeof(float) || typeof(T) == typeof(int))
+            return true;
+
+        return false;
     }
     // (ODIN) Methods [END]
 
@@ -34,21 +43,20 @@ public class ProgressBarWithFieldsAttributeDrawer : OdinAttributeDrawer<Progress
         pbc.DrawValueLabel = true;
         pbc.ForegroundColor = new Color(Attribute.r, Attribute.g, Attribute.b, 1f);
 
-        internalValue = (float) SirenixEditorFields.ProgressBarField(progressBarRect, internalValue, Attribute.min, Attribute.max, pbc);
+        internalValue = ConvertionTools.ConvertFromDouble<T>(SirenixEditorFields.ProgressBarField(progressBarRect, ConvertionTools.ConvertToDouble(internalValue), Attribute.min, Attribute.max, pbc));
 
         GUILayout.Space(5f);
 
         Rect fieldRect = GUILayoutUtility.GetRect(60f, 20f, GUILayout.ExpandWidth(false));
 
-        internalValue = SirenixEditorFields.FloatField(fieldRect, internalValue);
+        internalValue = ConvertionTools.ConvertFromFloat<T>(SirenixEditorFields.FloatField(fieldRect, ConvertionTools.ConvertToFloat(internalValue)));
 
-        internalValue = Mathf.Clamp(internalValue, Attribute.min, Attribute.max);
+        internalValue = ConvertionTools.ConvertFromFloat<T>(Mathf.Clamp(ConvertionTools.ConvertToFloat(internalValue), Attribute.min, Attribute.max));
 
         SirenixEditorGUI.EndHorizontalPropertyLayout();
 
         GUILayout.Space(1f);
     }
-
 }
 
 #endif
