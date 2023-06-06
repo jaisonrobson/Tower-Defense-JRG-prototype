@@ -97,15 +97,29 @@ LEGENDA:
 
 (X) Criar um attribute drawer para a progress bar com odin que exibira tambem os campos para setar o valor diretamente, similar ao atributo [Range] mas com progress bar.
 
+( ) Criar um script responsavel por realizar o ataque meelee de acordo com um colisor de trigger numa area pre-determinada de acordo com uma nova variavel de AttackSO (radius). (AttackAffector ou AttackEnemyCollider = Manager / Controller) esse script deve essencialmente existir apenas durante o ataque, e so ira afetar os agentes (uma vez durante sua existencia) que ainda nao tiverem entrado em algum tipo de lista. quando o ataque terminar ou for poolado, resetar a lista de agentes atacados.
+( ) Verificar se vai ser possivel usar o script acima tanto para os ataques a distancia (projectile) quanto para os em area (AOE)
+
 ( ) Criar o funcionamento de ataques com projeteis (Criaturas e estruturas)
+(X) Criar uma seção de codigo no agente que sera responsavel por armazenar informações sobre o ataque (posição em que o projetil será lançado e posição em que a animação de ataque irá ocorrer.)
+( ) Criar um script responsavel pelo movimento do projetil e o pooling (desaparecimento) da origem ate o destino. (Projectile = Manager / Controler)
+( ) Criar um script responsavel pela detecção de colisores de entidades/agentes inimigos ao alinhamento do projetil. (ProjectileEnemyColliderManager)
+( ) Fazer com que o script de movimento va ate o ponto de destino (Vector3) que sera dado pela sua entidade invocadora (agente que disparou)
+( ) Ao atingir o ponto de destino, provavelmente o script nao tera encontrado um inimigo, reproduzir o efeito & o som & se auto destruir (Repoolar)
+( ) Caso o script encontre algum inimigo no caminho para o ponto de destino, deduzir o dano do AgentSO invocador calculado com o AttackSO realizado & reproduzir o efeito & som & se auto destruir (Repoolar)
+( ) Tornar os projeteis poolaveis
 ( ) Verificar a necessidade de repoolar projeteis caso seus agentes de origem ou destino nao existam mais
+
 ( ) Criar o funcionamento de ataques em area (AOE) (Criaturas e estruturas)
 
 ( ) Criar o sistema de status (lento, queimando, paralizado, etc.) (Affectors) (verificar codigo do tower defense da unity, tem bons codigos sobre isso la)
 
 ( ) Fazer o funcionamento das animações em tudo no jogo.
+( ) Tornar todas as animacoes poolaveis
+
 ( ) Fazer com que o sistema de som use a tecnologia FMOD (se possivel integrar com o sistema de SO`s que ja existe)
 ( ) Criar o sistema de som
+( ) Tornar os sons poolaveis
 
 ( ) Criar um sistema de pontos que o jogador armazena durante a partida (Experiencia ou dinheiro, recursos, qualquer coisa que se encaixe melhor.)
 

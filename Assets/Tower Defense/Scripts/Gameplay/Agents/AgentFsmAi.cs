@@ -212,7 +212,7 @@ public abstract class AgentFsmAi : MonoBehaviour
                         Agent enemyAgent = agent.GetActualEnemyAgent();
 
                         if (enemyAgent != null)
-                            enemyAgent.OnReceiveDamage(agent, timedAttacks[i].attack);
+                            enemyAgent.OnReceiveDamage(agent.Alignment, agent.Damage, timedAttacks[i].attack);
                     }
                 }
 

@@ -10,8 +10,8 @@ using Pathfinding;
 public class Structure : Agent
 {
     // Public (Variables) [START]
-    [BoxGroup("Agent Identity")]
-    [PropertyOrder(-1)]
+    [TitleGroup("Agent Identity/Main Information")]
+    [PropertyOrder(1)]
     [Required]
     [ValidateInput("Validate_AgentType_IsStructure", "Agent is not a structure.")]
     public AgentSO agent;

@@ -14,7 +14,7 @@ public class AttackSO : BaseOptionDataSO
 
     [BoxGroup("Identity/Box")]
     [Required]
-    public FormulaSO damage;
+    public FormulaSO formula;
 
     [BoxGroup("Identity/Box")]
     [Required]

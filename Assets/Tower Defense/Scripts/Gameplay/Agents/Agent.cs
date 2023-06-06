@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -21,7 +22,7 @@ public struct MainGoal
     public Agent goal;
 }
 
-[System.Serializable]
+[Serializable]
 public struct SubSpawn
 {
     public SubSpawnSO subSpawn;
@@ -36,6 +37,23 @@ public struct SubSpawn
     }
 }
 
+[Serializable]
+public struct AttackOrigin
+{
+    public AttackSO attack;
+    [ChildGameObjectsOnly]
+    public Transform attackOrigin;
+    [ChildGameObjectsOnly]
+    public Transform animationOrigin;
+
+    public AttackOrigin(AttackSO pAttack)
+    {
+        attack = pAttack;
+        attackOrigin = null;
+        animationOrigin = null;
+    }
+}
+
 [HideMonoScript]
 [RequireComponent(typeof(AgentUI))]
 [RequireComponent(typeof(Poolable))]
@@ -45,36 +63,97 @@ public abstract class Agent : MonoBehaviour
 {
     // Public (Variables) [START]    
     [BoxGroup("Agent Identity")]
+    [TitleGroup("Agent Identity/Main Information", Order = 1)]
+    [PropertyOrder(2)]
     [Required]
     public Collider mainCollider;
     [TitleGroup("Agent Identity/Goals", Order = 99)]
+    [PropertyOrder(1)]
     public AgentGoalEnum goal;
+    [TitleGroup("Agent Identity/Attacking", Order = 2)]
+    [PropertyOrder(1)]
+    [OnInspectorInit("MaintainAttacksOrigin")]
+    [ValidateInput("Validate_NotNull_Origins", "Animation or Attack origin cannot be null.")]
+    public List<AttackOrigin> attacksOrigins;
     // Public (Variables) [END]
 
     // Private (Variables) [START]
     private bool firstInitialization = true;
-    [BoxGroup("Agent Identity")]
+    [TitleGroup("Agent Identity/Main Information")]
     [PropertyOrder(-1)]
     [ShowInInspector]
     [HideInEditorMode]
     [ReadOnly]
     private AlignmentEnum alignment;
-    [BoxGroup("Agent Identity")]
-    [PropertyOrder(-1)]
+    [TitleGroup("Agent Identity/Stats")]
+    [PropertyOrder(3)]
     [ShowInInspector]
     [HideInEditorMode]
     [ReadOnly]
+    [LabelText("Health")]
+    [GUIColor(1f, 0.5411765f, 0.5411765f, 1f)]
+    [ProgressBar(0f, 100f, MaxGetter = "MaxHealth", R = 1f, G = 0.54f, B = 0.54f)]
     private float actualHealth = 0f;
     private float maxHealth = 0f;
+    [TitleGroup("Agent Identity/Stats")]
+    [PropertyOrder(1)]
+    [ShowInInspector]
+    [HideInEditorMode]
+    [ReadOnly]
+    [GUIColor(0.7215f, 0.5137f, 0.9215f, 1f)]
     private float damage = 0f;
+    [TitleGroup("Agent Identity/Stats")]
+    [PropertyOrder(4)]
+    [ShowInInspector]
+    [HideInEditorMode]
+    [ReadOnly]
+    [ProgressBar(3f, 10f, 0f, 0.8f, 0f)]
+    [GUIColor(0f, 0.8f, 0f, 1f)]
     private float velocity = 0f;
+    [TitleGroup("Agent Identity/Stats")]
+    [PropertyOrder(5)]
+    [ShowInInspector]
+    [HideInEditorMode]
+    [ReadOnly]
+    [ProgressBar(0.3f, 5f, 0.3f, 0.8f, 1f)]
+    [GUIColor(0.3f, 0.8f, 1f, 1f)]
     private float attackVelocity = 0f;
     private float experienceToEvolve = 0f;
+    [TitleGroup("Agent Identity/Stats")]
+    [PropertyOrder(2)]
+    [ShowInInspector]
+    [HideInEditorMode]
+    [ReadOnly]
+    [LabelText("Experience")]
+    [GUIColor(1f, 0.8f, 0.4f, 1f)]
+    [ProgressBar(0f, 100f, MaxGetter = "ExperienceToEvolve", R = 1f, G = 0.8f, B = 0.4f)]
     private float actualExperience = 0f;
+    [TitleGroup("Agent Identity/Stats")]
+    [PropertyOrder(6)]
+    [ShowInInspector]
+    [HideInEditorMode]
+    [ReadOnly]
+    [ProgressBar(3f, 50f, 0.8f, 0.8f, 0.8f)]
+    [GUIColor(0.8f, 0.8f, 0.8f, 1f)]
     private float visibilityArea = 0f;
+    [TitleGroup("Agent Identity/Stats")]
+    [PropertyOrder(7)]
+    [ShowInInspector]
+    [HideInEditorMode]
+    [ReadOnly]
+    [ProgressBar(1.5f, 50f, 1f, 0.3f, 1f)]
+    [GUIColor(1f, 0.3f, 1f, 1f)]
     private float attackRange = 0f;
+    [TitleGroup("Agent Identity/Stats")]
+    [PropertyOrder(8)]
+    [ShowInInspector]
+    [HideInEditorMode]
+    [ReadOnly]
+    [GUIColor(0.61f, 0.73f, 0.33f, 1f)]
+    [MinMaxSlider(0, 100)]
     private Vector2Int evasion = new Vector2Int(0, 0);
-    [BoxGroup("Agent Identity")]
+    [TitleGroup("Agent Identity/Spawning", Order = 3)]
+    [PropertyOrder(1)]
     [ShowInInspector]
     [HideInEditorMode]
     [ReadOnly]
@@ -83,6 +162,7 @@ public abstract class Agent : MonoBehaviour
     /// The main goals are determined by the goals enum which are interpreted on the start function
     /// </summary>
     [TitleGroup("Agent Identity/Goals")]
+    [PropertyOrder(3)]
     [ShowInInspector]
     [HideInEditorMode]
     [ReadOnly]
@@ -91,11 +171,13 @@ public abstract class Agent : MonoBehaviour
     /// Priority goals are enemy agents and structures found in the path of this agent.
     /// </summary>
     [TitleGroup("Agent Identity/Goals")]
+    [PropertyOrder(4)]
     [ShowInInspector]
     [HideInEditorMode]
     [ReadOnly]
     private PriorityGoal[] priorityGoals = new PriorityGoal[0];
-    [BoxGroup("Agent Identity")]
+    [TitleGroup("Agent Identity/Spawning")]
+    [PropertyOrder(3)]
     [ShowInInspector]
     [HideInEditorMode]
     [ReadOnly]
@@ -104,7 +186,7 @@ public abstract class Agent : MonoBehaviour
 
     // Protected (Variables) [START]
     [TitleGroup("Agent Identity/Goals")]
-    [PropertyOrder(-1)]
+    [PropertyOrder(2)]
     [ShowInInspector]
     [HideInEditorMode]
     [ReadOnly]
@@ -150,7 +232,23 @@ public abstract class Agent : MonoBehaviour
     }
     // (Unity) Methods [END]
 
-    // Private (Methods) [START]    
+    // Private (Methods) [START]
+    private void MaintainAttacksOrigin()
+    {
+        if (attacksOrigins == null)
+            attacksOrigins = new List<AttackOrigin>();
+
+        AgentSO agent = GetAgent();
+
+        if (agent != null)
+        {
+            agent.attacks.ForEach(a =>
+            {
+                if (!attacksOrigins.Any(ao => ao.attack == a))
+                    attacksOrigins.Add(new AttackOrigin(a));
+            });
+        }
+    }
     private void HandleSubSpawning()
     {
         if (SubSpawns.Count > 0 && alignment != AlignmentEnum.GENERIC)
@@ -331,20 +429,20 @@ public abstract class Agent : MonoBehaviour
     }
     public int GenerateEvasionChance() { return RNG.Int(evasion.x, evasion.y); }
     public bool TryToEvade() { return RNG.Int(0, 100) < GenerateEvasionChance(); }
-    public bool OnReceiveDamage(Agent dealer, AttackSO dealerAttack)
+    public bool OnReceiveDamage(AlignmentEnum dealerAlignment, float dealerDamage, AttackSO dealerAttack)
     {
         bool result = false;
 
-        if (!AlignmentManager.instance.IsAlignmentAnOpponent(dealer.alignment, alignment))
+        if (!AlignmentManager.instance.IsAlignmentAnOpponent(dealerAlignment, alignment))
             return result;
 
-        float rawValue = dealer.Damage;
+        float rawValue = dealerDamage;
 
         if (!TryToEvade() && rawValue > 0f)
         {
             float finalValue;
 
-            finalValue = dealerAttack.damage.CalculateFormulaFromValue(rawValue);
+            finalValue = dealerAttack.formula.CalculateFormulaFromValue(rawValue);
             finalValue *= WeaknessesManager.instance.GetWeakness(dealerAttack.nature, GetAgent().nature);
 
             actualHealth = Mathf.Clamp(actualHealth - finalValue, 0f, MaxHealth);
@@ -409,6 +507,14 @@ public abstract class Agent : MonoBehaviour
         GetComponentInChildren<ReliableOnTriggerExit>(true)?.PoolInsertionAction();
     }
     // Public (Methods) [END]
+
+    // (Validation) Methods [START]
+    private bool Validate_NotNull_Origins() {
+        MaintainAttacksOrigin();
+
+        return attacksOrigins != null && attacksOrigins.Count > 0 ? !attacksOrigins.Any(ao => ao.attackOrigin == null || ao.animationOrigin == null) : true;
+    }
+    // (Validation) Methods [END]
 }
 
 ////////////////////////////////////////////////////////////////////////////////

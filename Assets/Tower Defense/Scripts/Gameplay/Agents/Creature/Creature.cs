@@ -18,8 +18,8 @@ using Core.Patterns;
 public class Creature : Agent
 {
     // Public (Variables) [START]    
-    [BoxGroup("Agent Identity")]
-    [PropertyOrder(-1)]
+    [TitleGroup("Agent Identity/Main Information")]
+    [PropertyOrder(1)]
     [Required]
     [ValidateInput("Validate_IsCreature_Agent", "The agent you selected is not a creature.")]    
     public AgentSO agent;
