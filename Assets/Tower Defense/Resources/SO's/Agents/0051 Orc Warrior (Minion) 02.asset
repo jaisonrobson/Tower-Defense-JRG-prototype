@@ -119,15 +119,15 @@ MonoBehaviour:
   nature: {fileID: 11400000, guid: efc48cd36c929314495d893e09975cdd, type: 2}
   type: 0
   isMovable: 1
-  isAgressive: 1
+  isAggressive: 1
   isPlayable: 1
   experienceToEvolve: 0
+  health: 30
+  damage: 6
   attackVelocity: 5
   attackRange: 1.5
   velocity: 10
-  damage: 6
-  health: 30
-  visibilityArea: 13.651079
+  visibilityArea: 15
   evasion: {x: 0, y: 25}
   evolutionTree: []
   attacks:

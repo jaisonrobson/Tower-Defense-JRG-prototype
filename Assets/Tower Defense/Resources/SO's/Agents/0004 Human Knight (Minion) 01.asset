@@ -124,10 +124,10 @@ MonoBehaviour:
   experienceToEvolve: 0
   health: 10
   damage: 3
-  attackVelocity: 1.005
+  attackVelocity: 1
   attackRange: 1.5
-  velocity: 4.978261
-  visibilityArea: 8.089172
+  velocity: 5
+  visibilityArea: 8
   evasion: {x: 0, y: 10}
   evolutionTree: []
   attacks:

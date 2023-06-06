@@ -28,7 +28,7 @@ MonoBehaviour:
   damage: {fileID: 11400000, guid: bf3756c18a6b9fd478d9c0a2fb7ea0ec, type: 2}
   cooldown: 5
   influenceOverAttackVelocity: 100
-  minimumAttackDistance: 4.95553
+  minimumAttackDistance: 10
   initialAnimation: {fileID: 11400000, guid: 95ba08eb5a7cb3e49bccf2db1a7bf255, type: 2}
   finalAnimation: {fileID: 11400000, guid: 973ce99ca9de45247a81ed76e6aabc74, type: 2}
   initialSound: {fileID: 11400000, guid: 49d2cb61bf304424b9c07dcfb8edeeff, type: 2}
