@@ -122,7 +122,8 @@ MonoBehaviour:
   isAggressive: 1
   isPlayable: 1
   experienceToEvolve: 0
-  attackVelocity: 0.3
+  test: 0.3
+  attackVelocity: 1.5
   attackRange: 1.5
   velocity: 3
   damage: 0

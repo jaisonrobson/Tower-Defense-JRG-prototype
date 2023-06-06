@@ -81,19 +81,10 @@ public class AgentSO : BaseOptionDataSO
     public int experienceToEvolve;
 
     [BoxGroup("base/tr_1/tr_2/td_1")]
-    [GUIColor(0.3f, 0.8f, 0.8f, 1f)]
-    [ProgressBar(0.3, 5, R = 0.3f, G = 0.8f, B = 1)]
-    public float attackVelocity = 0.3f;
-
-    [BoxGroup("base/tr_1/tr_2/td_1")]
-    [GUIColor(1f, 0.3f, 1f, 1f)]
-    [ProgressBar(1.5, 50, R = 1f, G = 0.3f, B = 1)]
-    public float attackRange = 1.5f;
-
-    [BoxGroup("base/tr_1/tr_2/td_1")]
-    [GUIColor(0f, 0.8f, 0f, 1f)]
-    [ProgressBar(3, 10, R =0, G =0.8f, B =0f)]
-    public float velocity = 3f;
+    [MinValue(1f)]
+    [MaxValue(1000f)]
+    [GUIColor(1f, 0.5411765f, 0.5411765f, 1f)]
+    public float health = 10f;
 
     [BoxGroup("base/tr_1/tr_2/td_1")]
     [Min(0)]
@@ -101,14 +92,23 @@ public class AgentSO : BaseOptionDataSO
     public float damage;
 
     [BoxGroup("base/tr_1/tr_2/td_1")]
-    [MinValue(1f)]
-    [MaxValue(1000f)]
-    [GUIColor(1f, 0.5411765f, 0.5411765f, 1f)]
-    public float health = 10f;
+    [GUIColor(0.3f, 0.8f, 0.8f, 1f)]
+    [ProgressBarWithFields(0.3f, 5f, 0.3f, 0.8f, 1f)]
+    public float attackVelocity = 0.3f;
 
     [BoxGroup("base/tr_1/tr_2/td_1")]
-    [ProgressBar(3, 50, R = 0.8f, G = 0.8f, B = 0.8f)]
+    [GUIColor(1f, 0.3f, 1f, 1f)]
+    [ProgressBarWithFields(1.5f, 50f, 1f, 0.3f, 1f)]
+    public float attackRange = 1.5f;
+
+    [BoxGroup("base/tr_1/tr_2/td_1")]
+    [GUIColor(0f, 0.8f, 0f, 1f)]
+    [ProgressBarWithFields(3f, 10f, 0f, 0.8f, 0f)]
+    public float velocity = 3f;
+
+    [BoxGroup("base/tr_1/tr_2/td_1")]
     [GUIColor(1f, 1f, 1f, 1f)]
+    [ProgressBarWithFields(3f, 50f, 0.8f, 0.8f, 0.8f)]
     public float visibilityArea = 3f;
 
     [BoxGroup("base/tr_1/tr_2/td_1")]

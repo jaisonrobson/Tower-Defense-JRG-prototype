@@ -24,13 +24,13 @@ public class CustomFloatTableMatrixAttributeDrawer : Sirenix.OdinInspector.Edito
         this.drawRowsHeaderLabelsResolver = ValueResolver.GetForString(
             this.Property,
             this.Attribute.drawRowsHeaderLabelsAction,
-            new Sirenix.OdinInspector.Editor.ValueResolvers.NamedValue("rowIndex", typeof(int))
+            new NamedValue("rowIndex", typeof(int))
         );
 
         this.drawColumnsHeaderLabelsResolver = ValueResolver.GetForString(
             this.Property,
             this.Attribute.drawColumnsHeaderLabelsAction,
-            new Sirenix.OdinInspector.Editor.ValueResolvers.NamedValue("columnIndex", typeof(int))
+            new NamedValue("columnIndex", typeof(int))
         );
     }
     protected override void DrawPropertyLayout(GUIContent label)

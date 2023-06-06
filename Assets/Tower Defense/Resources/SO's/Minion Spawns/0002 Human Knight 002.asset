@@ -25,5 +25,5 @@ MonoBehaviour:
   assetPath: Assets/SO's/Minion Spawns/0002 Knight 002.asset
   newName: 0002 Human Knight 002
   creature: {fileID: 11400000, guid: 63e2d8adee7555646b265bb273637b06, type: 2}
-  delay: 0
-  maxAlive: 2
+  delay: 8
+  maxAlive: 4

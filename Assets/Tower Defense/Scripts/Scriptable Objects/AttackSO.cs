@@ -23,12 +23,12 @@ public class AttackSO : BaseOptionDataSO
 
     [BoxGroup("Identity/Box")]
     [Required]
-    [ProgressBar(10, 100, R = 0.3f, G = 0.8f, B = 1)]
+    [ProgressBarWithFields(10f, 100f, 0.3f, 0.8f, 1f)]
     public int influenceOverAttackVelocity = 50;
 
     [BoxGroup("Identity/Box")]
     [Required]
-    [ProgressBar(1.5f, 50f, R = 1f, G = 0.3f, B = 1)]
+    [ProgressBarWithFields(1.5f, 50f, 1f, 0.3f, 1f)]
     public float minimumAttackDistance = 1.5f;
 
     [VerticalGroup("Animations&Sounds", PaddingTop = 7f)]

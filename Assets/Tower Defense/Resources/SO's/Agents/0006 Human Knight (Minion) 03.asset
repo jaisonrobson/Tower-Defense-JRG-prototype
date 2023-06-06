@@ -122,11 +122,11 @@ MonoBehaviour:
   isAggressive: 1
   isPlayable: 1
   experienceToEvolve: 0
+  health: 35
+  damage: 10
   attackVelocity: 1.9785715
   attackRange: 1.5
   velocity: 6.9968452
-  damage: 10
-  health: 35
   visibilityArea: 15.305993
   evasion: {x: 0, y: 10}
   evolutionTree: []

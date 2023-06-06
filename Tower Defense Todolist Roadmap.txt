@@ -95,6 +95,7 @@ LEGENDA:
 (X) Alterar a posicao da bandeira para ser a mesma da torre anterior
 (X) Alterar a quantidade de vida da torre baseado na porcentagem no valor float que foi amazenado anteriormente da outra torre
 
+(X) Criar um attribute drawer para a progress bar com odin que exibira tambem os campos para setar o valor diretamente, similar ao atributo [Range] mas com progress bar.
 
 ( ) Criar o funcionamento de ataques com projeteis (Criaturas e estruturas)
 ( ) Verificar a necessidade de repoolar projeteis caso seus agentes de origem ou destino nao existam mais
@@ -127,3 +128,4 @@ BUGS E VALIDAÇÕES:
 (X) Corrigir/Encontrado bug onde o colisor fisico da torre jogavel permanece desabilitado apos ser reconvocado do sistema de pooling
 (X) Os agentes inimigos estao ignorando os agentes aliados (nao estao atacando) (encontrado problema no alinhamento e resolvido, encontrado problema no valor do radius do colisor de deteccao de inimigos)
 (X) As vezes quando os agentes inimigos estao amontoados, alguns acabam tendo problema de colisao e caem infinitamente para dentro do mapa (parte inferior do mapa) (isso pode ser resolvido aumentando a largura do colisor do chao do mapa)
+(X) Verificar porque ao evoluir uma torre, seus subspawns acabam todos spawnados instantaneamente
