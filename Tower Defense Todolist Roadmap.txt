@@ -125,3 +125,5 @@ BUGS E VALIDAÇÕES:
 (X) Corrigir/Encontrado bug onde a variavel isMakingAttack dentro de timedattacks esta sendo setada para true num periodo de tempo incorreto, causando animacao de ataques infinitos.
 (X) corrigir/Encontrado bug no wave spawner, quando ha apenas um individuo inimigo na wave para nascer e o mesmo acaba spawnando um segundo que nao deveria existir.
 (X) Corrigir/Encontrado bug onde o colisor fisico da torre jogavel permanece desabilitado apos ser reconvocado do sistema de pooling
+(X) Os agentes inimigos estao ignorando os agentes aliados (nao estao atacando) (encontrado problema no alinhamento e resolvido, encontrado problema no valor do radius do colisor de deteccao de inimigos)
+(X) As vezes quando os agentes inimigos estao amontoados, alguns acabam tendo problema de colisao e caem infinitamente para dentro do mapa (parte inferior do mapa) (isso pode ser resolvido aumentando a largura do colisor do chao do mapa)

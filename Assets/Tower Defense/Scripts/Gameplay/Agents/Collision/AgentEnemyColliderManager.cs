@@ -37,8 +37,7 @@ public class AgentEnemyColliderManager : MonoBehaviour
     }
     private void Update()
     {
-        if (GetComponentInParent<PlayableStructure>() != null)
-            ResetAlignment();
+        ResetAlignment();
     }
     private void OnTriggerEnter(Collider other)
     {

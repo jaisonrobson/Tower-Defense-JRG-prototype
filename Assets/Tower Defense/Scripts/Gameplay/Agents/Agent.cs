@@ -52,6 +52,7 @@ public abstract class Agent : MonoBehaviour
     // Public (Variables) [END]
 
     // Private (Variables) [START]
+    private bool firstInitialization = true;
     [BoxGroup("Agent Identity")]
     [PropertyOrder(-1)]
     [ShowInInspector]
@@ -131,6 +132,15 @@ public abstract class Agent : MonoBehaviour
     // Public (Properties) [END]
 
     // (Unity) Methods [START]
+    protected virtual void OnEnable()
+    {
+        if (firstInitialization)
+        {
+            firstInitialization = false;
+
+            PoolRetrievalAction(GetComponent<Poolable>());
+        }
+    }
     protected virtual void Start()
     {
     }

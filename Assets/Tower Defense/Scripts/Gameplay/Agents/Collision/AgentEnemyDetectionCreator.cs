@@ -15,6 +15,7 @@ public class AgentEnemyDetectionCreator : MonoBehaviour
     private GameObject edcGObj;
     private GameObject edGObjAreaDisplay;
     private float areaSize = 3f;
+    private bool moldedCollider = false;
     
 
     // Unity Methods [START]
@@ -56,6 +57,11 @@ public class AgentEnemyDetectionCreator : MonoBehaviour
     }
     private void MoldCollider()
     {
+        if (moldedCollider)
+            return;
+
+        moldedCollider = true;
+
         switch (colliderAreaType)
         {
             case CollisionAreaTypeEnum.CIRCULAR:
