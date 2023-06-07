@@ -15,7 +15,7 @@ TagManager:
   - StructureSpawnCollider
   - StructurePlacementArea
   - Obstacle
-  - 
+  - Attack
   - Creature
   - AgentEnemyDetectionCollider
   - 

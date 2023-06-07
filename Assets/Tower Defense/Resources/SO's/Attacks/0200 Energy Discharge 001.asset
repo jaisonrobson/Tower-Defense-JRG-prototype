@@ -24,15 +24,16 @@ MonoBehaviour:
   jokerHiddenTitleField: 
   assetPath: 
   newName: 
+  type: 0
+  prefab: {fileID: 249373555310495313, guid: 00b745bb802698b41ab4ed6942e1a1bc, type: 3}
   nature: {fileID: 11400000, guid: efc48cd36c929314495d893e09975cdd, type: 2}
   formula: {fileID: 11400000, guid: bf3756c18a6b9fd478d9c0a2fb7ea0ec, type: 2}
   cooldown: 5
   influenceOverAttackVelocity: 100
   minimumAttackDistance: 10
   initialAnimation: {fileID: 11400000, guid: 95ba08eb5a7cb3e49bccf2db1a7bf255, type: 2}
+  trailAnimation: {fileID: 0}
   finalAnimation: {fileID: 11400000, guid: 973ce99ca9de45247a81ed76e6aabc74, type: 2}
   initialSound: {fileID: 11400000, guid: 49d2cb61bf304424b9c07dcfb8edeeff, type: 2}
+  trailSound: {fileID: 0}
   finalSound: {fileID: 11400000, guid: bfdb8031962b585489ae75a2bec9cc02, type: 2}
-  projectile: {fileID: 9051645764990546535, guid: 6a49fb4ac74231644acc2b045e32ef70,
-    type: 3}
-  trail: {fileID: 1526286183916428, guid: 5dc2b5550eec55d47b8322e441e1d169, type: 3}

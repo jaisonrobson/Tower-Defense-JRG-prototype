@@ -59,7 +59,7 @@ public struct AttackOrigin
 [RequireComponent(typeof(Poolable))]
 [RequireComponent(typeof(Selectable))]
 [RequireComponent(typeof(AgentEnemyDetectionCreator))]
-public abstract class Agent : MonoBehaviour
+public abstract class Agent : MonoBehaviour, IPoolable
 {
     // Public (Variables) [START]    
     [BoxGroup("Agent Identity")]

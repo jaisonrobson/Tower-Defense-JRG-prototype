@@ -9,6 +9,17 @@ public class AttackSO : BaseOptionDataSO
     [VerticalGroup("Identity", PaddingTop = 5f)]
 
     [BoxGroup("Identity/Box", LabelText = "Identity")]
+    [GUIColor(1f, 0.8f, 0.4f, 1f)]
+    [EnumToggleButtons]
+    public AttackTypeEnum type = AttackTypeEnum.MELEE;
+
+    [BoxGroup("Identity/Box")]
+    [Required]
+    [AssetsOnly]
+    [PropertyTooltip("Represents the attack physical collision and model prefab.")]
+    public GameObject prefab;
+
+    [BoxGroup("Identity/Box")]
     [Required]
     public NatureSO nature;
 
@@ -40,6 +51,10 @@ public class AttackSO : BaseOptionDataSO
     public AnimationSO initialAnimation;
 
     [BoxGroup("Animations&Sounds/split/leftBox")]
+    [PropertyTooltip("Animation when the attack travels to the target\n\nTo be used along with sounds\n\nThis is an optional field")]
+    public AnimationSO trailAnimation;
+
+    [BoxGroup("Animations&Sounds/split/leftBox")]
     [PropertyTooltip("Animation when the attack hits the target\n\nTo be used along with sounds")]
     [Required]
     public AnimationSO finalAnimation;
@@ -50,19 +65,13 @@ public class AttackSO : BaseOptionDataSO
     public SoundSO initialSound;
 
     [BoxGroup("Animations&Sounds/split/rightBox")]
+    [PropertyTooltip("Sound when the attack travels to the target\n\nTo be used along with animations\n\nThis is an optional field")]
+    public SoundSO trailSound;
+
+    [BoxGroup("Animations&Sounds/split/rightBox")]
     [PropertyTooltip("Sound when the attack hits the target\n\nTo be used along with animations")]
     [Required]
     public SoundSO finalSound;
-
-    [VerticalGroup("Optional", PaddingTop = 10f)]
-
-    [BoxGroup("Optional/Box", LabelText = "Optional")]
-    [PropertyTooltip("Represents the projectile physical model prefab.\n\nCan be null as it is optional.")]
-    public GameObject projectile;
-
-    [BoxGroup("Optional/Box", LabelText = "Optional")]
-    [PropertyTooltip("Represents the trail animation prefab.\n\nCan be used along with projectile or anything else.\n\nCan be null as it is optional.")]
-    public GameObject trail;
 }
 
 ////////////////////////////////////////////////////////////////////////////////
