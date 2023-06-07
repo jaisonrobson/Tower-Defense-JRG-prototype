@@ -4,7 +4,9 @@ public enum PoolableTypeEnum
     AGENT_CREATURE,
     AGENT_STRUCTURE,
     UI_SLIDER,
-    UI_FLOATTEXT
+    UI_FLOATTEXT,
+    ATTACK_RANGED,
+    ATTACK_MELEE
 }
 
 ////////////////////////////////////////////////////////////////////////////////

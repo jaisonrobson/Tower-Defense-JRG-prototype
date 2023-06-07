@@ -7,7 +7,7 @@ using Core.Physics;
 using Core.General;
 
 [HideMonoScript]
-public class AgentEnemyColliderManager : MonoBehaviour
+public class AgentEnemyDetectionColliderManager : MonoBehaviour
 {
     // Private (Variables) [START]
     [BoxGroup("Identity")]

@@ -127,7 +127,7 @@ public class PlayableStructure : Structure
 
         float yPosition = worldPosition.y + GoalFlag.localScale.y / 2;
 
-        Collider areaCollision = GetComponentInChildren<AgentEnemyColliderManager>().GetComponent<Collider>();
+        Collider areaCollision = GetComponentInChildren<AgentEnemyDetectionColliderManager>().GetComponent<Collider>();
 
         newWorldPosition = areaCollision.ClosestPoint(newWorldPosition);
 

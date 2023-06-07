@@ -13,7 +13,7 @@ using Core.Patterns;
 public abstract class Affector : MonoBehaviour, IPoolable
 {
 	// Public (Properties) [START]
-	public AlignmentEnum Alignment { get; protected set; }
+	public AlignmentEnum Alignment { get; set; }
 	public LayerMask AffectedsMask { get; protected set; }
 	// Public (Properties) [END]
 
@@ -22,21 +22,13 @@ public abstract class Affector : MonoBehaviour, IPoolable
     // Private (Variables) [END]
 
     // (Unity) Methods [START]
-    public Affector(AlignmentEnum affectorAlignment, LayerMask mask)
-	{
-		Alignment = affectorAlignment;
-		AffectedsMask = mask;
-	}
-	public Affector(AlignmentEnum affectorAlignment)
-	{
-		Alignment = affectorAlignment;
-		AffectedsMask = LayerMask.GetMask("Creature", "Structure");
-	}
     protected virtual void OnEnable()
     {
         if (!initialized)
         {
             initialized = true;
+
+            AffectedsMask = LayerMask.GetMask("Creature", "Structure");
 
             PoolRetrievalAction(GetComponent<Poolable>());
         }

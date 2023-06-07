@@ -140,8 +140,8 @@ public class CreatureFsmAi : AgentFsmAi
         {
             if (Vector3.Distance(agent.Master.transform.position, agent.transform.position)
                 <= (
-                    (agent.Master.GetComponentInChildren<AgentEnemyColliderManager>(true).DetectionCollider.bounds.extents.magnitude / 2)
-                    + (agent.GetComponentInChildren<AgentEnemyColliderManager>(true).DetectionCollider.bounds.extents.magnitude / 2)
+                    (agent.Master.GetComponentInChildren<AgentEnemyDetectionColliderManager>(true).DetectionCollider.bounds.extents.magnitude / 2)
+                    + (agent.GetComponentInChildren<AgentEnemyDetectionColliderManager>(true).DetectionCollider.bounds.extents.magnitude / 2)
                    )
                )
                 result = true;

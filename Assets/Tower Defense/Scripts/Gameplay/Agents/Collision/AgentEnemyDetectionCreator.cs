@@ -111,9 +111,9 @@ public class AgentEnemyDetectionCreator : MonoBehaviour
     }
     private void PrepareEDCGameObject()
     {
-        if (edcGObj != null && edcGObj.GetComponent<AgentEnemyColliderManager>() == null)
+        if (edcGObj != null && edcGObj.GetComponent<AgentEnemyDetectionColliderManager>() == null)
         {
-            edcGObj.AddComponent<AgentEnemyColliderManager>();
+            edcGObj.AddComponent<AgentEnemyDetectionColliderManager>();
         }
     }
     private void PrepareEDAreaDisplayGameObject()
@@ -130,7 +130,7 @@ public class AgentEnemyDetectionCreator : MonoBehaviour
 
         edcGObj.GetComponent<SphereCollider>().isTrigger = true;
         edcGObj.GetComponent<SphereCollider>().radius = areaSize;
-        edcGObj.GetComponent<AgentEnemyColliderManager>().DetectionCollider = edcGObj.GetComponent<SphereCollider>();
+        edcGObj.GetComponent<AgentEnemyDetectionColliderManager>().DetectionCollider = edcGObj.GetComponent<SphereCollider>();
     }
     private void MoldRectangularCollider()
     {
@@ -139,7 +139,7 @@ public class AgentEnemyDetectionCreator : MonoBehaviour
         edcGObj.GetComponent<BoxCollider>().isTrigger = true;
         edcGObj.GetComponent<BoxCollider>().center = new Vector3(0, areaSize / 2, areaSize / 2);
         edcGObj.GetComponent<BoxCollider>().size = new Vector3(areaSize, areaSize, areaSize);
-        edcGObj.GetComponent<AgentEnemyColliderManager>().DetectionCollider = edcGObj.GetComponent<BoxCollider>();
+        edcGObj.GetComponent<AgentEnemyDetectionColliderManager>().DetectionCollider = edcGObj.GetComponent<BoxCollider>();
     }
     // Private Methods [END]
 }

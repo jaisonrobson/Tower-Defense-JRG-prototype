@@ -5,22 +5,34 @@ using System.Linq;
 using Sirenix.OdinInspector;
 using Core.Patterns;
 
+[RequireComponent(typeof(RangedAttackController))]
 [HideMonoScript]
-public class AttackAffector : Affector
+public class RangedAttackAffector : AttackAffector
 {
-    // (Unity) Methods [START]
-    public AttackAffector(AlignmentEnum affectorAlignment) : base(affectorAlignment) { }
-    public AttackAffector(AlignmentEnum affectorAlignment, LayerMask mask) : base(affectorAlignment, mask) { }
-    // (Unity) Methods [END]
+    // Public (Variables) [START]
+    public AttackTravellingTypeEnum travellingType = AttackTravellingTypeEnum.LINEAR;
+    // Public (Variables) [END]
+
+    // Public (Properties) [START]
+    public Vector3 Origin { get; set; }
+    public Vector3 Destination { get; set; }
+    // Public (Properties) [END]
 
     // Public (Methods) [START]
     public override void PoolRetrievalAction(Poolable poolable)
     {
         base.PoolRetrievalAction(poolable);
+
+        GetComponent<RangedAttackController>().PoolRetrievalAction(poolable);
     }
     public override void PoolInsertionAction(Poolable poolable)
     {
         base.PoolInsertionAction(poolable);
+
+        Origin = Vector3.zero;
+        Destination = Vector3.zero;
+
+        GetComponent<RangedAttackController>().PoolInsertionAction(poolable);
     }
     // Public (Methods) [END]
 }
