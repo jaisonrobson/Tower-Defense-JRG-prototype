@@ -5,6 +5,7 @@ using System.Linq;
 using Sirenix.OdinInspector;
 using Core.Patterns;
 
+[RequireComponent(typeof(MeleeAttackController))]
 [HideMonoScript]
 public class MeleeAttackAffector : AttackAffector
 {
@@ -17,6 +18,8 @@ public class MeleeAttackAffector : AttackAffector
     public override void PoolRetrievalAction(Poolable poolable)
     {
         base.PoolRetrievalAction(poolable);
+
+        GetComponent<MeleeAttackController>().PoolRetrievalAction(poolable);
     }
     public override void PoolInsertionAction(Poolable poolable)
     {
@@ -24,6 +27,8 @@ public class MeleeAttackAffector : AttackAffector
 
         Origin = Vector3.zero;
         InitialRotation = Quaternion.identity;
+
+        GetComponent<MeleeAttackController>().PoolInsertionAction(poolable);
     }
     // Public (Methods) [END]
 }

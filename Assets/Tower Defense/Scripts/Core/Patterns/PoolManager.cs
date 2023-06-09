@@ -1,10 +1,25 @@
 ﻿using System;
+using System.Linq;
 using System.Collections.Generic;
 using UnityEngine;
 using Sirenix.OdinInspector;
 
 namespace Core.Patterns
 {
+	[Serializable]
+	public struct PoolableType
+	{
+		public PoolableTypeEnum type;
+		[SceneObjectsOnly]
+		[Required]
+		public Transform transform;
+
+		public PoolableType(PoolableTypeEnum pType, Transform pTransform)
+		{
+			type = pType;
+			transform = pTransform;
+		}
+	}
 	/// <summary>
 	/// Managers a dictionary of pools, getting and returning 
 	/// </summary>
@@ -14,28 +29,12 @@ namespace Core.Patterns
 		/// Every prefab spawned which does not have an specific space will be stored in this transform
 		/// </summary>
 		[Title("Areas")]
-		[Required]
-		[SceneObjectsOnly]
-		public Transform standard;
+		[PropertyOrder(1)]
+		[OnInspectorInit("MaintainPoolableTypes")]
+		[ValidateInput("Validate_NotRepeated_PoolableType_Transform", "Poolable Type transform cannot be repeated.")]
+		public List<PoolableType> poolableTypes;
 
-		[Required]
-		[SceneObjectsOnly]
-		public Transform agentsStructures;
-
-		[Required]
-		[SceneObjectsOnly]
-		public Transform agentsCreatures;
-
-		[Required]
-		[SceneObjectsOnly]
-		public Transform uiSliders;
-
-		[PropertySpace(0f, 10f)]
-		[Required]
-		[SceneObjectsOnly]
-		public Transform uiFloatingTexts;
-
-		[BoxGroup("Pool Manager")]
+		[BoxGroup("Pool Manager", Order = 2)]
 		/// <summary>
 		/// List of poolables that will be used to initialize corresponding pools
 		/// </summary>
@@ -49,6 +48,8 @@ namespace Core.Patterns
 		[ReadOnly]
 		[BoxGroup("Pool Manager")]
 		protected Dictionary<Poolable, AutoComponentPrefabPool<Poolable>> m_Pools;
+
+		public Transform GetPoolableTransformArea(PoolableTypeEnum pte) => poolableTypes.Find(pt => pt.type == pte).transform;
 
 		/// <summary>
 		/// Gets a poolable component from the corresponding pool
@@ -136,6 +137,41 @@ namespace Core.Patterns
 
 			cp.prefabInitializationActions.Invoke(cp);
 		}
+
+
+		// (Validation) Methods [START]
+		private void MaintainPoolableTypes()
+		{
+			if (poolableTypes == null)
+				poolableTypes = new List<PoolableType>();
+
+			PoolableTypeEnum[] values = (PoolableTypeEnum[])Enum.GetValues(typeof(PoolableTypeEnum));
+
+			values.ToList().ForEach(pte =>
+			{
+				if (!poolableTypes.Any(pt => pt.type == pte))
+                {
+					Transform poolableTransformArea = GameObject.FindGameObjectWithTag("PA_" + Enum.GetName(typeof(PoolableTypeEnum), pte)).transform;
+					
+					poolableTypes.Add(new PoolableType(pte, poolableTransformArea));
+                }
+			});
+		}
+		private bool Validate_NotRepeated_PoolableType_Transform()
+		{
+			MaintainPoolableTypes();
+
+			if (poolableTypes != null && poolableTypes.Count > 0)
+            {
+				List<PoolableType> duplicates = (List<PoolableType>)poolableTypes.GroupBy(pt => pt.type).Where(group => group.Count() > 1).SelectMany(group => group).ToList();
+
+				if (duplicates.Count > 0)
+					return false;
+			}
+
+			return true;
+		}
+		// (Validation) Methods [END]
 	}
 }
 

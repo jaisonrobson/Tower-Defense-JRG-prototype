@@ -1,13 +1,13 @@
-public enum PoolableTypeEnum
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using System.Linq;
+using Sirenix.OdinInspector;
+
+[HideMonoScript]
+public class ImmediateAttackController : AttackController
 {
-    STANDARD,
-    AGENT_CREATURE,
-    AGENT_STRUCTURE,
-    UI_SLIDER,
-    UI_FLOATTEXT,
-    ATTACK_RANGED,
-    ATTACK_MELEE,
-    ATTACK_IMMEDIATE
+
 }
 
 ////////////////////////////////////////////////////////////////////////////////

@@ -89,31 +89,8 @@ namespace Core.Patterns
 			return instance;
 		}
 
-		public static Transform GetParentByType(PoolableTypeEnum type)
-        {
-			Transform result;
-
-			switch (type)
-            {
-				case PoolableTypeEnum.AGENT_CREATURE:
-					result = PoolManager.instance.agentsCreatures;
-					break;
-				case PoolableTypeEnum.AGENT_STRUCTURE:
-					result = PoolManager.instance.agentsStructures;
-					break;
-				case PoolableTypeEnum.UI_SLIDER:
-					result = PoolManager.instance.uiSliders;
-					break;
-				case PoolableTypeEnum.UI_FLOATTEXT:
-					result = PoolManager.instance.uiFloatingTexts;
-					break;
-				default:
-					result = PoolManager.instance.standard;
-					break;
-			}
-
-			return result;
-        }
+		public static Transform GetParentByType(PoolableTypeEnum type) =>
+			PoolManager.instance.GetPoolableTransformArea(type);
 
 		public Transform GetParent() { return GetParentByType(poolType); }
 	}

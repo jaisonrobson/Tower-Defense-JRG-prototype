@@ -370,6 +370,13 @@ public abstract class Agent : MonoBehaviour, IPoolable
             PoolAgent();
         }
     }
+    public float CalculateAttackVelocity(AttackSO pAttack) =>
+        Mathf.Clamp(
+            (AttackVelocity * ((float)pAttack.influenceOverAttackVelocity / 100)),
+            0.03f,
+            5f
+        );
+    public AttackOrigin GetAttackOriginOfAttack(AttackSO pAttack) => attacksOrigins.Where(ao => ao.attack == pAttack).First();
     public List<PriorityGoal> GetAgentViablePriorityEnemies() { return PriorityGoals.Where(pg => pg.ignoreBattle == false).ToList(); }
     public PriorityGoal GetAgentNearestViablePriorityEnemy() {
         float lastDistance = float.PositiveInfinity;

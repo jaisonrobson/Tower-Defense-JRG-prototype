@@ -3,7 +3,15 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - PA_STANDARD
+  - PA_AGENT_CREATURE
+  - PA_AGENT_STRUCTURE
+  - PA_UI_SLIDER
+  - PA_UI_FLOATTEXT
+  - PA_ATTACK_RANGED
+  - PA_ATTACK_MELEE
+  - PA_ATTACK_IMMEDIATE
   layers:
   - Default
   - TransparentFX

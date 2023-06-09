@@ -4,13 +4,12 @@ using UnityEngine;
 using System.Linq;
 using Sirenix.OdinInspector;
 using Core.Patterns;
-using Core.Math;
 
 [RequireComponent(typeof(Rigidbody))]
-[RequireComponent(typeof(SphereCollider))]
-[RequireComponent(typeof(RangedAttackEnemyDetectionColliderController))]
+[RequireComponent(typeof(BoxCollider))]
+[RequireComponent(typeof(MeleeAttackEnemyDetectionColliderController))]
 [HideMonoScript]
-public class RangedAttackController : AttackController
+public class MeleeAttackController : AttackController
 {
     // Private (Properties) [START]
     private float StartTime { get; set; }
@@ -24,36 +23,27 @@ public class RangedAttackController : AttackController
     }
     private void FixedUpdate()
     {
-        HandleAttackMovement();
+        HandleAttackPositioning();
     }
     // (Unity) Methods [END]
 
     // Private (Methods) [START]
     private void ResetVariables()
     {
-        RangedAttackAffector raa = GetComponent<RangedAttackAffector>();
+        MeleeAttackAffector maa = GetComponent<MeleeAttackAffector>();
 
         StartTime = Time.fixedTime;
-        Duration = Time.fixedTime + raa.Duration;
+        Duration = Time.fixedTime + maa.Duration;
     }
-    private void HandleAttackMovement()
+    private void HandleAttackPositioning()
     {
         if (Time.fixedTime > Duration)
             return;
 
-        RangedAttackAffector raa = GetComponent<RangedAttackAffector>();
+        MeleeAttackAffector maa = GetComponent<MeleeAttackAffector>();
 
-        switch (GetComponent<RangedAttackAffector>().travellingType)
-        {
-            case AttackTravellingTypeEnum.ARCH:
-                transform.position = Slerp.EvaluateSlerpPointsVector3(raa.Origin, raa.Destination, 1, StartTime, raa.Duration);
-                break;
-            default:
-                float travellingFractionTime = Time.fixedTime / Duration;
-                
-                transform.position = Vector3.Lerp(raa.Origin, raa.Destination, travellingFractionTime);
-                break;
-        }
+        transform.position = maa.Origin;
+        transform.rotation = maa.InitialRotation;
     }
     // Private (Methods) [END]
 

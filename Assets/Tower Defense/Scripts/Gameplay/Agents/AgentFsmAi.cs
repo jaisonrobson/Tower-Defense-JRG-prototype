@@ -211,8 +211,13 @@ public abstract class AgentFsmAi : MonoBehaviour
 
                         Agent enemyAgent = agent.GetActualEnemyAgent();
 
+                        //Instead of dealing damage directly to the enemy, invoke de attack and let it deal the damage.
+                        if (enemyAgent != null)
+                            Attacking.InvokeAttack(timedAttacks[i].attack, agent, enemyAgent);
+                        /*
                         if (enemyAgent != null)
                             enemyAgent.OnReceiveDamage(agent.Alignment, agent.Damage, timedAttacks[i].attack);
+                        */
                     }
                 }
 
@@ -257,15 +262,11 @@ public abstract class AgentFsmAi : MonoBehaviour
     private float CalculateAttackTiming(AttackSO pAttack, bool useCooldown = true)
     {
         float cd = useCooldown ? pAttack.cooldown : 0f;
-        return Time.fixedTime + cd + (1f / CalculateAttackVelocity(pAttack));
-    }
-    private float CalculateAttackVelocity(AttackSO pAttack)
-    {
-        return (agent.AttackVelocity * ((float)pAttack.influenceOverAttackVelocity / 100));
+        return Time.fixedTime + cd + (1f / agent.CalculateAttackVelocity(pAttack));
     }
     private void UpdateAttackAnimation(AttackSO pAttack)
     {
-        Anim.SetFloat("attackSpeed", Mathf.Clamp(CalculateAttackVelocity(pAttack), 0.03f, 5f));
+        Anim.SetFloat("attackSpeed", agent.CalculateAttackVelocity(pAttack));
     }
     // Private (Methods) [END]
 

@@ -6,12 +6,12 @@ using Sirenix.OdinInspector;
 using Core.Patterns;
 
 [HideMonoScript]
-public class RangedAttackEnemyDetectionColliderController : MonoBehaviour
+public class MeleeAttackEnemyDetectionColliderController : MonoBehaviour
 {
     // (Unity) Methods [START]
     void OnCollisionStay(Collision collisionInfo)
     {
-        //Brincar com o AffectedAgents do RangedAttackController aqui dentro
+        //Brincar com o AffectedAgents do MeleeAttackController aqui dentro
         //E tambem o Finished
         //Chamar o onReceiveDamage aqui tambem caso encontre um agente.
         // Debug-draw all contact points and normals
