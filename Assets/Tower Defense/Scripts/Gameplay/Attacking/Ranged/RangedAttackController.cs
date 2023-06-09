@@ -14,7 +14,8 @@ public class RangedAttackController : AttackController
 {
     // Private (Properties) [START]
     private float StartTime { get; set; }
-    private float Duration { get; set; }
+    private float ExistanceDuration { get; set; }
+    private float TravelDuration { get; set; }
     // Private (Properties) [END]
 
     // (Unity) Methods [START]
@@ -34,11 +35,12 @@ public class RangedAttackController : AttackController
         RangedAttackAffector raa = GetComponent<RangedAttackAffector>();
 
         StartTime = Time.fixedTime;
-        Duration = Time.fixedTime + raa.Duration;
+        ExistanceDuration = Time.fixedTime + raa.Duration;
+        TravelDuration = Time.fixedTime + raa.Speed;
     }
     private void HandleAttackMovement()
     {
-        if (Time.fixedTime > Duration)
+        if (Time.fixedTime > ExistanceDuration)
             return;
 
         RangedAttackAffector raa = GetComponent<RangedAttackAffector>();
@@ -46,10 +48,10 @@ public class RangedAttackController : AttackController
         switch (GetComponent<RangedAttackAffector>().travellingType)
         {
             case AttackTravellingTypeEnum.ARCH:
-                transform.position = Slerp.EvaluateSlerpPointsVector3(raa.Origin, raa.Destination, 1, StartTime, raa.Duration);
+                transform.position = Slerp.EvaluateSlerpPointsVector3(raa.Origin, raa.Destination, Mathf.Abs((raa.Origin - raa.Destination).y) * 2, StartTime, TravelDuration);
                 break;
             default:
-                float travellingFractionTime = Time.fixedTime / Duration;
+                float travellingFractionTime = Time.fixedTime / ExistanceDuration;
                 
                 transform.position = Vector3.Lerp(raa.Origin, raa.Destination, travellingFractionTime);
                 break;

@@ -16,14 +16,6 @@ namespace Core.Math
             Vector3 startRelativeCenter = start - centerPivot;
             Vector3 endRelativeCenter = end - centerPivot;
 
-            /*
-            float f = 1f / 10f;
-
-            for (float i = 0f; i < 1+f; i += f)
-            {
-                yield return Vector3.Slerp(startRelativeCenter, endRelativeCenter, i) + centerPivot;
-            }
-            */
             float fractionCompleted = (Time.fixedTime - startTime) / journeyTime;
 
             yield return Vector3.Slerp(startRelativeCenter, endRelativeCenter, fractionCompleted) + centerPivot;
@@ -33,12 +25,12 @@ namespace Core.Math
         {
             Vector3 centerPivot = (start + end) * 0.5f;
 
-            centerPivot -= new Vector3(0, -centerOffset);
+            centerPivot -= new Vector3(0, centerOffset);
 
             Vector3 startRelativeCenter = start - centerPivot;
             Vector3 endRelativeCenter = end - centerPivot;
 
-            float fractionCompleted = (Time.fixedTime - startTime) / journeyTime;
+            float fractionCompleted = Mathf.InverseLerp(startTime, journeyTime, Time.fixedTime);
 
             return Vector3.Slerp(startRelativeCenter, endRelativeCenter, fractionCompleted) + centerPivot;
         }

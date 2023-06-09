@@ -16,6 +16,7 @@ public class RangedAttackAffector : AttackAffector
     // Public (Properties) [START]
     public Vector3 Origin { get; set; }
     public Vector3 Destination { get; set; }
+    public float Speed { get; set; }
     // Public (Properties) [END]
 
     // Public (Methods) [START]
@@ -31,6 +32,7 @@ public class RangedAttackAffector : AttackAffector
 
         Origin = Vector3.zero;
         Destination = Vector3.zero;
+        Speed = 0f;
 
         GetComponent<RangedAttackController>().PoolInsertionAction(poolable);
     }

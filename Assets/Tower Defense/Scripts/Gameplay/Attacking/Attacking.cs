@@ -19,11 +19,12 @@ public static class Attacking
                 pNewAttackPoolable.gameObject.GetComponent<AttackAffector>().Damage = invoker.Damage;
                 pNewAttackPoolable.gameObject.GetComponent<AttackAffector>().Duration = Mathf.Clamp(invoker.CalculateAttackVelocity(attack), 1f, Mathf.Infinity);
 
-                //#if UNITY_EDITOR
+                if (pNewAttackPoolable.gameObject.GetComponent<MeshRenderer>())
+                {
                     List<AlignmentMaterialsSO> amSOs = Resources.LoadAll<AlignmentMaterialsSO>("SO's/Alignment Materials").ToList();
                     AlignmentMaterialsSO alignmentMaterial = amSOs.Where(am => am.alignment.alignment == invoker.Alignment).FirstOrDefault();
                     pNewAttackPoolable.gameObject.GetComponent<MeshRenderer>().material = alignmentMaterial.ghost_structures;
-                //#endif
+                }
 
                 AttackOrigin attackOriginConfiguration = invoker.GetAttackOriginOfAttack(attack);
                 Transform attackOrigin = attackOriginConfiguration.attackOrigin;
@@ -33,6 +34,7 @@ public static class Attacking
                     case AttackTypeEnum.RANGED:
                         pNewAttackPoolable.gameObject.GetComponent<RangedAttackAffector>().Origin = attackOrigin.position;
                         pNewAttackPoolable.gameObject.GetComponent<RangedAttackAffector>().Destination = target.transform.position;
+                        pNewAttackPoolable.gameObject.GetComponent<RangedAttackAffector>().Speed = invoker.CalculateAttackVelocityPerSecond(attack);
                         break;
                     case AttackTypeEnum.MELEE:
                         Vector3 localInitialOrigin = Vector3.Lerp(attackOrigin.position, target.transform.position, 0.5f);

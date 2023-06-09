@@ -308,6 +308,7 @@ public abstract class Agent : MonoBehaviour, IPoolable
     {
         return new Vector3(mainCollider.bounds.min.x - (mainCollider.bounds.extents.x * 0.5f), newAgent.localScale.y + 0.5f, mainCollider.bounds.min.z - (mainCollider.bounds.extents.z * 0.5f));
     }
+    public float CalculateAttackVelocityPerSecond(AttackSO pAttack) => 1f / CalculateAttackVelocity(pAttack);
     public float CalculateAttackVelocity(AttackSO pAttack) =>
         Mathf.Clamp(
             (AttackVelocity * ((float)pAttack.influenceOverAttackVelocity / 100)),
