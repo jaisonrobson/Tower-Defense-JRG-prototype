@@ -4,23 +4,49 @@ using UnityEngine;
 using System.Linq;
 using Sirenix.OdinInspector;
 using Core.Patterns;
+using Core.General;
 
 [HideMonoScript]
 public class MeleeAttackEnemyDetectionColliderController : MonoBehaviour
 {
     // (Unity) Methods [START]
-    void OnCollisionStay(Collision collisionInfo)
+    private void OnTriggerEnter(Collider other) => HandleAttacking(other.gameObject);
+    private void OnTriggerStay(Collider other) => HandleAttacking(other.gameObject);
+    // (Unity) Methods [END]
+
+
+    // Private (Methods) [START]
+    private void HandleAttacking(GameObject other)
     {
-        //Brincar com o AffectedAgents do MeleeAttackController aqui dentro
-        //E tambem o Finished
-        //Chamar o onReceiveDamage aqui tambem caso encontre um agente.
-        // Debug-draw all contact points and normals
-        foreach (ContactPoint contact in collisionInfo.contacts)
+        if (other != gameObject)
         {
-            Debug.DrawRay(contact.point, contact.normal * 10, Color.red);
+            MeleeAttackAffector maa = GetComponent<MeleeAttackAffector>();
+
+            if (maa != null && maa.IsInLayerMask(other.layer))
+            {
+                Agent enemy = other.GetComponentInChildren<Agent>();
+
+                if(enemy == null)
+                    enemy = other.GetComponentInParent<Agent>();
+
+                if (enemy != null)
+                {
+                    if (maa.IsAlignmentAnOpponent(enemy.Alignment))
+                    {
+                        MeleeAttackController mac = GetComponent<MeleeAttackController>();
+
+                        if (mac != null && !mac.IsAgentAlreadyAffected(enemy))
+                        {
+                            mac.AddAffectedAgent(enemy);
+
+                            enemy.OnReceiveDamage(maa.Alignment, maa.Damage, maa.Attack);
+                        }
+                    }
+                }
+            }
         }
     }
-    // (Unity) Methods [END]
+    // Private (Methods) [END]
 }
 
 ////////////////////////////////////////////////////////////////////////////////

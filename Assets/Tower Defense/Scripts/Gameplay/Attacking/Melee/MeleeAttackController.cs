@@ -12,7 +12,11 @@ using Core.Patterns;
 public class MeleeAttackController : AttackController
 {
     // Private (Properties) [START]
+    [ReadOnly]
+    [ShowInInspector]
     private float StartTime { get; set; }
+    [ReadOnly]
+    [ShowInInspector]
     private float Duration { get; set; }
     // Private (Properties) [END]
 
@@ -24,6 +28,7 @@ public class MeleeAttackController : AttackController
     private void FixedUpdate()
     {
         HandleAttackPositioning();
+        HandleAttackExistanceByDuration();
     }
     // (Unity) Methods [END]
 
@@ -44,6 +49,11 @@ public class MeleeAttackController : AttackController
 
         transform.position = maa.Origin;
         transform.rotation = maa.InitialRotation;
+    }
+    private void HandleAttackExistanceByDuration()
+    {
+        if (Time.fixedTime > Duration)
+            Poolable.TryPool(gameObject);
     }
     // Private (Methods) [END]
 

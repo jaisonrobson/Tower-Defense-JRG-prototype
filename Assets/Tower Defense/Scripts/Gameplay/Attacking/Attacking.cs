@@ -16,23 +16,36 @@ public static class Attacking
             (Poolable pNewAttackPoolable) => {
                 pNewAttackPoolable.gameObject.GetComponent<Affector>().Alignment = invoker.Alignment;
                 pNewAttackPoolable.gameObject.GetComponent<AttackAffector>().Attack = attack;
-                pNewAttackPoolable.gameObject.GetComponent<AttackAffector>().Duration = invoker.CalculateAttackVelocity(attack);
+                pNewAttackPoolable.gameObject.GetComponent<AttackAffector>().Damage = invoker.Damage;
+                pNewAttackPoolable.gameObject.GetComponent<AttackAffector>().Duration = Mathf.Clamp(invoker.CalculateAttackVelocity(attack), 1f, Mathf.Infinity);
+
+                //#if UNITY_EDITOR
+                    List<AlignmentMaterialsSO> amSOs = Resources.LoadAll<AlignmentMaterialsSO>("SO's/Alignment Materials").ToList();
+                    AlignmentMaterialsSO alignmentMaterial = amSOs.Where(am => am.alignment.alignment == invoker.Alignment).FirstOrDefault();
+                    pNewAttackPoolable.gameObject.GetComponent<MeshRenderer>().material = alignmentMaterial.ghost_structures;
+                //#endif
+
+                AttackOrigin attackOriginConfiguration = invoker.GetAttackOriginOfAttack(attack);
+                Transform attackOrigin = attackOriginConfiguration.attackOrigin;
 
                 switch (attack.type)
                 {
                     case AttackTypeEnum.RANGED:
-                        pNewAttackPoolable.gameObject.GetComponent<RangedAttackAffector>().Origin = invoker.GetAttackOriginOfAttack(attack).attackOrigin.position;
+                        pNewAttackPoolable.gameObject.GetComponent<RangedAttackAffector>().Origin = attackOrigin.position;
                         pNewAttackPoolable.gameObject.GetComponent<RangedAttackAffector>().Destination = target.transform.position;
                         break;
                     case AttackTypeEnum.MELEE:
-                        Vector3 localOrigin = invoker.GetAttackOriginOfAttack(attack).attackOrigin.position;
-                        Vector3 direction = (localOrigin - target.transform.position).normalized;
+                        Vector3 localInitialOrigin = Vector3.Lerp(attackOrigin.position, target.transform.position, 0.5f);
+                        Vector3 direction = (target.transform.position - attackOrigin.position).normalized;
 
-                        pNewAttackPoolable.gameObject.GetComponent<MeleeAttackAffector>().Origin = localOrigin;
-                        pNewAttackPoolable.gameObject.GetComponent<MeleeAttackAffector>().InitialRotation = Quaternion.LookRotation(direction);
+                        Quaternion localInitialRotation = Quaternion.LookRotation(direction) * attack.prefab.transform.rotation;
+                        localInitialRotation = Quaternion.Euler(0, localInitialRotation.eulerAngles.y, 0);
+
+                        pNewAttackPoolable.gameObject.GetComponent<MeleeAttackAffector>().Origin = localInitialOrigin;
+                        pNewAttackPoolable.gameObject.GetComponent<MeleeAttackAffector>().InitialRotation = localInitialRotation;
                         break;
                     case AttackTypeEnum.IMMEDIATE:
-                        //CRIAR O IMMEDIATE AQUI
+                        //CREATE IMMEDIATE ATTACK HERE
                         break;
                 }
             }

@@ -9,7 +9,11 @@ using Core.Patterns;
 public abstract class AttackController : MonoBehaviour, IPoolable
 {
     // Public (Properties) [START]
-    public List<GameObject> AffectedAgents { get; set; }
+    [ReadOnly]
+    [ShowInInspector]
+    public List<Agent> AffectedAgents { get; set; }
+    [ReadOnly]
+    [ShowInInspector]
     public bool Finished { get; set; }
     // Public (Properties) [END]
 
@@ -18,12 +22,15 @@ public abstract class AttackController : MonoBehaviour, IPoolable
     public void Start()
     {
         Finished = false;
-        AffectedAgents = new List<GameObject>();
+        AffectedAgents = new List<Agent>();
     }
     // (Unity) Methods [END]
 
 
     // Public (Methods) [START]
+    public void AddAffectedAgent(Agent agent) => AffectedAgents.Add(agent);
+    public void RemoveAffectedAgent(Agent agent) => AffectedAgents.Remove(agent);
+    public bool IsAgentAlreadyAffected(Agent agent) => AffectedAgents.Any(aa => aa.gameObject.GetInstanceID() == agent.gameObject.GetInstanceID());
     public virtual void PoolRetrievalAction(Poolable poolable)
     {
         

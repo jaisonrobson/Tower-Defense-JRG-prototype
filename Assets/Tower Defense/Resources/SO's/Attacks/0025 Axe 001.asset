@@ -25,7 +25,7 @@ MonoBehaviour:
   assetPath: 
   newName: 
   type: 0
-  prefab: {fileID: 249373555310495313, guid: 00b745bb802698b41ab4ed6942e1a1bc, type: 3}
+  prefab: {fileID: 4468174954759948787, guid: 338067f75b2a8554e802b1d2e6fb22cf, type: 3}
   nature: {fileID: 11400000, guid: efc48cd36c929314495d893e09975cdd, type: 2}
   formula: {fileID: 11400000, guid: bf3756c18a6b9fd478d9c0a2fb7ea0ec, type: 2}
   cooldown: 3

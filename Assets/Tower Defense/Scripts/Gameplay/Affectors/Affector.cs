@@ -4,6 +4,7 @@ using UnityEngine;
 using System.Linq;
 using Sirenix.OdinInspector;
 using Core.Patterns;
+using Core.General;
 
 /*
  * Class involved in any physics collision that mutates data through gameplay objects
@@ -13,8 +14,12 @@ using Core.Patterns;
 public abstract class Affector : MonoBehaviour, IPoolable
 {
 	// Public (Properties) [START]
+    [ReadOnly]
+    [ShowInInspector]
 	public AlignmentEnum Alignment { get; set; }
-	public LayerMask AffectedsMask { get; protected set; }
+    [ReadOnly]
+    [ShowInInspector]
+    public LayerMask AffectedsMask { get; protected set; }
 	// Public (Properties) [END]
 
 	// Private (Variables) [START]
@@ -35,12 +40,9 @@ public abstract class Affector : MonoBehaviour, IPoolable
     }
     // (Unity) Methods [END]
 
-
-    // Protected (Methods) [START]
-    protected bool IsAlignmentAnOpponent(AlignmentEnum pAlignment) { return AlignmentManager.instance.IsAlignmentAnOpponent(pAlignment, Alignment); }
-    // Protected (Methods) [END]
-
     // Public (Methods) [START]
+    public bool IsInLayerMask(int layer) => Utils.IsInLayerMask(layer, AffectedsMask);
+    public bool IsAlignmentAnOpponent(AlignmentEnum pAlignment) { return AlignmentManager.instance.IsAlignmentAnOpponent(pAlignment, Alignment); }
     public virtual void PoolRetrievalAction(Poolable poolable) { }
     public virtual void PoolInsertionAction(Poolable poolable)
     {

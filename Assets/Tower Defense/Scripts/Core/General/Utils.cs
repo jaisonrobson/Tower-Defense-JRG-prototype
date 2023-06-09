@@ -119,6 +119,8 @@ namespace Core.General
             }
             return items;
         }
+
+        public static bool IsInLayerMask(int layer, LayerMask mask) => mask == (mask | (1 << layer));
     }
 }
 

@@ -9,8 +9,15 @@ using Core.Patterns;
 public abstract class AttackAffector : Affector
 {
     // Public (Properties) [START]
+    [ReadOnly]
+    [ShowInInspector]
     public AttackSO Attack { get; set; }
+    [ReadOnly]
+    [ShowInInspector]
     public float Duration { get; set; }
+    [ReadOnly]
+    [ShowInInspector]
+    public float Damage { get; set; }
     // Public (Properties) [END]
 
     // Public (Methods) [START]
@@ -23,6 +30,7 @@ public abstract class AttackAffector : Affector
         base.PoolInsertionAction(poolable);
 
         Attack = null;
+        Damage = 0f;
         Duration = 0f;
     }
     // Public (Methods) [END]
