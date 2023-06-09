@@ -16,7 +16,7 @@ public class PlayableStructure : Structure
     [BoxGroup("Structure Identity")]
     [Required]
     [AssetsOnly]
-    public GameObject flag;
+    public GameObject flagPrefab;
     // Public (Variables) [END]
 
     // Private (Variables) [START]
@@ -102,7 +102,7 @@ public class PlayableStructure : Structure
         if (goalFlag == null)
         {
             FlagPositionInitialized = pFlagPositionInitialized;
-            goalFlag = Instantiate(flag).transform;
+            goalFlag = Instantiate(flagPrefab).transform;
             goalFlag.SetParent(this.transform, false);
         }
     }

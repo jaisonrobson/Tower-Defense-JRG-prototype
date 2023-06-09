@@ -93,53 +93,10 @@ public abstract class AgentFsmAi : MonoBehaviour
         HandleAttacking();
 
         HandleDying();
+
+        HandleSubSpawning();
     }
     // (Unity) Methods [END]
-
-
-    // Public (Methods) [START]
-    public virtual void PoolRetrievalAction(Poolable poolable)
-    {
-        timedAttacks = null;
-        isAllAttacksUnderCooldown = false;
-        isDying = false;
-    }
-    public void StartDying()
-    {
-        isDying = true;
-        timeUntilCompletelyDie = 3f;
-    }
-    public bool IsAttackInRange(AttackSO attack)
-    {
-        if (attack.minimumAttackDistance > agent.AttackRange)
-            return false;
-
-        if (agent.GetActualEnemyAgent() == null)
-            return false;
-
-        if (agent.GetDistanceBetweenAgentAndEnemy() > attack.minimumAttackDistance)
-            return false;
-
-        return true;
-    }
-    public TimedAttack GetNearestNotInCooldownAttack()
-    {
-        TimedAttack nearestAttack = timedAttacks.First();
-
-        nearestAttack = timedAttacks
-            .Where((ta) => !ta.isMakingAttack && IsAttackReady(ta))
-            .Aggregate(
-                nearestAttack,
-                (nearest, next) => nearest.attack.minimumAttackDistance > next.attack.minimumAttackDistance ? next : nearest
-            );
-
-        return nearestAttack;
-    }
-    public bool IsAnyViableAttackUnderEnemyRange() => timedAttacks.Any(timedAttack => IsAttackInRange(timedAttack.attack) && IsAttackReady(timedAttack));
-    public bool IsAnyAttackUnderEnemyRange() => timedAttacks.Any(timedAttack => IsAttackInRange(timedAttack.attack));
-    public bool IsAllAttacksUnderEnemyRange() => timedAttacks.All(timedAttack => IsAttackInRange(timedAttack.attack));
-    public bool IsMakingAnyAttack() => timedAttacks.Any(timedAttack => timedAttack.isMakingAttack);
-    // Public (Methods) [END]
 
     // Private (Methods) [START]
     private void InitializeVariables()
@@ -206,18 +163,13 @@ public abstract class AgentFsmAi : MonoBehaviour
                     if (!IsMakingAnyAttack())
                     {
                         timedAttacks[i].isMakingAttack = true;
-                        
+
                         timedAttacks[i].nextTimeToExecute = CalculateAttackTiming(timedAttacks[i].attack, false);
 
                         Agent enemyAgent = agent.GetActualEnemyAgent();
 
-                        //Instead of dealing damage directly to the enemy, invoke de attack and let it deal the damage.
                         if (enemyAgent != null)
                             Attacking.InvokeAttack(timedAttacks[i].attack, agent, enemyAgent);
-                        /*
-                        if (enemyAgent != null)
-                            enemyAgent.OnReceiveDamage(agent.Alignment, agent.Damage, timedAttacks[i].attack);
-                        */
                     }
                 }
 
@@ -268,6 +220,55 @@ public abstract class AgentFsmAi : MonoBehaviour
     {
         Anim.SetFloat("attackSpeed", agent.CalculateAttackVelocity(pAttack));
     }
+    private void HandleSubSpawning()
+    {
+        if (agent.SubSpawns.Count > 0 && agent.Alignment != AlignmentEnum.GENERIC)
+        {
+            if (agent.GetAgent().type == AgentTypeEnum.STRUCTURE && GetComponent<PlayableStructure>() != null)
+                if (!GetComponent<PlayableStructure>().IsPlaced)
+                    return;
+
+            bool modified = false;
+
+            SubSpawn[] subs = agent.SubSpawns.ToArray();
+            for (int subSpawnIndex = 0; subSpawnIndex < subs.Length; subSpawnIndex++)
+            {
+                if (subs[subSpawnIndex].spawnedAgents.Count < subs[subSpawnIndex].subSpawn.maxAlive)
+                {
+                    if (subs[subSpawnIndex].timeToNextSpawn <= 0f)
+                    {
+                        subs[subSpawnIndex].timeToNextSpawn = subs[subSpawnIndex].subSpawn.delay;
+                        subs[subSpawnIndex].spawnedAgents.Add(SubSpawnAgent(subs[subSpawnIndex].subSpawn.creature.prefab));
+                    }
+                    else
+                        subs[subSpawnIndex].timeToNextSpawn -= Time.deltaTime;
+
+                    modified = true;
+                }
+            }
+
+            if (modified)
+                agent.SubSpawns = subs.ToList();
+        }
+    }
+    private GameObject SubSpawnAgent(GameObject agentPrefab)
+    {
+        GameObject newAgent = Poolable.TryGetPoolable(agentPrefab, OnRetrieveSubSpawnPoolableAgent);
+
+        newAgent.gameObject.GetComponent<AIPath>().Teleport(agent.GetAgentColliderBoundsInitialPosition(newAgent.transform));
+
+        return newAgent;
+    }
+    private void OnRetrieveSubSpawnPoolableAgent(Poolable poolable)
+    {
+        Agent newAgent = poolable.gameObject.GetComponent<Agent>();
+        Agent master = agent;
+
+        poolable.transform.SetPositionAndRotation(master.GetAgentColliderBoundsInitialPosition(poolable.transform), transform.rotation);
+        newAgent.goal = master.GetAgent().type == AgentTypeEnum.CREATURE ? AgentGoalEnum.MASTER : AgentGoalEnum.FLAG;
+        newAgent.Alignment = master.Alignment;
+        newAgent.Master = master;
+    }
     // Private (Methods) [END]
 
     // Protected (Methods) [START]
@@ -286,6 +287,65 @@ public abstract class AgentFsmAi : MonoBehaviour
         }
     }
     // Protected (Methods) [END]
+
+    // Public (Methods) [START]
+
+    public void StartDying()
+    {
+        isDying = true;
+        timeUntilCompletelyDie = 3f;
+    }
+    public float GetDistanceBetweenAgentAndEnemy()
+    {
+        Agent enemy = agent.GetActualEnemyAgent();
+
+        if (enemy != null)
+        {
+            Vector3 enemyClosestPoint = enemy.mainCollider.ClosestPointOnBounds(transform.position);
+            Vector3 agentClosestPoint = agent.mainCollider.ClosestPointOnBounds(enemyClosestPoint);
+
+            return Vector3.Distance(enemyClosestPoint, agentClosestPoint);
+        }
+        else
+            return float.PositiveInfinity;
+    }
+    public bool IsAttackInRange(AttackSO attack)
+    {
+        if (attack.minimumAttackDistance > agent.AttackRange)
+            return false;
+
+        if (agent.GetActualEnemyAgent() == null)
+            return false;
+
+        if (GetDistanceBetweenAgentAndEnemy() > attack.minimumAttackDistance)
+            return false;
+
+        return true;
+    }
+    public TimedAttack GetNearestNotInCooldownAttack()
+    {
+        TimedAttack nearestAttack = timedAttacks.First();
+
+        nearestAttack = timedAttacks
+            .Where((ta) => !ta.isMakingAttack && IsAttackReady(ta))
+            .Aggregate(
+                nearestAttack,
+                (nearest, next) => nearest.attack.minimumAttackDistance > next.attack.minimumAttackDistance ? next : nearest
+            );
+
+        return nearestAttack;
+    }
+    public bool IsAnyViableAttackUnderEnemyRange() => timedAttacks.Any(timedAttack => IsAttackInRange(timedAttack.attack) && IsAttackReady(timedAttack));
+    public bool IsAnyAttackUnderEnemyRange() => timedAttacks.Any(timedAttack => IsAttackInRange(timedAttack.attack));
+    public bool IsAllAttacksUnderEnemyRange() => timedAttacks.All(timedAttack => IsAttackInRange(timedAttack.attack));
+    public bool IsMakingAnyAttack() => timedAttacks.Any(timedAttack => timedAttack.isMakingAttack);
+    public virtual void PoolRetrievalAction(Poolable poolable)
+    {
+        timedAttacks = null;
+        isAllAttacksUnderCooldown = false;
+        isDying = false;
+    }
+    // Public (Methods) [END]
 
     // (Validation) Methods [START]
     private void Validate_IsNull_Agent()

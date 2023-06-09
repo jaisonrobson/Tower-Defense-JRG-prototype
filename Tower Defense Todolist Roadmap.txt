@@ -81,7 +81,7 @@ LEGENDA:
 (X) Continuar a criacao do FSM State de morte, onde exibira uma animacao de morte, e depois de esperar a animacao fazer o pool do agente. ao inves da forma como esta hoje.
 (X) Criar um sistema de delimitação da area dos minions em relação as torres. (Ate onde o minions podem caminhar para defender sua torre.) (definido pelo limite da area da torre + metade do limite da area do minion)
 (X) Remover os pririty goals dos subspawns ao fugirem muito longe da area limite dos subspawns
-( ) Fazer um algoritmo para teletransportar o agente movel caso o mesmo se afaste da area de seu mestre.
+(X) Fazer um algoritmo para teletransportar o agente movel caso o mesmo se afaste da area de seu mestre.
 
 (O) Criar o sistema de evolução das torres (e seus minions spawnados.)
 (X) Criar um algoritmo singleton que fara o controle de evolucao de torres descritos nos passos de afazeres abaixo (Structure Evolution Manager / Controller)
@@ -93,7 +93,8 @@ LEGENDA:
 (X) Poolar/Criar uma nova torre de nivel maior no lugar armazenado da primeira
 (-) Spawnar seus subspawns de acordo com a quantidade e posicionamento anteriormente armazenados
 (X) Alterar a posicao da bandeira para ser a mesma da torre anterior
-(X) Alterar a quantidade de vida da torre baseado na porcentagem no valor float que foi amazenado anteriormente da outra torre(X) Criar um attribute drawer para a progress bar com odin que exibira tambem os campos para setar o valor diretamente, similar ao atributo [Range] mas com progress bar.
+(X) Alterar a quantidade de vida da torre baseado na porcentagem no valor float que foi amazenado anteriormente da outra torre
+(X) Criar um attribute drawer para a progress bar com odin que exibira tambem os campos para setar o valor diretamente, similar ao atributo [Range] mas com progress bar.
 
 (X) Criar um script responsavel por realizar o ataque meelee de acordo com um colisor de trigger numa area pre-determinada de acordo com uma nova variavel de AttackSO (radius). (AttackAffector ou AttackEnemyCollider = Manager / Controller) esse script deve essencialmente existir apenas durante o ataque, e so ira afetar os agentes (uma vez durante sua existencia) que ainda nao tiverem entrado em algum tipo de lista. quando o ataque terminar ou for poolado, resetar a lista de agentes atacados.
 (X) Verificar se vai ser possivel usar o script acima tanto para os ataques a distancia (projectile) quanto para os em area (AOE)

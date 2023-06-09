@@ -473,7 +473,8 @@ MonoBehaviour:
   agent: {fileID: 11400000, guid: 3111548a9635bd943ad329ba3538bf0c, type: 2}
   structure: {fileID: 1891179598013062134}
   ghost: {fileID: 1692023053094792077}
-  flag: {fileID: 7610689757914200102, guid: fb92f925acbde27459bf03ea8e46a445, type: 3}
+  flagPrefab: {fileID: 7610689757914200102, guid: fb92f925acbde27459bf03ea8e46a445,
+    type: 3}
 --- !u!114 &2061386421229405826
 MonoBehaviour:
   m_ObjectHideFlags: 0

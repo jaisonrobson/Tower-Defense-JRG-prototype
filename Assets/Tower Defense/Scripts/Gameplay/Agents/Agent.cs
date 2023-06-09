@@ -206,7 +206,7 @@ public abstract class Agent : MonoBehaviour, IPoolable
     public Vector2Int Evasion { get { return evasion; } }
     public Agent ActualGoal { get { FilterActualGoal(); return actualGoal; } set { actualGoal = value; } }
     public AlignmentEnum Alignment { get { return alignment; } set { alignment = value; } }
-    public List<SubSpawn> SubSpawns { get { return subSpawns; } }
+    public List<SubSpawn> SubSpawns { get { return subSpawns; } set { subSpawns = value; } }
     public List<PriorityGoal> PriorityGoals { get { FilterPriorityGoals(); return priorityGoals.ToList(); } }
     public List<MainGoal> MainGoals { get { FilterMainGoals(); return mainGoals.ToList(); } }
     public Agent Master { get { return master; } set { master = value; } }
@@ -228,84 +228,11 @@ public abstract class Agent : MonoBehaviour, IPoolable
     }
     protected virtual void Update()
     {
-        HandleSubSpawning();
+        
     }
     // (Unity) Methods [END]
 
     // Private (Methods) [START]
-    private void MaintainAttacksOrigin()
-    {
-        if (attacksOrigins == null)
-            attacksOrigins = new List<AttackOrigin>();
-
-        AgentSO agent = GetAgent();
-
-        if (agent != null)
-        {
-            agent.attacks.ForEach(a =>
-            {
-                if (!attacksOrigins.Any(ao => ao.attack == a))
-                    attacksOrigins.Add(new AttackOrigin(a));
-            });
-        }
-    }
-    private void HandleSubSpawning()
-    {
-        if (SubSpawns.Count > 0 && alignment != AlignmentEnum.GENERIC)
-        {
-            if (GetAgent().type == AgentTypeEnum.STRUCTURE && GetComponent<PlayableStructure>() != null)
-                if (!GetComponent<PlayableStructure>().IsPlaced)
-                    return;
-
-            bool modified = false;
-
-            SubSpawn[] subs = SubSpawns.ToArray();
-            for (int subSpawnIndex = 0; subSpawnIndex < subs.Length; subSpawnIndex++)
-            {
-                if (subs[subSpawnIndex].spawnedAgents.Count < subs[subSpawnIndex].subSpawn.maxAlive)
-                {
-                    if (subs[subSpawnIndex].timeToNextSpawn <= 0f)
-                    {
-                        subs[subSpawnIndex].timeToNextSpawn = subs[subSpawnIndex].subSpawn.delay;
-                        subs[subSpawnIndex].spawnedAgents.Add(SubSpawnAgent(subs[subSpawnIndex].subSpawn.creature.prefab));
-                    }
-                    else
-                        subs[subSpawnIndex].timeToNextSpawn -= Time.deltaTime;
-
-                    modified = true;
-                }
-            }
-
-            if (modified)
-                subSpawns = subs.ToList();
-        }
-    }
-    private Vector3 GetAgentColliderBoundsInitialPosition(Transform newAgent)
-    {
-        return new Vector3(mainCollider.bounds.min.x - (mainCollider.bounds.extents.x * 0.5f), (newAgent.localScale.y / 2) + 0.5f, mainCollider.bounds.min.z - (mainCollider.bounds.extents.z * 0.5f));
-    }
-    private GameObject SubSpawnAgent(GameObject agentPrefab)
-    {
-        GameObject newAgent = Poolable.TryGetPoolable(agentPrefab, OnRetrieveSubSpawnPoolableAgent);
-
-        newAgent.gameObject.GetComponent<AIPath>().Teleport(GetAgentColliderBoundsInitialPosition(newAgent.transform));
-
-        return newAgent;
-    }
-    public void OnRetrieveSubSpawnPoolableAgent(Poolable agent)
-    {
-        agent.transform.SetPositionAndRotation(GetAgentColliderBoundsInitialPosition(agent.transform), transform.rotation);
-        agent.gameObject.GetComponent<Agent>().goal = GetAgent().type == AgentTypeEnum.CREATURE ? AgentGoalEnum.MASTER : AgentGoalEnum.FLAG;
-        agent.gameObject.GetComponent<Agent>().Alignment = alignment;
-        agent.gameObject.GetComponent<Agent>().Master = this;
-    }
-    public void OnInsertSubSpawnPoolableAgent(Poolable agent)
-    {
-        SubSpawns.ForEach(ss => {
-            if (ss.spawnedAgents.Any(sa => sa == agent.gameObject))
-                ss.spawnedAgents.Remove(agent.gameObject);
-        });
-    }
     private void ResetAgentStats()
     {
         actualHealth = GetAgent().health;
@@ -356,6 +283,13 @@ public abstract class Agent : MonoBehaviour, IPoolable
 
     // Public (Methods) [START]
     public abstract AgentSO GetAgent();
+    public void OnInsertSubSpawnPoolableAgent(Poolable agent)
+    {
+        SubSpawns.ForEach(ss => {
+            if (ss.spawnedAgents.Any(sa => sa == agent.gameObject))
+                ss.spawnedAgents.Remove(agent.gameObject);
+        });
+    }
     public void PoolAgent()
     {
         if (Master != null)
@@ -369,6 +303,10 @@ public abstract class Agent : MonoBehaviour, IPoolable
         {
             PoolAgent();
         }
+    }
+    public Vector3 GetAgentColliderBoundsInitialPosition(Transform newAgent)
+    {
+        return new Vector3(mainCollider.bounds.min.x - (mainCollider.bounds.extents.x * 0.5f), newAgent.localScale.y + 0.5f, mainCollider.bounds.min.z - (mainCollider.bounds.extents.z * 0.5f));
     }
     public float CalculateAttackVelocity(AttackSO pAttack) =>
         Mathf.Clamp(
@@ -476,17 +414,7 @@ public abstract class Agent : MonoBehaviour, IPoolable
 
         return result;
     }
-    public float GetDistanceBetweenAgentAndEnemy() {
-        Agent enemy = GetActualEnemyAgent();
-
-        Vector3 enemyClosestPoint = enemy.mainCollider.ClosestPointOnBounds(transform.position);
-        Vector3 agentClosesPoint = mainCollider.ClosestPointOnBounds(enemyClosestPoint);
-
-        if (enemy != null)
-            return Vector3.Distance(enemyClosestPoint, agentClosesPoint);
-        else
-            return float.PositiveInfinity;
-    }
+    
     public virtual void PoolRetrievalAction(Poolable poolable)
     {
         priorityGoals = new PriorityGoal[0];
@@ -516,6 +444,22 @@ public abstract class Agent : MonoBehaviour, IPoolable
     // Public (Methods) [END]
 
     // (Validation) Methods [START]
+    private void MaintainAttacksOrigin()
+    {
+        if (attacksOrigins == null)
+            attacksOrigins = new List<AttackOrigin>();
+
+        AgentSO agent = GetAgent();
+
+        if (agent != null)
+        {
+            agent.attacks.ForEach(a =>
+            {
+                if (!attacksOrigins.Any(ao => ao.attack == a))
+                    attacksOrigins.Add(new AttackOrigin(a));
+            });
+        }
+    }
     private bool Validate_NotNull_Origins() {
         MaintainAttacksOrigin();
 

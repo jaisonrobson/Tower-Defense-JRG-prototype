@@ -39,6 +39,8 @@ public class CreatureFsmAi : AgentFsmAi
         UpdateAIGoalAndDestination();
 
         UpdateAIPathfindingMinimumDistance();
+
+        HandleSubspawnInsidePlayableArea();
     }
     // (Unity) Methods [END]
 
@@ -131,18 +133,33 @@ public class CreatureFsmAi : AgentFsmAi
                 pathfinding.endReachedDistance = nearestAttack.attack.minimumAttackDistance * 0.9f;
         }
     }
+    private void HandleSubspawnInsidePlayableArea()
+    {
+        if (IsAgentASubspawn())
+        {
+            if (!IsSubspawnInsideAreaLimits(10f))
+            {
+                agent.transform.position = agent.Master.GetComponent<PlayableStructure>().GoalFlag.position;
+
+                pathfinding.Teleport(agent.Master.GetComponent<PlayableStructure>().GoalFlag.position);
+            }
+        }
+    }
     private bool IsAgentASubspawn() { return agent.Master != null; }
-    private bool IsSubspawnInsideAreaLimits()
+    private bool IsSubspawnInsideAreaLimits(float limitOffset = 0f)
     {
         bool result = false;
 
-        if (agent.Master != null)
+        if (IsAgentASubspawn())
         {
             if (Vector3.Distance(agent.Master.transform.position, agent.transform.position)
                 <= (
-                    (agent.Master.GetComponentInChildren<AgentEnemyDetectionColliderManager>(true).DetectionCollider.bounds.extents.magnitude / 2)
-                    + (agent.GetComponentInChildren<AgentEnemyDetectionColliderManager>(true).DetectionCollider.bounds.extents.magnitude / 2)
-                   )
+                    (
+                        (agent.Master.GetComponentInChildren<AgentEnemyDetectionColliderManager>(true).DetectionCollider.bounds.extents.magnitude / 2)
+                        + (agent.GetComponentInChildren<AgentEnemyDetectionColliderManager>(true).DetectionCollider.bounds.extents.magnitude / 2)
+                    )
+                    + limitOffset
+                )
                )
                 result = true;
         }
