@@ -19,13 +19,24 @@ public abstract class AttackController : MonoBehaviour, IPoolable
 
 
     // (Unity) Methods [START]
-    public void Start()
+    public virtual void OnEnable()
     {
         Finished = false;
         AffectedAgents = new List<Agent>();
     }
+    public virtual void Update()
+    {
+        HandleAttackFinishing();
+    }
     // (Unity) Methods [END]
 
+    // Private (Methods) [START]
+    private void HandleAttackFinishing()
+    {
+        if (Finished)
+            Poolable.TryPool(gameObject);
+    }
+    // Private (Methods) [END]
 
     // Public (Methods) [START]
     public void AddAffectedAgent(Agent agent) => AffectedAgents.Add(agent);

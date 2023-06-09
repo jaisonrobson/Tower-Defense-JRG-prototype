@@ -19,7 +19,7 @@ public static class Attacking
                 pNewAttackPoolable.gameObject.GetComponent<AttackAffector>().Damage = invoker.Damage;
                 pNewAttackPoolable.gameObject.GetComponent<AttackAffector>().Duration = Mathf.Clamp(invoker.CalculateAttackVelocity(attack), 1f, Mathf.Infinity);
 
-                if (pNewAttackPoolable.gameObject.GetComponent<MeshRenderer>())
+                if (pNewAttackPoolable.gameObject.GetComponent<MeshRenderer>() != null)
                 {
                     List<AlignmentMaterialsSO> amSOs = Resources.LoadAll<AlignmentMaterialsSO>("SO's/Alignment Materials").ToList();
                     AlignmentMaterialsSO alignmentMaterial = amSOs.Where(am => am.alignment.alignment == invoker.Alignment).FirstOrDefault();

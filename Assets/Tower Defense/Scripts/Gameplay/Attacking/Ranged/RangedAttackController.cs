@@ -19,11 +19,13 @@ public class RangedAttackController : AttackController
     // Private (Properties) [END]
 
     // (Unity) Methods [START]
-    private void OnEnable()
+    public override void OnEnable()
     {
+        base.OnEnable();
+
         ResetVariables();
     }
-    private void FixedUpdate()
+    public void FixedUpdate()
     {
         HandleAttackMovement();
     }

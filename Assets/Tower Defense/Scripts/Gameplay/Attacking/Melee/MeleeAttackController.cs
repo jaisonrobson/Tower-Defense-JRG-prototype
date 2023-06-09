@@ -21,11 +21,13 @@ public class MeleeAttackController : AttackController
     // Private (Properties) [END]
 
     // (Unity) Methods [START]
-    private void OnEnable()
+    public override void OnEnable()
     {
+        base.OnEnable();
+
         ResetVariables();
     }
-    private void FixedUpdate()
+    public void FixedUpdate()
     {
         HandleAttackPositioning();
         HandleAttackExistanceByDuration();
@@ -53,7 +55,7 @@ public class MeleeAttackController : AttackController
     private void HandleAttackExistanceByDuration()
     {
         if (Time.fixedTime > Duration)
-            Poolable.TryPool(gameObject);
+            Finished = true;
     }
     // Private (Methods) [END]
 
