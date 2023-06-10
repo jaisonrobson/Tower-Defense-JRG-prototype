@@ -7,7 +7,8 @@ public enum PoolableTypeEnum
     UI_FLOATTEXT,
     ATTACK_RANGED,
     ATTACK_MELEE,
-    ATTACK_IMMEDIATE
+    ATTACK_IMMEDIATE,
+    ATTACK_OUTCOME
 }
 
 ////////////////////////////////////////////////////////////////////////////////

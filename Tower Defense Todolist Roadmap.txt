@@ -105,10 +105,12 @@ LEGENDA:
 (X) Criar um script responsavel pela detecção de colisores de entidades/agentes inimigos ao alinhamento do projetil. (ProjectileEnemyDetectionColliderController)
 (X) Fazer com que o script de movimento va ate o ponto de destino (Vector3) que sera dado pela sua entidade invocadora (agente que disparou)
 (O) Ao atingir o ponto de destino, provavelmente o script nao tera encontrado um inimigo, reproduzir o efeito & o som & se auto destruir (Repoolar)
-( ) Caso o script encontre algum inimigo no caminho para o ponto de destino, deduzir o dano do AgentSO invocador calculado com o AttackSO realizado & reproduzir o efeito & som & se auto destruir (Repoolar)
-( ) Fazer com que os ataques a distancia nao causem dano em seu trajeto mas que ao encontrarem algum inimigo fisicamente, chamem outra funcao (Outcome ou Explode) que ira ativar um colisor na area em questao para entao verificar os inimigos dentro e causar os respectivos danos.
+(O) Caso o script encontre algum inimigo no caminho para o ponto de destino, deduzir o dano do AgentSO invocador calculado com o AttackSO realizado & reproduzir o efeito & som & se auto destruir (Repoolar)
+(O) Fazer com que os ataques a distancia nao causem dano em seu trajeto mas que ao encontrarem algum inimigo fisicamente, chamem outra funcao (Outcome ou Explode) que ira ativar um colisor na area em questao para entao verificar os inimigos dentro e causar os respectivos danos.
 (X) Tornar os projeteis poolaveis
-(-) Verificar a necessidade de repoolar projeteis caso seus agentes de origem ou destino nao existam mais
+(-) Verificar a necessidade de repoolar projeteis caso seus agentes de origem ou destino nao existam mais\
+(X) Fazer o reset das variaveis dos scripts de outcome quanto o ataque for poolado
+( ) Refatorar os scripts Outcome para obedecer o OutcomeAffector
 
 ( ) Criar o funcionamento de ataques em area (AOE) (Criaturas e estruturas)
 

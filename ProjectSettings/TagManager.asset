@@ -12,6 +12,7 @@ TagManager:
   - PA_ATTACK_RANGED
   - PA_ATTACK_MELEE
   - PA_ATTACK_IMMEDIATE
+  - PA_ATTACK_OUTCOME
   layers:
   - Default
   - TransparentFX

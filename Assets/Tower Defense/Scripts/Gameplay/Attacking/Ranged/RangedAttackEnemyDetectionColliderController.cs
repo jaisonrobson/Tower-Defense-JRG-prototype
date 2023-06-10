@@ -9,18 +9,51 @@ using Core.Patterns;
 public class RangedAttackEnemyDetectionColliderController : MonoBehaviour
 {
     // (Unity) Methods [START]
-    void OnCollisionStay(Collision collisionInfo)
+    private void OnTriggerEnter(Collider other) => HandleAttacking(other.gameObject);
+    private void OnTriggerStay(Collider other) => HandleAttacking(other.gameObject);
+    // (Unity) Methods [END]
+
+    // Private (Methods) [START]
+    private void HandleAttacking(GameObject other)
     {
-        //Brincar com o AffectedAgents do RangedAttackController aqui dentro
-        //E tambem o Finished
-        //Chamar o onReceiveDamage aqui tambem caso encontre um agente.
-        // Debug-draw all contact points and normals
-        foreach (ContactPoint contact in collisionInfo.contacts)
+        if (other != gameObject)
         {
-            Debug.DrawRay(contact.point, contact.normal * 10, Color.red);
+            RangedAttackAffector raa = GetComponent<RangedAttackAffector>();
+
+            if (raa != null && raa.IsInLayerMask(other.layer))
+            {
+                Agent enemy = other.GetComponentInChildren<Agent>();
+
+                if (enemy == null)
+                    enemy = other.GetComponentInParent<Agent>();
+
+                if (enemy != null)
+                {
+                    if (raa.IsAlignmentAnOpponent(enemy.Alignment))
+                    {
+                        RangedAttackController rac = GetComponent<RangedAttackController>();
+
+                        if (rac != null && !rac.Finished)
+                        {
+                            if (raa.Attack.outcomePrefab != null)
+                            {
+                                Attacking.InvokeOutcome(transform.position, raa.Alignment, raa.AffectedsMask, raa.Attack, raa.Damage);
+                            }
+                            else if (!rac.IsAgentAlreadyAffected(enemy))
+                            {
+                                rac.AddAffectedAgent(enemy);
+
+                                enemy.OnReceiveDamage(raa.Alignment, raa.Damage, raa.Attack);
+                            }
+
+                            rac.Finished = true;
+                        }
+                    }
+                }
+            }
         }
     }
-    // (Unity) Methods [END]
+    // Private (Methods) [END]
 }
 
 ////////////////////////////////////////////////////////////////////////////////

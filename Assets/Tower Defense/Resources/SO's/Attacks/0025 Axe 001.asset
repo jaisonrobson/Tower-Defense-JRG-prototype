@@ -26,6 +26,7 @@ MonoBehaviour:
   newName: 
   type: 0
   prefab: {fileID: 4468174954759948787, guid: 338067f75b2a8554e802b1d2e6fb22cf, type: 3}
+  outcomePrefab: {fileID: 0}
   nature: {fileID: 11400000, guid: efc48cd36c929314495d893e09975cdd, type: 2}
   formula: {fileID: 11400000, guid: bf3756c18a6b9fd478d9c0a2fb7ea0ec, type: 2}
   cooldown: 3

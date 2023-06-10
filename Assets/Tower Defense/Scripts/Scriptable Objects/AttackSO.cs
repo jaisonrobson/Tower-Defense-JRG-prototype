@@ -20,6 +20,11 @@ public class AttackSO : BaseOptionDataSO
     public GameObject prefab;
 
     [BoxGroup("Identity/Box")]
+    [AssetsOnly]
+    [PropertyTooltip("Represents the outcome attack prefab after the true attack was done/hit. (ex: secondary explosions)")]
+    public GameObject outcomePrefab;
+
+    [BoxGroup("Identity/Box")]
     [Required]
     public NatureSO nature;
 

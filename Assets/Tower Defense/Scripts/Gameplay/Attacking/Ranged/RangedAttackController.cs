@@ -28,6 +28,7 @@ public class RangedAttackController : AttackController
     public void FixedUpdate()
     {
         HandleAttackMovement();
+        HandleAttackExistanceByDuration();
     }
     // (Unity) Methods [END]
 
@@ -58,6 +59,11 @@ public class RangedAttackController : AttackController
                 transform.position = Vector3.Lerp(raa.Origin, raa.Destination, travellingFractionTime);
                 break;
         }
+    }
+    private void HandleAttackExistanceByDuration()
+    {
+        if (Time.fixedTime > ExistanceDuration)
+            Finished = true;
     }
     // Private (Methods) [END]
 

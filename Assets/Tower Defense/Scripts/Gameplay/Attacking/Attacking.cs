@@ -54,6 +54,14 @@ public static class Attacking
         );
     }
 
+    public static void InvokeOutcome(Vector3 pPosition, AlignmentEnum pAlignment, LayerMask pAffectedsMask, AttackSO pAttack, float pDamage)
+    {
+        GameObject newOutcomeAttack = Poolable.TryGetPoolable(pAttack.outcomePrefab);
+
+        //REFACTOR OUTCOME TO HAVE AN AFFECTOR INSTEAD OF RECEIVING ALL VARIABLES DIRECTLY BY METHOD
+        newOutcomeAttack.GetComponent<OutcomeAttackController>().StartOutcome(pPosition, pAlignment, pAffectedsMask, pAttack, pDamage);
+    }
+
 }
 
 ////////////////////////////////////////////////////////////////////////////////

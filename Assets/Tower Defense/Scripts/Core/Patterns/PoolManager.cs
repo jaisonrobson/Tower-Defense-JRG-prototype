@@ -151,9 +151,12 @@ namespace Core.Patterns
 			{
 				if (!poolableTypes.Any(pt => pt.type == pte))
                 {
-					Transform poolableTransformArea = GameObject.FindGameObjectWithTag("PA_" + Enum.GetName(typeof(PoolableTypeEnum), pte)).transform;
-					
-					poolableTypes.Add(new PoolableType(pte, poolableTransformArea));
+					Transform poolableTransformArea = GameObject.FindGameObjectWithTag("PA_" + Enum.GetName(typeof(PoolableTypeEnum), pte))?.transform;
+
+					if (poolableTransformArea == null)
+						throw new Exception("Did not found tag in any object: "+ "PA_" + Enum.GetName(typeof(PoolableTypeEnum), pte));
+					else
+						poolableTypes.Add(new PoolableType(pte, poolableTransformArea));
                 }
 			});
 		}
