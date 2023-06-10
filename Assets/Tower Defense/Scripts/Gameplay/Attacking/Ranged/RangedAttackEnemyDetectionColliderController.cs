@@ -37,7 +37,7 @@ public class RangedAttackEnemyDetectionColliderController : MonoBehaviour
                         {
                             if (raa.Attack.outcomePrefab != null)
                             {
-                                Attacking.InvokeOutcome(transform.position, raa.Alignment, raa.AffectedsMask, raa.Attack, raa.Damage);
+                                Attacking.InvokeOutcome(transform.position, transform.forward, raa.Alignment, raa.AffectedsMask, raa.Attack, raa.Damage);
                             }
                             else if (!rac.IsAgentAlreadyAffected(enemy))
                             {

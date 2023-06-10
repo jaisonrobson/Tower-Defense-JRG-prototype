@@ -19,11 +19,15 @@ public class OutcomeAttackEnemyDetectionColliderController : MonoBehaviour, IPoo
     // Public (Variables) [END]
 
     // Private (Variables) [START]
+    [ShowInInspector]
+    [ReadOnly]
     private List<GameObject> affectedAgents;
     private float startTime;
     // Private (Variables) [END]
 
     // Public (Properties) [START]
+    [ShowInInspector]
+    [ReadOnly]
     public bool Finished { get; private set; }
     // Public (Properties) [END]
 
@@ -45,24 +49,18 @@ public class OutcomeAttackEnemyDetectionColliderController : MonoBehaviour, IPoo
     {
         if (Time.time > (startTime + duration))
         {
-            gameObject.SetActive(false);
-
             Finished = true;
+            
+            gameObject.SetActive(false);
         }
     }
     private void HandleAttacking(GameObject other)
     {
-        //MAKE THE ATTACKING LOGIC HERE
-        //THE DAMAGE MUST BE DONE ACCORDING TO THE DAMAGE PERCENTAGE CONFIGURED ON THIS COMPONENT
-        //RESET ALL LOCAL VARIABLES BEFORE DEACTIVATING
-        //DEACTIVATE THE GAMEOBJECT WHEN THE DURATION EXPIRES
-        //REFACTOR OUTCOME TO HAVE AN AFFECTOR INSTEAD OF RECEIVING ALL VARIABLES DIRECTLY BY METHOD
-        /*
         if (other != gameObject)
         {
-            RangedAttackAffector raa = GetComponent<RangedAttackAffector>();
+            OutcomeAttackAffector oaa = GetComponentInParent<OutcomeAttackAffector>();
 
-            if (raa != null && raa.IsInLayerMask(other.layer))
+            if (oaa != null && oaa.IsInLayerMask(other.layer))
             {
                 Agent enemy = other.GetComponentInChildren<Agent>();
 
@@ -71,30 +69,23 @@ public class OutcomeAttackEnemyDetectionColliderController : MonoBehaviour, IPoo
 
                 if (enemy != null)
                 {
-                    if (raa.IsAlignmentAnOpponent(enemy.Alignment))
+                    if (oaa.IsAlignmentAnOpponent(enemy.Alignment))
                     {
-                        RangedAttackController rac = GetComponent<RangedAttackController>();
+                        OutcomeAttackController oac = GetComponentInParent<OutcomeAttackController>();
 
-                        if (rac != null && !rac.Finished)
+                        if (oac != null && oac.IsRunning)
                         {
-                            if (raa.Attack.outcomePrefab != null)
+                            if (!IsAgentAlreadyAffected(enemy.gameObject))
                             {
-                                Attacking.InvokeOutcome(transform.position, raa.Alignment, raa.AffectedsMask, raa.Attack, raa.Damage);
-                            }
-                            else if (!rac.IsAgentAlreadyAffected(enemy))
-                            {
-                                rac.AddAffectedAgent(enemy);
+                                affectedAgents.Add(enemy.gameObject);
 
-                                enemy.OnReceiveDamage(raa.Alignment, raa.Damage, raa.Attack);
+                                enemy.OnReceiveDamage(oaa.Alignment, oaa.Damage * (damagePercentage / 100), oaa.Attack);
                             }
-
-                            rac.Finished = true;
                         }
                     }
                 }
             }
         }
-        */
     }
     private void ResetVariables()
     {
@@ -104,10 +95,13 @@ public class OutcomeAttackEnemyDetectionColliderController : MonoBehaviour, IPoo
             affectedAgents.Clear();
 
         startTime = Time.time;
+
+        Finished = false;
     }
     // Private (Methods) [END]
 
     // Public (Methods) [START]
+    public bool IsAgentAlreadyAffected(GameObject agent) => affectedAgents.Any(aa => aa.GetInstanceID() == agent.GetInstanceID());
     public void StartOutcomeCollider()
     {
         gameObject.SetActive(true);

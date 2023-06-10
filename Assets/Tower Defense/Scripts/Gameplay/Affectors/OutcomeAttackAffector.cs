@@ -30,6 +30,23 @@ public class OutcomeAttackAffector : AttackAffector
 
         GetComponent<OutcomeAttackController>().PoolInsertionAction(poolable);
     }
+    public float GetOutComeTotalDuration()
+    {
+        float result = 0;
+
+        result = GetComponent<OutcomeAttackController>()
+            .outcomeCollisions
+            .Aggregate(
+                result,
+                (acc, value) => acc + value.controller.duration
+            );
+
+        result += GetComponent<OutcomeAttackController>()
+            .outcomeCollisions
+            .Max(oc => oc.timeInSequence);
+
+        return result;
+    }
     // Public (Methods) [END]
 }
 

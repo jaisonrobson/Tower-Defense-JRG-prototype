@@ -110,7 +110,7 @@ namespace Core.General
             return false;    
         }
 
-        public static IEnumerable<T> SetValue<T>(this IEnumerable<T> items, Action<T>
+        public static IEnumerable<T> UpdateValueInList<T>(this IEnumerable<T> items, Action<T>
          updateMethod)
         {
             foreach (T item in items)
@@ -118,6 +118,23 @@ namespace Core.General
                 updateMethod(item);
             }
             return items;
+        }
+
+        public static IEnumerable<T> UpdateValueInStructList<T>(IEnumerable<T> items, Func<T, T>
+         updateMethod)
+        {
+            T[] localItems = items.ToArray();
+
+            for (int i = 0; i < localItems.Count(); i++)
+            {
+                T structCopy = localItems[i];
+
+                structCopy = updateMethod(structCopy);
+
+                localItems[i] = structCopy;
+            }
+
+            return localItems.ToList();
         }
 
         public static bool IsInLayerMask(int layer, LayerMask mask) => mask == (mask | (1 << layer));

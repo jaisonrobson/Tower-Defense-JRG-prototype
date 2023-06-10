@@ -54,12 +54,35 @@ public static class Attacking
         );
     }
 
-    public static void InvokeOutcome(Vector3 pPosition, AlignmentEnum pAlignment, LayerMask pAffectedsMask, AttackSO pAttack, float pDamage)
+    public static void InvokeOutcome(Vector3 pPosition, Vector3 pDirection, AlignmentEnum pAlignment, LayerMask pAffectedsMask, AttackSO pAttack, float pDamage)
     {
-        GameObject newOutcomeAttack = Poolable.TryGetPoolable(pAttack.outcomePrefab);
+        GameObject newOutcomeAttack = Poolable.TryGetPoolable(
+            pAttack.outcomePrefab,
+            (Poolable newOutcomeAttackPoolable) => {
+                newOutcomeAttackPoolable.gameObject.GetComponent<Affector>().Alignment = pAlignment;
+                newOutcomeAttackPoolable.gameObject.GetComponent<AttackAffector>().Attack = pAttack;
+                newOutcomeAttackPoolable.gameObject.GetComponent<AttackAffector>().Damage = pDamage;
+                newOutcomeAttackPoolable.gameObject.GetComponent<AttackAffector>().Duration = newOutcomeAttackPoolable.gameObject.GetComponent<OutcomeAttackAffector>().GetOutComeTotalDuration();
+                newOutcomeAttackPoolable.gameObject.GetComponent<OutcomeAttackAffector>().Origin = pPosition;
 
-        //REFACTOR OUTCOME TO HAVE AN AFFECTOR INSTEAD OF RECEIVING ALL VARIABLES DIRECTLY BY METHOD
-        newOutcomeAttack.GetComponent<OutcomeAttackController>().StartOutcome(pPosition, pAlignment, pAffectedsMask, pAttack, pDamage);
+                Quaternion localInitialRotation = Quaternion.LookRotation(pDirection);
+                localInitialRotation = Quaternion.Euler(0, localInitialRotation.eulerAngles.y, 0);
+
+                newOutcomeAttackPoolable.gameObject.GetComponent<OutcomeAttackAffector>().InitialRotation = localInitialRotation;
+
+                List<MeshRenderer> mrs = newOutcomeAttackPoolable.gameObject.GetComponentsInChildren<MeshRenderer>(true).ToList();
+
+                if (mrs.Count > 0)
+                {
+                    List<AlignmentMaterialsSO> amSOs = Resources.LoadAll<AlignmentMaterialsSO>("SO's/Alignment Materials").ToList();
+                    AlignmentMaterialsSO alignmentMaterial = amSOs.Where(am => am.alignment.alignment == pAlignment).FirstOrDefault();
+
+                    mrs.ForEach(mr => mr.material = alignmentMaterial.ghost_structures);
+                }
+            }
+        );
+
+        newOutcomeAttack.GetComponent<OutcomeAttackController>().StartOutcome();
     }
 
 }

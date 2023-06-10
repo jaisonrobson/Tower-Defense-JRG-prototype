@@ -99,20 +99,20 @@ LEGENDA:
 (X) Criar um script responsavel por realizar o ataque meelee de acordo com um colisor de trigger numa area pre-determinada de acordo com uma nova variavel de AttackSO (radius). (AttackAffector ou AttackEnemyCollider = Manager / Controller) esse script deve essencialmente existir apenas durante o ataque, e so ira afetar os agentes (uma vez durante sua existencia) que ainda nao tiverem entrado em algum tipo de lista. quando o ataque terminar ou for poolado, resetar a lista de agentes atacados.
 (X) Verificar se vai ser possivel usar o script acima tanto para os ataques a distancia (projectile) quanto para os em area (AOE)
 
-( ) Criar o funcionamento de ataques com projeteis (Criaturas e estruturas)
+(X) Criar o funcionamento de ataques com projeteis (Criaturas e estruturas)
 (X) Criar uma seção de codigo no agente que sera responsavel por armazenar informações sobre o ataque (posição em que o projetil será lançado e posição em que a animação de ataque inicial irá ocorrer.)
-(O) Criar um script responsavel pelo movimento do projetil e o pooling (desaparecimento) da origem ate o destino. (RangedAttackControler)
+(X) Criar um script responsavel pelo movimento do projetil e o pooling (desaparecimento) da origem ate o destino. (RangedAttackControler)
 (X) Criar um script responsavel pela detecção de colisores de entidades/agentes inimigos ao alinhamento do projetil. (ProjectileEnemyDetectionColliderController)
 (X) Fazer com que o script de movimento va ate o ponto de destino (Vector3) que sera dado pela sua entidade invocadora (agente que disparou)
-(O) Ao atingir o ponto de destino, provavelmente o script nao tera encontrado um inimigo, reproduzir o efeito & o som & se auto destruir (Repoolar)
-(O) Caso o script encontre algum inimigo no caminho para o ponto de destino, deduzir o dano do AgentSO invocador calculado com o AttackSO realizado & reproduzir o efeito & som & se auto destruir (Repoolar)
-(O) Fazer com que os ataques a distancia nao causem dano em seu trajeto mas que ao encontrarem algum inimigo fisicamente, chamem outra funcao (Outcome ou Explode) que ira ativar um colisor na area em questao para entao verificar os inimigos dentro e causar os respectivos danos.
+(X) Ao atingir o ponto de destino, provavelmente o script nao tera encontrado um inimigo, reproduzir o efeito & o som & se auto destruir (Repoolar)
+(X) Caso o script encontre algum inimigo no caminho para o ponto de destino, deduzir o dano do AgentSO invocador calculado com o AttackSO realizado & reproduzir o efeito & som & se auto destruir (Repoolar)
+(X) Fazer com que os ataques a distancia nao causem dano em seu trajeto mas que ao encontrarem algum inimigo fisicamente, chamem outra funcao (Outcome ou Explode) que ira ativar um colisor na area em questao para entao verificar os inimigos dentro e causar os respectivos danos.
 (X) Tornar os projeteis poolaveis
 (-) Verificar a necessidade de repoolar projeteis caso seus agentes de origem ou destino nao existam mais\
 (X) Fazer o reset das variaveis dos scripts de outcome quanto o ataque for poolado
-( ) Refatorar os scripts Outcome para obedecer o OutcomeAffector
-
-( ) Criar o funcionamento de ataques em area (AOE) (Criaturas e estruturas)
+(X) Refatorar os scripts Outcome para obedecer o OutcomeAffector
+(X) Criar o funcionamento de ataques em area (AOE) (Criaturas e estruturas)
+( ) Fazer o funcionamento dos Immediate Attacks usando os scripts Affector para comportar futuramente o controle das animacoes e sons
 
 ( ) Criar o sistema de status (lento, queimando, paralizado, etc.) (Affectors) (verificar codigo do tower defense da unity, tem bons codigos sobre isso la)
 
@@ -145,3 +145,5 @@ BUGS E VALIDAÇÕES:
 (X) Os agentes inimigos estao ignorando os agentes aliados (nao estao atacando) (encontrado problema no alinhamento e resolvido, encontrado problema no valor do radius do colisor de deteccao de inimigos)
 (X) As vezes quando os agentes inimigos estao amontoados, alguns acabam tendo problema de colisao e caem infinitamente para dentro do mapa (parte inferior do mapa) (isso pode ser resolvido aumentando a largura do colisor do chao do mapa)
 (X) Verificar porque ao evoluir uma torre, seus subspawns acabam todos spawnados instantaneamente
+(X) Encontrado problema nos ataques a distancia que sao muito lentos, eles acabam sendo repoolados na metade do caminho por causa de sua duracao/velocidade.
+( ) Encontrado erro ao evoluir torres com vida menor que 100%

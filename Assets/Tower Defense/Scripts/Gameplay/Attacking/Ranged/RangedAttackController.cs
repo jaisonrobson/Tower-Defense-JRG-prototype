@@ -38,7 +38,7 @@ public class RangedAttackController : AttackController
         RangedAttackAffector raa = GetComponent<RangedAttackAffector>();
 
         StartTime = Time.fixedTime;
-        ExistanceDuration = Time.fixedTime + raa.Duration;
+        ExistanceDuration = Time.fixedTime + raa.Duration + raa.Speed; //The ranged attack must exist at least during the travel path completion
         TravelDuration = Time.fixedTime + raa.Speed;
     }
     private void HandleAttackMovement()
