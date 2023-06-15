@@ -19,6 +19,7 @@ public static class Attacking
                 pNewAttackPoolable.gameObject.GetComponent<AttackAffector>().Damage = invoker.Damage;
                 pNewAttackPoolable.gameObject.GetComponent<AttackAffector>().Duration = Mathf.Clamp(invoker.CalculateAttackVelocity(attack), 1f, Mathf.Infinity);
 
+                //Remover esse trecho quando houver um modelo real no prefab (caso contrario vai substituir material do modelo)
                 if (pNewAttackPoolable.gameObject.GetComponent<MeshRenderer>() != null)
                 {
                     List<AlignmentMaterialsSO> amSOs = Resources.LoadAll<AlignmentMaterialsSO>("SO's/Alignment Materials").ToList();
@@ -47,7 +48,7 @@ public static class Attacking
                         pNewAttackPoolable.gameObject.GetComponent<MeleeAttackAffector>().InitialRotation = localInitialRotation;
                         break;
                     case AttackTypeEnum.IMMEDIATE:
-                        //CREATE IMMEDIATE ATTACK HERE
+                        pNewAttackPoolable.gameObject.GetComponent<ImmediateAttackAffector>().Target = target;
                         break;
                 }
             }

@@ -112,7 +112,7 @@ LEGENDA:
 (X) Fazer o reset das variaveis dos scripts de outcome quanto o ataque for poolado
 (X) Refatorar os scripts Outcome para obedecer o OutcomeAffector
 (X) Criar o funcionamento de ataques em area (AOE) (Criaturas e estruturas)
-( ) Fazer o funcionamento dos Immediate Attacks usando os scripts Affector para comportar futuramente o controle das animacoes e sons
+(X) Fazer o funcionamento dos Immediate Attacks usando os scripts Affector para comportar futuramente o controle das animacoes e sons
 
 ( ) Criar o sistema de status (lento, queimando, paralizado, etc.) (Affectors) (verificar codigo do tower defense da unity, tem bons codigos sobre isso la)
 

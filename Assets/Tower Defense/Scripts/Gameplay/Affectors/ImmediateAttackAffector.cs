@@ -5,6 +5,7 @@ using System.Linq;
 using Sirenix.OdinInspector;
 using Core.Patterns;
 
+[RequireComponent(typeof(ImmediateAttackController))]
 [HideMonoScript]
 public class ImmediateAttackAffector : AttackAffector
 {
@@ -16,12 +17,16 @@ public class ImmediateAttackAffector : AttackAffector
     public override void PoolRetrievalAction(Poolable poolable)
     {
         base.PoolRetrievalAction(poolable);
+
+        GetComponent<ImmediateAttackController>().PoolRetrievalAction(poolable);
     }
     public override void PoolInsertionAction(Poolable poolable)
     {
         base.PoolInsertionAction(poolable);
 
         Target = null;
+
+        GetComponent<ImmediateAttackController>().PoolRetrievalAction(poolable);
     }
     // Public (Methods) [END]
 }

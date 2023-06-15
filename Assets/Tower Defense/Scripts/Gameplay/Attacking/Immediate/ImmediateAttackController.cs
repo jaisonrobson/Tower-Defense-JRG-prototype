@@ -3,11 +3,68 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
 using Sirenix.OdinInspector;
+using Core.Patterns;
 
 [HideMonoScript]
 public class ImmediateAttackController : AttackController
 {
+    // Private (Properties) [START]
+    private float StartTime { get; set; }
+    private ImmediateAttackAffector IAA { get; set; }
+    // Private (Properties) [END]
 
+    // (Unity) Methods [START]
+    public override void OnEnable()
+    {
+        base.OnEnable();
+
+        ResetVariables();
+    }
+    public void FixedUpdate()
+    {
+        HandleAttacking();
+
+        HandleAttackExistanceByDuration();
+    }
+    // (Unity) Methods [END]
+
+    // Private (Methods) [START]
+    private void ResetVariables()
+    {
+        IAA = GetComponent<ImmediateAttackAffector>();
+
+        StartTime = Time.time;
+    }
+    private void HandleAttacking()
+    {
+        if (!IsAgentAlreadyAffected(IAA.Target))
+        {
+            AddAffectedAgent(IAA.Target);
+
+            IAA.Target.OnReceiveDamage(IAA.Alignment, IAA.Damage, IAA.Attack);
+
+            Finished = true;
+        }
+    }
+    private void HandleAttackExistanceByDuration()
+    {
+        if (Time.time > (StartTime + IAA.Duration))
+            Finished = true;
+    }
+    // Private (Methods) [END]
+
+    // Public (Methods) [START]
+    public override void PoolRetrievalAction(Poolable poolable)
+    {
+        base.PoolRetrievalAction(poolable);
+
+        ResetVariables();
+    }
+    public override void PoolInsertionAction(Poolable poolable)
+    {
+        base.PoolInsertionAction(poolable);
+    }
+    // Public (Methods) [END]
 }
 
 ////////////////////////////////////////////////////////////////////////////////
