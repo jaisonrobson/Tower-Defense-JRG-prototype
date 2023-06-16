@@ -4,23 +4,17 @@ using UnityEngine;
 using Sirenix.OdinInspector;
 
 [ManageableData]
-public class StatusSO : BaseOptionDataSO
+public class StatusAffectorSO : BaseOptionDataSO
 {
     [BoxGroup("Box1", ShowLabel = false)]
-    [HorizontalGroup("Box1/split", LabelWidth = 75)]
+    [HorizontalGroup("Box1", LabelWidth = 75)]
 
-    [VerticalGroup("Box1/split/left")]    
+    [VerticalGroup("Box1")]
     [Required]
-    [PreviewField(100, Alignment = ObjectFieldAlignment.Center)]
-    [HideLabel]
-    public Sprite image;
+    public StatusSO status;
 
-    [VerticalGroup("Box1/split/right")]
-    [Required]
-    public StatusEnum status;
-
-    [VerticalGroup("Box1/split/right")]
-    public string description;
+    //FAZER TODAS AS POSSIVEIS VARIAVEIS PARA CONFIGURACOES AQUI DENTRO
+    // COMO POR EX: DANO, DURACAO, TURNOS, ETC.
 }
 
 ////////////////////////////////////////////////////////////////////////////////
