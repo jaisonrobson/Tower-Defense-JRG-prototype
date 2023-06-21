@@ -24,7 +24,7 @@ MonoBehaviour:
   jokerHiddenTitleField: 
   assetPath: Assets/Tower Defense/Resources/SO's/Formulas/0002 120% damage.asset
   newName: 0002 120%
-  exampleInitialValue: 3
+  exampleInitialValue: 5
   formulas:
   - minLimit: 1
     maxLimit: 100

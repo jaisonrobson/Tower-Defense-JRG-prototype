@@ -25,7 +25,9 @@ MonoBehaviour:
   assetPath: Assets/Tower Defense/Resources/SO's/Statuses Affectors/0004 Freeze 001.asset
   newName: 0004 Burn 001
   status: {fileID: 11400000, guid: ea7974d3ed18ef74a8e1b2a830ba461c, type: 2}
+  prefab: {fileID: 0}
   duration: 6
   damage: 15
   turnsQuantity: 3
+  influence: 0
   specialCondition: 0

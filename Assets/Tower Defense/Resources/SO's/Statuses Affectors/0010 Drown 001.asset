@@ -25,7 +25,9 @@ MonoBehaviour:
   assetPath: Assets/Tower Defense/Resources/SO's/Statuses Affectors/0011 Drown 001.asset
   newName: 0010 Drown 001
   status: {fileID: 11400000, guid: 963fa61a51f97c4409276a171a01395e, type: 2}
-  duration: 1
-  damage: 0
-  turnsQuantity: 1
+  prefab: {fileID: 0}
+  duration: 10
+  damage: 15
+  turnsQuantity: 3
+  influence: 0
   specialCondition: 0

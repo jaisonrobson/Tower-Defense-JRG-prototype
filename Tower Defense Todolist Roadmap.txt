@@ -116,7 +116,7 @@ LEGENDA:
 
 ( ) Criar o sistema de status (lento, queimando, paralizado, etc.) (Affectors) (verificar codigo do tower defense da unity, tem bons codigos sobre isso la)
 (X) Criar um enumerator de status para cada tipo de status possivel
-( ) Criar um novo Scriptable Object na base, para armazenar subtipos dos mesmos status com configuracoes diferentes, progressao de dano, etc. Que sera utilizado no script affector abaixo para regulagem e funcionamento do algoritmo.
+(X) Criar um novo Scriptable Object na base, para armazenar subtipos dos mesmos status com configuracoes diferentes, progressao de dano, etc. Que sera utilizado no script affector abaixo para regulagem e funcionamento do algoritmo.
 ( ) Criar um script/algoritmo que sera desacoplado do agente e sera responsavel por controlar o tempo em que o status configurado no mesmo afetara o agente.
 ( ) Fazer com que esse script obedeca os conceitos de OO, heranca, para reutilizar alguns funcionamentos e dados, e fazer varios subscripts herdados para cada tipo de status diferente.
 ( ) Fazer com que o script acima tambem controle o proprio status configurado de acordo com um switch case, e afete de forma desacoplada o agente. (ex: caso seja lentidao, diminua a velocidade do agente atraves de metodos, etc.)

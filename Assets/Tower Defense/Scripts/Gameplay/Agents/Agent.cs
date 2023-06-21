@@ -182,6 +182,8 @@ public abstract class Agent : MonoBehaviour, IPoolable
     [HideInEditorMode]
     [ReadOnly]
     private List<SubSpawn> subSpawns;
+    private List<Action> onPoolInsertionActions;
+    private List<StatusAffector> affectingStatuses;
     // Private (Variables) [END]
 
     // Protected (Variables) [START]
@@ -246,6 +248,16 @@ public abstract class Agent : MonoBehaviour, IPoolable
         attackRange = GetAgent().attackRange;
         evasion = GetAgent().evasion;
         subSpawns = new List<SubSpawn>(GetAgent().subspawns.ToList().Select(ssSO => new SubSpawn(ssSO)).ToList());
+
+        if (onPoolInsertionActions == null)
+            onPoolInsertionActions = new List<Action>();
+        else
+            onPoolInsertionActions.Clear();
+
+        if (affectingStatuses == null)
+            affectingStatuses = new List<StatusAffector>();
+        else
+            affectingStatuses.Clear();
     }
     private void ResetMainGoals()
     {
@@ -282,6 +294,13 @@ public abstract class Agent : MonoBehaviour, IPoolable
     // Private (Methods) [END]
 
     // Public (Methods) [START]
+    public void UpdateAgentVelocity(float newVelocity) => velocity = newVelocity;
+    public void UpdateAgentAttackVelocity(float newAttackVelocity) => attackVelocity = newAttackVelocity;
+    public bool IsStatusAlreadyAffectingAgent(StatusAffector sa) => affectingStatuses.Contains(sa) || affectingStatuses.Any(afs => afs.statusAffectorSO.status == sa.statusAffectorSO.status);
+    public void AddAffectingStatus(StatusAffector sa) => affectingStatuses.Add(sa);
+    public void RemoveAffectingStatus(StatusAffector sa) => affectingStatuses.Remove(sa);
+    public void AddPoolInsertionAction(Action pAction) => onPoolInsertionActions.Add(pAction);
+    public void RemovePoolInsertionAction(Action pAction) => onPoolInsertionActions.Remove(pAction);
     public abstract AgentSO GetAgent();
     public void OnInsertSubSpawnPoolableAgent(Poolable agent)
     {
@@ -414,8 +433,7 @@ public abstract class Agent : MonoBehaviour, IPoolable
         }
 
         return result;
-    }
-    
+    }    
     public virtual void PoolRetrievalAction(Poolable poolable)
     {
         priorityGoals = new PriorityGoal[0];
@@ -441,6 +459,8 @@ public abstract class Agent : MonoBehaviour, IPoolable
             GetComponent<AIPath>().enabled = false;
 
         GetComponentInChildren<ReliableOnTriggerExit>(true)?.PoolInsertionAction();
+
+        onPoolInsertionActions.ForEach(act => act());
     }
     // Public (Methods) [END]
 
