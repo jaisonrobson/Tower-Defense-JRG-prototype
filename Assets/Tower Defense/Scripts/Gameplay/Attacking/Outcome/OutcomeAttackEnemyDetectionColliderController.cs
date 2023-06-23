@@ -80,6 +80,13 @@ public class OutcomeAttackEnemyDetectionColliderController : MonoBehaviour, IPoo
                                 affectedAgents.Add(enemy.gameObject);
 
                                 enemy.OnReceiveDamage(oaa.Alignment, oaa.Damage * (damagePercentage / 100), oaa.Attack);
+
+                                oaa.Attack.onHitStatusAffectors
+                                    .ToList()
+                                    .ForEach(sa => {
+                                        if (!enemy.IsStatusAlreadyAffectingAgent(sa))
+                                            StatusAffecting.InvokeStatus(sa, oaa.Invoker, enemy);
+                                    });
                             }
                         }
                     }

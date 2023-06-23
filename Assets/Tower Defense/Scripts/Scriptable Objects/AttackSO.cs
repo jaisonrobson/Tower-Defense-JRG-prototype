@@ -47,6 +47,17 @@ public class AttackSO : BaseOptionDataSO
     [ProgressBarWithFields(1.5f, 50f, 1f, 0.3f, 1f)]
     public float minimumAttackDistance = 1.5f;
 
+    [VerticalGroup("StatusesApplication", PaddingTop = 7f)]
+    [BoxGroup("StatusesApplication/Box", LabelText = "Status Affectors")]
+    [ListDrawerSettings(Expanded = true)]
+    [Required]
+    public StatusAffectorSO[] onHitStatusAffectors;
+
+    [BoxGroup("StatusesApplication/Box")]
+    [ListDrawerSettings(Expanded = true)]
+    [Required]
+    public StatusAffectorSO[] selfStatusAffectors;
+
     [VerticalGroup("Animations&Sounds", PaddingTop = 7f)]
     [HorizontalGroup("Animations&Sounds/split", LabelWidth = 125, PaddingRight = 10)]
 

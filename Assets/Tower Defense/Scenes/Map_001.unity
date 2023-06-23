@@ -3343,8 +3343,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_IgnoreLayout: 0
-  m_MinWidth: 75
-  m_MinHeight: 75
+  m_MinWidth: 162.1875
+  m_MinHeight: 162.1875
   m_PreferredWidth: -1
   m_PreferredHeight: -1
   m_FlexibleWidth: -1
@@ -5627,7 +5627,7 @@ MonoBehaviour:
   m_MinWidth: -1
   m_MinHeight: 50
   m_PreferredWidth: -1
-  m_PreferredHeight: 12.5
+  m_PreferredHeight: 27.031248
   m_FlexibleWidth: -1
   m_FlexibleHeight: 0
   m_LayoutPriority: 1
@@ -6717,8 +6717,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_IgnoreLayout: 0
-  m_MinWidth: 75
-  m_MinHeight: 75
+  m_MinWidth: 162.1875
+  m_MinHeight: 162.1875
   m_PreferredWidth: -1
   m_PreferredHeight: -1
   m_FlexibleWidth: -1
@@ -9378,7 +9378,7 @@ MonoBehaviour:
   m_StartCorner: 0
   m_StartAxis: 0
   m_CellSize: {x: 50, y: 50}
-  m_Spacing: {x: 1.75, y: 1.75}
+  m_Spacing: {x: 3.7843747, y: 3.7843747}
   m_Constraint: 0
   m_ConstraintCount: 2
   paddingSizerFallback:
@@ -21874,7 +21874,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1539831355}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 6.5599995, y: 0.5, z: -15.200001}
+  m_LocalPosition: {x: -23.69, y: 0.5, z: -14.79}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -25131,8 +25131,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_IgnoreLayout: 0
-  m_MinWidth: 75
-  m_MinHeight: 75
+  m_MinWidth: 162.1875
+  m_MinHeight: 162.1875
   m_PreferredWidth: -1
   m_PreferredHeight: -1
   m_FlexibleWidth: -1

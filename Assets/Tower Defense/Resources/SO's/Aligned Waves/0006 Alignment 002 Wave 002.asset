@@ -9,8 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b4798deac1424dc48ace4277a5912d68, type: 3}
-  m_Name: 0005 Burn 002
+  m_Script: {fileID: 11500000, guid: 8e2af8432f0d6fc4cbbbbcbc4d0e1ed9, type: 3}
+  m_Name: 0006 Alignment 002 Wave 002
   m_EditorClassIdentifier: 
   serializationData:
     SerializedFormat: 2
@@ -24,10 +24,5 @@ MonoBehaviour:
   jokerHiddenTitleField: 
   assetPath: 
   newName: 
-  status: {fileID: 11400000, guid: ea7974d3ed18ef74a8e1b2a830ba461c, type: 2}
-  prefab: {fileID: 2383875067556859525, guid: 60f47d0153a7ac84e8654d03c5177161, type: 3}
-  duration: 12
-  damage: 20
-  turnsQuantity: 6
-  influence: 0
-  specialCondition: 0
+  alignment: {fileID: 11400000, guid: f0c47d80a9552f344b6d14061c69bbc2, type: 2}
+  wave: {fileID: 11400000, guid: 06e6a93c2d10ccf4c85a21a513acfe6c, type: 2}

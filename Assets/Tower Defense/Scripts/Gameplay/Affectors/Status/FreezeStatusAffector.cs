@@ -28,19 +28,23 @@ public class FreezeStatusAffector : StatusAffector
     // Public (Methods) [START]
     public void UpdateAgentStats()
     {
-        BC_AttackVelocity = AffectedAgent.AttackVelocity;
-        BC_Velocity = AffectedAgent.Velocity;
-        AC_AttackVelocity = BC_AttackVelocity * Mathf.Abs((statusAffectorSO.influence / 100) - 1);
-        AC_Velocity = BC_Velocity * Mathf.Abs((statusAffectorSO.influence / 100) - 1);
+        Target.AddAffectingStatus(this);
 
-        AffectedAgent.UpdateAgentVelocity(AC_Velocity);
-        AffectedAgent.UpdateAgentAttackVelocity(AC_AttackVelocity);
+        BC_AttackVelocity = Target.AttackVelocity;
+        BC_Velocity = Target.Velocity;
+        AC_AttackVelocity = BC_AttackVelocity * Mathf.Abs((statusAffectorSO.influence / 100f) - 1f);
+        AC_Velocity = BC_Velocity * Mathf.Abs((statusAffectorSO.influence / 100f) - 1f);
+
+        Target.UpdateAgentVelocity(AC_Velocity);
+        Target.UpdateAgentAttackVelocity(AC_AttackVelocity);
     }
 
     public void ResetAgentStats()
     {
-        AffectedAgent.UpdateAgentVelocity(AffectedAgent.Velocity + (BC_Velocity - AC_Velocity));
-        AffectedAgent.UpdateAgentAttackVelocity(AffectedAgent.AttackVelocity + (BC_AttackVelocity - AC_AttackVelocity));
+        Target.UpdateAgentVelocity(Target.Velocity + (BC_Velocity - AC_Velocity));
+        Target.UpdateAgentAttackVelocity(Target.AttackVelocity + (BC_AttackVelocity - AC_AttackVelocity));
+
+        Target.RemoveAffectingStatus(this);
 
         ResetProperties();
     }
@@ -51,9 +55,9 @@ public class FreezeStatusAffector : StatusAffector
 
     public override void PoolInsertionAction(Poolable poolable)
     {
-        base.PoolInsertionAction(poolable);
-
         ResetAgentStats();
+
+        base.PoolInsertionAction(poolable);
     }
     // Public (Methods) [END]
 }

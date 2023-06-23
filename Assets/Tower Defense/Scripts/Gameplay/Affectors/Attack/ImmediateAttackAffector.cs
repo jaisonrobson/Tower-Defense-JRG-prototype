@@ -9,10 +9,6 @@ using Core.Patterns;
 [HideMonoScript]
 public class ImmediateAttackAffector : AttackAffector
 {
-    // Public (Properties) [START]
-    public Agent Target { get; set; }
-    // Public (Properties) [END]
-
     // Public (Methods) [START]
     public override void PoolRetrievalAction(Poolable poolable)
     {

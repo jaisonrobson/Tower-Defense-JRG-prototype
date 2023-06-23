@@ -37,13 +37,20 @@ public class RangedAttackEnemyDetectionColliderController : MonoBehaviour
                         {
                             if (raa.Attack.outcomePrefab != null)
                             {
-                                Attacking.InvokeOutcome(transform.position, transform.forward, raa.Alignment, raa.AffectedsMask, raa.Attack, raa.Damage);
+                                Attacking.InvokeOutcome(raa.Invoker, transform.position, transform.forward, raa.Alignment, raa.AffectedsMask, raa.Attack, raa.Damage);
                             }
                             else if (!rac.IsAgentAlreadyAffected(enemy))
                             {
                                 rac.AddAffectedAgent(enemy);
 
                                 enemy.OnReceiveDamage(raa.Alignment, raa.Damage, raa.Attack);
+
+                                raa.Attack.onHitStatusAffectors
+                                    .ToList()
+                                    .ForEach(sa => {
+                                        if (!enemy.IsStatusAlreadyAffectingAgent(sa))
+                                            StatusAffecting.InvokeStatus(sa, raa.Invoker, enemy);
+                                    });
                             }
 
                             rac.Finished = true;

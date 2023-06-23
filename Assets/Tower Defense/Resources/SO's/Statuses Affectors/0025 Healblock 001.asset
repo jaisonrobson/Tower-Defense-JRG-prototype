@@ -25,7 +25,7 @@ MonoBehaviour:
   assetPath: 
   newName: 
   status: {fileID: 11400000, guid: b29d211f67c36214fa0b339605ceb9c9, type: 2}
-  prefab: {fileID: 0}
+  prefab: {fileID: 2383875067556859525, guid: 60f47d0153a7ac84e8654d03c5177161, type: 3}
   duration: 30
   damage: 0
   turnsQuantity: 1

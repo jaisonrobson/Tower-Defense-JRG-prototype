@@ -4,7 +4,7 @@ using UnityEngine;
 using System.Linq;
 using Core.Patterns;
 
-public static class Affecting
+public static class StatusAffecting
 {
     public static void InvokeStatus(StatusAffectorSO statusAffector, Agent invoker, Agent target)
     {
@@ -18,8 +18,8 @@ public static class Affecting
                     statusAffector.prefab,
                     (Poolable pNewStatusAffectorPoolable) =>
                     {
-                        pNewStatusAffectorPoolable.GetComponent<FreezeStatusAffector>().AffectorAgent = invoker;
-                        pNewStatusAffectorPoolable.GetComponent<FreezeStatusAffector>().AffectedAgent = target;
+                        pNewStatusAffectorPoolable.GetComponent<FreezeStatusAffector>().Invoker = invoker;
+                        pNewStatusAffectorPoolable.GetComponent<FreezeStatusAffector>().Target = target;
                         pNewStatusAffectorPoolable.GetComponent<FreezeStatusAffector>().Alignment = invoker.Alignment;
                         pNewStatusAffectorPoolable.GetComponent<FreezeStatusAffector>().UpdateAgentStats();
                     }

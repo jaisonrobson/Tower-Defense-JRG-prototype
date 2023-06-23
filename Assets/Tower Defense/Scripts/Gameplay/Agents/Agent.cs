@@ -70,7 +70,7 @@ public abstract class Agent : MonoBehaviour, IPoolable
     [TitleGroup("Agent Identity/Goals", Order = 99)]
     [PropertyOrder(1)]
     public AgentGoalEnum goal;
-    [TitleGroup("Agent Identity/Attacking", Order = 2)]
+    [TitleGroup("Agent Identity/Attacking", Order = 4)]
     [PropertyOrder(1)]
     [OnInspectorInit("MaintainAttacksOrigin")]
     [ValidateInput("Validate_NotNull_Origins", "Animation or Attack origin cannot be null.")]
@@ -85,7 +85,7 @@ public abstract class Agent : MonoBehaviour, IPoolable
     [HideInEditorMode]
     [ReadOnly]
     private AlignmentEnum alignment;
-    [TitleGroup("Agent Identity/Stats")]
+    [TitleGroup("Agent Identity/Stats", Order = 2)]
     [PropertyOrder(3)]
     [ShowInInspector]
     [HideInEditorMode]
@@ -152,7 +152,7 @@ public abstract class Agent : MonoBehaviour, IPoolable
     [GUIColor(0.61f, 0.73f, 0.33f, 1f)]
     [MinMaxSlider(0, 100)]
     private Vector2Int evasion = new Vector2Int(0, 0);
-    [TitleGroup("Agent Identity/Spawning", Order = 3)]
+    [TitleGroup("Agent Identity/Spawning", Order = 5)]
     [PropertyOrder(1)]
     [ShowInInspector]
     [HideInEditorMode]
@@ -183,6 +183,11 @@ public abstract class Agent : MonoBehaviour, IPoolable
     [ReadOnly]
     private List<SubSpawn> subSpawns;
     private List<Action> onPoolInsertionActions;
+    [TitleGroup("Agent Identity/Affectors", Order = 3)]
+    [PropertyOrder(9)]
+    [ShowInInspector]
+    [HideInEditorMode]
+    [ReadOnly]
     private List<StatusAffector> affectingStatuses;
     // Private (Variables) [END]
 
@@ -297,6 +302,7 @@ public abstract class Agent : MonoBehaviour, IPoolable
     public void UpdateAgentVelocity(float newVelocity) => velocity = newVelocity;
     public void UpdateAgentAttackVelocity(float newAttackVelocity) => attackVelocity = newAttackVelocity;
     public bool IsStatusAlreadyAffectingAgent(StatusAffector sa) => affectingStatuses.Contains(sa) || affectingStatuses.Any(afs => afs.statusAffectorSO.status == sa.statusAffectorSO.status);
+    public bool IsStatusAlreadyAffectingAgent(StatusAffectorSO sa) => affectingStatuses.Any(afs => afs.statusAffectorSO.status == sa.status);
     public void AddAffectingStatus(StatusAffector sa) => affectingStatuses.Add(sa);
     public void RemoveAffectingStatus(StatusAffector sa) => affectingStatuses.Remove(sa);
     public void AddPoolInsertionAction(Action pAction) => onPoolInsertionActions.Add(pAction);

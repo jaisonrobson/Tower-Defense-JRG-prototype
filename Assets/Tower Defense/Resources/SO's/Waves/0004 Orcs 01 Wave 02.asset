@@ -9,8 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b4798deac1424dc48ace4277a5912d68, type: 3}
-  m_Name: 0005 Burn 002
+  m_Script: {fileID: 11500000, guid: 7023808a96f25f94f8eb801917973fe3, type: 3}
+  m_Name: 0004 Orcs 01 Wave 02
   m_EditorClassIdentifier: 
   serializationData:
     SerializedFormat: 2
@@ -24,10 +24,7 @@ MonoBehaviour:
   jokerHiddenTitleField: 
   assetPath: 
   newName: 
-  status: {fileID: 11400000, guid: ea7974d3ed18ef74a8e1b2a830ba461c, type: 2}
-  prefab: {fileID: 2383875067556859525, guid: 60f47d0153a7ac84e8654d03c5177161, type: 3}
-  duration: 12
-  damage: 20
-  turnsQuantity: 6
-  influence: 0
-  specialCondition: 0
+  agents:
+  - {fileID: 11400000, guid: e6ff25750718e81409b44e7770bf3839, type: 2}
+  spawnTimes:
+  - 0

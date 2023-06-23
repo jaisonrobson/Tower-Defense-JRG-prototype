@@ -14,8 +14,6 @@ public class StatusAffector : Affector
 
     // Public (Properties) [START]
     public float Duration { get; set; }
-    public Agent AffectedAgent { get; set; }
-    public Agent AffectorAgent { get; set; }
     // Public (Properties) [END]
 
     // Protected (Properties) [START]
@@ -51,8 +49,6 @@ public class StatusAffector : Affector
     {
         Finished = false;
         Duration = 0f;
-        AffectedAgent = null;
-        AffectorAgent = null;
     }
     // Private (Methods) [END]
 
@@ -71,8 +67,8 @@ public class StatusAffector : Affector
     {
         base.PoolInsertionAction(poolable);
 
-        if (AffectedAgent != null)
-            AffectedAgent.RemovePoolInsertionAction(OnPool);
+        if (Target != null)
+            Target.RemovePoolInsertionAction(OnPool);
     }
     // Public (Methods) [END]
 }

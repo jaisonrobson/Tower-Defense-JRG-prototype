@@ -15,6 +15,8 @@ public static class Attacking
             attack.prefab,
             (Poolable pNewAttackPoolable) => {
                 pNewAttackPoolable.gameObject.GetComponent<Affector>().Alignment = invoker.Alignment;
+                pNewAttackPoolable.gameObject.GetComponent<Affector>().Invoker = invoker;
+                pNewAttackPoolable.gameObject.GetComponent<Affector>().Target = target;
                 pNewAttackPoolable.gameObject.GetComponent<AttackAffector>().Attack = attack;
                 pNewAttackPoolable.gameObject.GetComponent<AttackAffector>().Damage = invoker.Damage;
                 pNewAttackPoolable.gameObject.GetComponent<AttackAffector>().Duration = Mathf.Clamp(invoker.CalculateAttackVelocity(attack), 1f, Mathf.Infinity);
@@ -48,19 +50,19 @@ public static class Attacking
                         pNewAttackPoolable.gameObject.GetComponent<MeleeAttackAffector>().InitialRotation = localInitialRotation;
                         break;
                     case AttackTypeEnum.IMMEDIATE:
-                        pNewAttackPoolable.gameObject.GetComponent<ImmediateAttackAffector>().Target = target;
                         break;
                 }
             }
         );
     }
 
-    public static void InvokeOutcome(Vector3 pPosition, Vector3 pDirection, AlignmentEnum pAlignment, LayerMask pAffectedsMask, AttackSO pAttack, float pDamage)
+    public static void InvokeOutcome(Agent pInvoker, Vector3 pPosition, Vector3 pDirection, AlignmentEnum pAlignment, LayerMask pAffectedsMask, AttackSO pAttack, float pDamage)
     {
         GameObject newOutcomeAttack = Poolable.TryGetPoolable(
             pAttack.outcomePrefab,
             (Poolable newOutcomeAttackPoolable) => {
                 newOutcomeAttackPoolable.gameObject.GetComponent<Affector>().Alignment = pAlignment;
+                newOutcomeAttackPoolable.gameObject.GetComponent<Affector>().Invoker = pInvoker;
                 newOutcomeAttackPoolable.gameObject.GetComponent<AttackAffector>().Attack = pAttack;
                 newOutcomeAttackPoolable.gameObject.GetComponent<AttackAffector>().Damage = pDamage;
                 newOutcomeAttackPoolable.gameObject.GetComponent<AttackAffector>().Duration = newOutcomeAttackPoolable.gameObject.GetComponent<OutcomeAttackAffector>().GetOutComeTotalDuration();

@@ -20,10 +20,16 @@ public abstract class Affector : MonoBehaviour, IPoolable
     [ReadOnly]
     [ShowInInspector]
     public LayerMask AffectedsMask { get; protected set; }
-	// Public (Properties) [END]
+    [ReadOnly]
+    [ShowInInspector]
+    public Agent Invoker { get; set; }
+    [ReadOnly]
+    [ShowInInspector]
+    public Agent Target { get; set; }
+    // Public (Properties) [END]
 
-	// Private (Variables) [START]
-	private bool initialized = false;
+    // Private (Variables) [START]
+    private bool initialized = false;
     // Private (Variables) [END]
 
     // (Unity) Methods [START]
@@ -47,6 +53,8 @@ public abstract class Affector : MonoBehaviour, IPoolable
     public virtual void PoolInsertionAction(Poolable poolable)
     {
         Alignment = AlignmentEnum.GENERIC;
+        Invoker = null;
+        Target = null;
     }
     // Public (Methods) [END]
 }
