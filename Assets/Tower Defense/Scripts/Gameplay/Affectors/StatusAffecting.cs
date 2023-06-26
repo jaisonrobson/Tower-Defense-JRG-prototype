@@ -14,7 +14,7 @@ public static class StatusAffecting
         switch (statusAffector.status.status)
         {
             case StatusEnum.FREEZE:
-                GameObject newStatusAffector = Poolable.TryGetPoolable(
+                Poolable.TryGetPoolable(
                     statusAffector.prefab,
                     (Poolable pNewStatusAffectorPoolable) =>
                     {
@@ -24,7 +24,18 @@ public static class StatusAffecting
                         pNewStatusAffectorPoolable.GetComponent<FreezeStatusAffector>().UpdateAgentStats();
                     }
                 );
-            break;
+                break;
+            case StatusEnum.BURN:
+                Poolable.TryGetPoolable(
+                    statusAffector.prefab,
+                    (Poolable pNewStatusAffectorPoolable) =>
+                    {
+                        pNewStatusAffectorPoolable.GetComponent<BurnStatusAffector>().Invoker = invoker;
+                        pNewStatusAffectorPoolable.GetComponent<BurnStatusAffector>().Target = target;
+                        pNewStatusAffectorPoolable.GetComponent<BurnStatusAffector>().Alignment = invoker.Alignment;
+                    }
+                );
+                break;
             default:
                 break;
         }

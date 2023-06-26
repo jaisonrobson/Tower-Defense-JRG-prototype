@@ -20,6 +20,10 @@ public class StatusSO : BaseOptionDataSO
     public StatusEnum status;
 
     [VerticalGroup("Box1/split/right")]
+    [Required]
+    public NatureSO nature;
+
+    [VerticalGroup("Box1/split/right")]
     public string description;
 }
 

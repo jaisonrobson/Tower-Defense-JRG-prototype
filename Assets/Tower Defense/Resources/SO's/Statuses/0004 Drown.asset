@@ -26,4 +26,5 @@ MonoBehaviour:
   newName: 0004 Drown
   image: {fileID: 21300000, guid: 09f30764ce4983e409cc779b93b0bacc, type: 3}
   status: 3
+  nature: {fileID: 11400000, guid: 6b479c02e71568a45a6ccc528a643ad1, type: 2}
   description: Target cannot move or attack

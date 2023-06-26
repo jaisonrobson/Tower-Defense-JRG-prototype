@@ -26,4 +26,5 @@ MonoBehaviour:
   newName: 0002 Burn
   image: {fileID: 21300000, guid: 787d66d7fad257e40899ccfaabcc787e, type: 3}
   status: 1
+  nature: {fileID: 11400000, guid: 4dcf979a42cef744d81a9044d8c959bd, type: 2}
   description: Inflicts damage per turn

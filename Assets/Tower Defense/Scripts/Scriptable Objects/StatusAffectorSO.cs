@@ -10,6 +10,14 @@ public class StatusAffectorSO : BaseOptionDataSO
     [Required]
     public StatusSO status;
 
+    [BoxGroup("Box1", ShowLabel = false)]
+    [Required]
+    public AnimationSO animation;
+
+    [BoxGroup("Box1", ShowLabel = false)]
+    [Required]
+    public SoundSO sound;
+
     [BoxGroup("Box1")]
     [PropertyTooltip("The prefab that holds the scripting configuration for this status.")]
     [Required]

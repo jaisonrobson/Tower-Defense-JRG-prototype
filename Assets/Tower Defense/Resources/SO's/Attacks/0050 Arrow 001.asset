@@ -32,6 +32,8 @@ MonoBehaviour:
   cooldown: 1
   influenceOverAttackVelocity: 50
   minimumAttackDistance: 1.5
+  onHitStatusAffectors: []
+  selfStatusAffectors: []
   initialAnimation: {fileID: 11400000, guid: b4818579315a98143861fe61437f4a54, type: 2}
   trailAnimation: {fileID: 0}
   finalAnimation: {fileID: 11400000, guid: a1c501e7305ffdb4ca15c0d5fec510a9, type: 2}

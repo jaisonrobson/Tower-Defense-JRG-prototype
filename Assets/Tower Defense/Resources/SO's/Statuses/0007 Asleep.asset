@@ -26,4 +26,5 @@ MonoBehaviour:
   newName: 
   image: {fileID: 21300000, guid: 3c7255b6503c21a4fac4e9f966097e76, type: 3}
   status: 6
+  nature: {fileID: 11400000, guid: aadaddfe28214d74c89f36e386c3ffde, type: 2}
   description: Cannot move or attack

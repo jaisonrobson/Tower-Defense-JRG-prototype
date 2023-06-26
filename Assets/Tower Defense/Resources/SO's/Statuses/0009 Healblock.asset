@@ -26,4 +26,5 @@ MonoBehaviour:
   newName: 0009 Healblock
   image: {fileID: 21300000, guid: bd04a01c6b8351b419e9abacf887f37a, type: 3}
   status: 8
+  nature: {fileID: 11400000, guid: aadaddfe28214d74c89f36e386c3ffde, type: 2}
   description: Cannot be healed

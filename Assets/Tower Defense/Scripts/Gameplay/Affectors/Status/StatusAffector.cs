@@ -14,6 +14,8 @@ public class StatusAffector : Affector
 
     // Public (Properties) [START]
     public float Duration { get; set; }
+    public int TurnsInterval { get; set; }
+    public float Damage { get; set; }
     // Public (Properties) [END]
 
     // Protected (Properties) [START]
@@ -31,6 +33,8 @@ public class StatusAffector : Affector
         base.OnEnable();
 
         Duration = Time.time + statusAffectorSO.duration;
+        Damage = (statusAffectorSO.damage / 100f) * Invoker.Damage;
+        TurnsInterval = statusAffectorSO.duration / statusAffectorSO.turnsQuantity;
     }
     // (Unity) Methods [END]
 
@@ -49,6 +53,8 @@ public class StatusAffector : Affector
     {
         Finished = false;
         Duration = 0f;
+        Damage = 0f;
+        TurnsInterval = 0;
     }
     // Private (Methods) [END]
 

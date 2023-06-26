@@ -25,6 +25,8 @@ MonoBehaviour:
   assetPath: 
   newName: 
   status: {fileID: 11400000, guid: ea7974d3ed18ef74a8e1b2a830ba461c, type: 2}
+  animation: {fileID: 0}
+  sound: {fileID: 0}
   prefab: {fileID: 2383875067556859525, guid: 60f47d0153a7ac84e8654d03c5177161, type: 3}
   duration: 18
   damage: 35

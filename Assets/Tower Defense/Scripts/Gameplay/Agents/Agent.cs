@@ -425,6 +425,31 @@ public abstract class Agent : MonoBehaviour, IPoolable
 
         return result;
     }
+    public bool OnReceiveDamage(AlignmentEnum dealerAlignment, float dealerDamage, StatusAffectorSO dealerStatus)
+    {
+        bool result = false;
+
+        if (!AlignmentManager.instance.IsAlignmentAnOpponent(dealerAlignment, alignment))
+            return result;
+
+        float rawValue = dealerDamage;
+
+        if (rawValue > 0f)
+        {
+            float finalValue;
+
+            finalValue = rawValue;
+            finalValue *= WeaknessesManager.instance.GetWeakness(dealerStatus.status.nature, GetAgent().nature);
+
+            actualHealth = Mathf.Clamp(actualHealth - finalValue, 0f, MaxHealth);
+
+            GetComponent<AgentUI>().GenerateFloatingText(-finalValue);
+
+            result = true;
+        }
+
+        return result;
+    }
     public Agent GetActualEnemyAgent()
     {
         Agent result = null;

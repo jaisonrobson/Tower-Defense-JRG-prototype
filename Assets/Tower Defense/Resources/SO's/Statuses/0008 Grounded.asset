@@ -26,4 +26,5 @@ MonoBehaviour:
   newName: 0008 Grounded
   image: {fileID: 21300000, guid: 191577b0d0c814c4497c805a9061f185, type: 3}
   status: 7
+  nature: {fileID: 11400000, guid: d6f2c68c2506ed54d9496d591ad666db, type: 2}
   description: Cannot move

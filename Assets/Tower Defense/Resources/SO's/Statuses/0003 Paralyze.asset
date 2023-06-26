@@ -26,4 +26,5 @@ MonoBehaviour:
   newName: 0003 Paralyze
   image: {fileID: 21300000, guid: 434621b57e2e4484fb05be8d8cc40e55, type: 3}
   status: 2
+  nature: {fileID: 11400000, guid: e62b8c95fe0d0984f80c896d0c52d39f, type: 2}
   description: Inflict damage and paralyzes the target
