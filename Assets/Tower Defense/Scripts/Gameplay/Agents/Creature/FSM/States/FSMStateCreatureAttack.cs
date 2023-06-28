@@ -4,6 +4,7 @@ using System.Linq;
 using UnityEngine;
 using Sirenix.OdinInspector;
 using Core.Patterns;
+using Core.Math;
 using Pathfinding;
 
 public class FSMStateCreatureAttack : FiniteStateMachine
@@ -47,9 +48,17 @@ public class FSMStateCreatureAttack : FiniteStateMachine
             return;
         }
 
+        if (creatureFsmAi.IsCreatureParalyzed)
+        {
+            nextState = new FSMStateCreatureIdle(anim, creature, pathfinding);
+            stage = FSMEventEnum.EXIT;
+
+            return;
+        }
+
         LookAtGoal();
 
-        if (DidCreatureFoundEnemies() && creatureFsmAi.IsAggressive)
+        if (DidCreatureFoundEnemies() && creatureFsmAi.IsAggressive || creatureFsmAi.IsCreatureConfused && creatureFsmAi.IsAggressive)
         {
             if (!creatureFsmAi.IsAnyViableAttackUnderEnemyRange())
             {

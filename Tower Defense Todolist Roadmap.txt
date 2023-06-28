@@ -119,9 +119,11 @@ LEGENDA:
 (X) Criar um novo Scriptable Object na base, para armazenar subtipos dos mesmos status com configuracoes diferentes, progressao de dano, etc. Que sera utilizado no script affector abaixo para regulagem e funcionamento do algoritmo.
 (X) Criar um script/algoritmo que sera desacoplado do agente e sera responsavel por controlar o tempo em que o status configurado no mesmo afetara o agente.
 (X) Fazer com que esse script obedeca os conceitos de OO, heranca, para reutilizar alguns funcionamentos e dados
-( ) Fazer varios subscripts herdados para cada tipo de status diferente.
-( ) Fazer com que o script acima tambem controle o proprio status configurado de acordo com um switch case, e afete de forma desacoplada o agente. (ex: caso seja lentidao, diminua a velocidade do agente atraves de metodos, etc.)
+(O) Fazer varios subscripts herdados para cada tipo de status diferente.
+(O) Fazer com que o script acima tambem controle o proprio status configurado de acordo com um switch case, e afete de forma desacoplada o agente. (ex: caso seja lentidao, diminua a velocidade do agente atraves de metodos, etc.)
 (X) Caso o agente seja poolado, o script acima sera removido do objeto, mas antes de ser removido deve chamar seus metodos de "pooling".
+( ) Fazer os cenarios de status especificos para o Confusion & Drown (possivelmente tambem averiguar o paralyze)
+( ) Fazer com que todos os tipos de ataques (seja Immediate, Ranged, Melee) atinjam aos proprios alinhamentos caso o AGENTE esteja sobre o status de confusao/Confusion.
 
 
 ( ) Fazer o funcionamento das animações em tudo no jogo.
@@ -155,3 +157,4 @@ BUGS E VALIDAÇÕES:
 (X) Verificar porque ao evoluir uma torre, seus subspawns acabam todos spawnados instantaneamente
 (X) Encontrado problema nos ataques a distancia que sao muito lentos, eles acabam sendo repoolados na metade do caminho por causa de sua duracao/velocidade.
 ( ) Encontrado erro ao evoluir torres com vida menor que 100%
+( ) Encontrado erro ao aplicar status atraves de ataque nos agentes (os metodos de pooling estao sendo chamados repetidas vezes ocasionando em erros de nulidade).

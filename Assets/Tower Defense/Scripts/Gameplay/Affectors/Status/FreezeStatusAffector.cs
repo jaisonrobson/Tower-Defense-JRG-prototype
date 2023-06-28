@@ -25,11 +25,10 @@ public class FreezeStatusAffector : StatusAffector
     }
     // Private (Methods) [END]
 
-    // Public (Methods) [START]
-    public void UpdateAgentStats()
+    // Protected (Methods) [START]
+    protected override void ExecuteTurnActions() { }
+    protected override void InitializeStatusActions()
     {
-        Target.AddAffectingStatus(this);
-
         BC_AttackVelocity = Target.AttackVelocity;
         BC_Velocity = Target.Velocity;
         AC_AttackVelocity = BC_AttackVelocity * Mathf.Abs((statusAffectorSO.influence / 100f) - 1f);
@@ -38,28 +37,14 @@ public class FreezeStatusAffector : StatusAffector
         Target.UpdateAgentVelocity(AC_Velocity);
         Target.UpdateAgentAttackVelocity(AC_AttackVelocity);
     }
-
-    public void ResetAgentStats()
+    protected override void FinishStatusActions()
     {
         Target.UpdateAgentVelocity(Target.Velocity + (BC_Velocity - AC_Velocity));
         Target.UpdateAgentAttackVelocity(Target.AttackVelocity + (BC_AttackVelocity - AC_AttackVelocity));
 
-        Target.RemoveAffectingStatus(this);
-
         ResetProperties();
     }
-    public override void PoolRetrievalAction(Poolable poolable)
-    {
-        base.PoolRetrievalAction(poolable);
-    }
-
-    public override void PoolInsertionAction(Poolable poolable)
-    {
-        ResetAgentStats();
-
-        base.PoolInsertionAction(poolable);
-    }
-    // Public (Methods) [END]
+    // Protected (Methods) [END]
 }
 
 ////////////////////////////////////////////////////////////////////////////////

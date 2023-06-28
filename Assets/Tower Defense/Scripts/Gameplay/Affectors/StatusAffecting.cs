@@ -21,7 +21,6 @@ public static class StatusAffecting
                         pNewStatusAffectorPoolable.GetComponent<FreezeStatusAffector>().Invoker = invoker;
                         pNewStatusAffectorPoolable.GetComponent<FreezeStatusAffector>().Target = target;
                         pNewStatusAffectorPoolable.GetComponent<FreezeStatusAffector>().Alignment = invoker.Alignment;
-                        pNewStatusAffectorPoolable.GetComponent<FreezeStatusAffector>().UpdateAgentStats();
                     }
                 );
                 break;

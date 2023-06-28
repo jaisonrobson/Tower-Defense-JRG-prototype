@@ -25,8 +25,8 @@ MonoBehaviour:
   assetPath: Assets/Tower Defense/Resources/SO's/Statuses Affectors/Freeze SA.asset
   newName: 0001 Freeze 001
   status: {fileID: 11400000, guid: 9a22ae35596654f4988dafb12ab3c0fc, type: 2}
-  animation: {fileID: 0}
-  sound: {fileID: 0}
+  animation: {fileID: 11400000, guid: 57cb3876b8e13d64b9f83885452caeaf, type: 2}
+  sound: {fileID: 11400000, guid: c91946443ecae00489ad839065b84783, type: 2}
   prefab: {fileID: 2383875067556859525, guid: 60f47d0153a7ac84e8654d03c5177161, type: 3}
   duration: 4
   damage: 0

@@ -4,6 +4,7 @@ using System.Linq;
 using UnityEngine;
 using Pathfinding;
 using Sirenix.OdinInspector;
+using Core.Math;
 
 public class CreatureFsmAi : AgentFsmAi
 {
@@ -18,6 +19,12 @@ public class CreatureFsmAi : AgentFsmAi
     [ReadOnly]
     protected AIPath pathfinding;
     // Protected (Variables) [END]
+
+    // Public (Properties) [START]
+    public bool IsCreatureParalyzed { get { return agent.IsAgentUnderStatusParalyze; } }
+    public bool IsCreatureDrowning { get { return agent.IsAgentUnderStatusDrown; } }
+    public bool IsCreatureConfused { get { return agent.IsAgentUnderStatusConfusion; } }
+    // Public (Properties) [END]
 
     // (Unity) Methods [START]
     protected override void OnEnable()
@@ -64,6 +71,27 @@ public class CreatureFsmAi : AgentFsmAi
     {
         if (IsAgentDead)
             return;
+
+        if (IsCreatureParalyzed)
+        {
+            agent.ActualGoal = null;
+        }
+
+        if (IsCreatureConfused)
+        {
+            agent.ActualGoal = agent;
+
+            if (RNG.Int(0, 100) > 95)
+            {
+                Vector3 randomNewPosition = RNG.Vector3(agent.transform.position, 1f, 3f);
+
+                randomNewPosition.y = agent.transform.position.y;
+
+                pathfinding.destination = randomNewPosition;
+            }
+
+            return;
+        }
 
         if (pathfinding != null)
         {

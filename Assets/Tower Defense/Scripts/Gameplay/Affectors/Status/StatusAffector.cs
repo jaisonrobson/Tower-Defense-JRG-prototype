@@ -6,8 +6,13 @@ using Sirenix.OdinInspector;
 using Core.Patterns;
 
 [HideMonoScript]
-public class StatusAffector : Affector
+public abstract class StatusAffector : Affector
 {
+    // Private (Variables) [START]
+    private int actualTurn = 0;
+    private float lastTimeExecutedTurn = 0f;
+    // Private (Variables) [END]
+
     // Public (Variables) [START]
     public StatusAffectorSO statusAffectorSO;
     // Public (Variables) [END]
@@ -27,6 +32,7 @@ public class StatusAffector : Affector
     {
         HandleStatusExistanceByDuration();
         HandleStatusFinishing();
+        HandleTurnsExecuting();
     }
     protected override void OnEnable()
     {
@@ -35,10 +41,26 @@ public class StatusAffector : Affector
         Duration = Time.time + statusAffectorSO.duration;
         Damage = (statusAffectorSO.damage / 100f) * Invoker.Damage;
         TurnsInterval = statusAffectorSO.duration / statusAffectorSO.turnsQuantity;
+
+        Target.AddAffectingStatus(this);
+
+        Target.AddPoolInsertionAction(OnPool);
+
+        InitializeStatusActions();
     }
     // (Unity) Methods [END]
 
     // Private (Methods) [START]
+    private void HandleTurnsExecuting()
+    {
+        if (Time.time > (lastTimeExecutedTurn + actualTurn * TurnsInterval) && actualTurn < statusAffectorSO.turnsQuantity)
+        {
+            lastTimeExecutedTurn = Time.time;
+            actualTurn++;
+
+            ExecuteTurnActions();
+        }
+    }
     private void HandleStatusExistanceByDuration()
     {
         if (Time.time > Duration)
@@ -55,8 +77,16 @@ public class StatusAffector : Affector
         Duration = 0f;
         Damage = 0f;
         TurnsInterval = 0;
+        actualTurn = 0;
+        lastTimeExecutedTurn = 0f;
     }
     // Private (Methods) [END]
+
+    // Protected (Methods) [START]
+    protected abstract void ExecuteTurnActions();
+    protected abstract void InitializeStatusActions();
+    protected abstract void FinishStatusActions();
+    // Protected (Methods) [END]
 
     // Public (Methods) [START]
     public void OnPool()
@@ -73,8 +103,11 @@ public class StatusAffector : Affector
     {
         base.PoolInsertionAction(poolable);
 
-        if (Target != null)
-            Target.RemovePoolInsertionAction(OnPool);
+        Target.RemoveAffectingStatus(this);
+
+        FinishStatusActions();
+
+        Target.RemovePoolInsertionAction(OnPool);
     }
     // Public (Methods) [END]
 }

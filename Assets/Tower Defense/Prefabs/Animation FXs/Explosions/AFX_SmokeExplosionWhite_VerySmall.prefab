@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 2642243544629016646}
   - component: {fileID: 2642243544629174936}
   m_Layer: 0
-  m_Name: SmokeExplosionWhite_VerySmall
+  m_Name: AFX_SmokeExplosionWhite_VerySmall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

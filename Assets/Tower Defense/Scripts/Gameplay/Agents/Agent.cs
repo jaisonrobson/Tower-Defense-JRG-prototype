@@ -218,6 +218,9 @@ public abstract class Agent : MonoBehaviour, IPoolable
     public List<MainGoal> MainGoals { get { FilterMainGoals(); return mainGoals.ToList(); } }
     public Agent Master { get { return master; } set { master = value; } }
     public bool IsDead { get { return actualHealth <= 0f; } }
+    public bool IsAgentUnderStatusParalyze { get { return affectingStatuses.Any(sa => sa.statusAffectorSO.status.status == StatusEnum.PARALYZE); } }
+    public bool IsAgentUnderStatusDrown { get { return affectingStatuses.Any(sa => sa.statusAffectorSO.status.status == StatusEnum.DROWN); } }
+    public bool IsAgentUnderStatusConfusion { get { return affectingStatuses.Any(sa => sa.statusAffectorSO.status.status == StatusEnum.CONFUSION); } }
     // Public (Properties) [END]
 
     // (Unity) Methods [START]
