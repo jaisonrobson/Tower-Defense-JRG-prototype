@@ -124,6 +124,16 @@ LEGENDA:
 (X) Caso o agente seja poolado, o script acima sera removido do objeto, mas antes de ser removido deve chamar seus metodos de "pooling".
 ( ) Fazer os cenarios de status especificos para o Confusion & Drown (possivelmente tambem averiguar o paralyze)
 ( ) Fazer com que todos os tipos de ataques (seja Immediate, Ranged, Melee) atinjam aos proprios alinhamentos caso o AGENTE esteja sobre o status de confusao/Confusion.
+(X) Fazer o Freeze funcionar
+(X) Fazer o Burn funcionar
+(X) Fazer o Paralyze funcionar
+( ) Fazer o Drown funcionar
+( ) Fazer o Confusion funcionar
+( ) Fazer o Poison funcionar
+( ) Fazer o Asleep funcionar
+( ) Fazer o Grounded funcionar
+( ) Fazer o Healblock funcionar
+( ) Fazer o Taunt funcionar
 
 
 ( ) Fazer o funcionamento das animações em tudo no jogo.
@@ -157,4 +167,4 @@ BUGS E VALIDAÇÕES:
 (X) Verificar porque ao evoluir uma torre, seus subspawns acabam todos spawnados instantaneamente
 (X) Encontrado problema nos ataques a distancia que sao muito lentos, eles acabam sendo repoolados na metade do caminho por causa de sua duracao/velocidade.
 ( ) Encontrado erro ao evoluir torres com vida menor que 100%
-( ) Encontrado erro ao aplicar status atraves de ataque nos agentes (os metodos de pooling estao sendo chamados repetidas vezes ocasionando em erros de nulidade).
+(X) Encontrado erro ao aplicar status atraves de ataque nos agentes (os metodos de pooling estao sendo chamados repetidas vezes ocasionando em erros de nulidade).
