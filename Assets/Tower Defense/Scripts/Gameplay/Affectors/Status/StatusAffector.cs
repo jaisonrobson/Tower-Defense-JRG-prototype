@@ -44,8 +44,6 @@ public abstract class StatusAffector : Affector
 
         Target.AddAffectingStatus(this);
 
-        Target.AddPoolInsertionAction(OnPool);
-
         InitializeStatusActions();
     }
     // (Unity) Methods [END]
@@ -53,6 +51,9 @@ public abstract class StatusAffector : Affector
     // Private (Methods) [START]
     private void HandleTurnsExecuting()
     {
+        if (Target == null || Invoker == null)
+            return;
+
         if (Time.time > (lastTimeExecutedTurn + actualTurn * TurnsInterval) && actualTurn < statusAffectorSO.turnsQuantity)
         {
             lastTimeExecutedTurn = Time.time;
@@ -101,13 +102,11 @@ public abstract class StatusAffector : Affector
     }
     public override void PoolInsertionAction(Poolable poolable)
     {
-        base.PoolInsertionAction(poolable);
-
         Target.RemoveAffectingStatus(this);
 
         FinishStatusActions();
 
-        Target.RemovePoolInsertionAction(OnPool);
+        base.PoolInsertionAction(poolable);
     }
     // Public (Methods) [END]
 }

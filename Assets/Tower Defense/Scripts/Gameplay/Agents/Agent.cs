@@ -182,7 +182,6 @@ public abstract class Agent : MonoBehaviour, IPoolable
     [HideInEditorMode]
     [ReadOnly]
     private List<SubSpawn> subSpawns;
-    private List<Action> onPoolInsertionActions;
     [TitleGroup("Agent Identity/Affectors", Order = 3)]
     [PropertyOrder(9)]
     [ShowInInspector]
@@ -257,11 +256,6 @@ public abstract class Agent : MonoBehaviour, IPoolable
         evasion = GetAgent().evasion;
         subSpawns = new List<SubSpawn>(GetAgent().subspawns.ToList().Select(ssSO => new SubSpawn(ssSO)).ToList());
 
-        if (onPoolInsertionActions == null)
-            onPoolInsertionActions = new List<Action>();
-        else
-            onPoolInsertionActions.Clear();
-
         if (affectingStatuses == null)
             affectingStatuses = new List<StatusAffector>();
         else
@@ -308,8 +302,6 @@ public abstract class Agent : MonoBehaviour, IPoolable
     public bool IsStatusAlreadyAffectingAgent(StatusAffectorSO sa) => affectingStatuses.Any(afs => afs.statusAffectorSO.status == sa.status);
     public void AddAffectingStatus(StatusAffector sa) => affectingStatuses.Add(sa);
     public void RemoveAffectingStatus(StatusAffector sa) => affectingStatuses.Remove(sa);
-    public void AddPoolInsertionAction(Action pAction) => onPoolInsertionActions.Add(pAction);
-    public void RemovePoolInsertionAction(Action pAction) => onPoolInsertionActions.Remove(pAction);
     public abstract AgentSO GetAgent();
     public void OnInsertSubSpawnPoolableAgent(Poolable agent)
     {
@@ -485,7 +477,7 @@ public abstract class Agent : MonoBehaviour, IPoolable
     public virtual void PoolInsertionAction(Poolable poolable)
     {
         GetComponent<AgentUI>().TryPool();
-        alignment = AlignmentEnum.GENERIC;
+        
         subSpawns.ForEach(ss => ss.spawnedAgents.ForEach(sa => Poolable.TryPool(sa)));
         subSpawns.Clear();
 
@@ -494,7 +486,7 @@ public abstract class Agent : MonoBehaviour, IPoolable
 
         GetComponentInChildren<ReliableOnTriggerExit>(true)?.PoolInsertionAction();
 
-        onPoolInsertionActions.ForEach(act => act());
+        alignment = AlignmentEnum.GENERIC;
     }
     // Public (Methods) [END]
 
