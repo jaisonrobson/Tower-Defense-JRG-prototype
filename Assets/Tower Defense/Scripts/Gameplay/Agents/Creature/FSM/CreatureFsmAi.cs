@@ -72,9 +72,11 @@ public class CreatureFsmAi : AgentFsmAi
         if (IsAgentDead)
             return;
 
-        if (IsCreatureParalyzed)
+        if (IsCreatureParalyzed || IsCreatureDrowning)
         {
             agent.ActualGoal = null;
+
+            return;
         }
 
         if (IsCreatureConfused)

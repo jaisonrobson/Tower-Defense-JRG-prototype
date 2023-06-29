@@ -127,7 +127,7 @@ LEGENDA:
 (X) Fazer o Freeze funcionar
 (X) Fazer o Burn funcionar
 (X) Fazer o Paralyze funcionar
-( ) Fazer o Drown funcionar
+(X) Fazer o Drown funcionar
 ( ) Fazer o Confusion funcionar
 ( ) Fazer o Poison funcionar
 ( ) Fazer o Asleep funcionar

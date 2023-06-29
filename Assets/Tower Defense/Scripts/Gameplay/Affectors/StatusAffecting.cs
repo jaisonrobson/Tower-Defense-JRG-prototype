@@ -46,6 +46,17 @@ public static class StatusAffecting
                     }
                 );
                 break;
+            case StatusEnum.DROWN:
+                Poolable.TryGetPoolable(
+                    statusAffector.prefab,
+                    (Poolable pNewStatusAffectorPoolable) =>
+                    {
+                        pNewStatusAffectorPoolable.GetComponent<DrownStatusAffector>().Invoker = invoker;
+                        pNewStatusAffectorPoolable.GetComponent<DrownStatusAffector>().Target = target;
+                        pNewStatusAffectorPoolable.GetComponent<DrownStatusAffector>().Alignment = invoker.Alignment;
+                    }
+                );
+                break;
             default:
                 break;
         }

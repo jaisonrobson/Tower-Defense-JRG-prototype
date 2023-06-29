@@ -47,7 +47,7 @@ public class FSMStateCreatureIdle : FiniteStateMachine
             return;
         }
 
-        if (creatureFSMAi.IsCreatureParalyzed)
+        if (creatureFSMAi.IsCreatureParalyzed || creatureFSMAi.IsCreatureDrowning)
             return;
 
         if (DidCreatureFoundEnemies() || creatureFSMAi.IsCreatureConfused)

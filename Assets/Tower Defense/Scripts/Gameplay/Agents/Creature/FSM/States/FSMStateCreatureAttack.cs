@@ -48,7 +48,7 @@ public class FSMStateCreatureAttack : FiniteStateMachine
             return;
         }
 
-        if (creatureFsmAi.IsCreatureParalyzed)
+        if (creatureFsmAi.IsCreatureParalyzed || creatureFsmAi.IsCreatureDrowning)
         {
             nextState = new FSMStateCreatureIdle(anim, creature, pathfinding);
             stage = FSMEventEnum.EXIT;
