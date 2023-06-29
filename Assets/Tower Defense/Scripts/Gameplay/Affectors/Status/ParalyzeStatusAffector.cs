@@ -40,15 +40,21 @@ public class ParalyzeStatusAffector : StatusAffector
     }
     private void HandleAgentPositionShuffling()
     {
+        if (Target == null || Invoker == null)
+            return;
+
         if (Time.time < timeForPositionShuffling)
         {
             if (Time.time > timeUntilReposition)
             {
-                Vector3 randomNewPosition = RNG.Vector3(Target.transform.position, 0f, 1f);
+                Vector3 randomNewPosition = RNG.Vector3(Target.transform.position, 0f, 0.25f);
                 randomNewPosition.y = Target.transform.position.y;
 
-                Target.GetComponent<AIPath>().destination = randomNewPosition;
-                Target.GetComponent<AIPath>().Teleport(randomNewPosition);
+                if (Target?.GetComponent<AIPath>() != null)
+                {
+                    Target.GetComponent<AIPath>().destination = randomNewPosition;
+                    Target.GetComponent<AIPath>().Teleport(randomNewPosition);
+                }
 
                 timeUntilReposition = Time.time + 0.25f;
             }
@@ -74,8 +80,11 @@ public class ParalyzeStatusAffector : StatusAffector
     }
     protected override void FinishStatusActions()
     {
-        Target.GetComponent<AIPath>().destination = BC_TargetAgentPosition;
-        Target.GetComponent<AIPath>().Teleport(BC_TargetAgentPosition);
+        if (Target?.GetComponent<AIPath>() != null)
+        {
+            Target.GetComponent<AIPath>().destination = BC_TargetAgentPosition;
+            Target.GetComponent<AIPath>().Teleport(BC_TargetAgentPosition);
+        }
 
         Target.UpdateAgentVelocity(BC_Velocity);
         Target.UpdateAgentAttackVelocity(BC_AttackVelocity);

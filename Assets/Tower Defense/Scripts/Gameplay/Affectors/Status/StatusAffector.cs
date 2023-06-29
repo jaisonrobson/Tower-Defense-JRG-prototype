@@ -38,13 +38,17 @@ public abstract class StatusAffector : Affector
     {
         base.OnEnable();
 
-        Duration = Time.time + statusAffectorSO.duration;
-        Damage = (statusAffectorSO.damage / 100f) * Invoker.Damage;
-        TurnsInterval = statusAffectorSO.duration / statusAffectorSO.turnsQuantity;
+        if (Target != null && Invoker != null)
+        {
 
-        Target.AddAffectingStatus(this);
+            Duration = Time.time + statusAffectorSO.duration;
+            Damage = (statusAffectorSO.damage / 100f) * Invoker.Damage;
+            TurnsInterval = statusAffectorSO.duration / statusAffectorSO.turnsQuantity;
 
-        InitializeStatusActions();
+            Target.AddAffectingStatus(this);
+
+            InitializeStatusActions();
+        }
     }
     // (Unity) Methods [END]
 
@@ -90,10 +94,6 @@ public abstract class StatusAffector : Affector
     // Protected (Methods) [END]
 
     // Public (Methods) [START]
-    public void OnPool()
-    {
-        Poolable.TryPool(gameObject);
-    }
     public override void PoolRetrievalAction(Poolable poolable)
     {
         base.PoolRetrievalAction(poolable);
@@ -102,9 +102,12 @@ public abstract class StatusAffector : Affector
     }
     public override void PoolInsertionAction(Poolable poolable)
     {
-        Target.RemoveAffectingStatus(this);
+        if (Target != null && Invoker != null)
+        {
+            Target.RemoveAffectingStatus(this);
 
-        FinishStatusActions();
+            FinishStatusActions();
+        }
 
         base.PoolInsertionAction(poolable);
     }
