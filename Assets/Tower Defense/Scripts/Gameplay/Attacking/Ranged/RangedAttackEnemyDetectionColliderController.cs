@@ -29,7 +29,7 @@ public class RangedAttackEnemyDetectionColliderController : MonoBehaviour
 
                 if (enemy != null)
                 {
-                    if (raa.IsAlignmentAnOpponent(enemy.Alignment))
+                    if (raa.IsAlignmentAnOpponent(enemy.Alignment) || enemy.IsAgentUnderStatusConfusion)
                     {
                         RangedAttackController rac = GetComponent<RangedAttackController>();
 

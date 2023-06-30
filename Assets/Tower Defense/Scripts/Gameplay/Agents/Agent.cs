@@ -399,12 +399,12 @@ public abstract class Agent : MonoBehaviour, IPoolable
     {
         bool result = false;
 
-        if (!AlignmentManager.instance.IsAlignmentAnOpponent(dealerAlignment, alignment))
+        if (!AlignmentManager.instance.IsAlignmentAnOpponent(dealerAlignment, alignment) && !IsAgentUnderStatusConfusion)
             return result;
 
         float rawValue = dealerDamage;
 
-        if (!TryToEvade() && rawValue > 0f)
+        if ((!TryToEvade() || IsAgentUnderStatusConfusion) && rawValue > 0f)
         {
             float finalValue;
 
@@ -424,7 +424,7 @@ public abstract class Agent : MonoBehaviour, IPoolable
     {
         bool result = false;
 
-        if (!AlignmentManager.instance.IsAlignmentAnOpponent(dealerAlignment, alignment))
+        if (!AlignmentManager.instance.IsAlignmentAnOpponent(dealerAlignment, alignment) && !IsAgentUnderStatusConfusion)
             return result;
 
         float rawValue = dealerDamage;

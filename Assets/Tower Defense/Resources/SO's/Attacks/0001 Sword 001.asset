@@ -33,7 +33,7 @@ MonoBehaviour:
   influenceOverAttackVelocity: 40
   minimumAttackDistance: 1.5
   onHitStatusAffectors:
-  - {fileID: 11400000, guid: a2e53cfcf31f61d4a98efade0d4565c2, type: 2}
+  - {fileID: 11400000, guid: 46e6285d5c81c62448915bbbd3147c0c, type: 2}
   selfStatusAffectors: []
   initialAnimation: {fileID: 11400000, guid: 95ba08eb5a7cb3e49bccf2db1a7bf255, type: 2}
   trailAnimation: {fileID: 0}

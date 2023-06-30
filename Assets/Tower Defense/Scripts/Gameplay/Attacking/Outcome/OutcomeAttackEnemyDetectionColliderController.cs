@@ -69,7 +69,7 @@ public class OutcomeAttackEnemyDetectionColliderController : MonoBehaviour, IPoo
 
                 if (enemy != null)
                 {
-                    if (oaa.IsAlignmentAnOpponent(enemy.Alignment))
+                    if (oaa.IsAlignmentAnOpponent(enemy.Alignment) || enemy.IsAgentUnderStatusConfusion)
                     {
                         OutcomeAttackController oac = GetComponentInParent<OutcomeAttackController>();
 

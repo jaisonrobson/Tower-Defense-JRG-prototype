@@ -57,6 +57,17 @@ public static class StatusAffecting
                     }
                 );
                 break;
+            case StatusEnum.CONFUSION:
+                Poolable.TryGetPoolable(
+                    statusAffector.prefab,
+                    (Poolable pNewStatusAffectorPoolable) =>
+                    {
+                        pNewStatusAffectorPoolable.GetComponent<ConfusionStatusAffector>().Invoker = invoker;
+                        pNewStatusAffectorPoolable.GetComponent<ConfusionStatusAffector>().Target = target;
+                        pNewStatusAffectorPoolable.GetComponent<ConfusionStatusAffector>().Alignment = invoker.Alignment;
+                    }
+                );
+                break;
             default:
                 break;
         }

@@ -31,7 +31,7 @@ public class MeleeAttackEnemyDetectionColliderController : MonoBehaviour
 
                 if (enemy != null)
                 {
-                    if (maa.IsAlignmentAnOpponent(enemy.Alignment))
+                    if (maa.IsAlignmentAnOpponent(enemy.Alignment) || enemy.IsAgentUnderStatusConfusion)
                     {
                         MeleeAttackController mac = GetComponent<MeleeAttackController>();
 
