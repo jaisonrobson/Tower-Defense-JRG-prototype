@@ -27,7 +27,7 @@ MonoBehaviour:
   status: {fileID: 11400000, guid: 82a92c8929356584798e4c455b033b77, type: 2}
   animation: {fileID: 11400000, guid: cf2662a26baf05a44b8e8b22ab2904fb, type: 2}
   sound: {fileID: 11400000, guid: d0cc945b65d9f3c4f8e52485a60ba2e2, type: 2}
-  prefab: {fileID: 0}
+  prefab: {fileID: 8621052563051604419, guid: 5a364f1e1ac309d45b66244653d9f8db, type: 3}
   duration: 10
   damage: 10
   turnsQuantity: 5

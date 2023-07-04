@@ -14,57 +14,20 @@ public static class StatusAffecting
         switch (statusAffector.status.status)
         {
             case StatusEnum.FREEZE:
-                Poolable.TryGetPoolable(
-                    statusAffector.prefab,
-                    (Poolable pNewStatusAffectorPoolable) =>
-                    {
-                        pNewStatusAffectorPoolable.GetComponent<FreezeStatusAffector>().Invoker = invoker;
-                        pNewStatusAffectorPoolable.GetComponent<FreezeStatusAffector>().Target = target;
-                        pNewStatusAffectorPoolable.GetComponent<FreezeStatusAffector>().Alignment = invoker.Alignment;
-                    }
-                );
-                break;
             case StatusEnum.BURN:
-                Poolable.TryGetPoolable(
-                    statusAffector.prefab,
-                    (Poolable pNewStatusAffectorPoolable) =>
-                    {
-                        pNewStatusAffectorPoolable.GetComponent<BurnStatusAffector>().Invoker = invoker;
-                        pNewStatusAffectorPoolable.GetComponent<BurnStatusAffector>().Target = target;
-                        pNewStatusAffectorPoolable.GetComponent<BurnStatusAffector>().Alignment = invoker.Alignment;
-                    }
-                );
-                break;
             case StatusEnum.PARALYZE:
-                Poolable.TryGetPoolable(
-                    statusAffector.prefab,
-                    (Poolable pNewStatusAffectorPoolable) =>
-                    {
-                        pNewStatusAffectorPoolable.GetComponent<ParalyzeStatusAffector>().Invoker = invoker;
-                        pNewStatusAffectorPoolable.GetComponent<ParalyzeStatusAffector>().Target = target;
-                        pNewStatusAffectorPoolable.GetComponent<ParalyzeStatusAffector>().Alignment = invoker.Alignment;
-                    }
-                );
-                break;
             case StatusEnum.DROWN:
-                Poolable.TryGetPoolable(
-                    statusAffector.prefab,
-                    (Poolable pNewStatusAffectorPoolable) =>
-                    {
-                        pNewStatusAffectorPoolable.GetComponent<DrownStatusAffector>().Invoker = invoker;
-                        pNewStatusAffectorPoolable.GetComponent<DrownStatusAffector>().Target = target;
-                        pNewStatusAffectorPoolable.GetComponent<DrownStatusAffector>().Alignment = invoker.Alignment;
-                    }
-                );
-                break;
             case StatusEnum.CONFUSION:
+            case StatusEnum.POISON:
+            case StatusEnum.ASLEEP:
+            case StatusEnum.GROUNDED:
                 Poolable.TryGetPoolable(
                     statusAffector.prefab,
                     (Poolable pNewStatusAffectorPoolable) =>
                     {
-                        pNewStatusAffectorPoolable.GetComponent<ConfusionStatusAffector>().Invoker = invoker;
-                        pNewStatusAffectorPoolable.GetComponent<ConfusionStatusAffector>().Target = target;
-                        pNewStatusAffectorPoolable.GetComponent<ConfusionStatusAffector>().Alignment = invoker.Alignment;
+                        pNewStatusAffectorPoolable.GetComponent<StatusAffector>().Invoker = invoker;
+                        pNewStatusAffectorPoolable.GetComponent<StatusAffector>().Target = target;
+                        pNewStatusAffectorPoolable.GetComponent<StatusAffector>().Alignment = invoker.Alignment;
                     }
                 );
                 break;

@@ -47,7 +47,12 @@ public class FSMStateCreatureWalk : FiniteStateMachine
             return;
         }
 
-        if (!creatureFSMAi.IsMovable || creatureFSMAi.IsCreatureParalyzed || creatureFSMAi.IsCreatureDrowning)
+        if (!creatureFSMAi.IsMovable
+            || creatureFSMAi.IsCreatureParalyzed
+            || creatureFSMAi.IsCreatureDrowning
+            || creatureFSMAi.IsCreatureSleeping
+            || creatureFSMAi.IsCreatureGrounded
+        )
         {
             nextState = new FSMStateCreatureIdle(anim, creature, pathfinding);
             stage = FSMEventEnum.EXIT;

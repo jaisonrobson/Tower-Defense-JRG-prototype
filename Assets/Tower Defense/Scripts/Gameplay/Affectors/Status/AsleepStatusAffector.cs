@@ -3,21 +3,20 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
 using Sirenix.OdinInspector;
-using Pathfinding;
-using Core.Math;
 
 [HideMonoScript]
-public class ParalyzeStatusAffector : StatusAffector
+public class AsleepStatusAffector : StatusAffector
 {
     // Private (Variables) [START]
-    private float timeUntilReposition = 0f;
-    private float timeForPositionShuffling = 0f;
+    [ShowInInspector]
+    [HideInEditorMode]
+    [ReadOnly]
+    private int attacksReceived = 0;
     // Private (Variables) [END]
 
     // Private (Properties) [START]
     private float BC_AttackVelocity { get; set; }
     private float BC_Velocity { get; set; }
-    private Vector3 BC_TargetAgentPosition { get; set; }
     // Private (Properties) [END]
 
     // (Unity) Methods [START]
@@ -25,7 +24,7 @@ public class ParalyzeStatusAffector : StatusAffector
     {
         base.Update();
 
-        HandleAgentPositionShuffling();
+        HandleAgentAwakening();
     }
     // (Unity) Methods [END]
 
@@ -34,30 +33,13 @@ public class ParalyzeStatusAffector : StatusAffector
     {
         BC_Velocity = 0f;
         BC_AttackVelocity = 0f;
-        BC_TargetAgentPosition = Vector3.zero;
-        timeUntilReposition = 0f;
-        timeForPositionShuffling = 0f;
+        attacksReceived = 0;
     }
-    private void HandleAgentPositionShuffling()
+    private void HandleAgentAwakening()
     {
-        if (Target == null || Invoker == null)
-            return;
-
-        if (Time.time < timeForPositionShuffling)
+        if (attacksReceived >= statusAffectorSO.specialCondition)
         {
-            if (Time.time > timeUntilReposition)
-            {
-                Vector3 randomNewPosition = RNG.Vector3(Target.transform.position, 0f, 0.25f);
-                randomNewPosition.y = Target.transform.position.y;
-
-                if (Target?.GetComponent<AIPath>() != null)
-                {
-                    Target.GetComponent<AIPath>().destination = randomNewPosition;
-                    Target.GetComponent<AIPath>().Teleport(randomNewPosition);
-                }
-
-                timeUntilReposition = Time.time + 0.15f;
-            }
+            Finished = true;
         }
     }
     // Private (Methods) [END]
@@ -65,33 +47,30 @@ public class ParalyzeStatusAffector : StatusAffector
     // Protected (Methods) [START]
     protected override void ExecuteTurnActions()
     {
-        Target.OnReceiveDamage(Alignment, Damage, statusAffectorSO);
-
-        timeForPositionShuffling = Time.time + 1f;
     }
     protected override void InitializeStatusActions()
     {
-        BC_TargetAgentPosition = Target.transform.position;
         BC_Velocity = Target.Velocity;
         BC_AttackVelocity = Target.AttackVelocity;
 
         Target.UpdateAgentVelocity(0f);
         Target.UpdateAgentAttackVelocity(0f);
+        Target.onReceiveDamageAction += IncreaseAttacksReceived;
     }
     protected override void FinishStatusActions()
     {
-        if (Target?.GetComponent<AIPath>() != null)
-        {
-            Target.GetComponent<AIPath>().destination = BC_TargetAgentPosition;
-            Target.GetComponent<AIPath>().Teleport(BC_TargetAgentPosition);
-        }
-
         Target.UpdateAgentVelocity(BC_Velocity);
         Target.UpdateAgentAttackVelocity(BC_AttackVelocity);
+        Target.onReceiveDamageAction -= IncreaseAttacksReceived;
 
         ResetProperties();
     }
     // Protected (Methods) [END]
+
+
+    // Public (Methods) [START]
+    public void IncreaseAttacksReceived() => attacksReceived++;
+    // Public (Methods) [END]
 }
 
 ////////////////////////////////////////////////////////////////////////////////

@@ -22,6 +22,9 @@ public class CreatureFsmAi : AgentFsmAi
 
     // Public (Properties) [START]
     public bool IsCreatureParalyzed { get { return agent.IsAgentUnderStatusParalyze; } }
+    public bool IsCreatureSleeping { get { return agent.IsAgentUnderStatusAsleep; } }
+    public bool IsCreatureGrounded { get { return agent.IsAgentUnderStatusGrounded; } }
+    public bool IsCreatureTaunted { get { return agent.IsAgentUnderStatusTaunt; } }
     public bool IsCreatureDrowning { get { return agent.IsAgentUnderStatusDrown; } }
     public bool IsCreatureConfused { get { return agent.IsAgentUnderStatusConfusion; } }
     // Public (Properties) [END]
@@ -72,14 +75,14 @@ public class CreatureFsmAi : AgentFsmAi
         if (IsAgentDead)
             return;
 
-        if (IsCreatureParalyzed || IsCreatureDrowning)
+        if (IsCreatureParalyzed || IsCreatureDrowning || IsCreatureSleeping)
         {
             agent.ActualGoal = null;
 
             return;
         }
 
-        if (IsCreatureConfused)
+        if (IsCreatureConfused) //MOVER ESSA SECAO DE CODIGO PARA DENTRO DO CONFUSION STATUS AFFECTOR
         {
             agent.ActualGoal = agent;
 
@@ -120,6 +123,9 @@ public class CreatureFsmAi : AgentFsmAi
                         pathfinding.destination = nearestPriorityEnemy.goal.transform.position;
                 }
 
+                if (IsCreatureGrounded)
+                    pathfinding.destination = agent.transform.position;
+
                 agent.ActualGoal = nearestPriorityEnemy.goal;
             }
             else if (agent.MainGoals.Count > 0)
@@ -145,6 +151,9 @@ public class CreatureFsmAi : AgentFsmAi
                             pathfinding.destination = agent.MainGoals.First().goal.transform.position;
                     }
                 }
+
+                if (IsCreatureGrounded)
+                    pathfinding.destination = agent.transform.position;
 
                 agent.ActualGoal = agent.MainGoals.First().goal;
             }

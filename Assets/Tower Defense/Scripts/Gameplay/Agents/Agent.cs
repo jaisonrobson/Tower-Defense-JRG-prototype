@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.Events;
 using Pathfinding;
 using Sirenix.OdinInspector;
 using Core.Math;
@@ -75,6 +76,7 @@ public abstract class Agent : MonoBehaviour, IPoolable
     [OnInspectorInit("MaintainAttacksOrigin")]
     [ValidateInput("Validate_NotNull_Origins", "Animation or Attack origin cannot be null.")]
     public List<AttackOrigin> attacksOrigins;
+    public UnityAction onReceiveDamageAction;
     // Public (Variables) [END]
 
     // Private (Variables) [START]
@@ -220,6 +222,9 @@ public abstract class Agent : MonoBehaviour, IPoolable
     public bool IsAgentUnderStatusParalyze { get { return affectingStatuses.Any(sa => sa.statusAffectorSO.status.status == StatusEnum.PARALYZE); } }
     public bool IsAgentUnderStatusDrown { get { return affectingStatuses.Any(sa => sa.statusAffectorSO.status.status == StatusEnum.DROWN); } }
     public bool IsAgentUnderStatusConfusion { get { return affectingStatuses.Any(sa => sa.statusAffectorSO.status.status == StatusEnum.CONFUSION); } }
+    public bool IsAgentUnderStatusAsleep { get { return affectingStatuses.Any(sa => sa.statusAffectorSO.status.status == StatusEnum.ASLEEP); } }
+    public bool IsAgentUnderStatusGrounded { get { return affectingStatuses.Any(sa => sa.statusAffectorSO.status.status == StatusEnum.GROUNDED); } }
+    public bool IsAgentUnderStatusTaunt { get { return affectingStatuses.Any(sa => sa.statusAffectorSO.status.status == StatusEnum.TAUNT); } }
     // Public (Properties) [END]
 
     // (Unity) Methods [START]
@@ -365,7 +370,7 @@ public abstract class Agent : MonoBehaviour, IPoolable
         PriorityGoal newPriorityGoal;
         newPriorityGoal.goal = goal;
         newPriorityGoal.destination = GenerateRandomDestination();
-        newPriorityGoal.ignoreBattle = TryToEvade();
+        newPriorityGoal.ignoreBattle = GetAgent().isPlayable && TryToEvade();
 
         priorityGoals = priorityGoals.Concat(new[] { newPriorityGoal }).ToArray();
     }
@@ -415,6 +420,8 @@ public abstract class Agent : MonoBehaviour, IPoolable
 
             GetComponent<AgentUI>().GenerateFloatingText(-finalValue);
 
+            onReceiveDamageAction?.Invoke();
+
             result = true;
         }
 
@@ -439,6 +446,8 @@ public abstract class Agent : MonoBehaviour, IPoolable
             actualHealth = Mathf.Clamp(actualHealth - finalValue, 0f, MaxHealth);
 
             GetComponent<AgentUI>().GenerateFloatingText(-finalValue);
+
+            onReceiveDamageAction?.Invoke();
 
             result = true;
         }
@@ -467,6 +476,7 @@ public abstract class Agent : MonoBehaviour, IPoolable
         ResetAgentStats();
         ResetMainGoals();
         actualGoal = null;
+        onReceiveDamageAction = null;
 
         if (mainCollider != null)
             mainCollider.enabled = true;
