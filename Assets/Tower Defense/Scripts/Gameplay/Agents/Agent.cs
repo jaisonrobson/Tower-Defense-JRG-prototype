@@ -190,9 +190,24 @@ public abstract class Agent : MonoBehaviour, IPoolable
     [HideInEditorMode]
     [ReadOnly]
     private List<StatusAffector> affectingStatuses;
-    private bool isMovementPrevented = false;
-    private bool isAttackPrevented = false;
-    private bool isHealPrevented = false;
+    [TitleGroup("Agent Identity/Affectors")]
+    [PropertyOrder(10)]
+    [ShowInInspector]
+    [HideInEditorMode]
+    [ReadOnly]
+    private List<bool> isMovementPrevented;
+    [TitleGroup("Agent Identity/Affectors")]
+    [PropertyOrder(11)]
+    [ShowInInspector]
+    [HideInEditorMode]
+    [ReadOnly]
+    private List<bool> isAttackPrevented;
+    [TitleGroup("Agent Identity/Affectors")]
+    [PropertyOrder(12)]
+    [ShowInInspector]
+    [HideInEditorMode]
+    [ReadOnly]
+    private List<bool> isHealPrevented;
     // Private (Variables) [END]
 
     // Protected (Variables) [START]
@@ -222,9 +237,9 @@ public abstract class Agent : MonoBehaviour, IPoolable
     public List<MainGoal> MainGoals { get { FilterMainGoals(); return mainGoals.ToList(); } }
     public Agent Master { get { return master; } set { master = value; } }
     public bool IsDead { get { return actualHealth <= 0f; } }
-    public bool IsMovementPrevented { get { return isMovementPrevented; } set { isMovementPrevented = value; } }
-    public bool IsAttackPrevented { get { return isAttackPrevented; } set { isAttackPrevented = value; } }
-    public bool IsHealPrevented { get { return isHealPrevented; } set { isHealPrevented = value; } }
+    public bool IsMovementPrevented { get { return isMovementPrevented.Count > 0; } }
+    public bool IsAttackPrevented { get { return isAttackPrevented.Count > 0; } }
+    public bool IsHealPrevented { get { return isHealPrevented.Count > 0; } }
     public bool IsAgentUnderStatusParalyze { get { return affectingStatuses.Any(sa => sa.statusAffectorSO.status.status == StatusEnum.PARALYZE); } }
     public bool IsAgentUnderStatusDrown { get { return affectingStatuses.Any(sa => sa.statusAffectorSO.status.status == StatusEnum.DROWN); } }
     public bool IsAgentUnderStatusConfusion { get { return affectingStatuses.Any(sa => sa.statusAffectorSO.status.status == StatusEnum.CONFUSION); } }
@@ -248,7 +263,7 @@ public abstract class Agent : MonoBehaviour, IPoolable
     }
     protected virtual void Update()
     {
-        
+
     }
     // (Unity) Methods [END]
 
@@ -291,6 +306,23 @@ public abstract class Agent : MonoBehaviour, IPoolable
                 break;
         }
     }
+    private void ResetPreventionLists()
+    {
+        if (isMovementPrevented != null)
+            isMovementPrevented.Clear();
+        else
+            isMovementPrevented = new List<bool>();
+
+        if (isAttackPrevented != null)
+            isAttackPrevented.Clear();
+        else
+            isAttackPrevented = new List<bool>();
+
+        if (isHealPrevented != null)
+            isHealPrevented.Clear();
+        else
+            isHealPrevented = new List<bool>();
+    }
     private void FilterActualGoal()
     {
         if (actualGoal != null && !actualGoal.gameObject.activeInHierarchy)
@@ -307,6 +339,24 @@ public abstract class Agent : MonoBehaviour, IPoolable
     // Private (Methods) [END]
 
     // Public (Methods) [START]
+    public void AddMovementPrevention() => isMovementPrevented.Add(true);
+    public void RemoveMovementPrevention()
+    {
+        if (isMovementPrevented?.Count > 0)
+            isMovementPrevented?.RemoveAt(0);
+    }
+    public void AddAttackPrevention() => isAttackPrevented.Add(true);
+    public void RemoveAttackPrevention()
+    {
+        if (isAttackPrevented?.Count > 0)
+            isAttackPrevented?.RemoveAt(0);
+    }
+    public void AddHealPrevention() => isHealPrevented.Add(true);
+    public void RemoveHealPrevention()
+    {
+        if (isHealPrevented?.Count > 0)
+            isHealPrevented?.RemoveAt(0);
+    }
     public void UpdateAgentVelocity(float newVelocity) => velocity = newVelocity;
     public void UpdateAgentAttackVelocity(float newAttackVelocity) => attackVelocity = newAttackVelocity;
     public bool IsStatusAlreadyAffectingAgent(StatusAffector sa) => affectingStatuses.Contains(sa) || affectingStatuses.Any(afs => afs.statusAffectorSO.status == sa.statusAffectorSO.status);
@@ -481,11 +531,9 @@ public abstract class Agent : MonoBehaviour, IPoolable
         mainGoals = new MainGoal[0];
         ResetAgentStats();
         ResetMainGoals();
+        ResetPreventionLists();
         actualGoal = null;
         onReceiveDamageAction = null;
-        isMovementPrevented = false;
-        isAttackPrevented = false;
-        isHealPrevented = false;
 
         if (mainCollider != null)
             mainCollider.enabled = true;

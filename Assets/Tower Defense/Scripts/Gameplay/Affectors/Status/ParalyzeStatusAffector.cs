@@ -15,8 +15,6 @@ public class ParalyzeStatusAffector : StatusAffector
     // Private (Variables) [END]
 
     // Private (Properties) [START]
-    private float BC_AttackVelocity { get; set; }
-    private float BC_Velocity { get; set; }
     private Vector3 BC_TargetAgentPosition { get; set; }
     // Private (Properties) [END]
 
@@ -32,8 +30,6 @@ public class ParalyzeStatusAffector : StatusAffector
     // Private (Methods) [START]
     private void ResetProperties()
     {
-        BC_Velocity = 0f;
-        BC_AttackVelocity = 0f;
         BC_TargetAgentPosition = Vector3.zero;
         timeUntilReposition = 0f;
         timeForPositionShuffling = 0f;
@@ -47,7 +43,7 @@ public class ParalyzeStatusAffector : StatusAffector
         {
             if (Time.time > timeUntilReposition)
             {
-                Vector3 randomNewPosition = RNG.Vector3(Target.transform.position, 0f, 0.25f);
+                Vector3 randomNewPosition = RNG.Vector3(Target.transform.position, 0f, 0.10f);
                 randomNewPosition.y = Target.transform.position.y;
 
                 if (Target?.GetComponent<AIPath>() != null)
@@ -56,7 +52,7 @@ public class ParalyzeStatusAffector : StatusAffector
                     Target.GetComponent<AIPath>().Teleport(randomNewPosition);
                 }
 
-                timeUntilReposition = Time.time + 0.35f;
+                timeUntilReposition = Time.time + 0.25f;
             }
         }
     }
@@ -72,11 +68,9 @@ public class ParalyzeStatusAffector : StatusAffector
     protected override void InitializeStatusActions()
     {
         BC_TargetAgentPosition = Target.transform.position;
-        BC_Velocity = Target.Velocity;
-        BC_AttackVelocity = Target.AttackVelocity;
 
-        Target.UpdateAgentVelocity(0f);
-        Target.UpdateAgentAttackVelocity(0f);
+        Target.AddMovementPrevention();
+        Target.AddAttackPrevention();
     }
     protected override void FinishStatusActions()
     {
@@ -86,8 +80,8 @@ public class ParalyzeStatusAffector : StatusAffector
             Target.GetComponent<AIPath>().Teleport(BC_TargetAgentPosition);
         }
 
-        Target.UpdateAgentVelocity(BC_Velocity);
-        Target.UpdateAgentAttackVelocity(BC_AttackVelocity);
+        Target.RemoveMovementPrevention();
+        Target.RemoveAttackPrevention();
 
         ResetProperties();
     }

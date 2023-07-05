@@ -76,6 +76,8 @@ public abstract class AgentFsmAi : MonoBehaviour
     public bool IsAggressive { get { return agentSO.isAggressive; } }
     public bool IsMovable { get { return agentSO.isMovable; } }
     public bool IsPlayable { get { return agentSO.isPlayable; } }
+    public bool IsAttackPrevented { get { return agent.IsAttackPrevented; } }
+    public bool IsMovementPrevented { get { return agent.IsMovementPrevented; } }
     // Public (Properties) [END]
 
     // (Unity) Methods [START]
@@ -140,7 +142,7 @@ public abstract class AgentFsmAi : MonoBehaviour
     private void ResetAllTimedAttacksFlag() => timedAttacks.ToList().ForEach(ta => ta.isMakingAttack = false);
     private void HandleAttacking()
     {
-        if (IsAgentDead || !IsAggressive)
+        if (IsAgentDead || !IsAggressive || IsAttackPrevented)
             return;
 
         if (currentState.name == AgentStateEnum.ATTACK)

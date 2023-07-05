@@ -181,10 +181,8 @@ MonoBehaviour:
       Data: 
   spawnPoints:
   - {fileID: 1539831359}
-  - {fileID: 727444521}
   timeBetweenWaves:
   - 0
-  - 20
   runningWave: 
   isRunning: 0
   isRunningSequence: 
