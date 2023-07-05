@@ -56,7 +56,7 @@ public class ParalyzeStatusAffector : StatusAffector
                     Target.GetComponent<AIPath>().Teleport(randomNewPosition);
                 }
 
-                timeUntilReposition = Time.time + 0.15f;
+                timeUntilReposition = Time.time + 0.35f;
             }
         }
     }

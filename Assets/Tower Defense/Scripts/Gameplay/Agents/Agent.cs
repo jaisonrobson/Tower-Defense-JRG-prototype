@@ -190,6 +190,9 @@ public abstract class Agent : MonoBehaviour, IPoolable
     [HideInEditorMode]
     [ReadOnly]
     private List<StatusAffector> affectingStatuses;
+    private bool isMovementPrevented = false;
+    private bool isAttackPrevented = false;
+    private bool isHealPrevented = false;
     // Private (Variables) [END]
 
     // Protected (Variables) [START]
@@ -219,6 +222,9 @@ public abstract class Agent : MonoBehaviour, IPoolable
     public List<MainGoal> MainGoals { get { FilterMainGoals(); return mainGoals.ToList(); } }
     public Agent Master { get { return master; } set { master = value; } }
     public bool IsDead { get { return actualHealth <= 0f; } }
+    public bool IsMovementPrevented { get { return isMovementPrevented; } set { isMovementPrevented = value; } }
+    public bool IsAttackPrevented { get { return isAttackPrevented; } set { isAttackPrevented = value; } }
+    public bool IsHealPrevented { get { return isHealPrevented; } set { isHealPrevented = value; } }
     public bool IsAgentUnderStatusParalyze { get { return affectingStatuses.Any(sa => sa.statusAffectorSO.status.status == StatusEnum.PARALYZE); } }
     public bool IsAgentUnderStatusDrown { get { return affectingStatuses.Any(sa => sa.statusAffectorSO.status.status == StatusEnum.DROWN); } }
     public bool IsAgentUnderStatusConfusion { get { return affectingStatuses.Any(sa => sa.statusAffectorSO.status.status == StatusEnum.CONFUSION); } }
@@ -468,7 +474,7 @@ public abstract class Agent : MonoBehaviour, IPoolable
         }
 
         return result;
-    }    
+    }
     public virtual void PoolRetrievalAction(Poolable poolable)
     {
         priorityGoals = new PriorityGoal[0];
@@ -477,6 +483,9 @@ public abstract class Agent : MonoBehaviour, IPoolable
         ResetMainGoals();
         actualGoal = null;
         onReceiveDamageAction = null;
+        isMovementPrevented = false;
+        isAttackPrevented = false;
+        isHealPrevented = false;
 
         if (mainCollider != null)
             mainCollider.enabled = true;
