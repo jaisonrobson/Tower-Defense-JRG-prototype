@@ -7,32 +7,17 @@ using Sirenix.OdinInspector;
 [HideMonoScript]
 public class GroundedStatusAffector : StatusAffector
 {
-    // Private (Properties) [START]
-    private float BC_Velocity { get; set; }
-    // Private (Properties) [END]
-
-    // Private (Methods) [START]
-    private void ResetProperties()
-    {
-        BC_Velocity = 0f;
-    }
-    // Private (Methods) [END]
-
     // Protected (Methods) [START]
     protected override void ExecuteTurnActions()
     {
     }
     protected override void InitializeStatusActions()
     {
-        BC_Velocity = Target.Velocity;
-
-        Target.UpdateAgentVelocity(0f);
+        Target.AddMovementPrevention();
     }
     protected override void FinishStatusActions()
     {
-        Target.UpdateAgentVelocity(BC_Velocity);
-
-        ResetProperties();
+        Target.RemoveMovementPrevention();
     }
     // Protected (Methods) [END]
 }

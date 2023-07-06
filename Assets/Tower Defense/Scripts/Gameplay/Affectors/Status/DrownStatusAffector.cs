@@ -14,16 +14,9 @@ public class DrownStatusAffector : StatusAffector
     private float startAnimationTime = 0f;
     // Private (Variables) [END]
 
-    // Private (Properties) [START]
-    private float BC_AttackVelocity { get; set; }
-    private float BC_Velocity { get; set; }
-    // Private (Properties) [END]
-
     // Private (Methods) [START]
     private void ResetProperties()
     {
-        BC_Velocity = 0f;
-        BC_AttackVelocity = 0f;
         minimumYPosition = 0f;
         maximumYPosition = 0f;
         startAnimationTime = 0f;
@@ -65,19 +58,17 @@ public class DrownStatusAffector : StatusAffector
     }
     protected override void InitializeStatusActions()
     {
-        BC_Velocity = Target.Velocity;
-        BC_AttackVelocity = Target.AttackVelocity;
         minimumYPosition = Target.transform.position.y;
         maximumYPosition = Target.transform.position.y + 3f;
         startAnimationTime = Time.time;
 
-        Target.UpdateAgentVelocity(0f);
-        Target.UpdateAgentAttackVelocity(0f);
+        Target.AddMovementPrevention();
+        Target.AddAttackPrevention();
     }
     protected override void FinishStatusActions()
     {
-        Target.UpdateAgentVelocity(BC_Velocity);
-        Target.UpdateAgentAttackVelocity(BC_AttackVelocity);
+        Target.RemoveMovementPrevention();
+        Target.RemoveAttackPrevention();
 
         ResetProperties();
     }

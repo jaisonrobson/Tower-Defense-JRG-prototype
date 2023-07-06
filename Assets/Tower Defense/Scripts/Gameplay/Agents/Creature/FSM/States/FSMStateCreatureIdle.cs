@@ -47,12 +47,9 @@ public class FSMStateCreatureIdle : FiniteStateMachine
             return;
         }
 
-        if (creatureFSMAi.IsCreatureParalyzed || creatureFSMAi.IsCreatureDrowning || creatureFSMAi.IsCreatureSleeping)
-            return;
-
         if (DidCreatureFoundEnemies() || creatureFSMAi.IsCreatureConfused)
         {
-            if (creatureFSMAi.IsAggressive && creatureFSMAi.IsAnyViableAttackUnderEnemyRange())
+            if (creatureFSMAi.IsAggressive && creatureFSMAi.IsAnyViableAttackUnderEnemyRange() && !creature.IsAttackPrevented)
             {
                 if (creatureFSMAi.IsAllAttacksUnderCooldown)
                     return;
@@ -62,7 +59,7 @@ public class FSMStateCreatureIdle : FiniteStateMachine
             }
             else
             {
-                if (creatureFSMAi.IsMovable && !pathfinding.reachedDestination && !creatureFSMAi.IsCreatureGrounded)
+                if (creatureFSMAi.IsMovable && !pathfinding.reachedDestination && !creature.IsMovementPrevented)
                 {
                     nextState = new FSMStateCreatureWalk(anim, creature, pathfinding);
                     stage = FSMEventEnum.EXIT;
@@ -71,7 +68,7 @@ public class FSMStateCreatureIdle : FiniteStateMachine
         }
         else if (creature.goal == AgentGoalEnum.FLAG)
         {
-            if (creatureFSMAi.IsMovable && !pathfinding.reachedDestination && !creatureFSMAi.IsCreatureGrounded)
+            if (creatureFSMAi.IsMovable && !pathfinding.reachedDestination && !creature.IsMovementPrevented)
             {
                 nextState = new FSMStateCreatureWalk(anim, creature, pathfinding);
                 stage = FSMEventEnum.EXIT;

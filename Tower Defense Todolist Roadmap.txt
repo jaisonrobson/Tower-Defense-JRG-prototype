@@ -113,29 +113,29 @@ LEGENDA:
 (X) Refatorar os scripts Outcome para obedecer o OutcomeAffector
 (X) Criar o funcionamento de ataques em area (AOE) (Criaturas e estruturas)
 (X) Fazer o funcionamento dos Immediate Attacks usando os scripts Affector para comportar futuramente o controle das animacoes e sons
+(X) Fazer com que todos os tipos de ataques (seja Immediate, Ranged, Melee) atinjam aos proprios alinhamentos caso o AGENTE esteja sobre o status de confusao/Confusion.
 
-(O) Criar o sistema de status (lento, queimando, paralizado, etc.) (Affectors) (verificar codigo do tower defense da unity, tem bons codigos sobre isso la)
+(X) Criar o sistema de status (lento, queimando, paralizado, etc.) (Affectors) (verificar codigo do tower defense da unity, tem bons codigos sobre isso la)
 (X) Criar um enumerator de status para cada tipo de status possivel
 (X) Criar um novo Scriptable Object na base, para armazenar subtipos dos mesmos status com configuracoes diferentes, progressao de dano, etc. Que sera utilizado no script affector abaixo para regulagem e funcionamento do algoritmo.
 (X) Criar um script/algoritmo que sera desacoplado do agente e sera responsavel por controlar o tempo em que o status configurado no mesmo afetara o agente.
 (X) Fazer com que esse script obedeca os conceitos de OO, heranca, para reutilizar alguns funcionamentos e dados
-(O) Fazer varios subscripts herdados para cada tipo de status diferente.
-(O) Fazer com que o script acima tambem controle o proprio status configurado de acordo com um switch case, e afete de forma desacoplada o agente. (ex: caso seja lentidao, diminua a velocidade do agente atraves de metodos, etc.)
+(X) Fazer varios subscripts herdados para cada tipo de status diferente.
+(X) Fazer com que o script acima tambem controle o proprio status configurado de acordo com um switch case, e afete de forma desacoplada o agente. (ex: caso seja lentidao, diminua a velocidade do agente atraves de metodos, etc.)
 (X) Caso o agente seja poolado, o script acima sera removido do objeto, mas antes de ser removido deve chamar seus metodos de "pooling".
 (X) Fazer os cenarios de status especificos para o Confusion & Drown (possivelmente tambem averiguar o paralyze)
-(X) Fazer com que todos os tipos de ataques (seja Immediate, Ranged, Melee) atinjam aos proprios alinhamentos caso o AGENTE esteja sobre o status de confusao/Confusion.
 (X) Fazer o Freeze funcionar
 (X) Fazer o Burn funcionar
 (X) Fazer o Paralyze funcionar
-(O) Fazer o Drown funcionar
-(O) Fazer o Confusion funcionar
+(X) Fazer o Drown funcionar
+(X) Fazer o Confusion funcionar
 (X) Fazer o Poison funcionar
-(O) Fazer o Asleep funcionar
-(O) Fazer o Grounded funcionar
+(X) Fazer o Asleep funcionar
+(X) Fazer o Grounded funcionar
 ( ) Fazer o Healblock funcionar
 ( ) Fazer o Taunt funcionar
 
-( ) Corrigir o calculo de devolução de velocidade e velocidade de ataque nos algoritmos de status Affector (criar uma variavel que vai retornar exatamente a quantia/valor a ser devolvida/o ao finalizar o status)
+(X) Corrigir o calculo de devolução de velocidade e velocidade de ataque nos algoritmos de status Affector (criar uma variavel que vai retornar exatamente a quantia/valor a ser devolvida/o ao finalizar o status)
 (X) Fazer alguns variaveis de controle no script Agent.cs para que permita coordenar melhor se o mesmo podera se mexer e atacar, ser curado, etc. (IsMovementPrevented, IsAttackPrevented...)
 ( ) Criar um determinador de chance no AttackSO para que CADA status da lista no AttackSO seja aplicado. (ou seja uma chance para que o status seja aplicado ao atacar.)
 ( ) Criar os agentes imunes aos status (lista de imunidade) para cada agente no AgentSO.

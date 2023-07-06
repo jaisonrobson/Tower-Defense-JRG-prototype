@@ -74,7 +74,7 @@ public class CreatureFsmAi : AgentFsmAi
     }
     private void UpdateAIDestination()
     {
-        if (IsAgentDead || !IsMovable || IsMovementPrevented)
+        if (IsAgentDead || !IsMovable || IsMovementPrevented || IsCreatureConfused)
             return;
 
         if (pathfinding != null)
@@ -127,7 +127,7 @@ public class CreatureFsmAi : AgentFsmAi
     }
     private void UpdateAIGoal()
     {
-        if (IsAgentDead)
+        if (IsAgentDead || IsCreatureConfused)
             return;
 
         if (IsAttackPrevented)
@@ -136,23 +136,6 @@ public class CreatureFsmAi : AgentFsmAi
 
             return;
         }
-        /*
-        if (IsCreatureConfused) //MOVER ESSA SECAO DE CODIGO PARA DENTRO DO CONFUSION STATUS AFFECTOR
-        {
-            agent.ActualGoal = agent;
-
-            if (RNG.Int(0, 100) > 95)
-            {
-                Vector3 randomNewPosition = RNG.Vector3(agent.transform.position, 1f, 3f);
-
-                randomNewPosition.y = agent.transform.position.y;
-
-                pathfinding.destination = randomNewPosition;
-            }
-
-            return;
-        }
-        */
 
         List<PriorityGoal> creaturePriorityEnemies = agent.GetAgentViablePriorityEnemies();
 

@@ -47,12 +47,7 @@ public class FSMStateCreatureWalk : FiniteStateMachine
             return;
         }
 
-        if (!creatureFSMAi.IsMovable
-            || creatureFSMAi.IsCreatureParalyzed
-            || creatureFSMAi.IsCreatureDrowning
-            || creatureFSMAi.IsCreatureSleeping
-            || creatureFSMAi.IsCreatureGrounded
-        )
+        if (!creatureFSMAi.IsMovable || creature.IsMovementPrevented)
         {
             nextState = new FSMStateCreatureIdle(anim, creature, pathfinding);
             stage = FSMEventEnum.EXIT;
@@ -60,42 +55,24 @@ public class FSMStateCreatureWalk : FiniteStateMachine
             return;
         }
 
-        if (creatureFSMAi.IsCreatureConfused)
+        if (creatureFSMAi.IsAggressive)
         {
-            if (creatureFSMAi.IsAnyViableAttackUnderEnemyRange() && creatureFSMAi.IsAggressive)
+            if (DidCreatureFoundEnemies() || creatureFSMAi.IsCreatureConfused)
             {
-                nextState = new FSMStateCreatureAttack(anim, creature, pathfinding);
-                stage = FSMEventEnum.EXIT;
-            }
-            else if (pathfinding.reachedDestination)
-            {
-                nextState = new FSMStateCreatureIdle(anim, creature, pathfinding);
-                stage = FSMEventEnum.EXIT;
-            }
+                if (creatureFSMAi.IsAnyViableAttackUnderEnemyRange())
+                {
+                    nextState = new FSMStateCreatureAttack(anim, creature, pathfinding);
+                    stage = FSMEventEnum.EXIT;
 
-            return;
+                    return;
+                }
+            }
         }
 
-        if (DidCreatureFoundEnemies() && creatureFSMAi.IsAggressive)
+        if (pathfinding.reachedDestination)
         {
-            if (creatureFSMAi.IsAnyViableAttackUnderEnemyRange())
-            {
-                nextState = new FSMStateCreatureAttack(anim, creature, pathfinding);
-                stage = FSMEventEnum.EXIT;
-            }
-            else if (pathfinding.reachedDestination)
-            {
-                nextState = new FSMStateCreatureAttack(anim, creature, pathfinding);
-                stage = FSMEventEnum.EXIT;
-            }
-        }
-        else
-        {
-            if (pathfinding.reachedDestination)
-            {
-                nextState = new FSMStateCreatureIdle(anim, creature, pathfinding);
-                stage = FSMEventEnum.EXIT;
-            }
+            nextState = new FSMStateCreatureIdle(anim, creature, pathfinding);
+            stage = FSMEventEnum.EXIT;
         }
     }
     public override void Exit()

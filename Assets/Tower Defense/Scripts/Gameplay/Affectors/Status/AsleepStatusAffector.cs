@@ -14,11 +14,6 @@ public class AsleepStatusAffector : StatusAffector
     private int attacksReceived = 0;
     // Private (Variables) [END]
 
-    // Private (Properties) [START]
-    private float BC_AttackVelocity { get; set; }
-    private float BC_Velocity { get; set; }
-    // Private (Properties) [END]
-
     // (Unity) Methods [START]
     protected override void Update()
     {
@@ -31,8 +26,6 @@ public class AsleepStatusAffector : StatusAffector
     // Private (Methods) [START]
     private void ResetProperties()
     {
-        BC_Velocity = 0f;
-        BC_AttackVelocity = 0f;
         attacksReceived = 0;
     }
     private void HandleAgentAwakening()
@@ -50,17 +43,14 @@ public class AsleepStatusAffector : StatusAffector
     }
     protected override void InitializeStatusActions()
     {
-        BC_Velocity = Target.Velocity;
-        BC_AttackVelocity = Target.AttackVelocity;
-
-        Target.UpdateAgentVelocity(0f);
-        Target.UpdateAgentAttackVelocity(0f);
+        Target.AddMovementPrevention();
+        Target.AddAttackPrevention();
         Target.onReceiveDamageAction += IncreaseAttacksReceived;
     }
     protected override void FinishStatusActions()
     {
-        Target.UpdateAgentVelocity(BC_Velocity);
-        Target.UpdateAgentAttackVelocity(BC_AttackVelocity);
+        Target.RemoveMovementPrevention();
+        Target.RemoveAttackPrevention();
         Target.onReceiveDamageAction -= IncreaseAttacksReceived;
 
         ResetProperties();
