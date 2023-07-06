@@ -4,6 +4,9 @@ using UnityEngine;
 using System.Linq;
 using Sirenix.OdinInspector;
 
+/// <summary>
+/// CANNOT MOVE (BUT CAN ATTACK)
+/// </summary>
 [HideMonoScript]
 public class GroundedStatusAffector : StatusAffector
 {

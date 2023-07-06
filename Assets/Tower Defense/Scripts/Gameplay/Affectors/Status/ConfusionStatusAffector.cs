@@ -6,6 +6,9 @@ using Sirenix.OdinInspector;
 using Pathfinding;
 using Core.Math;
 
+/// <summary>
+/// ATTACK ITSELF AND MOVES RANDOMLY FOR THE DURATION OF THE CONFIGURATION
+/// </summary>
 [HideMonoScript]
 public class ConfusionStatusAffector : StatusAffector
 {

@@ -132,15 +132,15 @@ LEGENDA:
 (X) Fazer o Poison funcionar
 (X) Fazer o Asleep funcionar
 (X) Fazer o Grounded funcionar
-( ) Fazer o Healblock funcionar
-( ) Fazer o Taunt funcionar
+(X) Fazer o Healblock funcionar
+(X) Fazer o Taunt funcionar
 
 (X) Corrigir o calculo de devolução de velocidade e velocidade de ataque nos algoritmos de status Affector (criar uma variavel que vai retornar exatamente a quantia/valor a ser devolvida/o ao finalizar o status)
 (X) Fazer alguns variaveis de controle no script Agent.cs para que permita coordenar melhor se o mesmo podera se mexer e atacar, ser curado, etc. (IsMovementPrevented, IsAttackPrevented...)
 ( ) Criar um determinador de chance no AttackSO para que CADA status da lista no AttackSO seja aplicado. (ou seja uma chance para que o status seja aplicado ao atacar.)
 ( ) Criar os agentes imunes aos status (lista de imunidade) para cada agente no AgentSO.
 ( ) Criar uma condicao na lista de imunidades (caso o agente seja uma STRUCTURE, remover a lista de imunidades, pois todas estruturas sao imunes automaticamente a status negativos).
-( ) Fazer com que as estruturas nao recebam nenhum status negativo.
+(X) Fazer com que as estruturas nao recebam nenhum status negativo.
 ( ) Fazer com que os agentes que possuirem imunidades na lista, nao recebem os status especificos de acordo com as imunidades.
 
 

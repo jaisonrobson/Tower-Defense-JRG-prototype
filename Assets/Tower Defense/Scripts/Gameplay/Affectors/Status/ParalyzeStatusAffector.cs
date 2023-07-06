@@ -6,6 +6,10 @@ using Sirenix.OdinInspector;
 using Pathfinding;
 using Core.Math;
 
+/// <summary>
+/// TAKES DAMAGE PER TURN, CANNOT MOVE, CANNOT ATTACK,
+/// ITS POSITION GETS CRAZY FOR A FEW STEPS RANDOMLY (THEN RETURN TO THE INITIAL POSITION)
+/// </summary>
 [HideMonoScript]
 public class ParalyzeStatusAffector : StatusAffector
 {

@@ -5,6 +5,9 @@ using System.Linq;
 using Sirenix.OdinInspector;
 using Core.Patterns;
 
+/// <summary>
+/// MOVES AND ATTACK SLOWLY OR CANNOT MOVE NEITHER ATTACK (DEPENDS ON THE CONFIGURATION)
+/// </summary>
 [HideMonoScript]
 public class FreezeStatusAffector : StatusAffector
 {

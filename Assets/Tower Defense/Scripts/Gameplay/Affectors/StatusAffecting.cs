@@ -11,6 +11,9 @@ public static class StatusAffecting
         if (statusAffector == null || invoker == null || target == null)
             return;
 
+        if (target.IsStructure)
+            return;
+
         switch (statusAffector.status.status)
         {
             case StatusEnum.FREEZE:
@@ -21,6 +24,7 @@ public static class StatusAffecting
             case StatusEnum.POISON:
             case StatusEnum.ASLEEP:
             case StatusEnum.GROUNDED:
+            case StatusEnum.HEALBLOCK:
                 Poolable.TryGetPoolable(
                     statusAffector.prefab,
                     (Poolable pNewStatusAffectorPoolable) =>

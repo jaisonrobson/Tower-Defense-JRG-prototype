@@ -202,12 +202,6 @@ public abstract class Agent : MonoBehaviour, IPoolable
     [HideInEditorMode]
     [ReadOnly]
     private List<bool> isAttackPrevented;
-    [TitleGroup("Agent Identity/Affectors")]
-    [PropertyOrder(12)]
-    [ShowInInspector]
-    [HideInEditorMode]
-    [ReadOnly]
-    private List<bool> isHealPrevented;
     // Private (Variables) [END]
 
     // Protected (Variables) [START]
@@ -239,13 +233,15 @@ public abstract class Agent : MonoBehaviour, IPoolable
     public bool IsDead { get { return actualHealth <= 0f; } }
     public bool IsMovementPrevented { get { return isMovementPrevented.Count > 0; } }
     public bool IsAttackPrevented { get { return isAttackPrevented.Count > 0; } }
-    public bool IsHealPrevented { get { return isHealPrevented.Count > 0; } }
     public bool IsAgentUnderStatusParalyze { get { return affectingStatuses.Any(sa => sa.statusAffectorSO.status.status == StatusEnum.PARALYZE); } }
     public bool IsAgentUnderStatusDrown { get { return affectingStatuses.Any(sa => sa.statusAffectorSO.status.status == StatusEnum.DROWN); } }
     public bool IsAgentUnderStatusConfusion { get { return affectingStatuses.Any(sa => sa.statusAffectorSO.status.status == StatusEnum.CONFUSION); } }
     public bool IsAgentUnderStatusAsleep { get { return affectingStatuses.Any(sa => sa.statusAffectorSO.status.status == StatusEnum.ASLEEP); } }
     public bool IsAgentUnderStatusGrounded { get { return affectingStatuses.Any(sa => sa.statusAffectorSO.status.status == StatusEnum.GROUNDED); } }
+    public bool IsAgentUnderStatusHealblock { get { return affectingStatuses.Any(sa => sa.statusAffectorSO.status.status == StatusEnum.HEALBLOCK); } }
     public bool IsAgentUnderStatusTaunt { get { return affectingStatuses.Any(sa => sa.statusAffectorSO.status.status == StatusEnum.TAUNT); } }
+    public bool IsCreature { get { return GetAgent().type == AgentTypeEnum.CREATURE; } }
+    public bool IsStructure { get { return GetAgent().type == AgentTypeEnum.STRUCTURE; } }
     // Public (Properties) [END]
 
     // (Unity) Methods [START]
@@ -317,11 +313,6 @@ public abstract class Agent : MonoBehaviour, IPoolable
             isAttackPrevented.Clear();
         else
             isAttackPrevented = new List<bool>();
-
-        if (isHealPrevented != null)
-            isHealPrevented.Clear();
-        else
-            isHealPrevented = new List<bool>();
     }
     private void FilterActualGoal()
     {
@@ -350,12 +341,6 @@ public abstract class Agent : MonoBehaviour, IPoolable
     {
         if (isAttackPrevented?.Count > 0)
             isAttackPrevented?.RemoveAt(0);
-    }
-    public void AddHealPrevention() => isHealPrevented.Add(true);
-    public void RemoveHealPrevention()
-    {
-        if (isHealPrevented?.Count > 0)
-            isHealPrevented?.RemoveAt(0);
     }
     public void UpdateAgentVelocity(float newVelocity) => velocity = newVelocity;
     public void UpdateAgentAttackVelocity(float newAttackVelocity) => attackVelocity = newAttackVelocity;

@@ -5,24 +5,15 @@ using System.Linq;
 using Sirenix.OdinInspector;
 
 /// <summary>
-/// DAMAGED PER TURN BY CONFIGURED AMOUNT AND DURATION
+/// CANNOT HEAL OR BE HEALED FOR THE DURATION OF THE EFFECT
 /// </summary>
 [HideMonoScript]
-public class PoisonStatusAffector : StatusAffector
+public class HealblockStatusAffector : StatusAffector
 {
     // Protected (Methods) [START]
-    protected override void ExecuteTurnActions()
-    {
-        Target.OnReceiveDamage(Alignment, Damage, statusAffectorSO);
-    }
-    protected override void InitializeStatusActions()
-    {
-
-    }
-    protected override void FinishStatusActions()
-    {
-
-    }
+    protected override void ExecuteTurnActions() { }
+    protected override void InitializeStatusActions() { }
+    protected override void FinishStatusActions() { }
     // Protected (Methods) [END]
 }
 

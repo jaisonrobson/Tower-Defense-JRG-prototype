@@ -5,6 +5,9 @@ using System.Linq;
 using Sirenix.OdinInspector;
 using Core.Patterns;
 
+/// <summary>
+/// TAKES DAMAGE PER TURN
+/// </summary>
 [HideMonoScript]
 public class BurnStatusAffector : StatusAffector
 {

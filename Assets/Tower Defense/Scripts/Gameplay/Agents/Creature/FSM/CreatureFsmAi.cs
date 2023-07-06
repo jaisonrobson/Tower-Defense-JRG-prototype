@@ -127,7 +127,7 @@ public class CreatureFsmAi : AgentFsmAi
     }
     private void UpdateAIGoal()
     {
-        if (IsAgentDead || IsCreatureConfused)
+        if (IsAgentDead || IsCreatureConfused || IsCreatureTaunted)
             return;
 
         if (IsAttackPrevented)

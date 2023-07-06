@@ -5,6 +5,11 @@ using System.Linq;
 using Sirenix.OdinInspector;
 using Pathfinding;
 
+/// <summary>
+/// TAKES DAMAGE PER TURN, CANNOT MOVE, CANNOT ATTACK,
+/// THE AFFECTED FLOATS ITS POSITION A FEW STEPS FROM THE GROUND
+/// (THEN RETURN TO THE INITIAL POSITION)
+/// </summary>
 [HideMonoScript]
 public class DrownStatusAffector : StatusAffector
 {

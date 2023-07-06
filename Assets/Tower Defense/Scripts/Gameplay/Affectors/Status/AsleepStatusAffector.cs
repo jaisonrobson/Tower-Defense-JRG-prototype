@@ -4,6 +4,9 @@ using UnityEngine;
 using System.Linq;
 using Sirenix.OdinInspector;
 
+/// <summary>
+/// CANNOT MOVE, NEITHER ATTACK, IF HITTEN N" TIMES IT WILL AWAKE
+/// </summary>
 [HideMonoScript]
 public class AsleepStatusAffector : StatusAffector
 {
