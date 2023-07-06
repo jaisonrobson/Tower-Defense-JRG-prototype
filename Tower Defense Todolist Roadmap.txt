@@ -42,7 +42,7 @@ LEGENDA:
 (-) Modificar o sistema de FSM dos agentes para que todo agente possa se mover e atacar, e para verificar quais agentes nao podem realizar essas devidas acoes, atentar-se ao atributo "IsMovable" para movimento e "IsAgressive" para ataque. (estruturas nao vao poder se mover.)
 (X) Implementar a variavel "IsMovable" em cima do algoritmo de movimentação para não haver movimentação quando o agente não for "movel".
 (X) Caso o ataque esteja fora de alcance, e nao tenha mais nenhum ataque possivel (range ou cooldown) no momento, fazer com que o FSM mude de estado para Walk afim de atingir a distancia desejada ao objetivo. (testar a IA do FSM com inimigos que possuem ataques a distancia, ex: arqueiros)
-(O) Criar um animator para as estruturas
+(X) Criar um animator para as estruturas
 (X) Criar os FSMAI e states para Playable Structures pois estes devem verificar quando a estrutura esta posicionada antes de iniciar os estados
 (X) Criar a funcao de ataque das torres. (Função de ataque das estruturas)
 
@@ -83,7 +83,7 @@ LEGENDA:
 (X) Remover os pririty goals dos subspawns ao fugirem muito longe da area limite dos subspawns
 (X) Fazer um algoritmo para teletransportar o agente movel caso o mesmo se afaste da area de seu mestre.
 
-(O) Criar o sistema de evolução das torres (e seus minions spawnados.)
+(X) Criar o sistema de evolução das torres (e seus minions spawnados.)
 (X) Criar um algoritmo singleton que fara o controle de evolucao de torres descritos nos passos de afazeres abaixo (Structure Evolution Manager / Controller)
 (X) Armazenar a posicao da torre
 (X) Armazenar as posições dos agentes subspawns invocados pela torre
@@ -108,7 +108,7 @@ LEGENDA:
 (X) Caso o script encontre algum inimigo no caminho para o ponto de destino, deduzir o dano do AgentSO invocador calculado com o AttackSO realizado & reproduzir o efeito & som & se auto destruir (Repoolar)
 (X) Fazer com que os ataques a distancia nao causem dano em seu trajeto mas que ao encontrarem algum inimigo fisicamente, chamem outra funcao (Outcome ou Explode) que ira ativar um colisor na area em questao para entao verificar os inimigos dentro e causar os respectivos danos.
 (X) Tornar os projeteis poolaveis
-(-) Verificar a necessidade de repoolar projeteis caso seus agentes de origem ou destino nao existam mais\
+(-) Verificar a necessidade de repoolar projeteis caso seus agentes de origem ou destino nao existam mais
 (X) Fazer o reset das variaveis dos scripts de outcome quanto o ataque for poolado
 (X) Refatorar os scripts Outcome para obedecer o OutcomeAffector
 (X) Criar o funcionamento de ataques em area (AOE) (Criaturas e estruturas)
@@ -137,7 +137,7 @@ LEGENDA:
 
 (X) Corrigir o calculo de devolução de velocidade e velocidade de ataque nos algoritmos de status Affector (criar uma variavel que vai retornar exatamente a quantia/valor a ser devolvida/o ao finalizar o status)
 (X) Fazer alguns variaveis de controle no script Agent.cs para que permita coordenar melhor se o mesmo podera se mexer e atacar, ser curado, etc. (IsMovementPrevented, IsAttackPrevented...)
-( ) Criar um determinador de chance no AttackSO para que CADA status da lista no AttackSO seja aplicado. (ou seja uma chance para que o status seja aplicado ao atacar.)
+(X) Criar um determinador de chance no AttackSO para que CADA status da lista no AttackSO seja aplicado. (ou seja uma chance para que o status seja aplicado ao atacar.)
 ( ) Criar os agentes imunes aos status (lista de imunidade) para cada agente no AgentSO.
 ( ) Criar uma condicao na lista de imunidades (caso o agente seja uma STRUCTURE, remover a lista de imunidades, pois todas estruturas sao imunes automaticamente a status negativos).
 (X) Fazer com que as estruturas nao recebam nenhum status negativo.

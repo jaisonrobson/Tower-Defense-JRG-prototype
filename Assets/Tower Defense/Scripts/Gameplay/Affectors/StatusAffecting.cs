@@ -3,18 +3,25 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
 using Core.Patterns;
+using Core.Math;
 
 public static class StatusAffecting
 {
-    public static void InvokeStatus(StatusAffectorSO statusAffector, Agent invoker, Agent target)
+    public static void TryInvokeStatus(ProbabilityStatusAffectionSO probabilityStatusAffection, Agent invoker, Agent target)
     {
-        if (statusAffector == null || invoker == null || target == null)
+        if (probabilityStatusAffection == null || invoker == null || target == null)
             return;
 
         if (target.IsStructure)
             return;
 
-        switch (statusAffector.status.status)
+        if (target.IsStatusAlreadyAffectingAgent(probabilityStatusAffection.statusAffector))
+            return;
+
+        if (RNG.Int(0, 100) > probabilityStatusAffection.probability)
+            return;
+
+        switch (probabilityStatusAffection.statusAffector.status.status)
         {
             case StatusEnum.FREEZE:
             case StatusEnum.BURN:
@@ -25,8 +32,9 @@ public static class StatusAffecting
             case StatusEnum.ASLEEP:
             case StatusEnum.GROUNDED:
             case StatusEnum.HEALBLOCK:
+            case StatusEnum.TAUNT:
                 Poolable.TryGetPoolable(
-                    statusAffector.prefab,
+                    probabilityStatusAffection.statusAffector.prefab,
                     (Poolable pNewStatusAffectorPoolable) =>
                     {
                         pNewStatusAffectorPoolable.GetComponent<StatusAffector>().Invoker = invoker;

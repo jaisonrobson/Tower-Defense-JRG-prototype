@@ -41,12 +41,9 @@ public class MeleeAttackEnemyDetectionColliderController : MonoBehaviour
 
                             enemy.OnReceiveDamage(maa.Alignment, maa.Damage, maa.Attack);
 
-                            maa.Attack.onHitStatusAffectors
+                            maa.Attack.onHitProbabilityStatusAffectors
                                     .ToList()
-                                    .ForEach(sa => {
-                                        if (!enemy.IsStatusAlreadyAffectingAgent(sa))
-                                            StatusAffecting.InvokeStatus(sa, maa.Invoker, enemy);
-                                    });
+                                    .ForEach(sap => StatusAffecting.TryInvokeStatus(sap, maa.Invoker, enemy));
                         }
                     }
                 }

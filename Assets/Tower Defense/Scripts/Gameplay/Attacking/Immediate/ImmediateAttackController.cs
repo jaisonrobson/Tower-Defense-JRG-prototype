@@ -43,12 +43,9 @@ public class ImmediateAttackController : AttackController
 
             IAA.Target.OnReceiveDamage(IAA.Alignment, IAA.Damage, IAA.Attack);
 
-            IAA.Attack.onHitStatusAffectors
+            IAA.Attack.onHitProbabilityStatusAffectors
                 .ToList()
-                .ForEach(sa => {
-                    if (!IAA.Target.IsStatusAlreadyAffectingAgent(sa))
-                        StatusAffecting.InvokeStatus(sa, IAA.Invoker, IAA.Target);
-                });
+                .ForEach(sap => StatusAffecting.TryInvokeStatus(sap, IAA.Invoker, IAA.Target));
 
             Finished = true;
         }

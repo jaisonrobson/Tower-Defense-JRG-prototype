@@ -45,12 +45,9 @@ public class RangedAttackEnemyDetectionColliderController : MonoBehaviour
 
                                 enemy.OnReceiveDamage(raa.Alignment, raa.Damage, raa.Attack);
 
-                                raa.Attack.onHitStatusAffectors
+                                raa.Attack.onHitProbabilityStatusAffectors
                                     .ToList()
-                                    .ForEach(sa => {
-                                        if (!enemy.IsStatusAlreadyAffectingAgent(sa))
-                                            StatusAffecting.InvokeStatus(sa, raa.Invoker, enemy);
-                                    });
+                                    .ForEach(sap => StatusAffecting.TryInvokeStatus(sap, raa.Invoker, enemy));
                             }
 
                             rac.Finished = true;

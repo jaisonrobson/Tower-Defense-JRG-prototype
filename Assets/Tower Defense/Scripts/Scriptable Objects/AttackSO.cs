@@ -48,15 +48,15 @@ public class AttackSO : BaseOptionDataSO
     public float minimumAttackDistance = 1.5f;
 
     [VerticalGroup("StatusesApplication", PaddingTop = 7f)]
-    [BoxGroup("StatusesApplication/Box", LabelText = "Status Affectors")]
+    [BoxGroup("StatusesApplication/Box", LabelText = "Probability Status Affectors")]
     [ListDrawerSettings(Expanded = true)]
     [Required]
-    public StatusAffectorSO[] onHitStatusAffectors;
+    public ProbabilityStatusAffectionSO[] onHitProbabilityStatusAffectors;
 
     [BoxGroup("StatusesApplication/Box")]
     [ListDrawerSettings(Expanded = true)]
     [Required]
-    public StatusAffectorSO[] selfStatusAffectors;
+    public ProbabilityStatusAffectionSO[] selfProbabilityStatusAffectors;
 
     [VerticalGroup("Animations&Sounds", PaddingTop = 7f)]
     [HorizontalGroup("Animations&Sounds/split", LabelWidth = 125, PaddingRight = 10)]
