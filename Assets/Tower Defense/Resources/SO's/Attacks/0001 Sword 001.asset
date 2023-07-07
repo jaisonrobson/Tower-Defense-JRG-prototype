@@ -24,7 +24,7 @@ MonoBehaviour:
   jokerHiddenTitleField: 
   assetPath: Assets/SO's/Attacks/0001 Sword Hit 001.asset
   newName: 0001 Sword 001
-  type: 2
+  type: 0
   prefab: {fileID: 2900880776188868179, guid: 2f2c9f2fb0d4207438361b1a1c791036, type: 3}
   outcomePrefab: {fileID: 0}
   nature: {fileID: 11400000, guid: efc48cd36c929314495d893e09975cdd, type: 2}
