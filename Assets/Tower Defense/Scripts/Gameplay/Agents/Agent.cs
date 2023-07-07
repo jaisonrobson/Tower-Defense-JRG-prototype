@@ -346,6 +346,7 @@ public abstract class Agent : MonoBehaviour, IPoolable
     public void UpdateAgentAttackVelocity(float newAttackVelocity) => attackVelocity = newAttackVelocity;
     public bool IsStatusAlreadyAffectingAgent(StatusAffector sa) => affectingStatuses.Contains(sa) || affectingStatuses.Any(afs => afs.statusAffectorSO.status == sa.statusAffectorSO.status);
     public bool IsStatusAlreadyAffectingAgent(StatusAffectorSO sa) => affectingStatuses.Any(afs => afs.statusAffectorSO.status == sa.status);
+    public bool IsAgentImmuneToStatus(StatusEnum status) => GetAgent().statusImmunities.Any(si => si.status == status);
     public void AddAffectingStatus(StatusAffector sa) => affectingStatuses.Add(sa);
     public void RemoveAffectingStatus(StatusAffector sa) => affectingStatuses.Remove(sa);
     public abstract AgentSO GetAgent();

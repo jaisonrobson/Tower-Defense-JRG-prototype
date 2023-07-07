@@ -21,6 +21,9 @@ public static class StatusAffecting
         if (RNG.Int(0, 100) > probabilityStatusAffection.probability)
             return;
 
+        if (target.IsAgentImmuneToStatus(probabilityStatusAffection.statusAffector.status.status))
+            return;
+
         switch (probabilityStatusAffection.statusAffector.status.status)
         {
             case StatusEnum.FREEZE:

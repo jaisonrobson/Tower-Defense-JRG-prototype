@@ -161,7 +161,14 @@ public class AgentSO : BaseOptionDataSO
     [Required]
     public List<SubSpawnSO> subspawns;
 
-
+    [BoxGroup("third/tr_1/td_1")]
+    [ListDrawerSettings(Expanded = true)]
+    [PropertyTooltip("The list of status immunities of the agent")]
+    [OnCollectionChanged(After = "Update_AfterCollectionChange_StatusImmunities")]
+    [OnInspectorGUI("Update_NotAgentType_Structure")]
+    [ValidateInput("Validate_NotAgentType_Structure", "Structures must not have status immunities declared sinces it are all immune automatically.")]
+    [Required]
+    public List<StatusSO> statusImmunities;
 
     // Helper Methods [START]
     private void GenerateDictionaries()
@@ -209,6 +216,12 @@ public class AgentSO : BaseOptionDataSO
     }
 
 #if UNITY_EDITOR
+    private void Update_NotAgentType_Structure()
+    {
+        if (type == AgentTypeEnum.STRUCTURE)
+            if (statusImmunities != null)
+                statusImmunities.Clear();
+    }
 
     private void Update_AfterCollectionChange_AnimationsRequiredKeys(CollectionChangeInfo info, object value)
     {
@@ -266,6 +279,20 @@ public class AgentSO : BaseOptionDataSO
                 }
         }
     }
+    private void Update_AfterCollectionChange_StatusImmunities(CollectionChangeInfo info, object value)
+    {
+        switch (info.ChangeType)
+        {
+            case CollectionChangeType.Add:
+                {
+                    List<StatusSO> statuses = statusImmunities.Where(si => si == (StatusSO)info.Value).ToList();
+
+                    if (statuses.Count > 1)
+                        statusImmunities.Remove((StatusSO)info.Value);
+                    break;
+                }
+        }
+    }
 #endif
     // Helper Methods [END]
 
@@ -274,6 +301,7 @@ public class AgentSO : BaseOptionDataSO
     private bool Validate_NotNull_AnimationsDictionaryValues() { return !animations.ContainsValue(null); }
     private bool Validate_NotNull_SoundsDictionaryValues() { return !sounds.ContainsValue(null); }
     private bool Validate_NotDistant_Attacks() { return !attacks.Any(atSO => atSO.minimumAttackDistance > attackRange); }
+    private bool Validate_NotAgentType_Structure() => statusImmunities.Count == 0 || statusImmunities.Count > 0 && type != AgentTypeEnum.STRUCTURE;
     // Validation Methods [END]
 }
 
