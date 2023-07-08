@@ -44,6 +44,10 @@ public class MeleeAttackEnemyDetectionColliderController : MonoBehaviour
                             maa.Attack.onHitProbabilityStatusAffectors
                                     .ToList()
                                     .ForEach(sap => StatusAffecting.TryInvokeStatus(sap, maa.Invoker, enemy));
+
+                            Transform animationOrigin = maa.Invoker.GetAnimationOriginOfAttack(maa.Attack).animationOrigin;
+
+                            Animating.InvokeAnimation(maa.Attack.finalAnimation, enemy.transform.position, animationOrigin.rotation, maa.Duration);
                         }
                     }
                 }

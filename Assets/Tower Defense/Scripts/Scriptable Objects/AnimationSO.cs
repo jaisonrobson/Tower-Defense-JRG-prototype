@@ -13,8 +13,13 @@ public class AnimationSO : BaseOptionDataSO
 
     [PropertyRange(0f, 10f)]
     [BoxGroup("Box1")]
-    [PropertyTooltip("Time until the animation starts.")]
+    [PropertyTooltip("Time until the animation particles starts.")]
     public float delay = 0f;
+
+    [PropertyRange(0f, 10f)]
+    [BoxGroup("Box1")]
+    [PropertyTooltip("Time until the chained animation starts.")]
+    public float delayBeforeChainedAnimation = 0f;
 
     [VerticalGroup("vertical", PaddingTop = 5f)]
 

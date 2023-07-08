@@ -19,6 +19,7 @@ public enum PoolableTypeEnum
     STATUS_AFFECTOR_GROUNDED,
     STATUS_AFFECTOR_HEALBLOCK,
     STATUS_AFFECTOR_TAUNT,
+    AFX_ATTACKING
 }
 
 ////////////////////////////////////////////////////////////////////////////////

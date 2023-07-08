@@ -47,6 +47,10 @@ public class ImmediateAttackController : AttackController
                 .ToList()
                 .ForEach(sap => StatusAffecting.TryInvokeStatus(sap, IAA.Invoker, IAA.Target));
 
+            Transform animationOrigin = IAA.Invoker.GetAnimationOriginOfAttack(IAA.Attack).animationOrigin;
+
+            Animating.InvokeAnimation(IAA.Attack.finalAnimation, IAA.Target.transform.position, animationOrigin.rotation, IAA.Duration);
+
             Finished = true;
         }
     }

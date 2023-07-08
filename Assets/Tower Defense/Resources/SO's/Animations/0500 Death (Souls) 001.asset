@@ -24,6 +24,6 @@ MonoBehaviour:
   jokerHiddenTitleField: 
   assetPath: 
   newName: 
-  prefab: {fileID: 163640, guid: be4058b04abc8fe4ca81c721c18ecb4f, type: 3}
+  prefab: {fileID: 163640, guid: 4aae2f69031f45c4690573497e19b94a, type: 3}
   delay: 0
   chainedAnimation: {fileID: 0}

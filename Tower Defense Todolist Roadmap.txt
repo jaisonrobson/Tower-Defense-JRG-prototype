@@ -147,7 +147,7 @@ LEGENDA:
 ( ) Fazer o funcionamento das animações em tudo no jogo.
 ( ) Criar um script que sera responsavel por controlar quando a animacao vai iniciar (se na cfg do SO tem delay vai iniciar mais tarde, etc.)
 ( ) Fazer com que o script tambem inicie (Poolar) outras animacoes que estiverem ENCADEADAS na configuracao do SO configurado.
-( ) Make the animation duration (and all internal animations steps in hierarchy) last the same time as the attack that made it.
+( ) Fazer com que a duracao da animacao (e todas as subanimacoes internas da hierarquia) durem o mesmo tempo que o ataque que as provocou.
 ( ) Tornar todas as animacoes poolaveis
 
 ( ) Fazer com que o sistema de som use a tecnologia FMOD (se possivel integrar com o sistema de SO`s que ja existe)
@@ -179,3 +179,4 @@ BUGS E VALIDAÇÕES:
 (X) Encontrado problema nos ataques a distancia que sao muito lentos, eles acabam sendo repoolados na metade do caminho por causa de sua duracao/velocidade.
 ( ) Encontrado erro ao evoluir torres com vida menor que 100%
 (X) Encontrado erro ao aplicar status atraves de ataque nos agentes (os metodos de pooling estao sendo chamados repetidas vezes ocasionando em erros de nulidade).
+( ) Fazer com que as flags das torres nao possam ser colocadas em lugares que ja estiverem ocupados por outros tipos de colisores jogaveis.

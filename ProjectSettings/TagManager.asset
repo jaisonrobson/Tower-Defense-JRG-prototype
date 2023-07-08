@@ -23,6 +23,7 @@ TagManager:
   - PA_STATUS_AFFECTOR_GROUNDED
   - PA_STATUS_AFFECTOR_HEALBLOCK
   - PA_STATUS_AFFECTOR_TAUNT
+  - PA_AFX_ATTACKING
   layers:
   - Default
   - TransparentFX

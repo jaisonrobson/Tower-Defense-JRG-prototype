@@ -11,6 +11,8 @@ public static class Attacking
         if (attack == null || invoker == null || target == null)
             return;
 
+        float duration = Mathf.Clamp(invoker.CalculateAttackVelocity(attack), 1f, Mathf.Infinity);
+
         GameObject newAttack = Poolable.TryGetPoolable(
             attack.prefab,
             (Poolable pNewAttackPoolable) => {
@@ -19,7 +21,7 @@ public static class Attacking
                 pNewAttackPoolable.gameObject.GetComponent<Affector>().Target = target;
                 pNewAttackPoolable.gameObject.GetComponent<AttackAffector>().Attack = attack;
                 pNewAttackPoolable.gameObject.GetComponent<AttackAffector>().Damage = invoker.Damage;
-                pNewAttackPoolable.gameObject.GetComponent<AttackAffector>().Duration = Mathf.Clamp(invoker.CalculateAttackVelocity(attack), 1f, Mathf.Infinity);
+                pNewAttackPoolable.gameObject.GetComponent<AttackAffector>().Duration = duration;
 
                 //Remover esse trecho quando houver um modelo real no prefab (caso contrario vai substituir material do modelo)
                 if (pNewAttackPoolable.gameObject.GetComponent<MeshRenderer>() != null)
@@ -54,18 +56,26 @@ public static class Attacking
                 }
             }
         );
+
+        Transform animationOrigin = invoker.GetAnimationOriginOfAttack(attack).animationOrigin;
+
+        Animating.InvokeAnimation(attack.initialAnimation, animationOrigin.position, animationOrigin.rotation, duration);
     }
 
     public static void InvokeOutcome(Agent pInvoker, Vector3 pPosition, Vector3 pDirection, AlignmentEnum pAlignment, LayerMask pAffectedsMask, AttackSO pAttack, float pDamage)
     {
+        
+
         GameObject newOutcomeAttack = Poolable.TryGetPoolable(
             pAttack.outcomePrefab,
             (Poolable newOutcomeAttackPoolable) => {
+                float duration = newOutcomeAttackPoolable.gameObject.GetComponent<OutcomeAttackAffector>().GetOutComeTotalDuration();
+
                 newOutcomeAttackPoolable.gameObject.GetComponent<Affector>().Alignment = pAlignment;
                 newOutcomeAttackPoolable.gameObject.GetComponent<Affector>().Invoker = pInvoker;
                 newOutcomeAttackPoolable.gameObject.GetComponent<AttackAffector>().Attack = pAttack;
                 newOutcomeAttackPoolable.gameObject.GetComponent<AttackAffector>().Damage = pDamage;
-                newOutcomeAttackPoolable.gameObject.GetComponent<AttackAffector>().Duration = newOutcomeAttackPoolable.gameObject.GetComponent<OutcomeAttackAffector>().GetOutComeTotalDuration();
+                newOutcomeAttackPoolable.gameObject.GetComponent<AttackAffector>().Duration = duration;
                 newOutcomeAttackPoolable.gameObject.GetComponent<OutcomeAttackAffector>().Origin = pPosition;
 
                 Quaternion localInitialRotation = Quaternion.LookRotation(pDirection);
@@ -82,6 +92,10 @@ public static class Attacking
 
                     mrs.ForEach(mr => mr.material = alignmentMaterial.ghost_structures);
                 }
+
+                Transform animationOrigin = pInvoker.GetAnimationOriginOfAttack(pAttack).animationOrigin;
+
+                Animating.InvokeAnimation(pAttack.finalAnimation, pPosition, animationOrigin.rotation, duration);
             }
         );
 

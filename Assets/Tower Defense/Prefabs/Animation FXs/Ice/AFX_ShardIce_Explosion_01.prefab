@@ -32965,6 +32965,8 @@ GameObject:
   - component: {fileID: 4378323199438750}
   - component: {fileID: 198916061622039498}
   - component: {fileID: 199185895075044822}
+  - component: {fileID: 2268853478171442085}
+  - component: {fileID: 8354145579306951216}
   m_Layer: 0
   m_Name: AFX_ShardIce_Explosion_01
   m_TagString: Untagged
@@ -37888,6 +37890,65 @@ ParticleSystemRenderer:
   m_MeshWeighting2: 1
   m_MeshWeighting3: 1
   m_MaskInteraction: 0
+--- !u!114 &2268853478171442085
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1828717585066262}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d7b1221ed2d71d349a7f62dfbeddf4ec, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  initialPoolCapacity: 10
+  poolType: 19
+  prefabInitializationActions:
+    m_PersistentCalls:
+      m_Calls: []
+  poolRetrievalActions:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 8354145579306951216}
+        m_TargetAssemblyTypeName: AnimationFX, Assembly-CSharp
+        m_MethodName: PoolRetrievalAction
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  poolInsertionActions:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 8354145579306951216}
+        m_TargetAssemblyTypeName: AnimationFX, Assembly-CSharp
+        m_MethodName: PoolInsertionAction
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &8354145579306951216
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1828717585066262}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 171de497f7b9c174cb8d2e9517fe8e67, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1896311507502588
 GameObject:
   m_ObjectHideFlags: 0

@@ -14441,8 +14441,10 @@ GameObject:
   - component: {fileID: 441000}
   - component: {fileID: 19855056}
   - component: {fileID: 19990096}
+  - component: {fileID: -65966498676730777}
+  - component: {fileID: -6875724050271601522}
   m_Layer: 0
-  m_Name: SwordHitWhite
+  m_Name: AFX_SwordHitWhite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -14455,7 +14457,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 173668}
-  m_LocalRotation: {x: -0.7071068, y: 0, z: 0, w: 0.7071068}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -14466,7 +14468,7 @@ Transform:
   - {fileID: 417362}
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: -90, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!198 &19855056
 ParticleSystem:
   m_ObjectHideFlags: 0
@@ -19262,6 +19264,65 @@ ParticleSystemRenderer:
   m_MeshWeighting2: 1
   m_MeshWeighting3: 1
   m_MaskInteraction: 0
+--- !u!114 &-65966498676730777
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 173668}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d7b1221ed2d71d349a7f62dfbeddf4ec, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  initialPoolCapacity: 10
+  poolType: 19
+  prefabInitializationActions:
+    m_PersistentCalls:
+      m_Calls: []
+  poolRetrievalActions:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: -6875724050271601522}
+        m_TargetAssemblyTypeName: AnimationFX, Assembly-CSharp
+        m_MethodName: PoolRetrievalAction
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  poolInsertionActions:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: -6875724050271601522}
+        m_TargetAssemblyTypeName: AnimationFX, Assembly-CSharp
+        m_MethodName: PoolInsertionAction
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &-6875724050271601522
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 173668}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 171de497f7b9c174cb8d2e9517fe8e67, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &189538
 GameObject:
   m_ObjectHideFlags: 0

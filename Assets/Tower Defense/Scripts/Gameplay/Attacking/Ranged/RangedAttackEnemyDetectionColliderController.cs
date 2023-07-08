@@ -48,6 +48,10 @@ public class RangedAttackEnemyDetectionColliderController : MonoBehaviour
                                 raa.Attack.onHitProbabilityStatusAffectors
                                     .ToList()
                                     .ForEach(sap => StatusAffecting.TryInvokeStatus(sap, raa.Invoker, enemy));
+
+                                Transform animationOrigin = raa.Invoker.GetAnimationOriginOfAttack(raa.Attack).animationOrigin;
+
+                                Animating.InvokeAnimation(raa.Attack.finalAnimation, enemy.transform.position, animationOrigin.rotation, raa.Duration);
                             }
 
                             rac.Finished = true;

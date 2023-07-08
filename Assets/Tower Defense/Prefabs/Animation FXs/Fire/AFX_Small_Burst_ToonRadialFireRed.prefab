@@ -9609,6 +9609,8 @@ GameObject:
   - component: {fileID: 4342300430353880}
   - component: {fileID: 198387125220880364}
   - component: {fileID: 199309039756952314}
+  - component: {fileID: -6802830309726787844}
+  - component: {fileID: 8521122322606556324}
   m_Layer: 0
   m_Name: AFX_Small_Burst_ToonRadialFireRed
   m_TagString: Untagged
@@ -14410,3 +14412,62 @@ ParticleSystemRenderer:
   m_MeshWeighting2: 1
   m_MeshWeighting3: 1
   m_MaskInteraction: 0
+--- !u!114 &-6802830309726787844
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1724243991040466}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d7b1221ed2d71d349a7f62dfbeddf4ec, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  initialPoolCapacity: 10
+  poolType: 19
+  prefabInitializationActions:
+    m_PersistentCalls:
+      m_Calls: []
+  poolRetrievalActions:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 8521122322606556324}
+        m_TargetAssemblyTypeName: AnimationFX, Assembly-CSharp
+        m_MethodName: PoolRetrievalAction
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  poolInsertionActions:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 8521122322606556324}
+        m_TargetAssemblyTypeName: AnimationFX, Assembly-CSharp
+        m_MethodName: PoolInsertionAction
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &8521122322606556324
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1724243991040466}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 171de497f7b9c174cb8d2e9517fe8e67, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

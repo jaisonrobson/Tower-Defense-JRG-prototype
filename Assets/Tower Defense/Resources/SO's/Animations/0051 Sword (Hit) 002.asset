@@ -24,6 +24,6 @@ MonoBehaviour:
   jokerHiddenTitleField: 
   assetPath: Assets/SO's/Animations/0051 Sword Hit 002.asset
   newName: 0051 Sword (Hit) 002
-  prefab: {fileID: 173668, guid: 9d8da694979ef5740b31b9bd21c40b8e, type: 3}
+  prefab: {fileID: 173668, guid: ed5692e4ebe637140b7b6109f186eec1, type: 3}
   delay: 0
   chainedAnimation: {fileID: 0}

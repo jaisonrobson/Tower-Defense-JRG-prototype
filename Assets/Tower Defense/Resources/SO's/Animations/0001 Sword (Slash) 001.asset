@@ -24,6 +24,6 @@ MonoBehaviour:
   jokerHiddenTitleField: 
   assetPath: Assets/SO's/Animations/0001 Sword Slash 001.asset
   newName: 0001 Sword (Slash) 001
-  prefab: {fileID: 1133915824432234, guid: 459e8cea3d618c74d8aa368b8cee8ae0, type: 3}
+  prefab: {fileID: 1133915824432234, guid: de62b8d36b0459645801c385929a270c, type: 3}
   delay: 0
   chainedAnimation: {fileID: 0}
