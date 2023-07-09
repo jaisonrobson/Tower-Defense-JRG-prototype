@@ -60,6 +60,11 @@ public static class Attacking
         Transform animationOrigin = invoker.GetAnimationOriginOfAttack(attack).animationOrigin;
 
         Animating.InvokeAnimation(attack.initialAnimation, animationOrigin.position, animationOrigin.rotation, duration);
+
+        if (attack.trailAnimation != null)
+        {
+            Animating.InvokeTrailAnimation(attack.trailAnimation, newAttack, duration);
+        }
     }
 
     public static void InvokeOutcome(Agent pInvoker, Vector3 pPosition, Vector3 pDirection, AlignmentEnum pAlignment, LayerMask pAffectedsMask, AttackSO pAttack, float pDamage)

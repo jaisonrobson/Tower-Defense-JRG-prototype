@@ -21,6 +21,16 @@ public static class Animating
 
         newAnimationPoolable.GetComponent<AnimationFX>().StartAnimation(pAnimSO, pDuration);
     }
+
+    public static void InvokeTrailAnimation(AnimationSO pAnimSO, GameObject pObjectToFollow, float pDuration = 1f)
+    {
+        if (pAnimSO == null)
+            return;
+
+        GameObject newAnimationPoolable = Poolable.TryGetPoolable(pAnimSO.prefab);
+
+        newAnimationPoolable.GetComponent<AnimationFX>().StartAnimation(pAnimSO, pDuration, pObjectToFollow, true);
+    }
 }
 
 ////////////////////////////////////////////////////////////////////////////////

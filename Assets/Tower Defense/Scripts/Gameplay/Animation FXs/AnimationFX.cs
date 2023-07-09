@@ -20,11 +20,13 @@ public class AnimationFX : MonoBehaviour, IPoolable
     private bool didPlayedSystems;
     private bool didStartedChainedAnimation;
     private bool didPlayedChainedAnimation;
+    private bool isTrailAnimation;
     // Private (Variables) [END]
 
     // Public (Properties) [START]
     public AnimationSO AnimationSO { get; set; }
     public float Duration { get; set; }
+    public GameObject ObjectToFollow { get; set; }
     // Public (Properties) [END]
 
     // (Unity) Methods [START]
@@ -38,6 +40,7 @@ public class AnimationFX : MonoBehaviour, IPoolable
             HandleParticleSystemsDelayedPlaying();
             HandleChainedAnimationInvoking();
             HandleAnimationFinishing();
+            HandleTrailAnimationObjectFollowing();
         }
     }
     // (Unity) Methods [END]
@@ -46,6 +49,7 @@ public class AnimationFX : MonoBehaviour, IPoolable
     private void ResetVariables()
     {
         isRunning = false;
+        isTrailAnimation = false;
         didPlayedSystems = false;
         didStartedChainedAnimation = false;
         didPlayedChainedAnimation = false;
@@ -53,6 +57,7 @@ public class AnimationFX : MonoBehaviour, IPoolable
         chainedAnimationDelay = 0f;
         Duration = 0f;
         AnimationSO = null;
+        ObjectToFollow = null;
 
         RefreshSystemsVariables();
         StopAllParticleSystems();
@@ -124,16 +129,29 @@ public class AnimationFX : MonoBehaviour, IPoolable
                 Poolable.TryPool(gameObject);
         }
     }
+    private void HandleTrailAnimationObjectFollowing()
+    {
+        if (isTrailAnimation && ObjectToFollow != null && ObjectToFollow.activeInHierarchy)
+        {
+            transform.position = ObjectToFollow.transform.position;
+        }
+        else if (isTrailAnimation && ObjectToFollow != null && !ObjectToFollow.activeInHierarchy)
+        {
+            Poolable.TryPool(gameObject);
+        }
+    }
     // Private (Methods) [END]
 
     // Public (Methods) [START]
-    public void StartAnimation(AnimationSO pAnimSO, float pDuration)
+    public void StartAnimation(AnimationSO pAnimSO, float pDuration, GameObject pObjectToFollow = null, bool pIsTrailAnimation = false)
     {
         ResetVariables();
 
         AnimationSO = pAnimSO;
         Duration = pDuration;
         startingTime = Time.time;
+        ObjectToFollow = pObjectToFollow;
+        isTrailAnimation = pIsTrailAnimation;
 
         UpdateParticleSystems();
 
