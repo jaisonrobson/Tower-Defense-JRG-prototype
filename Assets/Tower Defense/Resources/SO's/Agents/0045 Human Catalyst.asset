@@ -132,3 +132,4 @@ MonoBehaviour:
   evolutionTree: []
   attacks: []
   subspawns: []
+  statusImmunities: []

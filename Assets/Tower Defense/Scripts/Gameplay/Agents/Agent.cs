@@ -249,9 +249,9 @@ public abstract class Agent : MonoBehaviour, IPoolable
     {
         if (firstInitialization)
         {
-            firstInitialization = false;
-
             PoolRetrievalAction(GetComponent<Poolable>());
+
+            firstInitialization = false;
         }
     }
     protected virtual void Start()
@@ -326,6 +326,10 @@ public abstract class Agent : MonoBehaviour, IPoolable
     private void FilterPriorityGoals()
     {
         priorityGoals = priorityGoals.ToList().Where(pg => pg.goal.gameObject.activeInHierarchy == true && !pg.goal.IsDead).ToArray();
+    }
+    private void HandleSpawnAnimation()
+    {
+        Animating.InvokeAnimation(GetAgent().animations.GetValueOrDefault("spawn"), transform.position, transform.rotation);
     }
     // Private (Methods) [END]
 
@@ -527,6 +531,9 @@ public abstract class Agent : MonoBehaviour, IPoolable
 
         if (GetComponent<AgentFsmAi>() != null)
             GetComponent<AgentFsmAi>().PoolRetrievalAction(poolable);
+
+        if (!firstInitialization)
+            HandleSpawnAnimation(); //VERIFICAR PORQUE ESTA PRODUZINDO EFEITO NA CRIACAO DOS AGENTES NO LOCAL INICIAL DE RESET
     }
     public virtual void PoolInsertionAction(Poolable poolable)
     {

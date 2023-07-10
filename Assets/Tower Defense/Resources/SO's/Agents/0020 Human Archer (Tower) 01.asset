@@ -133,3 +133,4 @@ MonoBehaviour:
   - {fileID: 11400000, guid: d282e64abeaf8aa49940be7f08d12411, type: 2}
   attacks: []
   subspawns: []
+  statusImmunities: []

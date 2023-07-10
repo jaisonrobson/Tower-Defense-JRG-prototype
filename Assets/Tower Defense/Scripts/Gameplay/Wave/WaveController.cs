@@ -202,14 +202,14 @@ public class WaveController : OdinSingleton<WaveController>
     private void SpawnAgent(int index)
     {
         GameObject agent = Poolable.TryGetPoolable(GetRunningWave(index).agents.ElementAt(nextIndexToSpawn[index]).prefab, OnRetrievePoolableAgent);
-        agent.gameObject.GetComponent<AIPath>().Teleport(lastRandomSpawnPointPicked.position);
-        agent.gameObject.GetComponent<Agent>().Alignment = GetRunningAlignedWave(actualAgentSpawningIndex).alignment.alignment;
     }
     public void OnRetrievePoolableAgent(Poolable agent)
     {
         lastRandomSpawnPointPicked = PickRandomSpawnPoint(GetRunningAlignedWave(actualAgentSpawningIndex).alignment.alignment).transform;
 
         agent.transform.SetPositionAndRotation(lastRandomSpawnPointPicked.position, lastRandomSpawnPointPicked.rotation);
+        agent.gameObject.GetComponent<AIPath>().Teleport(lastRandomSpawnPointPicked.position);
+        agent.gameObject.GetComponent<Agent>().Alignment = GetRunningAlignedWave(actualAgentSpawningIndex).alignment.alignment;
     }
     private void IncrementNextIndexToSpawn(int index)
     {
