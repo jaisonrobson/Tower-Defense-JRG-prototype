@@ -14410,7 +14410,7 @@ ParticleSystem:
   emitterVelocityMode: 0
   looping: 0
   prewarm: 0
-  playOnAwake: 1
+  playOnAwake: 0
   useUnscaledTime: 0
   autoRandomSeed: 1
   startDelay:
@@ -19341,7 +19341,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   life: 0.4
-  killAfterLife: 1
+  killAfterLife: 0
 --- !u!114 &1300669811468513117
 MonoBehaviour:
   m_ObjectHideFlags: 0

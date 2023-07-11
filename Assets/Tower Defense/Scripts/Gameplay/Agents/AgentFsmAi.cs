@@ -298,6 +298,8 @@ public abstract class AgentFsmAi : MonoBehaviour
     {
         isDying = true;
         timeUntilCompletelyDie = 3f;
+
+        agent.DoDeathAnimationFX(timeUntilCompletelyDie);
     }
     public float GetDistanceBetweenAgentAndEnemy()
     {

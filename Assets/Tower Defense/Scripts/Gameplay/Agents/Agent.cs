@@ -333,6 +333,10 @@ public abstract class Agent : MonoBehaviour, IPoolable
     {
         Animating.InvokeAnimation(GetAgent().animations.GetValueOrDefault("spawn"), transform.position, transform.rotation);
     }
+    public void DoDeathAnimationFX(float pDuration = 1f)
+    {
+        Animating.InvokeAnimation(GetAgent().animations.GetValueOrDefault("death"), transform.position, transform.rotation, pDuration);
+    }
     public void AddMovementPrevention() => isMovementPrevented.Add(true);
     public void RemoveMovementPrevention()
     {
