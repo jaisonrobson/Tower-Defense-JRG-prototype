@@ -106,7 +106,12 @@ public class PlayableStructure : Structure
             goalFlag.SetParent(this.transform, false);
         }
     }
-    public void PlaceStructure() { isPlaced = true; }
+    public void PlaceStructure()
+    {
+        isPlaced = true;
+
+        DoSpawnAnimationFX();
+    }
     public override void PoolRetrievalAction(Poolable poolable)
     {
         ResetStructurePlacement();

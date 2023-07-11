@@ -259,7 +259,6 @@ public abstract class Agent : MonoBehaviour, IPoolable
     }
     protected virtual void Update()
     {
-
     }
     // (Unity) Methods [END]
 
@@ -327,13 +326,13 @@ public abstract class Agent : MonoBehaviour, IPoolable
     {
         priorityGoals = priorityGoals.ToList().Where(pg => pg.goal.gameObject.activeInHierarchy == true && !pg.goal.IsDead).ToArray();
     }
-    private void HandleSpawnAnimation()
-    {
-        Animating.InvokeAnimation(GetAgent().animations.GetValueOrDefault("spawn"), transform.position, transform.rotation);
-    }
     // Private (Methods) [END]
 
     // Public (Methods) [START]
+    public void DoSpawnAnimationFX()
+    {
+        Animating.InvokeAnimation(GetAgent().animations.GetValueOrDefault("spawn"), transform.position, transform.rotation);
+    }
     public void AddMovementPrevention() => isMovementPrevented.Add(true);
     public void RemoveMovementPrevention()
     {
@@ -531,9 +530,6 @@ public abstract class Agent : MonoBehaviour, IPoolable
 
         if (GetComponent<AgentFsmAi>() != null)
             GetComponent<AgentFsmAi>().PoolRetrievalAction(poolable);
-
-        if (!firstInitialization)
-            HandleSpawnAnimation(); //VERIFICAR PORQUE ESTA PRODUZINDO EFEITO NA CRIACAO DOS AGENTES NO LOCAL INICIAL DE RESET
     }
     public virtual void PoolInsertionAction(Poolable poolable)
     {

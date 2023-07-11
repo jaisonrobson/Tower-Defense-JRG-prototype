@@ -259,6 +259,8 @@ public abstract class AgentFsmAi : MonoBehaviour
 
         newAgent.gameObject.GetComponent<AIPath>().Teleport(agent.GetAgentColliderBoundsInitialPosition(newAgent.transform));
 
+        newAgent.gameObject.GetComponent<Agent>().DoSpawnAnimationFX();
+
         return newAgent;
     }
     private void OnRetrieveSubSpawnPoolableAgent(Poolable poolable)

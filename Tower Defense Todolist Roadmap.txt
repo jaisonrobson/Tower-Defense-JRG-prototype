@@ -148,7 +148,7 @@ LEGENDA:
 (X) Fazer com que o script tambem inicie (Poolar) outras animacoes que estiverem ENCADEADAS na configuracao do SO configurado.
 (X) Fazer com que a duracao da animacao (e todas as subanimacoes internas da hierarquia) durem o mesmo tempo que o ataque que as provocou.
 (X) Tornar todas as animacoes poolaveis
-( ) Fazer as animacoes para spawn de criaturas selvagens (wave creatures)
+(O) Fazer as animacoes para spawn de criaturas selvagens (wave creatures)
 ( ) Fazer as animacoes para o spawn de torres posicionadas pelo jogador
 ( ) Fazer as animacoes dos subspawns de criaturas advindas de torres
 ( ) Fazer as animacoes de morte das torres
