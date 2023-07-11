@@ -153,6 +153,7 @@ LEGENDA:
 (X) Fazer as animacoes dos subspawns de criaturas advindas de torres
 (X) Fazer as animacoes de morte das torres
 (X) Fazer as animacoes de morte dos agentes criaturas
+(X) Fazer as animacoes de status affectors
 
 
 ( ) Fazer com que o sistema de som use a tecnologia FMOD (se possivel integrar com o sistema de SO`s que ja existe)

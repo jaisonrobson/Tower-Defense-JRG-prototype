@@ -88,7 +88,10 @@ public abstract class StatusAffector : Affector
     // Private (Methods) [END]
 
     // Protected (Methods) [START]
-    protected abstract void ExecuteTurnActions();
+    protected virtual void ExecuteTurnActions()
+    {
+        Animating.InvokeAnimation(statusAffectorSO.animation, Target.transform.position, Target.transform.rotation);
+    }
     protected abstract void InitializeStatusActions();
     protected abstract void FinishStatusActions();
     // Protected (Methods) [END]

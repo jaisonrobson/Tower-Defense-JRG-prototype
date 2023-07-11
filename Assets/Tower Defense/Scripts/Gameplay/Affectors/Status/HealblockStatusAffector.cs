@@ -11,7 +11,10 @@ using Sirenix.OdinInspector;
 public class HealblockStatusAffector : StatusAffector
 {
     // Protected (Methods) [START]
-    protected override void ExecuteTurnActions() { }
+    protected override void ExecuteTurnActions()
+    {
+        base.ExecuteTurnActions();
+    }
     protected override void InitializeStatusActions() { }
     protected override void FinishStatusActions() { }
     // Protected (Methods) [END]

@@ -65,6 +65,8 @@ public class ParalyzeStatusAffector : StatusAffector
     // Protected (Methods) [START]
     protected override void ExecuteTurnActions()
     {
+        base.ExecuteTurnActions();
+
         Target.OnReceiveDamage(Alignment, Damage, statusAffectorSO);
 
         timeForPositionShuffling = Time.time + 1f;

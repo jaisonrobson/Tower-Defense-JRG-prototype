@@ -59,6 +59,8 @@ public class DrownStatusAffector : StatusAffector
     // Protected (Methods) [START]
     protected override void ExecuteTurnActions()
     {
+        base.ExecuteTurnActions();
+
         Target.OnReceiveDamage(Alignment, Damage, statusAffectorSO);
     }
     protected override void InitializeStatusActions()

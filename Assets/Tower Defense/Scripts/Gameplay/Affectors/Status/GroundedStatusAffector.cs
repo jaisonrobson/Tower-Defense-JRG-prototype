@@ -13,6 +13,7 @@ public class GroundedStatusAffector : StatusAffector
     // Protected (Methods) [START]
     protected override void ExecuteTurnActions()
     {
+        base.ExecuteTurnActions();
     }
     protected override void InitializeStatusActions()
     {
