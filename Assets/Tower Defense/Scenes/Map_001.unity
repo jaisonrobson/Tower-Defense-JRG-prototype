@@ -3373,8 +3373,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_IgnoreLayout: 0
-  m_MinWidth: 162.1875
-  m_MinHeight: 162.1875
+  m_MinWidth: 83.125
+  m_MinHeight: 83.125
   m_PreferredWidth: -1
   m_PreferredHeight: -1
   m_FlexibleWidth: -1
@@ -5657,7 +5657,7 @@ MonoBehaviour:
   m_MinWidth: -1
   m_MinHeight: 50
   m_PreferredWidth: -1
-  m_PreferredHeight: 27.031248
+  m_PreferredHeight: 13.854167
   m_FlexibleWidth: -1
   m_FlexibleHeight: 0
   m_LayoutPriority: 1
@@ -6747,8 +6747,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_IgnoreLayout: 0
-  m_MinWidth: 162.1875
-  m_MinHeight: 162.1875
+  m_MinWidth: 83.125
+  m_MinHeight: 83.125
   m_PreferredWidth: -1
   m_PreferredHeight: -1
   m_FlexibleWidth: -1
@@ -9408,7 +9408,7 @@ MonoBehaviour:
   m_StartCorner: 0
   m_StartAxis: 0
   m_CellSize: {x: 50, y: 50}
-  m_Spacing: {x: 3.7843747, y: 3.7843747}
+  m_Spacing: {x: 1.9395833, y: 1.9395833}
   m_Constraint: 0
   m_ConstraintCount: 2
   paddingSizerFallback:
@@ -25164,8 +25164,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_IgnoreLayout: 0
-  m_MinWidth: 162.1875
-  m_MinHeight: 162.1875
+  m_MinWidth: 83.125
+  m_MinHeight: 83.125
   m_PreferredWidth: -1
   m_PreferredHeight: -1
   m_FlexibleWidth: -1
@@ -26175,8 +26175,8 @@ GameObject:
   m_Component:
   - component: {fileID: 1824923562}
   - component: {fileID: 1824923561}
-  - component: {fileID: 1824923560}
   - component: {fileID: 1824923563}
+  - component: {fileID: 1824923564}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -26184,14 +26184,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!81 &1824923560
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1824923559}
-  m_Enabled: 1
 --- !u!20 &1824923561
 Camera:
   m_ObjectHideFlags: 0
@@ -26285,6 +26277,19 @@ MonoBehaviour:
   m_RequiresDepthTexture: 0
   m_RequiresColorTexture: 0
   m_Version: 2
+--- !u!114 &1824923564
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1824923559}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 86c6556701af9e04380698b89f691b6e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  attenuationObject: {fileID: 0}
 --- !u!1 &1826284464
 GameObject:
   m_ObjectHideFlags: 0

@@ -143,7 +143,7 @@ LEGENDA:
 (X) Fazer com que as estruturas nao recebam nenhum status negativo.
 (X) Fazer com que os agentes que possuirem imunidades na lista, nao recebem os status especificos de acordo com as imunidades.
 
-(O) Fazer o funcionamento das animações em tudo no jogo.
+(X) Fazer o funcionamento das animações em tudo no jogo.
 (X) Criar um script que sera responsavel por controlar quando a animacao vai iniciar (se na cfg do SO tem delay vai iniciar mais tarde, etc.)
 (X) Fazer com que o script tambem inicie (Poolar) outras animacoes que estiverem ENCADEADAS na configuracao do SO configurado.
 (X) Fazer com que a duracao da animacao (e todas as subanimacoes internas da hierarquia) durem o mesmo tempo que o ataque que as provocou.
@@ -155,8 +155,8 @@ LEGENDA:
 (X) Fazer as animacoes de morte dos agentes criaturas
 (X) Fazer as animacoes de status affectors
 
-
-( ) Fazer com que o sistema de som use a tecnologia FMOD (se possivel integrar com o sistema de SO`s que ja existe)
+(O) Fazer com que o sistema de som use a tecnologia FMOD (se possivel integrar com o sistema de SO`s que ja existe)
+(X) Estudar o FMOD https://www.fmod.com/docs/2.02/unity/integration-tutorial.html
 ( ) Criar o sistema de som
 ( ) Tornar os sons poolaveis
 

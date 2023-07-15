@@ -22,8 +22,8 @@ MonoBehaviour:
     PrefabModifications: []
     SerializationNodes: []
   jokerHiddenTitleField: 
-  assetPath: 
-  newName: 
+  assetPath: Assets/Tower Defense/Resources/SO's/Sounds/0290 Confusion (Burst) 001.asset
+  newName: 0290 Confusion 001
   prefab: {fileID: 1055724211907020900, guid: d2bf0cfca8e86114a9e1945dd37a4495, type: 3}
   loop: 0
   delay: 0
