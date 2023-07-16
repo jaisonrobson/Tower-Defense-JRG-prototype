@@ -48,6 +48,7 @@ public class MeleeAttackEnemyDetectionColliderController : MonoBehaviour
                             Transform animationOrigin = maa.Invoker.GetAnimationOriginOfAttack(maa.Attack).animationOrigin;
 
                             Animating.InvokeAnimation(maa.Attack.finalAnimation, enemy.transform.position, animationOrigin.rotation, maa.Duration);
+                            AudioPlaying.InvokeSound(maa.Attack.finalSound, enemy.transform.position);
                         }
                     }
                 }

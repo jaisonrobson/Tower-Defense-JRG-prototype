@@ -91,6 +91,7 @@ public abstract class StatusAffector : Affector
     protected virtual void ExecuteTurnActions()
     {
         Animating.InvokeAnimation(statusAffectorSO.animation, Target.transform.position, Target.transform.rotation);
+        AudioPlaying.InvokeSound(statusAffectorSO.sound, Target.transform.position);
     }
     protected abstract void InitializeStatusActions();
     protected abstract void FinishStatusActions();

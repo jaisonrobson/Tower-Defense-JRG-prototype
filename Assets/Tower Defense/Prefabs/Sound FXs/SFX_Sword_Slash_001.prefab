@@ -10,6 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 2012791220525984952}
   - component: {fileID: 8663246681670906344}
+  - component: {fileID: 4461426656438618898}
+  - component: {fileID: 8383096858753245519}
   m_Layer: 0
   m_Name: SFX_Sword_Slash_001
   m_TagString: Untagged
@@ -63,3 +65,62 @@ MonoBehaviour:
   OverrideAttenuation: 0
   OverrideMinDistance: 1
   OverrideMaxDistance: 20
+--- !u!114 &4461426656438618898
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 466575020125973556}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d7b1221ed2d71d349a7f62dfbeddf4ec, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  initialPoolCapacity: 10
+  poolType: 20
+  prefabInitializationActions:
+    m_PersistentCalls:
+      m_Calls: []
+  poolRetrievalActions:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 8383096858753245519}
+        m_TargetAssemblyTypeName: SoundFX, Assembly-CSharp
+        m_MethodName: PoolRetrievalAction
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  poolInsertionActions:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 8383096858753245519}
+        m_TargetAssemblyTypeName: SoundFX, Assembly-CSharp
+        m_MethodName: PoolInsertionAction
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &8383096858753245519
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 466575020125973556}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 27ef85c9f7601a64db0d891740b1d122, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

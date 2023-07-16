@@ -60,10 +60,14 @@ public static class Attacking
         Transform animationOrigin = invoker.GetAnimationOriginOfAttack(attack).animationOrigin;
 
         Animating.InvokeAnimation(attack.initialAnimation, animationOrigin.position, animationOrigin.rotation, duration);
+        AudioPlaying.InvokeSound(attack.initialSound, invoker.transform.position);
 
         if (attack.trailAnimation != null)
         {
             Animating.InvokeTrailAnimation(attack.trailAnimation, newAttack, duration);
+
+            if (attack.trailSound != null)
+                AudioPlaying.InvokeSound(attack.trailSound, newAttack);
         }
     }
 
@@ -101,6 +105,7 @@ public static class Attacking
                 Transform animationOrigin = pInvoker.GetAnimationOriginOfAttack(pAttack).animationOrigin;
 
                 Animating.InvokeAnimation(pAttack.finalAnimation, pPosition, animationOrigin.rotation, duration);
+                AudioPlaying.InvokeSound(pAttack.finalSound, pPosition);
             }
         );
 

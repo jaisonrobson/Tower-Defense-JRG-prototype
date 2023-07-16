@@ -332,10 +332,12 @@ public abstract class Agent : MonoBehaviour, IPoolable
     public void DoSpawnAnimationFX()
     {
         Animating.InvokeAnimation(GetAgent().animations.GetValueOrDefault("spawn"), transform.position, transform.rotation);
+        AudioPlaying.InvokeSound(GetAgent().sounds.GetValueOrDefault("spawn"), transform.position);
     }
     public void DoDeathAnimationFX(float pDuration = 1f)
     {
         Animating.InvokeAnimation(GetAgent().animations.GetValueOrDefault("death"), transform.position, transform.rotation, pDuration);
+        AudioPlaying.InvokeSound(GetAgent().sounds.GetValueOrDefault("death"), transform.position);
     }
     public void AddMovementPrevention() => isMovementPrevented.Add(true);
     public void RemoveMovementPrevention()
