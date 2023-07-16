@@ -25,6 +25,13 @@ MonoBehaviour:
   assetPath: Assets/Tower Defense/Resources/SO's/Sounds/0280 Bubble (Burst) 001.asset
   newName: 0280 Bubble 001
   prefab: {fileID: 1055724211907020900, guid: 227f56963718d2345a308871b6222331, type: 3}
+  fmodEvent:
+    Guid:
+      Data1: -2119356486
+      Data2: 1157607239
+      Data3: 1853786019
+      Data4: 296364763
+    Path: event:/SFX/Water/Bubble 001
   loop: 0
   delay: 0
   volume: 1

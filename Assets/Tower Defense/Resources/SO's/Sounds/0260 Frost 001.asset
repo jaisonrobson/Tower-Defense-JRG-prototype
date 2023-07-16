@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 51ea029655f0e0345a19634775996ce0, type: 3}
-  m_Name: 0260 Frost (Burst) 001
+  m_Name: 0260 Frost 001
   m_EditorClassIdentifier: 
   serializationData:
     SerializedFormat: 2
@@ -22,9 +22,16 @@ MonoBehaviour:
     PrefabModifications: []
     SerializationNodes: []
   jokerHiddenTitleField: 
-  assetPath: 
-  newName: 
+  assetPath: Assets/Tower Defense/Resources/SO's/Sounds/0260 Frost (Burst) 001.asset
+  newName: 0260 Frost 001
   prefab: {fileID: 1055724211907020900, guid: 36b255924cd831343bbdddd315731b05, type: 3}
+  fmodEvent:
+    Guid:
+      Data1: -1157893549
+      Data2: 1139708297
+      Data3: 1027422377
+      Data4: 1102216117
+    Path: event:/SFX/Ice/Frost (Burst) 001
   loop: 0
   delay: 0
   volume: 1

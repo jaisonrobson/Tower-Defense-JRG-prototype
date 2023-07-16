@@ -26,6 +26,13 @@ MonoBehaviour:
     001.asset
   newName: 0120 Spawn (Structure) 001
   prefab: {fileID: 3177816107432247348, guid: b1bf0d5f20424c748a8c6191c73c0c4f, type: 3}
+  fmodEvent:
+    Guid:
+      Data1: -320647574
+      Data2: 1110992533
+      Data3: -43131732
+      Data4: 774935488
+    Path: event:/SFX/Spawn/Spawn (Structure) 001
   loop: 0
   delay: 0
   volume: 1

@@ -25,6 +25,13 @@ MonoBehaviour:
   assetPath: Assets/SO's/Sounds/0100 Spawn 001.asset
   newName: 0100 Spawn (Minion) 001
   prefab: {fileID: 3177816107432247348, guid: e065866309b9ff64dbb283e0f6449cf3, type: 3}
+  fmodEvent:
+    Guid:
+      Data1: -792402968
+      Data2: 1223477639
+      Data3: -1583604324
+      Data4: -1047120048
+    Path: event:/SFX/Spawn/Spawn (Minion) 001
   loop: 0
   delay: 0
   volume: 1

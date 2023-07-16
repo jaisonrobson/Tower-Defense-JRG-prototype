@@ -25,6 +25,13 @@ MonoBehaviour:
   assetPath: 
   newName: 
   prefab: {fileID: 1055724211907020900, guid: 8b1bde9ea26dfe348b08393026b17638, type: 3}
+  fmodEvent:
+    Guid:
+      Data1: -978407756
+      Data2: 1235598718
+      Data3: -671200118
+      Data4: 1615435457
+    Path: event:/SFX/Psychic/Taunt 001
   loop: 0
   delay: 0
   volume: 1

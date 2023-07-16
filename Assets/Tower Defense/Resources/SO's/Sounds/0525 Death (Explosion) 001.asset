@@ -25,6 +25,13 @@ MonoBehaviour:
   assetPath: Assets/SO's/Sounds/0525 Death (Explosion) 026.asset
   newName: 0525 Death (Explosion) 001
   prefab: {fileID: 8703397375645660740, guid: 1407d3202833f35419e6b30c3263ccd0, type: 3}
+  fmodEvent:
+    Guid:
+      Data1: -1217096277
+      Data2: 1258231272
+      Data3: -1305842266
+      Data4: -147072845
+    Path: event:/SFX/Death/Death (Explosion) 001
   loop: 0
   delay: 0
   volume: 1

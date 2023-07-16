@@ -25,6 +25,13 @@ MonoBehaviour:
   assetPath: Assets/SO's/Sounds/0003 Sword Slash 003.asset
   newName: 0003 Sword (Slash) 003
   prefab: {fileID: 3863915734425311162, guid: cc3b1e61c88badc4f80662e9626157e9, type: 3}
+  fmodEvent:
+    Guid:
+      Data1: 1015704174
+      Data2: 1115219616
+      Data3: 1059363474
+      Data4: 1354495782
+    Path: event:/SFX/Sword/Sword (Slash) 003
   loop: 0
   delay: 0
   volume: 1

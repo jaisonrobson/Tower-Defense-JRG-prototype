@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Sirenix.OdinInspector;
+using FMODUnity;
 
 [ManageableData]
 public class SoundSO : BaseOptionDataSO
@@ -9,9 +10,16 @@ public class SoundSO : BaseOptionDataSO
     [BoxGroup("Box1", ShowLabel = false)]
     [Required]
     [PropertyTooltip("A stand alone prefab "
-    +"that has it own source of sound and auto execute itself according to the rules down below")]
+    + "that has it own source of sound and auto execute itself according to the rules down below")]
     public GameObject prefab;
 
+    [Title("")]
+    [BoxGroup("Box1")]
+    [Required]
+    [PropertyTooltip("The event path string to play in fmod studio")]
+    public EventReference fmodEvent;
+
+    [Title("")]
     [BoxGroup("Box1")]
     public bool loop = false;
 

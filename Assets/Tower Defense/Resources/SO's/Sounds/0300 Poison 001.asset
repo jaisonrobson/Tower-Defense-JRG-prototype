@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 51ea029655f0e0345a19634775996ce0, type: 3}
-  m_Name: 0290 Confusion 001
+  m_Name: 0300 Poison 001
   m_EditorClassIdentifier: 
   serializationData:
     SerializedFormat: 2
@@ -22,16 +22,16 @@ MonoBehaviour:
     PrefabModifications: []
     SerializationNodes: []
   jokerHiddenTitleField: 
-  assetPath: Assets/Tower Defense/Resources/SO's/Sounds/0290 Confusion (Burst) 001.asset
-  newName: 0290 Confusion 001
-  prefab: {fileID: 1055724211907020900, guid: d2bf0cfca8e86114a9e1945dd37a4495, type: 3}
+  assetPath: Assets/Tower Defense/Resources/SO's/Sounds/0300 Poison (Burst) 001.asset
+  newName: 0300 Poison 001
+  prefab: {fileID: 1055724211907020900, guid: 74ff107ffd2e29c47a37111780b24334, type: 3}
   fmodEvent:
     Guid:
-      Data1: 1780550959
-      Data2: 1143321164
-      Data3: 1285728162
-      Data4: 1462284253
-    Path: event:/SFX/Psychic/Confusion 001
+      Data1: -361293438
+      Data2: 1269813528
+      Data3: 225604285
+      Data4: -303072114
+    Path: event:/SFX/Poison/Poison 001
   loop: 0
   delay: 0
   volume: 1

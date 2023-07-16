@@ -25,6 +25,13 @@ MonoBehaviour:
   assetPath: 
   newName: 
   prefab: {fileID: 1055724211907020900, guid: 6dd9ec8f34e610348940fa427ae7522c, type: 3}
+  fmodEvent:
+    Guid:
+      Data1: -1739721240
+      Data2: 1321609771
+      Data3: 2074709915
+      Data4: 876893866
+    Path: event:/SFX/Earth/Grounded 001
   loop: 0
   delay: 0
   volume: 1

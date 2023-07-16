@@ -25,6 +25,13 @@ MonoBehaviour:
   assetPath: 
   newName: 
   prefab: {fileID: 1055724211907020900, guid: 8e89da0436f0ce64d96f9763be9cd9d1, type: 3}
+  fmodEvent:
+    Guid:
+      Data1: -2002990744
+      Data2: 1169498595
+      Data3: -1428171623
+      Data4: -587393174
+    Path: event:/SFX/Psychic/Healblock 001
   loop: 0
   delay: 0
   volume: 1

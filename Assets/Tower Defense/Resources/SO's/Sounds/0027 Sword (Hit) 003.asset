@@ -25,6 +25,13 @@ MonoBehaviour:
   assetPath: Assets/SO's/Sounds/0052 Sword (Hit) 003.asset
   newName: 0027 Sword (Hit) 003
   prefab: {fileID: 7129253251749387359, guid: 1cfa90c1d19467d459d8888dac5a6f42, type: 3}
+  fmodEvent:
+    Guid:
+      Data1: -285965099
+      Data2: 1081208268
+      Data3: -1979892048
+      Data4: 1867854009
+    Path: event:/SFX/Sword/Sword (Hit) 003
   loop: 0
   delay: 0
   volume: 1

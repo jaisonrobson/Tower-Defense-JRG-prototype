@@ -25,6 +25,13 @@ MonoBehaviour:
   assetPath: 
   newName: 
   prefab: {fileID: 1679942839242218226, guid: 9719b247ff0ee9b4eb7097293b3b1a7d, type: 3}
+  fmodEvent:
+    Guid:
+      Data1: -418466672
+      Data2: 1119985092
+      Data3: 1173758099
+      Data4: -1030105239
+    Path: event:/SFX/Bow/Arrow (Hit) 001
   loop: 0
   delay: 0
   volume: 1

@@ -25,6 +25,13 @@ MonoBehaviour:
   assetPath: Assets/SO's/Sounds/0500 Death Generic 001.asset
   newName: 0500 Death (Body) 001
   prefab: {fileID: 2321820868608543306, guid: 266e8359a0853c140aa9d3ca8b6a7622, type: 3}
+  fmodEvent:
+    Guid:
+      Data1: 307542540
+      Data2: 1123145302
+      Data3: -98761300
+      Data4: 583765198
+    Path: event:/SFX/Death/Death (Body) 001
   loop: 0
   delay: 0
   volume: 1

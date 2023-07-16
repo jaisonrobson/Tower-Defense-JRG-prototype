@@ -25,6 +25,13 @@ MonoBehaviour:
   assetPath: Assets/Tower Defense/Resources/SO's/Sounds/0270 Paralyze (Burst) 001.asset
   newName: 0270 Paralyze 001
   prefab: {fileID: 1055724211907020900, guid: f846e3f293684d44f8acbcc0e8fa938d, type: 3}
+  fmodEvent:
+    Guid:
+      Data1: 313076009
+      Data2: 1236733673
+      Data3: -1542601306
+      Data4: -256935392
+    Path: event:/SFX/Electric/Paralyze 001
   loop: 0
   delay: 0
   volume: 1
