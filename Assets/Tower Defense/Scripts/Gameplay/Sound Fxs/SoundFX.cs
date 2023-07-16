@@ -44,8 +44,19 @@ public class SoundFX : MonoBehaviour, IPoolable
     }
     private void HandleFinishing()
     {
+        bool isOneshotSound;
+        fmodSoundEvent.EventDescription.isOneshot(out isOneshotSound);
+
         if (isRunning && !fmodSoundEvent.IsPlaying())
             Poolable.TryPool(gameObject);
+
+        if (isRunning && !isOneshotSound)
+        {
+            if (ObjectToFollow == null)
+                Poolable.TryPool(gameObject);
+            else if (ObjectToFollow != null && !ObjectToFollow.activeInHierarchy)
+                Poolable.TryPool(gameObject);
+        }
     }
     private void HandleObjectFollowing()
     {
@@ -60,20 +71,22 @@ public class SoundFX : MonoBehaviour, IPoolable
     // Public (Methods) [START]
     public void StartExecution()
     {
-        ResetVariables();
-
         fmodSoundEvent.Play();
 
         isRunning = true;
     }
     public void StartExecution(GameObject pObjectToFollow = null)
     {
+        ResetVariables();
+
         ObjectToFollow = pObjectToFollow;
 
         StartExecution();
     }
     public void StartExecution(Vector3 pPosition)
     {
+        ResetVariables();
+
         transform.position = pPosition;
 
         StartExecution();

@@ -189,3 +189,4 @@ BUGS E VALIDAÇÕES:
 ( ) Encontrado erro ao evoluir torres com vida menor que 100%
 (X) Encontrado erro ao aplicar status atraves de ataque nos agentes (os metodos de pooling estao sendo chamados repetidas vezes ocasionando em erros de nulidade).
 ( ) Fazer com que as flags das torres nao possam ser colocadas em lugares que ja estiverem ocupados por outros tipos de colisores jogaveis.
+( ) Erro encontrado ao reproduzir sons de LOOPing o algoritmo SoundFX nao consegue finalizar e acaba sendo infinito.

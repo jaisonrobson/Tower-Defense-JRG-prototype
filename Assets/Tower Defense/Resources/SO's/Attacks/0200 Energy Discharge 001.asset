@@ -38,6 +38,6 @@ MonoBehaviour:
   initialAnimation: {fileID: 11400000, guid: 1a000aa1546f02045ae724e76b7daba7, type: 2}
   trailAnimation: {fileID: 11400000, guid: e15e237fc670a4a4a985efcfc39ab20e, type: 2}
   finalAnimation: {fileID: 11400000, guid: 1a000aa1546f02045ae724e76b7daba7, type: 2}
-  initialSound: {fileID: 11400000, guid: 49d2cb61bf304424b9c07dcfb8edeeff, type: 2}
-  trailSound: {fileID: 0}
-  finalSound: {fileID: 11400000, guid: bfdb8031962b585489ae75a2bec9cc02, type: 2}
+  initialSound: {fileID: 11400000, guid: a08d09a86ae39ce4faa82290c2d9006f, type: 2}
+  trailSound: {fileID: 11400000, guid: ca82c7cef34698644827d565d0a46be0, type: 2}
+  finalSound: {fileID: 11400000, guid: c49991a1ec6057c46b92ef5142e800a6, type: 2}
