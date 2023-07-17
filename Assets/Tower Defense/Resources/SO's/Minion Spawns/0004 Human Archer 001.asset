@@ -25,5 +25,5 @@ MonoBehaviour:
   assetPath: Assets/SO's/Minion Spawns/0004 Archer 001.asset
   newName: 0004 Human Archer 001
   creature: {fileID: 11400000, guid: ffb340d53f49e884da0d23968fc4d09b, type: 2}
-  delay: 0
-  maxAlive: 1
+  delay: 3
+  maxAlive: 3

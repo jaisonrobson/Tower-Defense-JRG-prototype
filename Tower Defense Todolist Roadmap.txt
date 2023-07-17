@@ -163,8 +163,18 @@ LEGENDA:
 (X) Criar o sistema de som
 (X) Tornar os sons poolaveis
 
-( ) Fazer/configurar agentes arqueiros (prefab) e testar
-( ) Testar criaturas com ataque a distancia
+(X) Fazer/configurar agentes arqueiros (prefab) e testar
+(X) Testar criaturas com ataque a distancia
+(X) Fazer com que os agentes subspawns sempre fiquem a uma certa distancia predeterminada universal da flag da estrutura.
+( ) Corrigir bugs
+
+( ) Fazer com que apenas uma entidade possa ser selecionada por vez
+( ) Criar elementos da interface que mostrar as estatisticas das criaturas
+( ) Tornar possivel a remoção de estruturas ja posicionadas (criar interface para remocao de estrutura)
+( ) Ao evoluir uma estrutura, verificar se ha mais de uma opcao, caso haja, fazer com que uma janela centralizada com as opcoes disponiveis seja aberta (mostrando toda estatistica de cada opcao)
+( ) Fazer com que o tempo de jogo seja exibido no topo da interface/tela
+( ) Fazer com que informacoes vitais de pontuacao sejam exibidas no topo da tela/interface
+( ) Fazer com que a vida dos agentes nao seja exibida enquanto estiver cheia.
 
 ( ) Criar um sistema de pontos que o jogador armazena durante a partida (Experiencia ou dinheiro, recursos, qualquer coisa que se encaixe melhor.)
 

@@ -163,10 +163,16 @@ public class CreatureFsmAi : AgentFsmAi
 
         if (pathfinding != null)
         {
-            TimedAttack nearestAttack = GetNearestNotInCooldownAttack();
+            if (IsAgentASubspawn() && agent.goal == AgentGoalEnum.FLAG && agent.PriorityGoals.Count <= 0)
+                pathfinding.endReachedDistance = 2f;
+            else
+            {
+                TimedAttack nearestAttack = GetNearestNotInCooldownAttack();
 
-            if (nearestAttack.attack != null)
-                pathfinding.endReachedDistance = nearestAttack.attack.minimumAttackDistance * 0.9f;
+                if (nearestAttack.attack != null)
+                    pathfinding.endReachedDistance = nearestAttack.attack.minimumAttackDistance * 0.9f;
+
+            }
         }
     }
     private void HandleSubspawnInsidePlayableArea()

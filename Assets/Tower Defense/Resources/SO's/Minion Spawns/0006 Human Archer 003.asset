@@ -25,5 +25,5 @@ MonoBehaviour:
   assetPath: 
   newName: 
   creature: {fileID: 11400000, guid: 5add87cb783864a40832281ef042fe97, type: 2}
-  delay: 0
-  maxAlive: 1
+  delay: 6
+  maxAlive: 5
