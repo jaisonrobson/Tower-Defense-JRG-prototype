@@ -155,13 +155,16 @@ LEGENDA:
 (X) Fazer as animacoes de morte dos agentes criaturas
 (X) Fazer as animacoes de status affectors
 
-(O) Fazer com que o sistema de som use a tecnologia FMOD (se possivel integrar com o sistema de SO`s que ja existe)
+(X) Fazer com que o sistema de som use a tecnologia FMOD (se possivel integrar com o sistema de SO`s que ja existe)
 (X) Estudar o FMOD https://www.fmod.com/docs/2.02/unity/integration-tutorial.html
-( ) Fazer com que todos os Scriptable Objects do "Sound" tenham uma referencia (string) para o devido som no projeto do FMOD.
-( ) Criar um script estatico que sera responsavel por invocar os sons poolaveis
-( ) Criar um algoritmo que vai fazer cada som poolavel seguir o GameObject em questao ao que foi invocado (Invoker) (similar ao efeito de trail na animacao)
-( ) Criar o sistema de som
-( ) Tornar os sons poolaveis
+(X) Fazer com que todos os Scriptable Objects do "Sound" tenham uma referencia (string) para o devido som no projeto do FMOD.
+(X) Criar um script estatico que sera responsavel por invocar os sons poolaveis
+(X) Criar um algoritmo que vai fazer cada som poolavel seguir o GameObject em questao ao que foi invocado (Invoker) (similar ao efeito de trail na animacao)
+(X) Criar o sistema de som
+(X) Tornar os sons poolaveis
+
+( ) Fazer/configurar agentes arqueiros (prefab) e testar
+( ) Testar criaturas com ataque a distancia
 
 ( ) Criar um sistema de pontos que o jogador armazena durante a partida (Experiencia ou dinheiro, recursos, qualquer coisa que se encaixe melhor.)
 
@@ -189,4 +192,4 @@ BUGS E VALIDAÇÕES:
 ( ) Encontrado erro ao evoluir torres com vida menor que 100%
 (X) Encontrado erro ao aplicar status atraves de ataque nos agentes (os metodos de pooling estao sendo chamados repetidas vezes ocasionando em erros de nulidade).
 ( ) Fazer com que as flags das torres nao possam ser colocadas em lugares que ja estiverem ocupados por outros tipos de colisores jogaveis.
-( ) Erro encontrado ao reproduzir sons de LOOPing o algoritmo SoundFX nao consegue finalizar e acaba sendo infinito.
+(X) Corrigido erro encontrado ao reproduzir sons de LOOPing o algoritmo SoundFX nao consegue finalizar e acaba sendo infinito.

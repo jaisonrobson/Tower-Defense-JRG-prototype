@@ -29,9 +29,9 @@ MonoBehaviour:
   outcomePrefab: {fileID: 0}
   nature: {fileID: 11400000, guid: efc48cd36c929314495d893e09975cdd, type: 2}
   formula: {fileID: 11400000, guid: bf3756c18a6b9fd478d9c0a2fb7ea0ec, type: 2}
-  cooldown: 1
-  influenceOverAttackVelocity: 50
-  minimumAttackDistance: 1.5
+  cooldown: 3
+  influenceOverAttackVelocity: 70
+  minimumAttackDistance: 30
   onHitProbabilityStatusAffectors: []
   selfProbabilityStatusAffectors: []
   initialAnimation: {fileID: 11400000, guid: b4818579315a98143861fe61437f4a54, type: 2}

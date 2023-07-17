@@ -115,7 +115,7 @@ MonoBehaviour:
   image: {fileID: 3286163911610860551, guid: 2eea8c4644da05a42b8b670e2440a77a, type: 3}
   name: Archer Tower 02
   description: A archer tower of level two.
-  prefab: {fileID: 5745024236169404579, guid: 831ae62a34a8f3e43bc5d4e14ccdc08f, type: 3}
+  prefab: {fileID: 1731601980460074127, guid: 60bc2907bea98214cacfab4b09adf1c0, type: 3}
   nature: {fileID: 11400000, guid: efc48cd36c929314495d893e09975cdd, type: 2}
   type: 1
   isMovable: 0
@@ -127,10 +127,11 @@ MonoBehaviour:
   attackVelocity: 0.3
   attackRange: 1.5
   velocity: 3
-  visibilityArea: 3
+  visibilityArea: 20
   evasion: {x: 0, y: 10}
   evolutionTree:
   - {fileID: 11400000, guid: 7d4213ecba30da24b8545122360642c9, type: 2}
   attacks: []
-  subspawns: []
+  subspawns:
+  - {fileID: 11400000, guid: 49757728d5fb6d6408cc439157fd7ced, type: 2}
   statusImmunities: []
