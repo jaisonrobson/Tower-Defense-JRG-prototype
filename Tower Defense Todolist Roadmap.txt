@@ -166,7 +166,7 @@ LEGENDA:
 (X) Fazer/configurar agentes arqueiros (prefab) e testar
 (X) Testar criaturas com ataque a distancia
 (X) Fazer com que os agentes subspawns sempre fiquem a uma certa distancia predeterminada universal da flag da estrutura.
-( ) Corrigir bugs
+(X) Corrigir bugs
 
 ( ) Fazer com que apenas uma entidade possa ser selecionada por vez
 ( ) Criar elementos da interface que mostrar as estatisticas das criaturas
@@ -200,7 +200,7 @@ BUGS E VALIDAÇÕES:
 (X) Verificar porque ao evoluir uma torre, seus subspawns acabam todos spawnados instantaneamente
 (X) Encontrado problema nos ataques a distancia que sao muito lentos, eles acabam sendo repoolados na metade do caminho por causa de sua duracao/velocidade.
 (X) Corrigido/Encontrado erro ao evoluir torres com vida menor que 100%
-( ) Ajustar animacao de spawn ao evoluir uma torre
+(X) Ajustar animacao de spawn ao evoluir uma torre
 (X) Encontrado erro ao aplicar status atraves de ataque nos agentes (os metodos de pooling estao sendo chamados repetidas vezes ocasionando em erros de nulidade).
 (X) Fazer com que as flags das torres nao possam ser colocadas em lugares que ja estiverem ocupados por outros tipos de colisores jogaveis.
 (X) Corrigido erro encontrado ao reproduzir sons de LOOPing o algoritmo SoundFX nao consegue finalizar e acaba sendo infinito.

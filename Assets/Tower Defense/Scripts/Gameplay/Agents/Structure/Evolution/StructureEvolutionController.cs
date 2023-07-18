@@ -27,11 +27,12 @@ public class StructureEvolutionController : Singleton<StructureEvolutionControll
 
             PlayableStructure newStructure = Poolable.TryGetPoolable(newStructureAgentSO.prefab).GetComponent<PlayableStructure>();
 
+            newStructure.transform.position = sem.Position;
+
             newStructure.GetComponent<Agent>().Alignment = MapManager.instance.map.playerAlignment.alignment;
             newStructure.GetComponent<PlayableStructure>().PlaceStructure();
             newStructure.GetComponent<PlayableStructure>().InitializeGoalFlag(true);
 
-            newStructure.transform.position = sem.Position;
             newStructure.SetFlagPosition(sem.FlagPosition);
             newStructure.ActualHealth = (sem.LifePercentage / 100) * newStructure.MaxHealth;
         }
