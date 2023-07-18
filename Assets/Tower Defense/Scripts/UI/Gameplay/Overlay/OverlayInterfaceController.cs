@@ -9,23 +9,40 @@ public class OverlayInterfaceController : MonoBehaviour
     private void Update()
     {
         HandlePanel_2_1_Visibility();
+        HandlePanel_2_2_Visibility();
     }
     // (Unity) Methods [END]
 
     // Private (Methods) [START]
     private void HandlePanel_2_1_Visibility()
     {
+        HandlePanel_Any_Panel_Visibility(OverlayInterfaceManager.instance.panel_2_1);
+    }
+    private void HandlePanel_2_2_Visibility()
+    {
         if (PlayerCommandsManager.instance.IsTryingToCast)
         {
-            OverlayInterfaceManager.instance.panel_2_1.SetActive(false);
+            OverlayInterfaceManager.instance.panel_2_2.SetActive(false);
+
+            return;
+        }
+
+        if (!SelectionManager.instance.IsAnythingSelected)
+            OverlayInterfaceManager.instance.panel_2_2.SetActive(false);
+    }
+    private void HandlePanel_Any_Panel_Visibility(GameObject pPanel)
+    {
+        if (PlayerCommandsManager.instance.IsTryingToCast)
+        {
+            pPanel.SetActive(false);
 
             return;
         }
 
         if (SelectionManager.instance.IsAnythingSelected)
-            OverlayInterfaceManager.instance.panel_2_1.SetActive(true);
+            pPanel.SetActive(true);
         else
-            OverlayInterfaceManager.instance.panel_2_1.SetActive(false);
+            pPanel.SetActive(false);
     }
     // Private (Methods) [END]
 }

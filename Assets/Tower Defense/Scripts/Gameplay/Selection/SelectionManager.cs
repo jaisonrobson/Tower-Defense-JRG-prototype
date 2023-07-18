@@ -57,26 +57,12 @@ public class SelectionManager : Singleton<SelectionManager>
     }
     public bool FilterSelection(List<Selectable> newSelection)
     {
-        if (newSelection.All(ns => ns.SelectableType == AgentTypeEnum.STRUCTURE))
-        {
-            bool condition = newSelection.Count == 1;
+        bool condition = newSelection.Count == 1;
 
-            if (condition)
-                ClearSelectables();
+        if (condition)
+            ClearSelectables();
 
-            return condition;
-        }
-        else if (newSelection.All(ns => ns.SelectableType == AgentTypeEnum.CREATURE))
-        {
-            bool condition = selectedAgents.All(sa => sa.SelectableType == AgentTypeEnum.CREATURE);
-
-            if (!condition)
-                ClearSelectables();
-
-            return true;
-        }
-
-        return false;
+        return condition;
     }
     // Public (Methods) [END]
 

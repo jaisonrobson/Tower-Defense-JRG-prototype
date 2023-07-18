@@ -19,6 +19,11 @@ public class OverlayInterfaceManager : Singleton<OverlayInterfaceManager>
     [Required]
     [SceneObjectsOnly]
     public GameObject panel_2_1;
+    [BoxGroup("Interface Objects")]
+    [Title("Panel 2")]
+    [Required]
+    [SceneObjectsOnly]
+    public GameObject panel_2_2;
     // Public (Variables) [END]
 
 

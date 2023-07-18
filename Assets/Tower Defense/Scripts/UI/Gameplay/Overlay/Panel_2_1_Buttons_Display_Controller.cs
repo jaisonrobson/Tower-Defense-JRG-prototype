@@ -8,6 +8,7 @@ public class Panel_2_1_Buttons_Display_Controller : MonoBehaviour
     // Public (Variables) [START]
     public GameObject flagButton;
     public GameObject levelUpButton;
+    public GameObject statisticsButton;
     // Public (Variables) [END]
 
     // (Unity) Methods [START]
@@ -23,6 +24,7 @@ public class Panel_2_1_Buttons_Display_Controller : MonoBehaviour
     {
         bool canDisplayFlagButtton = false;
         bool canDisplayLevelUpButton = false;
+        bool canDisplayStatisticsButton = false;
 
         if (SelectionManager.instance.IsAnythingSelected)
         {
@@ -32,11 +34,13 @@ public class Panel_2_1_Buttons_Display_Controller : MonoBehaviour
             {
                 canDisplayFlagButtton = true;
                 canDisplayLevelUpButton = true;
+                canDisplayStatisticsButton = true;
             }
         }
 
         flagButton.SetActive(canDisplayFlagButtton);
         levelUpButton.SetActive(canDisplayLevelUpButton);
+        statisticsButton.SetActive(canDisplayStatisticsButton);
     }
     // Private (Methods) [END]
 }
