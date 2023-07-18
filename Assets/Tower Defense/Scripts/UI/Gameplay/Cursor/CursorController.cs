@@ -4,12 +4,14 @@ using System.Linq;
 using UnityEngine;
 using Sirenix.OdinInspector;
 using Core.Patterns;
+using Core.Physics;
 
 [RequireComponent(typeof(CursorManager))]
 [HideMonoScript]
 public class CursorController : Singleton<CursorController>
 {
     // Private (Variables) [START]
+    private LayerMask forbiddenLayers;
     [ShowInInspector]
     [HideInEditorMode]
     [ReadOnly]
@@ -46,6 +48,10 @@ public class CursorController : Singleton<CursorController>
     // Public (Methods) [END]
 
     // Private (Methods) [START]
+    private void ResetVariables()
+    {
+        forbiddenLayers = LayerMask.GetMask("Default", "Water", "UI", "Structure", "StructureSpawnCollider", "Obstacle");
+    }
     private void FilterCursorChange()
     {
         bool didFilter = false;
@@ -91,7 +97,7 @@ public class CursorController : Singleton<CursorController>
         else
             ChangeSelectedCursor(CursorTypeEnum.FLAG_01);
 
-        if (Input.GetMouseButtonUp(0) && !OverlayInterfaceManager.instance.IsOverUI())
+        if (Input.GetMouseButtonUp(0) && !OverlayInterfaceManager.instance.IsOverUI() && !DidHitForbiddenArea())
         {
             PlayerCommandsManager.instance.Command = PlayerCommandEnum.IDLE;
             CursorManager.instance.Mode = CursorModeEnum.IDLE;
@@ -133,6 +139,16 @@ public class CursorController : Singleton<CursorController>
     private void InitializeVariables()
     {
         ResetCursorVariables();
+        ResetVariables();
+    }
+    private bool DidHitForbiddenArea()
+    {
+        RaycastHit forbiddenHit = Raycasting.ScreenPointToRay(forbiddenLayers);
+
+        if (!Raycasting.IsHitEmpty(forbiddenHit))
+            return true;
+
+        return false;
     }
     // Private (Methods) [END]
 }

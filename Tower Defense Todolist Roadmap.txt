@@ -199,7 +199,8 @@ BUGS E VALIDAÇÕES:
 (X) As vezes quando os agentes inimigos estao amontoados, alguns acabam tendo problema de colisao e caem infinitamente para dentro do mapa (parte inferior do mapa) (isso pode ser resolvido aumentando a largura do colisor do chao do mapa)
 (X) Verificar porque ao evoluir uma torre, seus subspawns acabam todos spawnados instantaneamente
 (X) Encontrado problema nos ataques a distancia que sao muito lentos, eles acabam sendo repoolados na metade do caminho por causa de sua duracao/velocidade.
-( ) Encontrado erro ao evoluir torres com vida menor que 100%
+(X) Corrigido/Encontrado erro ao evoluir torres com vida menor que 100%
+( ) Ajustar animacao de spawn ao evoluir uma torre
 (X) Encontrado erro ao aplicar status atraves de ataque nos agentes (os metodos de pooling estao sendo chamados repetidas vezes ocasionando em erros de nulidade).
-( ) Fazer com que as flags das torres nao possam ser colocadas em lugares que ja estiverem ocupados por outros tipos de colisores jogaveis.
+(X) Fazer com que as flags das torres nao possam ser colocadas em lugares que ja estiverem ocupados por outros tipos de colisores jogaveis.
 (X) Corrigido erro encontrado ao reproduzir sons de LOOPing o algoritmo SoundFX nao consegue finalizar e acaba sendo infinito.

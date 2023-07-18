@@ -53,7 +53,7 @@ public class StructureEvolutionManager : Singleton<StructureEvolutionManager>
     [ShowInInspector]
     [HideInEditorMode]
     [ReadOnly]
-    private int lifePercentage = 100;
+    private float lifePercentage = 100f;
     // Private (Variables) [END]
 
     // Public (Properties) [START]
@@ -62,7 +62,7 @@ public class StructureEvolutionManager : Singleton<StructureEvolutionManager>
     public Vector3 Position { get { return position; } }
     public List<SubSpawnPositioning> SubspawnsPositions { get { return subspawnsPositions; } }
     public Vector3 FlagPosition { get { return flagPosition; } }
-    public int LifePercentage { get { return lifePercentage; } }
+    public float LifePercentage { get { return lifePercentage; } }
     // Public (Properties) [END]
 
     // Private (Methods) [START]
@@ -87,7 +87,7 @@ public class StructureEvolutionManager : Singleton<StructureEvolutionManager>
         );
 
         flagPosition = pPlayableStructure.GoalFlag.position;
-        lifePercentage = (int) ((pPlayableStructure.ActualHealth * 100) / pPlayableStructure.MaxHealth);
+        lifePercentage = ((pPlayableStructure.ActualHealth * 100) / pPlayableStructure.MaxHealth);
 
         StructureEvolutionController.instance.EvolveStructure();
     }
@@ -99,9 +99,11 @@ public class StructureEvolutionManager : Singleton<StructureEvolutionManager>
     {
         PlayableStructure ps = SelectionManager.instance.SelectedAgents.First()?.GetComponent<PlayableStructure>();
         if (ps != null)
+        {
             EvolveStructure(ps);
 
-        SelectionManager.instance.RemoveSelectable(ps.GetComponent<Selectable>());
+            SelectionManager.instance.RemoveSelectable(ps.GetComponent<Selectable>());
+        }
     }
     // Public (Methods) [END]
 }
