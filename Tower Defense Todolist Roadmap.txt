@@ -169,8 +169,8 @@ LEGENDA:
 (X) Corrigir bugs
 
 (X) Fazer com que apenas uma entidade possa ser selecionada por vez
-( ) Criar elementos da interface que mostrem as estatisticas das criaturas
-( ) Tornar possivel a remoção de estruturas ja posicionadas (criar interface para remocao de estrutura)
+(X) Criar elementos da interface que mostrem as estatisticas das criaturas
+(X) Tornar possivel a remoção de estruturas ja posicionadas (criar interface para remocao de estrutura)
 ( ) Ao evoluir uma estrutura, verificar se ha mais de uma opcao, caso haja, fazer com que uma janela centralizada com as opcoes disponiveis seja aberta (mostrando toda estatistica de cada opcao)
 ( ) Fazer com que o tempo de jogo seja exibido no topo da interface/tela
 ( ) Fazer com que informacoes vitais de pontuacao sejam exibidas no topo da tela/interface
@@ -204,3 +204,4 @@ BUGS E VALIDAÇÕES:
 (X) Encontrado erro ao aplicar status atraves de ataque nos agentes (os metodos de pooling estao sendo chamados repetidas vezes ocasionando em erros de nulidade).
 (X) Fazer com que as flags das torres nao possam ser colocadas em lugares que ja estiverem ocupados por outros tipos de colisores jogaveis.
 (X) Corrigido erro encontrado ao reproduzir sons de LOOPing o algoritmo SoundFX nao consegue finalizar e acaba sendo infinito.
+( ) Verificar erro na animacao de particulas de trilha (trail), em alguns momentos a trilha segue para a posicao zero do jogo.
