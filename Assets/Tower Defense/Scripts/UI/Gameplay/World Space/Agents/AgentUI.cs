@@ -56,7 +56,16 @@ public class AgentUI : MonoBehaviour
     private void UpdateHealthSlider()
     {
         if (spawnedHealthSlider != null)
-            spawnedHealthSlider.Value = agent.ActualHealth;
+        {
+            if (agent.ActualHealth == agent.MaxHealth)
+                spawnedHealthSlider.HideSlider();
+            else
+            {
+                spawnedHealthSlider.ShowSlider();
+
+                spawnedHealthSlider.Value = agent.ActualHealth;
+            }
+        }   
     }
     // Private (Methods) [END]
 

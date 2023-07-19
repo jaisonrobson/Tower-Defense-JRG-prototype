@@ -174,12 +174,12 @@ LEGENDA:
 (X) Caso nao haja mais evolucoes da estrutura, nao mostrar o botao evolutivo.
 (X) Ao evoluir uma estrutura, verificar se ha mais de uma opcao, caso haja, fazer com que uma janela centralizada com as opcoes disponiveis seja aberta (mostrando toda estatistica de cada opcao)
 (X) Adicionar a quantidade de subspawns na informacao de estatisticas do agente ao ser selecionado caso o agente seja uma estrutura
+(X) Fazer com que a vida dos agentes nao seja exibida enquanto estiver cheia.
+
+( ) Criar um game manager que seja responsavel por dizer quando o jogo iniciou e termninou, assim como controlar outros scripts de funcionamento do jogo quando o mesmo acaba ou comeca.
+( ) Criar um sistema de pontos que o jogador armazena durante a partida (Experiencia ou dinheiro, recursos, qualquer coisa que se encaixe melhor.)
 ( ) Fazer com que o tempo de jogo seja exibido no topo da interface/tela
 ( ) Fazer com que informacoes vitais de pontuacao sejam exibidas no topo da tela/interface
-( ) Fazer com que a vida dos agentes nao seja exibida enquanto estiver cheia.
-
-( ) Criar um sistema de pontos que o jogador armazena durante a partida (Experiencia ou dinheiro, recursos, qualquer coisa que se encaixe melhor.)
-
 
 ----------------------------------------------------------------------------------------------------------------------------------------------------------------
 BUGS E VALIDAÇÕES:
@@ -211,3 +211,4 @@ BUGS E VALIDAÇÕES:
 (X) Corrigir calculo de distancia para fazer ataques a longa distancia. (hoje esta usando apenas o minimun attack distance, tem que user o attack range do agente tambem pra descobrir o maximo, pois o minimo e o range do ataque.)
 (X) Fazer com que a fuga do agente (criatura) va apenas ate o limite de distancia da torre de seu mestre.
 (-) Corrigir animacao de caminhada apos fugir (esta acontecendo algun tipo de problema onde o agente fica infinitamente atacando e andando apos tomar distancia de combate minimo).
+( ) Corrigir animacao quando um agente criatura esta batendo num agente estrutura, a criatura nao consegue ficar em estado Idle, ela apenas alterna entre Walk e Attack.

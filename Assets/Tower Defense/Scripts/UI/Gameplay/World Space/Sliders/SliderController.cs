@@ -63,6 +63,16 @@ public class SliderController : MonoBehaviour
     // Public (Methods) [START]
     public void SetTarget(Transform target) { targetToFollow = target; }
     public void SetTargetHeightOffset(float offset) { targetHeightOffset = offset + 1f; }
+    public void ShowSlider()
+    {
+        if (slider != null)
+            slider.gameObject.SetActive(true);
+    }
+    public void HideSlider()
+    {
+        if (slider != null)
+            slider.gameObject.SetActive(false);
+    }
     // Public (Methods) [END]
 }
 
