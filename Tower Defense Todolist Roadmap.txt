@@ -207,7 +207,7 @@ BUGS E VALIDAÇÕES:
 (X) Encontrado erro ao aplicar status atraves de ataque nos agentes (os metodos de pooling estao sendo chamados repetidas vezes ocasionando em erros de nulidade).
 (X) Fazer com que as flags das torres nao possam ser colocadas em lugares que ja estiverem ocupados por outros tipos de colisores jogaveis.
 (X) Corrigido erro encontrado ao reproduzir sons de LOOPing o algoritmo SoundFX nao consegue finalizar e acaba sendo infinito.
-( ) Verificar erro na animacao de particulas de trilha (trail), em alguns momentos a trilha segue para a posicao zero do jogo.
+(X) Verificar erro na animacao de particulas de trilha (trail), em alguns momentos a trilha segue para a posicao zero do jogo.
 (X) Corrigir calculo de distancia para fazer ataques a longa distancia. (hoje esta usando apenas o minimun attack distance, tem que user o attack range do agente tambem pra descobrir o maximo, pois o minimo e o range do ataque.)
 (X) Fazer com que a fuga do agente (criatura) va apenas ate o limite de distancia da torre de seu mestre.
 (-) Corrigir animacao de caminhada apos fugir (esta acontecendo algun tipo de problema onde o agente fica infinitamente atacando e andando apos tomar distancia de combate minimo).

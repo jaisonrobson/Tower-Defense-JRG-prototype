@@ -21,6 +21,7 @@ public class AnimationFX : MonoBehaviour, IPoolable
     private bool didStartedChainedAnimation;
     private bool didPlayedChainedAnimation;
     private bool isTrailAnimation;
+    private bool isTryingToPool;
     // Private (Variables) [END]
 
     // Public (Properties) [START]
@@ -49,6 +50,7 @@ public class AnimationFX : MonoBehaviour, IPoolable
     private void ResetVariables()
     {
         isRunning = false;
+        isTryingToPool = false;
         isTrailAnimation = false;
         didPlayedSystems = false;
         didStartedChainedAnimation = false;
@@ -131,14 +133,20 @@ public class AnimationFX : MonoBehaviour, IPoolable
     }
     private void HandleTrailAnimationObjectFollowing()
     {
-        if (isTrailAnimation && ObjectToFollow != null && ObjectToFollow.activeInHierarchy)
+        if (isTrailAnimation && ObjectToFollow != null && ObjectToFollow.activeSelf)
         {
             transform.position = ObjectToFollow.transform.position;
         }
-        else if (isTrailAnimation && ObjectToFollow != null && !ObjectToFollow.activeInHierarchy)
+        else if (isTrailAnimation && ObjectToFollow != null && !ObjectToFollow.activeSelf && !isTryingToPool)
         {
-            Poolable.TryPool(gameObject);
+            isTryingToPool = true;
+
+            Invoke(nameof(DelayedPool), 1f);
         }
+    }
+    private void DelayedPool()
+    {
+        Poolable.TryPool(gameObject);
     }
     // Private (Methods) [END]
 
