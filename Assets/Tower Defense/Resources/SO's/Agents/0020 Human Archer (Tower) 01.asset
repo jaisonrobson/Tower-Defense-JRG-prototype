@@ -127,7 +127,7 @@ MonoBehaviour:
   attackVelocity: 0.3
   attackRange: 1.5
   velocity: 3
-  visibilityArea: 50
+  visibilityArea: 15
   evasion: {x: 0, y: 10}
   evolutionTree:
   - {fileID: 11400000, guid: d282e64abeaf8aa49940be7f08d12411, type: 2}

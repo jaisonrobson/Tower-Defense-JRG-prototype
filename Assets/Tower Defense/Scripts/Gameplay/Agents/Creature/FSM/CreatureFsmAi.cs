@@ -98,15 +98,20 @@ public class CreatureFsmAi : AgentFsmAi
                     if (enemyAgent == null)
                         enemyAgent = nearestPriorityEnemy.goal.GetComponentInChildren<Agent>();
 
-                    if (!IsMakingAnyAttack())
+                    if (!IsMakingAnyAttack() && !IsAllAttacksUnderCooldown)
                     {
-                        isGettingDistanceFromTarget = true;
-
                         TimedAttack ta = GetNearestNotInCooldownAttack();
 
                         Vector3 directionBetweenEnemy = (nearestPriorityEnemy.goal.transform.position - transform.position).normalized;
 
-                        pathfinding.destination = nearestPriorityEnemy.goal.transform.position + (-directionBetweenEnemy * ta.attack.minimumAttackDistance);
+                        Vector3 destination = nearestPriorityEnemy.goal.transform.position + (-directionBetweenEnemy * ta.attack.minimumAttackDistance);
+
+                        if (IsSubspawnAndInsideAreaLimits(destination, 10f) || !IsAgentASubspawn())
+                        {
+                            isGettingDistanceFromTarget = true;
+
+                            pathfinding.destination = destination;
+                        }
                     }
                     else
                     {
@@ -214,11 +219,15 @@ public class CreatureFsmAi : AgentFsmAi
     private bool IsAgentASubspawn() { return agent.Master != null; }
     private bool IsSubspawnAndInsideAreaLimits(float limitOffset = 0f)
     {
+        return IsSubspawnAndInsideAreaLimits(agent.transform.position, limitOffset);
+    }
+    private bool IsSubspawnAndInsideAreaLimits(Vector3 position, float limitOffset = 0f)
+    {
         bool result = false;
 
         if (IsAgentASubspawn())
         {
-            if (Vector3.Distance(agent.Master.transform.position, agent.transform.position)
+            if (Vector3.Distance(agent.Master.transform.position, position)
                 <= (
                     (
                         (agent.Master.GetComponentInChildren<AgentEnemyDetectionColliderManager>(true).DetectionCollider.bounds.extents.magnitude / 2)
