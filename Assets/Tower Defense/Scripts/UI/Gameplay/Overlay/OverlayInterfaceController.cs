@@ -10,6 +10,7 @@ public class OverlayInterfaceController : MonoBehaviour
     {
         HandlePanel_2_1_Visibility();
         HandlePanel_2_2_Visibility();
+        HandlePanel_3_2_1_Visibility();
     }
     // (Unity) Methods [END]
 
@@ -20,15 +21,23 @@ public class OverlayInterfaceController : MonoBehaviour
     }
     private void HandlePanel_2_2_Visibility()
     {
+        HandlePanel_Dismissing(OverlayInterfaceManager.instance.panel_2_2);
+    }
+    private void HandlePanel_3_2_1_Visibility()
+    {
+        HandlePanel_Dismissing(OverlayInterfaceManager.instance.panel_3_2_1);
+    }
+    private void HandlePanel_Dismissing(GameObject pPanel)
+    {
         if (PlayerCommandsManager.instance.IsTryingToCast)
         {
-            OverlayInterfaceManager.instance.panel_2_2.SetActive(false);
+            pPanel.SetActive(false);
 
             return;
         }
 
         if (!SelectionManager.instance.IsAnythingSelected)
-            OverlayInterfaceManager.instance.panel_2_2.SetActive(false);
+            pPanel.SetActive(false);
     }
     private void HandlePanel_Any_Panel_Visibility(GameObject pPanel)
     {

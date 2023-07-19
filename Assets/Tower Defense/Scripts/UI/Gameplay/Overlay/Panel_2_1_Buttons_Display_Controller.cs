@@ -40,7 +40,7 @@ public class Panel_2_1_Buttons_Display_Controller : MonoBehaviour
             if (ps != null)
             {
                 canDisplayFlagButtton = true;
-                canDisplayLevelUpButton = true;
+                canDisplayLevelUpButton = ps.HasEvolution;
                 canDisplayStatisticsButton = true;
                 canDisplayThrashButton = true;
             }

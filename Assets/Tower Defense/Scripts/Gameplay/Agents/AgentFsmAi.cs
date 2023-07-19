@@ -145,20 +145,18 @@ public abstract class AgentFsmAi : MonoBehaviour
         if (IsAgentDead || !IsAggressive || IsAttackPrevented)
             return;
 
-        if (currentState.name == AgentStateEnum.ATTACK)
+        if (IsAllAttacksReady())
+            ResetAllTimedAttacksFlag();
+
+        for (int i = 0; i < timedAttacks.Length; i++)
         {
-            if (IsAllAttacksReady())
-                ResetAllTimedAttacksFlag();
+            if (Time.fixedTime >= timedAttacks[i].nextTimeToExecute)
+                timedAttacks[i].isMakingAttack = false;
 
-            for (int i = 0; i < timedAttacks.Length; i++)
+            if (currentState.name == AgentStateEnum.ATTACK)
             {
-                if (Time.fixedTime >= timedAttacks[i].nextTimeToExecute)
-                    timedAttacks[i].isMakingAttack = false;
-
                 if (!IsAttackInRange(timedAttacks[i].attack))
-                {
                     continue;
-                }
 
                 if (Time.fixedTime >= (timedAttacks[i].nextTimeToExecute + timedAttacks[i].attack.cooldown))
                 {
@@ -323,7 +321,9 @@ public abstract class AgentFsmAi : MonoBehaviour
         if (agent.GetActualEnemyAgent() == null)
             return false;
 
-        if (GetDistanceBetweenAgentAndEnemy() > attack.minimumAttackDistance)
+        float distanceBetweenAgentAndEnemy = GetDistanceBetweenAgentAndEnemy();
+
+        if (distanceBetweenAgentAndEnemy < attack.minimumAttackDistance || distanceBetweenAgentAndEnemy > attack.maximumAttackDistance || distanceBetweenAgentAndEnemy > agent.AttackRange)
             return false;
 
         return true;

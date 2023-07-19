@@ -171,7 +171,8 @@ LEGENDA:
 (X) Fazer com que apenas uma entidade possa ser selecionada por vez
 (X) Criar elementos da interface que mostrem as estatisticas das criaturas
 (X) Tornar possivel a remoção de estruturas ja posicionadas (criar interface para remocao de estrutura)
-( ) Ao evoluir uma estrutura, verificar se ha mais de uma opcao, caso haja, fazer com que uma janela centralizada com as opcoes disponiveis seja aberta (mostrando toda estatistica de cada opcao)
+(X) Caso nao haja mais evolucoes da estrutura, nao mostrar o botao evolutivo.
+(X) Ao evoluir uma estrutura, verificar se ha mais de uma opcao, caso haja, fazer com que uma janela centralizada com as opcoes disponiveis seja aberta (mostrando toda estatistica de cada opcao)
 ( ) Fazer com que o tempo de jogo seja exibido no topo da interface/tela
 ( ) Fazer com que informacoes vitais de pontuacao sejam exibidas no topo da tela/interface
 ( ) Fazer com que a vida dos agentes nao seja exibida enquanto estiver cheia.
@@ -205,3 +206,6 @@ BUGS E VALIDAÇÕES:
 (X) Fazer com que as flags das torres nao possam ser colocadas em lugares que ja estiverem ocupados por outros tipos de colisores jogaveis.
 (X) Corrigido erro encontrado ao reproduzir sons de LOOPing o algoritmo SoundFX nao consegue finalizar e acaba sendo infinito.
 ( ) Verificar erro na animacao de particulas de trilha (trail), em alguns momentos a trilha segue para a posicao zero do jogo.
+(X) Corrigir calculo de distancia para fazer ataques a longa distancia. (hoje esta usando apenas o minimun attack distance, tem que user o attack range do agente tambem pra descobrir o maximo, pois o minimo e o range do ataque.)
+( ) Fazer com que a fuga do agente (criatura) va apenas ate o limite de distancia da torre de seu mestre.
+( ) Corrigir animacao de caminhada apos fugir (esta acontecendo algun tipo de problema onde o agente fica infinitamente atacando e andando apos tomar distancia de combate minimo).

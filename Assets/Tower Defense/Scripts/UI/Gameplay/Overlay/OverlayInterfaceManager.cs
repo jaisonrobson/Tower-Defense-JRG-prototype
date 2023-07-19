@@ -20,10 +20,14 @@ public class OverlayInterfaceManager : Singleton<OverlayInterfaceManager>
     [SceneObjectsOnly]
     public GameObject panel_2_1;
     [BoxGroup("Interface Objects")]
-    [Title("Panel 2")]
     [Required]
     [SceneObjectsOnly]
     public GameObject panel_2_2;
+    [BoxGroup("Interface Objects")]
+    [Title("Panel 3")]
+    [Required]
+    [SceneObjectsOnly]
+    public GameObject panel_3_2_1;
     // Public (Variables) [END]
 
 
@@ -37,6 +41,10 @@ public class OverlayInterfaceManager : Singleton<OverlayInterfaceManager>
         canvas.GetComponent<GraphicRaycaster>().Raycast(m_PointerEventData, results);
 
         return results.Count > 0;
+    }
+    public void OpenStructureEvolutionPanel()
+    {
+        panel_3_2_1.SetActive(true);
     }
     // Public (Methods) [END]
 }

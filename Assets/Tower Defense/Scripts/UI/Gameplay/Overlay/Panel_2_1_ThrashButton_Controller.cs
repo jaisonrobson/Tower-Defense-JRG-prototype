@@ -14,7 +14,11 @@ public class Panel_2_1_ThrashButton_Controller : MonoBehaviour
         PlayableStructure ps = SelectionManager.instance.SelectedAgents.First()?.GetComponent<PlayableStructure>();
 
         if (ps != null)
+        {
             ps.PoolAgent();
+
+            SelectionManager.instance.ClearSelectables();
+        }
     }
     // Public (Methods) [END]
 }

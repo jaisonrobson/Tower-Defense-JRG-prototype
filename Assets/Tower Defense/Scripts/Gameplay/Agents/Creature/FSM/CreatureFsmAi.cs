@@ -18,6 +18,11 @@ public class CreatureFsmAi : AgentFsmAi
     [HideInEditorMode]
     [ReadOnly]
     protected AIPath pathfinding;
+    [BoxGroup("Agent FSM Identity")]
+    [ShowInInspector]
+    [HideInEditorMode]
+    [ReadOnly]
+    protected bool isGettingDistanceFromTarget = false;
     // Protected (Variables) [END]
 
     // Public (Properties) [START]
@@ -93,17 +98,33 @@ public class CreatureFsmAi : AgentFsmAi
                     if (enemyAgent == null)
                         enemyAgent = nearestPriorityEnemy.goal.GetComponentInChildren<Agent>();
 
-                    if (enemyAgent != null)
-                        pathfinding.destination = GetGoalDestination(enemyAgent.mainCollider.bounds, nearestPriorityEnemy.destination);
-                    else
-                        pathfinding.destination = nearestPriorityEnemy.goal.transform.position;
+                    if (!IsMakingAnyAttack())
+                    {
+                        isGettingDistanceFromTarget = true;
 
+                        TimedAttack ta = GetNearestNotInCooldownAttack();
+
+                        Vector3 directionBetweenEnemy = (nearestPriorityEnemy.goal.transform.position - transform.position).normalized;
+
+                        pathfinding.destination = nearestPriorityEnemy.goal.transform.position + (-directionBetweenEnemy * ta.attack.minimumAttackDistance);
+                    }
+                    else
+                    {
+                        isGettingDistanceFromTarget = false;
+
+                        if (enemyAgent != null)
+                            pathfinding.destination = GetGoalDestination(enemyAgent.mainCollider.bounds, nearestPriorityEnemy.destination);
+                        else
+                            pathfinding.destination = nearestPriorityEnemy.goal.transform.position;
+                    }
                     return;
                 }
             }
 
             if (agent.MainGoals.Count > 0)
             {
+                isGettingDistanceFromTarget = false;
+
                 if (IsAgentASubspawn())
                 {
                     PlayableStructure ps = agent.Master.GetComponent<PlayableStructure>();
@@ -165,13 +186,16 @@ public class CreatureFsmAi : AgentFsmAi
         {
             if (IsAgentASubspawn() && agent.goal == AgentGoalEnum.FLAG && agent.PriorityGoals.Count <= 0)
                 pathfinding.endReachedDistance = 2f;
+            else if (isGettingDistanceFromTarget)
+            {
+                pathfinding.endReachedDistance = 1f;
+            }
             else
             {
                 TimedAttack nearestAttack = GetNearestNotInCooldownAttack();
 
                 if (nearestAttack.attack != null)
-                    pathfinding.endReachedDistance = nearestAttack.attack.minimumAttackDistance * 0.9f;
-
+                    pathfinding.endReachedDistance = nearestAttack.attack.maximumAttackDistance * 0.9f;
             }
         }
     }

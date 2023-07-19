@@ -30,6 +30,8 @@ public class PlayableStructure : Structure
     public Transform GoalFlag { get { return goalFlag; } }
     public bool IsPlaced { get { return isPlaced; } }
     public bool FlagPositionInitialized { get { return flagPositionInitialized; } set { flagPositionInitialized = value; } }
+    public bool HasEvolution { get { return agent.evolutionTree.Count > 0; } }
+    public bool IsMultipleEvolution { get { return agent.evolutionTree.Count > 1; } }
     // Public (Properties) [END]
 
     // (Unity) Methods [START]

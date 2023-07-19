@@ -15,11 +15,11 @@ public class StructureEvolutionController : Singleton<StructureEvolutionControll
 
 
     // Public (Methods) [START]
-    public void EvolveStructure()
+    public void EvolveStructure(AgentSO selectedEvolution = null)
     {
         StructureEvolutionManager sem = StructureEvolutionManager.instance;
 
-        AgentSO newStructureAgentSO = sem.AgentSO.evolutionTree.FirstOrDefault();
+        AgentSO newStructureAgentSO = selectedEvolution != null ? selectedEvolution : sem.AgentSO.evolutionTree.FirstOrDefault();
 
         if (newStructureAgentSO != null)
         {

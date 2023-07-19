@@ -54,6 +54,11 @@ public class StructureEvolutionManager : Singleton<StructureEvolutionManager>
     [HideInEditorMode]
     [ReadOnly]
     private float lifePercentage = 100f;
+    [BoxGroup("Last Structure Informations")]
+    [ShowInInspector]
+    [HideInEditorMode]
+    [ReadOnly]
+    private AgentSO evolutionSelected;
     // Private (Variables) [END]
 
     // Public (Properties) [START]
@@ -66,7 +71,7 @@ public class StructureEvolutionManager : Singleton<StructureEvolutionManager>
     // Public (Properties) [END]
 
     // Private (Methods) [START]
-    private void EvolveStructure(PlayableStructure pPlayableStructure)
+    private void EvolveStructure(PlayableStructure pPlayableStructure, bool useSelectedEvolution = false)
     {
         SubspawnsPositions.Clear();
 
@@ -89,7 +94,10 @@ public class StructureEvolutionManager : Singleton<StructureEvolutionManager>
         flagPosition = pPlayableStructure.GoalFlag.position;
         lifePercentage = ((pPlayableStructure.ActualHealth * 100) / pPlayableStructure.MaxHealth);
 
-        StructureEvolutionController.instance.EvolveStructure();
+        if (useSelectedEvolution)
+            StructureEvolutionController.instance.EvolveStructure(evolutionSelected);
+        else
+            StructureEvolutionController.instance.EvolveStructure();
     }
     // Private (Methods) [END]
 
@@ -100,7 +108,30 @@ public class StructureEvolutionManager : Singleton<StructureEvolutionManager>
         PlayableStructure ps = SelectionManager.instance.SelectedAgents.First()?.GetComponent<PlayableStructure>();
         if (ps != null)
         {
-            EvolveStructure(ps);
+            if (ps.HasEvolution) {
+                if (ps.IsMultipleEvolution)
+                {
+                    OverlayInterfaceManager.instance.OpenStructureEvolutionPanel();
+                }
+                else
+                {
+                    EvolveStructure(ps);
+
+                    SelectionManager.instance.RemoveSelectable(ps.GetComponent<Selectable>());
+                }
+            }
+            
+        }
+    }
+    public void EvolveSelectedEvolution(AgentSO pSelectedEvolution)
+    {
+        PlayableStructure ps = SelectionManager.instance.SelectedAgents.First()?.GetComponent<PlayableStructure>();
+
+        if (ps != null)
+        {
+            evolutionSelected = pSelectedEvolution;
+
+            EvolveStructure(ps, true);
 
             SelectionManager.instance.RemoveSelectable(ps.GetComponent<Selectable>());
         }

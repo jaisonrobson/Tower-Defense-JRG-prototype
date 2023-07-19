@@ -44,8 +44,13 @@ public class AttackSO : BaseOptionDataSO
 
     [BoxGroup("Identity/Box")]
     [Required]
+    [ProgressBarWithFields(0f, 50f, 1f, 0.3f, 1f)]
+    public float minimumAttackDistance = 0f;
+
+    [BoxGroup("Identity/Box")]
+    [Required]
     [ProgressBarWithFields(1.5f, 50f, 1f, 0.3f, 1f)]
-    public float minimumAttackDistance = 1.5f;
+    public float maximumAttackDistance = 1.5f;
 
     [VerticalGroup("StatusesApplication", PaddingTop = 7f)]
     [BoxGroup("StatusesApplication/Box", LabelText = "Probability Status Affectors")]
