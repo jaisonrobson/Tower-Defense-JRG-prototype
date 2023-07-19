@@ -173,11 +173,13 @@ LEGENDA:
 (X) Tornar possivel a remoção de estruturas ja posicionadas (criar interface para remocao de estrutura)
 (X) Caso nao haja mais evolucoes da estrutura, nao mostrar o botao evolutivo.
 (X) Ao evoluir uma estrutura, verificar se ha mais de uma opcao, caso haja, fazer com que uma janela centralizada com as opcoes disponiveis seja aberta (mostrando toda estatistica de cada opcao)
+(X) Adicionar a quantidade de subspawns na informacao de estatisticas do agente ao ser selecionado caso o agente seja uma estrutura
 ( ) Fazer com que o tempo de jogo seja exibido no topo da interface/tela
 ( ) Fazer com que informacoes vitais de pontuacao sejam exibidas no topo da tela/interface
 ( ) Fazer com que a vida dos agentes nao seja exibida enquanto estiver cheia.
 
 ( ) Criar um sistema de pontos que o jogador armazena durante a partida (Experiencia ou dinheiro, recursos, qualquer coisa que se encaixe melhor.)
+
 
 ----------------------------------------------------------------------------------------------------------------------------------------------------------------
 BUGS E VALIDAÇÕES:
