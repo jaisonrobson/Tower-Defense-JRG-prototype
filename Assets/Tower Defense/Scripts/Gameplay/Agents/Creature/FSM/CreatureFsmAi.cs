@@ -139,7 +139,7 @@ public class CreatureFsmAi : AgentFsmAi
                 }
                 else
                 {
-                    Collider goalCollider = agent.MainGoals.First().goal.GetComponent<Collider>();
+                    Collider goalCollider = agent.MainGoals.First().goal.mainCollider;
 
                     if (goalCollider != null)
                     {

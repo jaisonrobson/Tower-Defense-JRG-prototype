@@ -54,6 +54,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mainCollider: {fileID: 1108383648993013606}
   goal: 3
+  attacksOrigins: []
   agent: {fileID: 11400000, guid: 1ba756df7dd6c4f489cc6289caff8286, type: 2}
 --- !u!114 &5592365410458447279
 MonoBehaviour:
@@ -197,7 +198,7 @@ Transform:
   m_GameObject: {fileID: 2101420593325164716}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 2.5, z: 0}
-  m_LocalScale: {x: 5, y: 5, z: 5}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1818389668187577361}
@@ -214,7 +215,7 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
+  m_Size: {x: 5, y: 5, z: 5}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &8077483022902931350
 MonoBehaviour:
