@@ -31,7 +31,7 @@ MonoBehaviour:
   formula: {fileID: 11400000, guid: bf3756c18a6b9fd478d9c0a2fb7ea0ec, type: 2}
   cooldown: 2
   influenceOverAttackVelocity: 100
-  minimumAttackDistance: 10
+  minimumAttackDistance: 3
   maximumAttackDistance: 50
   onHitProbabilityStatusAffectors: []
   selfProbabilityStatusAffectors: []

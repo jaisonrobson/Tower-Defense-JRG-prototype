@@ -38,7 +38,7 @@ public class WaveController : OdinSingleton<WaveController>
     public List<float> timeBetweenWaves = new List<float>();
 
     /// <summary>
-    /// The waves that already finished. (its monsters got already spawned and tottaly killed)
+    /// The waves that already finished. (its monsters got already spawned)
     /// The int shows the wave order, starting from 0 (zero) for the first wave and so on.
     /// 
     /// * There is a different field for each simultaneous wave sequence.
@@ -108,16 +108,27 @@ public class WaveController : OdinSingleton<WaveController>
     [SerializeField, HideInEditorMode, DisableInPlayMode]
     private bool[] isUnderWaitTime;
 
+    private List<GameObject> spawnedAgents;
+
     //Aux variable
     private int actualAgentSpawningIndex;
     private Transform lastRandomSpawnPointPicked;
 
+    // Public (Properties) [START]
+    public bool IsRunning { get { return isRunning; } }
+    public bool IsAnyAgentAlive { get { return spawnedAgents.Any(sa => sa.activeSelf && sa.activeInHierarchy); } }
+    // Public (Properties) [END]
+
     // Unity Methods [START]
+    private void Start()
+    {
+        ResetVariables();
+    }
     private void Update()
     {
         HandleWavesOperation();
 
-        if (isRunning)
+        if (isRunning && GameManager.instance.IsRunningAndNotPaused)
         {
             IncrementTimers();
             SpawnAgents();
@@ -126,6 +137,13 @@ public class WaveController : OdinSingleton<WaveController>
     // Unity Methods [END]
 
     // Private Methods [START]
+    private void ResetVariables()
+    {
+        isRunning = false;
+        spawnedAgents = new List<GameObject>();
+
+        ResetWavesOperations();
+    }
     private List<SpawnPointManager> GetSpawnPointsGrouped(AlignmentEnum alignment, bool includeGeneric = false)
     {
         return spawnPoints.Where(sp => sp.alignment == alignment || (includeGeneric && sp.alignment == 0)).ToList();
@@ -204,6 +222,8 @@ public class WaveController : OdinSingleton<WaveController>
         GameObject agent = Poolable.TryGetPoolable(GetRunningWave(index).agents.ElementAt(nextIndexToSpawn[index]).prefab, OnRetrievePoolableAgent);
 
         agent.gameObject.GetComponent<Agent>().DoSpawnAnimationFX();
+
+        spawnedAgents.Add(agent);
     }
     public void OnRetrievePoolableAgent(Poolable agent)
     {
@@ -279,10 +299,8 @@ public class WaveController : OdinSingleton<WaveController>
     // Private Methods [END]
 
     // Public Methods [START]
-    public void StartGame()
+    public void StartWaves()
     {
-        ResetWavesOperations();
-
         isRunning = true;
     }
     // Public Methods [END]

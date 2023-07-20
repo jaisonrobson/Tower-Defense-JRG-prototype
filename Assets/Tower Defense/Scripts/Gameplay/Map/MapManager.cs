@@ -8,13 +8,20 @@ using System.Linq;
 [HideMonoScript]
 public class MapManager : Singleton<MapManager>
 {
+    // Private (Variables) [START]
+    private GameObject catalyst;
+    private GameObject generator;
+    private GameObject source;
+    // Private (Variables) [END]
+
+    // Public (Variables) [START]
     public MapSO map;
 
     [PropertySpace(5f)]
     [Title("Map Structures")]
     [Required]
     [AssetsOnly]
-    public Agent catalystAsset;
+    public AgentSO catalystAsset;
     [Required]
     [SceneObjectsOnly]
     public Transform catalystHook;
@@ -22,7 +29,7 @@ public class MapManager : Singleton<MapManager>
     [PropertySpace(10f)]
     [Required]
     [AssetsOnly]
-    public Agent generatorAsset;
+    public AgentSO generatorAsset;
     [Required]
     [SceneObjectsOnly]
     public Transform generatorHook;
@@ -30,10 +37,18 @@ public class MapManager : Singleton<MapManager>
     [PropertySpace(10f)]
     [Required]
     [AssetsOnly]
-    public Agent sourceAsset;
+    public AgentSO sourceAsset;
     [Required]
     [SceneObjectsOnly]
     public Transform sourceHook;
+    // Public (Variables) [END]
+
+    // Public (Properties) [START]
+    public bool IsAnyMainStructureAlive { get { return IsStructureAlive(catalyst) || IsStructureAlive(generator) || IsStructureAlive(source); } }
+    public GameObject Catalyst { get { return catalyst; } }
+    public GameObject Generator { get { return generator; } }
+    public GameObject Source { get { return source; } }
+    // Public (Properties) [END]
 
     // Unity Methods [START]
     void OnEnable()
@@ -67,14 +82,14 @@ public class MapManager : Singleton<MapManager>
     }
     private void InitializeStructures()
     {
-        catalystAsset = Poolable.TryGetPoolable(catalystAsset.gameObject).GetComponent<Agent>();
-        catalystAsset.transform.SetPositionAndRotation(catalystHook.position, catalystHook.rotation);
+        catalyst = Poolable.TryGetPoolable(catalystAsset.prefab);
+        catalyst.transform.SetPositionAndRotation(catalystHook.position, catalystHook.rotation);
 
-        generatorAsset = Poolable.TryGetPoolable(generatorAsset.gameObject).GetComponent<Agent>();
-        generatorAsset.transform.SetPositionAndRotation(generatorHook.position, generatorHook.rotation);
+        generator = Poolable.TryGetPoolable(generatorAsset.prefab);
+        generator.transform.SetPositionAndRotation(generatorHook.position, generatorHook.rotation);
 
-        sourceAsset = Poolable.TryGetPoolable(sourceAsset.gameObject).GetComponent<Agent>();
-        sourceAsset.transform.SetPositionAndRotation(sourceHook.position, sourceHook.rotation);
+        source = Poolable.TryGetPoolable(sourceAsset.prefab);
+        source.transform.SetPositionAndRotation(sourceHook.position, sourceHook.rotation);
     }
     // Private Methods [END]
 
@@ -83,6 +98,7 @@ public class MapManager : Singleton<MapManager>
     {
         return map.alignmentsOpponents.Where(ao => ao.alignment.alignment != map.playerAlignment.alignment).ToList();
     }
+    public bool IsStructureAlive(GameObject pStructure) => pStructure.activeInHierarchy && pStructure.activeSelf;
     // Public Methods [END]
 }
 

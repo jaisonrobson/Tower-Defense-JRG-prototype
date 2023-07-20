@@ -212,3 +212,5 @@ BUGS E VALIDAÇÕES:
 (X) Fazer com que a fuga do agente (criatura) va apenas ate o limite de distancia da torre de seu mestre.
 (-) Corrigir animacao de caminhada apos fugir (esta acontecendo algun tipo de problema onde o agente fica infinitamente atacando e andando apos tomar distancia de combate minimo).
 (X) Corrigir animacao quando um agente criatura esta batendo num agente estrutura, a criatura nao consegue ficar em estado Idle, ela apenas alterna entre Walk e Attack.
+( ) Encontrado problema onde as vezes os agentes subspawns atacam os seus mestres logo antes de comecarem a atacar seus inimigos prioritarios. (Talvez o bug esteja no ActualGoal ou algo assim.) (Fazer uma verificacao se o objeto mestre for do mesmo alinhamento cancela o ataque.)
+(X) Corrigir o pause para parar o tempo tambem. (verificar como a unity faz, e verificar como o pessoal faz.)

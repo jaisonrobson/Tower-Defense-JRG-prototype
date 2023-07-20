@@ -287,9 +287,9 @@ public abstract class Agent : MonoBehaviour, IPoolable
         switch (goal)
         {
             case AgentGoalEnum.CORESTRUCTURES:
-                AddMainGoal(MapManager.instance.catalystAsset);
-                AddMainGoal(MapManager.instance.generatorAsset);
-                AddMainGoal(MapManager.instance.sourceAsset);
+                AddMainGoal(MapManager.instance.Catalyst.GetComponent<Agent>());
+                AddMainGoal(MapManager.instance.Generator.GetComponent<Agent>());
+                AddMainGoal(MapManager.instance.Source.GetComponent<Agent>());
 
                 break;
             case AgentGoalEnum.FLAG://Agents subspawned by structure Agents

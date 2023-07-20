@@ -49,15 +49,18 @@ public class CreatureFsmAi : AgentFsmAi
     {
         base.Update();
 
-        UpdateWalkAnimation();
+        if (GameManager.instance.IsRunningAndNotPaused)
+        {
+            UpdateWalkAnimation();
 
-        UpdateAIDestination();
+            UpdateAIDestination();
 
-        UpdateAIGoal();
+            UpdateAIGoal();
 
-        UpdateAIPathfindingMinimumDistance();
+            UpdateAIPathfindingMinimumDistance();
 
-        HandleSubspawnInsidePlayableArea();
+            HandleSubspawnInsidePlayableArea();
+        }
     }
     // (Unity) Methods [END]
 

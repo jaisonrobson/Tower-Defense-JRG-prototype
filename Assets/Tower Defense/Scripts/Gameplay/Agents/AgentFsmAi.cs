@@ -88,15 +88,18 @@ public abstract class AgentFsmAi : MonoBehaviour
 
     protected virtual void Update()
     {
-        UpdateFSMStates();
+        if (GameManager.instance.IsRunningAndNotPaused)
+        {
+            UpdateFSMStates();
 
-        UpdateAttackCooldown();
+            UpdateAttackCooldown();
 
-        HandleAttacking();
+            HandleAttacking();
 
-        HandleDying();
+            HandleDying();
 
-        HandleSubSpawning();
+            HandleSubSpawning();
+        }
     }
     // (Unity) Methods [END]
 

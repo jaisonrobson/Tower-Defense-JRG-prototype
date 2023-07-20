@@ -13,9 +13,14 @@ public static class Attacking
 
         float duration = Mathf.Clamp(invoker.CalculateAttackVelocity(attack), 1f, Mathf.Infinity);
 
+        AttackOrigin attackOriginConfiguration = invoker.GetAttackOriginOfAttack(attack);
+        Transform attackOrigin = attackOriginConfiguration.attackOrigin;
+
         GameObject newAttack = Poolable.TryGetPoolable(
             attack.prefab,
             (Poolable pNewAttackPoolable) => {
+                pNewAttackPoolable.transform.position = attackOrigin.position;
+
                 pNewAttackPoolable.gameObject.GetComponent<Affector>().Alignment = invoker.Alignment;
                 pNewAttackPoolable.gameObject.GetComponent<Affector>().Invoker = invoker;
                 pNewAttackPoolable.gameObject.GetComponent<Affector>().Target = target;
@@ -30,11 +35,6 @@ public static class Attacking
                     AlignmentMaterialsSO alignmentMaterial = amSOs.Where(am => am.alignment.alignment == invoker.Alignment).FirstOrDefault();
                     pNewAttackPoolable.gameObject.GetComponent<MeshRenderer>().material = alignmentMaterial.ghost_structures;
                 }
-
-                AttackOrigin attackOriginConfiguration = invoker.GetAttackOriginOfAttack(attack);
-                Transform attackOrigin = attackOriginConfiguration.attackOrigin;
-
-                pNewAttackPoolable.transform.position = attackOrigin.position;
 
                 switch (attack.type)
                 {
@@ -58,6 +58,8 @@ public static class Attacking
                 }
             }
         );
+
+        newAttack.transform.position = attackOrigin.position;
 
         Transform animationOrigin = invoker.GetAnimationOriginOfAttack(attack).animationOrigin;
 

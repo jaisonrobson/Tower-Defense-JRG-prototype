@@ -138,11 +138,11 @@ public class AnimationFX : MonoBehaviour, IPoolable
     }
     private void HandleTrailAnimationObjectFollowing()
     {
-        if (isTrailAnimation && ObjectToFollow != null && ObjectToFollow.activeSelf && ObjectToFollow.activeInHierarchy)
+        if (isTrailAnimation && ObjectToFollow != null && ObjectToFollow.activeSelf && ObjectToFollow.activeInHierarchy && rac != null && !rac.IsRangedAttackDurationEnded)
         {
             transform.position = ObjectToFollow.transform.position;
         }
-        else if (isTrailAnimation && ObjectToFollow != null && (!ObjectToFollow.activeSelf || !ObjectToFollow.activeInHierarchy) && !isTryingToPool)
+        else if (isTrailAnimation && ObjectToFollow != null && (!ObjectToFollow.activeSelf || !ObjectToFollow.activeInHierarchy || (rac != null && rac.IsRangedAttackDurationEnded)) && !isTryingToPool)
         {
             isTryingToPool = true;
 
