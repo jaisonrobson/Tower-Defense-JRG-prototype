@@ -50,7 +50,7 @@ public class CursorController : Singleton<CursorController>
     // Private (Methods) [START]
     private void ResetVariables()
     {
-        forbiddenLayers = LayerMask.GetMask("Default", "Water", "UI", "Structure", "StructureSpawnCollider", "Obstacle");
+        forbiddenLayers = LayerMask.GetMask("Default", "Water", "UI", "Structure", "Obstacle");
     }
     private void FilterCursorChange()
     {

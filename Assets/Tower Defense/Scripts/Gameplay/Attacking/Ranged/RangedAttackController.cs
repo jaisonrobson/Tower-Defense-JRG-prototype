@@ -14,9 +14,13 @@ public class RangedAttackController : AttackController
 {
     // Private (Properties) [START]
     private float StartTime { get; set; }
-    private float ExistanceDuration { get; set; }
     private float TravelDuration { get; set; }
     // Private (Properties) [END]
+
+    // Public (Properties) [START]
+    public float ExistanceDuration { get; private set; }
+    public bool IsRangedAttackDurationEnded { get { return Time.fixedTime > ExistanceDuration && !Mathf.Approximately(0f, ExistanceDuration); } }
+    // Public (Properties) [END]
 
     // (Unity) Methods [START]
     public override void OnEnable()

@@ -30,6 +30,10 @@ public class AnimationFX : MonoBehaviour, IPoolable
     public GameObject ObjectToFollow { get; set; }
     // Public (Properties) [END]
 
+    // Private (Properties) [START]
+    private RangedAttackController rac { get; set; }
+    // Private (Properties) [END]
+
     // (Unity) Methods [START]
     protected virtual void Start()
     {
@@ -60,6 +64,7 @@ public class AnimationFX : MonoBehaviour, IPoolable
         Duration = 0f;
         AnimationSO = null;
         ObjectToFollow = null;
+        rac = null;
 
         RefreshSystemsVariables();
         StopAllParticleSystems();
@@ -133,11 +138,11 @@ public class AnimationFX : MonoBehaviour, IPoolable
     }
     private void HandleTrailAnimationObjectFollowing()
     {
-        if (isTrailAnimation && ObjectToFollow != null && ObjectToFollow.activeSelf)
+        if (isTrailAnimation && ObjectToFollow != null && ObjectToFollow.activeSelf && ObjectToFollow.activeInHierarchy)
         {
             transform.position = ObjectToFollow.transform.position;
         }
-        else if (isTrailAnimation && ObjectToFollow != null && !ObjectToFollow.activeSelf && !isTryingToPool)
+        else if (isTrailAnimation && ObjectToFollow != null && (!ObjectToFollow.activeSelf || !ObjectToFollow.activeInHierarchy || rac != null && rac.IsRangedAttackDurationEnded) && !isTryingToPool)
         {
             isTryingToPool = true;
 
@@ -159,6 +164,7 @@ public class AnimationFX : MonoBehaviour, IPoolable
         Duration = pDuration;
         startingTime = Time.time;
         ObjectToFollow = pObjectToFollow;
+        rac = pObjectToFollow?.GetComponent<RangedAttackController>();
         isTrailAnimation = pIsTrailAnimation;
 
         UpdateParticleSystems();
