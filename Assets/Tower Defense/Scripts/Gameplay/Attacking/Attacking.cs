@@ -34,6 +34,8 @@ public static class Attacking
                 AttackOrigin attackOriginConfiguration = invoker.GetAttackOriginOfAttack(attack);
                 Transform attackOrigin = attackOriginConfiguration.attackOrigin;
 
+                pNewAttackPoolable.transform.position = attackOrigin.position;
+
                 switch (attack.type)
                 {
                     case AttackTypeEnum.RANGED:
