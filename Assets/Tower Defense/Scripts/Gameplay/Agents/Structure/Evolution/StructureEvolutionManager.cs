@@ -71,8 +71,14 @@ public class StructureEvolutionManager : Singleton<StructureEvolutionManager>
     // Public (Properties) [END]
 
     // Private (Methods) [START]
+    private bool CanEvolveStructure(PlayableStructure pPS) => pPS.CanEvolve && pPS.Alignment == AlignmentManager.instance.PlayerAlignment.alignment && PlayerManager.instance.CanDecreasePoints(pPS.ExperienceToEvolve);
     private void EvolveStructure(PlayableStructure pPlayableStructure, bool useSelectedEvolution = false)
     {
+        if (!CanEvolveStructure(pPlayableStructure))
+            return;
+
+        PlayerManager.instance.DecreasePoints(pPlayableStructure.ExperienceToEvolve);
+
         SubspawnsPositions.Clear();
 
         playableStructure = pPlayableStructure;

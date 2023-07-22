@@ -6,7 +6,7 @@ using Sirenix.OdinInspector;
 using TheraBytes.BetterUi;
 
 [HideMonoScript]
-public class Panel_1_1_1_GameWatchtime_Controller : MonoBehaviour
+public class Panel_1_1_1_Text_RunningTime_Controller : MonoBehaviour
 {
     // Private (Variables) [START]
     private BetterText watchtime;
@@ -32,7 +32,7 @@ public class Panel_1_1_1_GameWatchtime_Controller : MonoBehaviour
     }
     private void HandleWatchtimeRefresh()
     {
-        watchtime.text = GameManager.instance.GameWatchtime.ToString("00:00");
+        watchtime.text = GameManager.instance.FormattedTime;
     }
     // Private (Methods) [END]
 }

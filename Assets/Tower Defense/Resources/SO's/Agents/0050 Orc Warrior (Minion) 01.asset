@@ -123,8 +123,8 @@ MonoBehaviour:
   isAggressive: 1
   isPlayable: 1
   experienceToEvolve: 5
-  experienceOnDie: 1
-  health: 15
+  experienceOnDie: 6
+  health: 6
   damage: 3
   attackVelocity: 1
   attackRange: 1.5

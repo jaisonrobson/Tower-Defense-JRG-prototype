@@ -476,9 +476,11 @@ public abstract class Agent : MonoBehaviour, IPoolable
             finalValue = dealerAttack.formula.CalculateFormulaFromValue(rawValue);
             finalValue *= WeaknessesManager.instance.GetWeakness(dealerAttack.nature, GetAgent().nature);
 
+            float healthBefore = actualHealth;
+
             actualHealth = Mathf.Clamp(actualHealth - finalValue, 0f, MaxHealth);
 
-            if (Mathf.Equals(actualHealth, 0f))
+            if (Mathf.Equals(actualHealth, 0f) && healthBefore > 0f)
                 pDealer?.OnReceiveExperience(OnDieExperience);
 
             GetComponent<AgentUI>().GenerateFloatingText(-finalValue);
@@ -506,9 +508,11 @@ public abstract class Agent : MonoBehaviour, IPoolable
             finalValue = rawValue;
             finalValue *= WeaknessesManager.instance.GetWeakness(dealerStatus.status.nature, GetAgent().nature);
 
+            float healthBefore = actualHealth;
+
             actualHealth = Mathf.Clamp(actualHealth - finalValue, 0f, MaxHealth);
 
-            if (Mathf.Equals(actualHealth, 0f))
+            if (Mathf.Equals(actualHealth, 0f) && healthBefore > 0f)
                 pDealer?.OnReceiveExperience(OnDieExperience);
 
             GetComponent<AgentUI>().GenerateFloatingText(-finalValue);
@@ -525,7 +529,20 @@ public abstract class Agent : MonoBehaviour, IPoolable
         if (Master != null)
             Master?.OnReceiveExperience(newExperience);
         else
-            actualExperience = Mathf.Clamp(actualExperience + newExperience, actualExperience, ExperienceToEvolve);
+        {
+            int experienceToReceive = newExperience;
+
+            if (Alignment == AlignmentManager.instance.PlayerAlignment.alignment)
+            {
+                experienceToReceive = Mathf.FloorToInt(experienceToReceive / 2);
+
+                experienceToReceive = experienceToReceive == 0 ? 1 : experienceToReceive;
+
+                PlayerManager.instance.IncreasePoints(experienceToReceive);
+            }
+
+            actualExperience = Mathf.Clamp(actualExperience + experienceToReceive, actualExperience, ExperienceToEvolve);
+        }
     }
     public Agent GetActualEnemyAgent()
     {

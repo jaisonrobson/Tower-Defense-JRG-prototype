@@ -35,6 +35,8 @@ public class StructureEvolutionController : Singleton<StructureEvolutionControll
 
             newStructure.SetFlagPosition(sem.FlagPosition);
             newStructure.ActualHealth = (sem.LifePercentage / 100) * newStructure.MaxHealth;
+
+            newStructure.DoEvolutionFXs();
         }
     }
     // Public (Methods) [END]

@@ -27,6 +27,7 @@ TagManager:
   - PA_SFX_CREATURES
   - PA_SFX_STRUCTURES
   - PA_SFX_MISCELANOUS
+  - PA_AFX_MISCELANOUS
   layers:
   - Default
   - TransparentFX

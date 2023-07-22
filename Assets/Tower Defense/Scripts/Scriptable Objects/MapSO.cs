@@ -31,6 +31,13 @@ public class MapSO : BaseOptionDataSO
     [BoxGroup("Player")]
     [PropertySpace(5f, 5f)]
     [GUIColor(0.9f, 0.9f, 0.9f)]
+    [Tooltip("The initial quantity of points the player will have on this map.")]
+    [Min(0)]
+    public int playerInitialPoints = 0;
+
+    [BoxGroup("Player")]
+    [PropertySpace(5f, 5f)]
+    [GUIColor(0.9f, 0.9f, 0.9f)]
     [ListDrawerSettings(Expanded = true)]
     [Tooltip("The agents in which the player can build/invoke during the gameplay.")]
     [Required]

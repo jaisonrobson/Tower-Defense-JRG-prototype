@@ -176,16 +176,17 @@ LEGENDA:
 (X) Adicionar a quantidade de subspawns na informacao de estatisticas do agente ao ser selecionado caso o agente seja uma estrutura
 (X) Fazer com que a vida dos agentes nao seja exibida enquanto estiver cheia.
 
-(O) Criar um game manager que seja responsavel por dizer quando o jogo iniciou e termninou, assim como controlar outros scripts de funcionamento do jogo quando o mesmo acaba ou comeca.
-(O) Criar um sistema de pontos que o jogador armazena durante a partida (Experiencia ou dinheiro, recursos, qualquer coisa que se encaixe melhor.)
-(O) Criar um algoritmo que controle a situacao do jogador e seus interesses de forma centralizada, se ele perdeu, qual a experiencia, dinheiro que ele possui.
+(X) Criar um game manager que seja responsavel por dizer quando o jogo iniciou e termninou, assim como controlar outros scripts de funcionamento do jogo quando o mesmo acaba ou comeca.
+(X) Criar um sistema de pontos que o jogador armazena durante a partida (Experiencia ou dinheiro, recursos, qualquer coisa que se encaixe melhor.)
+(X) Criar um algoritmo que controle a situacao do jogador e seus interesses de forma centralizada, se ele perdeu, qual a experiencia, dinheiro que ele possui.
 (X) Fazer com que o tempo de jogo seja exibido no topo da interface/tela
-( ) Fazer com que informacoes vitais de pontuacao sejam exibidas no topo da tela/interface
+(X) Fazer com que informacoes vitais de pontuacao sejam exibidas no topo da tela/interface
 
 (X) Fazer com que os agentes inimigos sejam promovidos automaticamente caso possuam informacoes no sistema de promocao. (Criar uma lista nova de auto promocao)
 (-) Fazer com que os agentes possuam obrigatoriamente uma animacao e um som de evolucao.
 
 ( ) Fazer com que o algoritmo AnimationFX utilize a estrategia de inscricao de metodos nos metodos OnEnable e OnDisable quando a animacao for do tipo Trail, para que o mesmo seja atribuido como filho na hierarquia de objetos do objeto em questao que se esta sendo seguido.
+( ) Fazer com que as AnimationFX fiquem do tamanho do colisor principal do agente, ou sigam algum tipo de ponto de origem do agente. (No caso das torres que compartilham animacoes com agentes menores, precisam que as animacoes mudem de tamanho pois acabam ficando dentro da estrutura.)
 
 ----------------------------------------------------------------------------------------------------------------------------------------------------------------
 BUGS E VALIDAÇÕES:

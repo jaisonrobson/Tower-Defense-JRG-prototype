@@ -20,7 +20,8 @@ public class GameManager : Singleton<GameManager>
     public bool IsRunning { get { return isRunning; } }
     public bool IsPaused { get { return isPaused; } }
     public bool IsRunningAndNotPaused { get { return isRunning && !isPaused; } }
-    public float GameWatchtime { get { return time; } }
+    public float RunningTime { get { return time; } }
+    public string FormattedTime { get { return FormatTime(time); } }
     // Public (Properties) [END]
 
     // (Unity) Methods [START]
@@ -48,6 +49,13 @@ public class GameManager : Singleton<GameManager>
         {
             time = Time.time - startTime;
         }
+    }
+    private string FormatTime(float timeInSeconds)
+    {
+        int minutes = Mathf.FloorToInt(timeInSeconds / 60f);
+        int seconds = Mathf.FloorToInt(timeInSeconds - (minutes * 60));
+
+        return string.Format("{0:0}:{1:00}", minutes, seconds);
     }
     // Private (Methods) [END]
 

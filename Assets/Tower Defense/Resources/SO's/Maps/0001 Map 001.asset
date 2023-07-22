@@ -56,6 +56,7 @@ MonoBehaviour:
   sceneName: Map_001
   description: The first map of the campaign
   playerAlignment: {fileID: 11400000, guid: 42320215e4f4f594995739e465c3bee5, type: 2}
+  playerInitialPoints: 100
   playableAgents:
   - {fileID: 11400000, guid: 5ee3415883f95844a86bbd74306d8aa8, type: 2}
   - {fileID: 11400000, guid: 70a9899fa8622bd4e957eb46d9e5ba63, type: 2}

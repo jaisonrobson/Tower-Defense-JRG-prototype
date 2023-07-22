@@ -23,6 +23,10 @@ public class PlayerManager : Singleton<PlayerManager>
     {
         ResetVariables();
     }
+    private void Start()
+    {
+        InitializePlayerPoints();
+    }
     private void Update()
     {
         HandlePlayerAliveUpdate();
@@ -34,6 +38,10 @@ public class PlayerManager : Singleton<PlayerManager>
     {
         isPlayerAlive = true;
         points = 0;
+    }
+    private void InitializePlayerPoints()
+    {
+        points = MapManager.instance.PlayerInitialPointsQuantity;
     }
     private void HandlePlayerAliveUpdate()
     {
