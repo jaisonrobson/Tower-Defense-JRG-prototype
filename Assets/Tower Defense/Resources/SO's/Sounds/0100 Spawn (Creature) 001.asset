@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 51ea029655f0e0345a19634775996ce0, type: 3}
-  m_Name: 0100 Spawn (Minion) 001
+  m_Name: 0100 Spawn (Creature) 001
   m_EditorClassIdentifier: 
   serializationData:
     SerializedFormat: 2
@@ -22,8 +22,8 @@ MonoBehaviour:
     PrefabModifications: []
     SerializationNodes: []
   jokerHiddenTitleField: 
-  assetPath: Assets/SO's/Sounds/0100 Spawn 001.asset
-  newName: 0100 Spawn (Minion) 001
+  assetPath: Assets/Tower Defense/Resources/SO's/Sounds/0100 Spawn (Minion) 001.asset
+  newName: 0100 Spawn (Creature) 001
   prefab: {fileID: 3177816107432247348, guid: e065866309b9ff64dbb283e0f6449cf3, type: 3}
   fmodEvent:
     Guid:

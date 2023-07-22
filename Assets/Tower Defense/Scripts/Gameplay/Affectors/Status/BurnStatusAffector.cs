@@ -16,7 +16,7 @@ public class BurnStatusAffector : StatusAffector
     {
         base.ExecuteTurnActions();
 
-        Target.OnReceiveDamage(Alignment, Damage, statusAffectorSO);
+        Target.OnReceiveDamage(Alignment, Damage, statusAffectorSO, Invoker);
     }
     protected override void InitializeStatusActions()
     {

@@ -37,6 +37,16 @@ public class MapSO : BaseOptionDataSO
     [ValidateInput("Validate_MustHaveElements_PlayableAgents", "Playable Agents must have at least one element.")]
     public PlayableAgentSO[] playableAgents;
 
+    [BoxGroup("Player")]
+    [PropertySpace(5f, 5f)]
+    [GUIColor(0.9f, 0.9f, 0.9f)]
+    [ListDrawerSettings(Expanded = true)]
+    [Tooltip("The main structure agents that represents the player, if they are destroyed, the player lose.")]
+    [Required]
+    [ValidateInput("Validate_MustHaveElements_PlayerEntities", "Player Entities must have at least one element.")]
+    [ValidateInput("Validate_MustBeStructure_PlayerEntities", "All player entities must be of the structure type.")]
+    public AgentSO[] playerEntities;
+
     [BoxGroup("Miscelanous", true)]
     [PropertySpace(5f, 0f)]
     [GUIColor(0.9f, 0.9f, 0.9f)]
@@ -70,6 +80,8 @@ public class MapSO : BaseOptionDataSO
 
     // Validation Methods [START]
     private bool Validate_MustHaveElements_PlayableAgents() { return playableAgents.Length > 0; }
+    private bool Validate_MustHaveElements_PlayerEntities() { return playerEntities.Length > 0; }
+    private bool Validate_MustBeStructure_PlayerEntities() { return playerEntities != null && playerEntities.All(pe => pe != null && pe.type == AgentTypeEnum.STRUCTURE); }
     private bool Validate_MustHaveElements_DimensionOne_AlignedWaves() { return alignedWaves != null && alignedWaves.Length > 0; }
     private bool Validate_MustHaveElements_DimensionTwo_AlignedWaves()
     {

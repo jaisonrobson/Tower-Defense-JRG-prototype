@@ -79,7 +79,7 @@ public class OutcomeAttackEnemyDetectionColliderController : MonoBehaviour, IPoo
                             {
                                 affectedAgents.Add(enemy.gameObject);
 
-                                enemy.OnReceiveDamage(oaa.Alignment, oaa.Damage * (damagePercentage / 100), oaa.Attack);
+                                enemy.OnReceiveDamage(oaa.Alignment, oaa.Damage * (damagePercentage / 100), oaa.Attack, oaa.Invoker);
 
                                 oaa.Attack.onHitProbabilityStatusAffectors
                                     .ToList()

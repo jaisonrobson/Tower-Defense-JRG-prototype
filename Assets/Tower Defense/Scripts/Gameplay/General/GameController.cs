@@ -25,7 +25,7 @@ public class GameController : MonoBehaviour
             if (!WaveController.instance.IsRunning && !WaveController.instance.IsAnyAgentAlive)
                 GameManager.instance.EndGame();
 
-            if (!MapManager.instance.IsAnyMainStructureAlive)
+            if (!PlayerManager.instance.IsPlayerAlive)
                 GameManager.instance.EndGame();
         }
     }

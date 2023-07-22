@@ -59,6 +59,10 @@ MonoBehaviour:
   playableAgents:
   - {fileID: 11400000, guid: 5ee3415883f95844a86bbd74306d8aa8, type: 2}
   - {fileID: 11400000, guid: 70a9899fa8622bd4e957eb46d9e5ba63, type: 2}
+  playerEntities:
+  - {fileID: 11400000, guid: 27eb9add85952394496d57f31ead99d3, type: 2}
+  - {fileID: 11400000, guid: 1ba756df7dd6c4f489cc6289caff8286, type: 2}
+  - {fileID: 11400000, guid: 5fcc1f3f6c2f3374eb7a8482bf234475, type: 2}
   alignmentsOpponents:
   - {fileID: 11400000, guid: 0e65c97e59b1b404bb4fcecc8db6c25f, type: 2}
   - {fileID: 11400000, guid: 56ed35ab0e12bb342990a80fb88e998f, type: 2}

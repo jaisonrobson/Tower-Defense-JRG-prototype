@@ -67,7 +67,7 @@ public class ParalyzeStatusAffector : StatusAffector
     {
         base.ExecuteTurnActions();
 
-        Target.OnReceiveDamage(Alignment, Damage, statusAffectorSO);
+        Target.OnReceiveDamage(Alignment, Damage, statusAffectorSO, Invoker);
 
         timeForPositionShuffling = Time.time + 1f;
     }

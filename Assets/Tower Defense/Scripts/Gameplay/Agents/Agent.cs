@@ -120,7 +120,7 @@ public abstract class Agent : MonoBehaviour, IPoolable
     [ProgressBar(0.3f, 5f, 0.3f, 0.8f, 1f)]
     [GUIColor(0.3f, 0.8f, 1f, 1f)]
     private float attackVelocity = 0f;
-    private float experienceToEvolve = 0f;
+    private int experienceToEvolve = 0;
     [TitleGroup("Agent Identity/Stats")]
     [PropertyOrder(2)]
     [ShowInInspector]
@@ -128,8 +128,8 @@ public abstract class Agent : MonoBehaviour, IPoolable
     [ReadOnly]
     [LabelText("Experience")]
     [GUIColor(1f, 0.8f, 0.4f, 1f)]
-    [ProgressBar(0f, 100f, MaxGetter = "ExperienceToEvolve", R = 1f, G = 0.8f, B = 0.4f)]
-    private float actualExperience = 0f;
+    [ProgressBar(0, 100, MaxGetter = "ExperienceToEvolve", R = 1f, G = 0.8f, B = 0.4f)]
+    private int actualExperience = 0;
     [TitleGroup("Agent Identity/Stats")]
     [PropertyOrder(6)]
     [ShowInInspector]
@@ -219,7 +219,7 @@ public abstract class Agent : MonoBehaviour, IPoolable
     public float Damage { get { return damage; } }
     public float Velocity { get { return velocity; } }
     public float AttackVelocity { get { return attackVelocity; } }
-    public float ExperienceToEvolve { get { return experienceToEvolve; } }
+    public int ExperienceToEvolve { get { return experienceToEvolve; } }
     public float ActualExperience { get { return actualExperience; } }
     public float VisibilityArea { get { return visibilityArea; } }
     public float AttackRange { get { return attackRange; } }
@@ -242,6 +242,8 @@ public abstract class Agent : MonoBehaviour, IPoolable
     public bool IsAgentUnderStatusTaunt { get { return affectingStatuses.Any(sa => sa.statusAffectorSO.status.status == StatusEnum.TAUNT); } }
     public bool IsCreature { get { return GetAgent().type == AgentTypeEnum.CREATURE; } }
     public bool IsStructure { get { return GetAgent().type == AgentTypeEnum.STRUCTURE; } }
+    public int OnDieExperience { get { return actualExperience + GetAgent().experienceOnDie; } }
+    public bool CanEvolve { get { return actualExperience == experienceToEvolve && GetAgent() != null && GetAgent().evolutionTree != null && GetAgent().evolutionTree.Count > 0; } }
     // Public (Properties) [END]
 
     // (Unity) Methods [START]
@@ -271,7 +273,7 @@ public abstract class Agent : MonoBehaviour, IPoolable
         velocity = GetAgent().velocity;
         attackVelocity = GetAgent().attackVelocity;
         experienceToEvolve = GetAgent().experienceToEvolve;
-        actualExperience = 0f;
+        actualExperience = 0;
         visibilityArea = GetAgent().visibilityArea;
         attackRange = GetAgent().attackRange;
         evasion = GetAgent().evasion;
@@ -287,9 +289,7 @@ public abstract class Agent : MonoBehaviour, IPoolable
         switch (goal)
         {
             case AgentGoalEnum.CORESTRUCTURES:
-                AddMainGoal(MapManager.instance.Catalyst.GetComponent<Agent>());
-                AddMainGoal(MapManager.instance.Generator.GetComponent<Agent>());
-                AddMainGoal(MapManager.instance.Source.GetComponent<Agent>());
+                MapManager.instance.PlayerMainEntities.ForEach(pme => AddMainGoal(pme.GetComponent<Agent>()));
 
                 break;
             case AgentGoalEnum.FLAG://Agents subspawned by structure Agents
@@ -329,15 +329,23 @@ public abstract class Agent : MonoBehaviour, IPoolable
     // Private (Methods) [END]
 
     // Public (Methods) [START]
-    public void DoSpawnAnimationFX()
+    public void DoSpawnFXs()
     {
         Animating.InvokeAnimation(GetAgent().animations.GetValueOrDefault("spawn"), transform.position, transform.rotation);
         AudioPlaying.InvokeSound(GetAgent().sounds.GetValueOrDefault("spawn"), transform.position);
     }
-    public void DoDeathAnimationFX(float pDuration = 1f)
+    public void DoDeathFXs(float pDuration = 1f)
     {
         Animating.InvokeAnimation(GetAgent().animations.GetValueOrDefault("death"), transform.position, transform.rotation, pDuration);
         AudioPlaying.InvokeSound(GetAgent().sounds.GetValueOrDefault("death"), transform.position);
+    }
+    public void DoEvolutionFXs()
+    {
+        if (GetAgent().animations.GetValueOrDefault("evolution") != null)
+            Animating.InvokeAnimation(GetAgent().animations.GetValueOrDefault("evolution"), transform.position, transform.rotation);
+
+        if (GetAgent().sounds.GetValueOrDefault("evolution") != null)
+            AudioPlaying.InvokeSound(GetAgent().sounds.GetValueOrDefault("evolution"), transform.position);
     }
     public void AddMovementPrevention() => isMovementPrevented.Add(true);
     public void RemoveMovementPrevention()
@@ -452,7 +460,7 @@ public abstract class Agent : MonoBehaviour, IPoolable
     }
     public int GenerateEvasionChance() { return RNG.Int(evasion.x, evasion.y); }
     public bool TryToEvade() { return RNG.Int(0, 100) < GenerateEvasionChance(); }
-    public bool OnReceiveDamage(AlignmentEnum dealerAlignment, float dealerDamage, AttackSO dealerAttack)
+    public bool OnReceiveDamage(AlignmentEnum dealerAlignment, float dealerDamage, AttackSO dealerAttack, Agent pDealer)
     {
         bool result = false;
 
@@ -470,6 +478,9 @@ public abstract class Agent : MonoBehaviour, IPoolable
 
             actualHealth = Mathf.Clamp(actualHealth - finalValue, 0f, MaxHealth);
 
+            if (Mathf.Equals(actualHealth, 0f))
+                pDealer?.OnReceiveExperience(OnDieExperience);
+
             GetComponent<AgentUI>().GenerateFloatingText(-finalValue);
 
             onReceiveDamageAction?.Invoke();
@@ -479,7 +490,7 @@ public abstract class Agent : MonoBehaviour, IPoolable
 
         return result;
     }
-    public bool OnReceiveDamage(AlignmentEnum dealerAlignment, float dealerDamage, StatusAffectorSO dealerStatus)
+    public bool OnReceiveDamage(AlignmentEnum dealerAlignment, float dealerDamage, StatusAffectorSO dealerStatus, Agent pDealer)
     {
         bool result = false;
 
@@ -497,6 +508,9 @@ public abstract class Agent : MonoBehaviour, IPoolable
 
             actualHealth = Mathf.Clamp(actualHealth - finalValue, 0f, MaxHealth);
 
+            if (Mathf.Equals(actualHealth, 0f))
+                pDealer?.OnReceiveExperience(OnDieExperience);
+
             GetComponent<AgentUI>().GenerateFloatingText(-finalValue);
 
             onReceiveDamageAction?.Invoke();
@@ -505,6 +519,13 @@ public abstract class Agent : MonoBehaviour, IPoolable
         }
 
         return result;
+    }
+    public void OnReceiveExperience(int newExperience)
+    {
+        if (Master != null)
+            Master?.OnReceiveExperience(newExperience);
+        else
+            actualExperience = Mathf.Clamp(actualExperience + newExperience, actualExperience, ExperienceToEvolve);
     }
     public Agent GetActualEnemyAgent()
     {

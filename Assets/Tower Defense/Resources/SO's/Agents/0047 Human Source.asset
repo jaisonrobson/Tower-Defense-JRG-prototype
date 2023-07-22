@@ -118,10 +118,12 @@ MonoBehaviour:
   prefab: {fileID: 4437187418714177830, guid: 05ff6140ddca16f4986b583cb95e0889, type: 3}
   nature: {fileID: 11400000, guid: efc48cd36c929314495d893e09975cdd, type: 2}
   type: 1
+  subtype: 3
   isMovable: 0
   isAggressive: 1
   isPlayable: 0
   experienceToEvolve: 0
+  experienceOnDie: 1000
   health: 1000
   damage: 5
   attackVelocity: 2

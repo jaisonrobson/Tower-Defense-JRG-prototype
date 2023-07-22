@@ -63,8 +63,8 @@ MonoBehaviour:
   AllowNonRigidbodyDoppler: 0
   Params: []
   OverrideAttenuation: 0
-  OverrideMinDistance: 1
-  OverrideMaxDistance: 20
+  OverrideMinDistance: 0
+  OverrideMaxDistance: 100
 --- !u!114 &3098504462905413083
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -78,7 +78,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   initialPoolCapacity: 10
-  poolType: 20
+  poolType: 21
   prefabInitializationActions:
     m_PersistentCalls:
       m_Calls: []

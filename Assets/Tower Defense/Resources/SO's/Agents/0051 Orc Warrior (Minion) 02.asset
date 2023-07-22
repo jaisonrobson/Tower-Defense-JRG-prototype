@@ -18,8 +18,10 @@ MonoBehaviour:
     ReferencedUnityObjects:
     - {fileID: 11400000, guid: d98408a2ab827a94cb48a1496496e002, type: 2}
     - {fileID: 11400000, guid: 597aa9f117cc8be43a36d219a4f600c8, type: 2}
+    - {fileID: 11400000, guid: bdbb02757613518418485500b0be4df3, type: 2}
     - {fileID: 11400000, guid: 42913a15969bb2341a9fe5d11cf64c8f, type: 2}
     - {fileID: 11400000, guid: bb3c795cf7d6f6140ae29d1bd3bd1356, type: 2}
+    - {fileID: 11400000, guid: e541ee61853294c41833109ebdf0e5e4, type: 2}
     SerializedBytesString: 
     Prefab: {fileID: 0}
     PrefabModificationsReferencedUnityObjects: []
@@ -38,7 +40,7 @@ MonoBehaviour:
       Data: 
     - Name: 
       Entry: 12
-      Data: 2
+      Data: 3
     - Name: 
       Entry: 7
       Data: 
@@ -64,6 +66,18 @@ MonoBehaviour:
       Entry: 8
       Data: 
     - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 1
+      Data: evolution
+    - Name: $v
+      Entry: 10
+      Data: 2
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
       Entry: 13
       Data: 
     - Name: 
@@ -78,7 +92,7 @@ MonoBehaviour:
       Data: 1
     - Name: 
       Entry: 12
-      Data: 2
+      Data: 3
     - Name: 
       Entry: 7
       Data: 
@@ -87,7 +101,7 @@ MonoBehaviour:
       Data: spawn
     - Name: $v
       Entry: 10
-      Data: 2
+      Data: 3
     - Name: 
       Entry: 8
       Data: 
@@ -99,7 +113,19 @@ MonoBehaviour:
       Data: death
     - Name: $v
       Entry: 10
-      Data: 3
+      Data: 4
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 1
+      Data: evolution
+    - Name: $v
+      Entry: 10
+      Data: 5
     - Name: 
       Entry: 8
       Data: 
@@ -118,10 +144,12 @@ MonoBehaviour:
   prefab: {fileID: 1245423106021898583, guid: c5e06c16ea4992949ac64b0b2c604a8f, type: 3}
   nature: {fileID: 11400000, guid: efc48cd36c929314495d893e09975cdd, type: 2}
   type: 0
+  subtype: 0
   isMovable: 1
   isAggressive: 1
   isPlayable: 1
-  experienceToEvolve: 0
+  experienceToEvolve: 10
+  experienceOnDie: 2
   health: 30
   damage: 6
   attackVelocity: 5

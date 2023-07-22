@@ -112,7 +112,7 @@ public class PlayableStructure : Structure
     {
         isPlaced = true;
 
-        DoSpawnAnimationFX();
+        DoSpawnFXs();
     }
     public override void PoolRetrievalAction(Poolable poolable)
     {

@@ -260,7 +260,7 @@ public abstract class AgentFsmAi : MonoBehaviour
 
         newAgent.gameObject.GetComponent<AIPath>().Teleport(agent.GetAgentColliderBoundsInitialPosition(newAgent.transform));
 
-        newAgent.gameObject.GetComponent<Agent>().DoSpawnAnimationFX();
+        newAgent.gameObject.GetComponent<Agent>().DoSpawnFXs();
 
         return newAgent;
     }
@@ -300,7 +300,7 @@ public abstract class AgentFsmAi : MonoBehaviour
         isDying = true;
         timeUntilCompletelyDie = 3f;
 
-        agent.DoDeathAnimationFX(timeUntilCompletelyDie);
+        agent.DoDeathFXs(timeUntilCompletelyDie);
     }
     public float GetDistanceBetweenAgentAndEnemy()
     {

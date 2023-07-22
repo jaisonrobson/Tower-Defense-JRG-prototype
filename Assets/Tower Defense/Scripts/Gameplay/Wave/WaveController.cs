@@ -221,7 +221,7 @@ public class WaveController : OdinSingleton<WaveController>
     {
         GameObject agent = Poolable.TryGetPoolable(GetRunningWave(index).agents.ElementAt(nextIndexToSpawn[index]).prefab, OnRetrievePoolableAgent);
 
-        agent.gameObject.GetComponent<Agent>().DoSpawnAnimationFX();
+        agent.gameObject.GetComponent<Agent>().DoSpawnFXs();
 
         spawnedAgents.Add(agent);
     }
