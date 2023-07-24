@@ -116,7 +116,7 @@ public class AnimationFX : MonoBehaviour, IPoolable
                 }
                 else if (Time.time > (chainedAnimationDelay + AnimationSO.delayBeforeChainedAnimation) && !didPlayedChainedAnimation)
                 {
-                    Animating.InvokeAnimation(AnimationSO, transform.position, transform.rotation, Duration);
+                    Animating.InvokeAnimation(AnimationSO, transform.position, transform.rotation, transform.localScale, Duration);
 
                     didPlayedChainedAnimation = true;
                 }

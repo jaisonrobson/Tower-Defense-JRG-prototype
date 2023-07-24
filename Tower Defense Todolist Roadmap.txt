@@ -221,3 +221,4 @@ BUGS E VALIDAÇÕES:
 (X) Corrigir animacao quando um agente criatura esta batendo num agente estrutura, a criatura nao consegue ficar em estado Idle, ela apenas alterna entre Walk e Attack.
 ( ) Encontrado problema onde as vezes os agentes subspawns atacam os seus mestres logo antes de comecarem a atacar seus inimigos prioritarios. (Talvez o bug esteja no ActualGoal ou algo assim.) (Fazer uma verificacao se o objeto mestre for do mesmo alinhamento cancela o ataque.)
 (X) Corrigir o pause para parar o tempo tambem. (verificar como a unity faz, e verificar como o pessoal faz.)
+( ) Verificar o algoritmo de AnimationFX nao esta finalizando adequadamente as animacoes.

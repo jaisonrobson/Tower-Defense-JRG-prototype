@@ -49,7 +49,7 @@ public class ImmediateAttackController : AttackController
 
             Transform animationOrigin = IAA.Invoker.GetAnimationOriginOfAttack(IAA.Attack).animationOrigin;
 
-            Animating.InvokeAnimation(IAA.Attack.finalAnimation, IAA.Target.transform.position, animationOrigin.rotation, IAA.Duration);
+            Animating.InvokeAnimation(IAA.Attack.finalAnimation, IAA.Target.transform.position, animationOrigin.rotation, Vector3.one, IAA.Duration);
             AudioPlaying.InvokeSound(IAA.Attack.finalSound, IAA.Target.transform.position);
 
             Finished = true;

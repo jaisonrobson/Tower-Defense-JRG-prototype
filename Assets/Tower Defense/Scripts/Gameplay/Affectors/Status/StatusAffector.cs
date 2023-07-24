@@ -90,7 +90,7 @@ public abstract class StatusAffector : Affector
     // Protected (Methods) [START]
     protected virtual void ExecuteTurnActions()
     {
-        Animating.InvokeAnimation(statusAffectorSO.animation, Target.transform.position, Target.transform.rotation);
+        Animating.InvokeAnimation(statusAffectorSO.animation, Target.transform.position, Target.transform.rotation, Vector3.one);
         AudioPlaying.InvokeSound(statusAffectorSO.sound, Target.transform.position);
     }
     protected abstract void InitializeStatusActions();

@@ -331,18 +331,20 @@ public abstract class Agent : MonoBehaviour, IPoolable
     // Public (Methods) [START]
     public void DoSpawnFXs()
     {
-        Animating.InvokeAnimation(GetAgent().animations.GetValueOrDefault("spawn"), transform.position, transform.rotation);
+        Animating.InvokeAnimation(GetAgent().animations.GetValueOrDefault("spawn"), transform.position, transform.rotation, mainCollider.bounds.size);
         AudioPlaying.InvokeSound(GetAgent().sounds.GetValueOrDefault("spawn"), transform.position);
     }
     public void DoDeathFXs(float pDuration = 1f)
     {
-        Animating.InvokeAnimation(GetAgent().animations.GetValueOrDefault("death"), transform.position, transform.rotation, pDuration);
+        Animating.InvokeAnimation(GetAgent().animations.GetValueOrDefault("death"), transform.position, transform.rotation, mainCollider.bounds.size, pDuration);
         AudioPlaying.InvokeSound(GetAgent().sounds.GetValueOrDefault("death"), transform.position);
     }
     public void DoEvolutionFXs()
     {
+        Debug.Log("mainCollider.bounds.size: "+ mainCollider.bounds.size);
+
         if (GetAgent().animations.GetValueOrDefault("evolution") != null)
-            Animating.InvokeAnimation(GetAgent().animations.GetValueOrDefault("evolution"), transform.position, transform.rotation);
+            Animating.InvokeAnimation(GetAgent().animations.GetValueOrDefault("evolution"), transform.position, transform.rotation, mainCollider.bounds.size);
 
         if (GetAgent().sounds.GetValueOrDefault("evolution") != null)
             AudioPlaying.InvokeSound(GetAgent().sounds.GetValueOrDefault("evolution"), transform.position);
