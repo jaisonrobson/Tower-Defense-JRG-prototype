@@ -1,7 +1,8 @@
-    using System.Collections;
-    using System.Collections.Generic;
-    using UnityEngine;
-    using Sirenix.OdinInspector;
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using Sirenix.OdinInspector;
+using Sirenix.Serialization;
 
 [ManageableData]
 public class AnimationSO : BaseOptionDataSO
@@ -10,6 +11,11 @@ public class AnimationSO : BaseOptionDataSO
     [PropertyTooltip("The prefab with particle animations or anything else that does the animation.")]
     [Required]
     public GameObject prefab;
+
+    [BoxGroup("Box1")]
+    [PropertyTooltip("The natural scale of the animation, used in animation rescaling methods.")]
+    [OdinSerialize]
+    public Vector3 animationSize;
 
     [PropertyRange(0f, 10f)]
     [BoxGroup("Box1")]

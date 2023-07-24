@@ -20,10 +20,27 @@ MonoBehaviour:
     Prefab: {fileID: 0}
     PrefabModificationsReferencedUnityObjects: []
     PrefabModifications: []
-    SerializationNodes: []
+    SerializationNodes:
+    - Name: animationSize
+      Entry: 7
+      Data: UnityEngine.Vector3, UnityEngine.CoreModule
+    - Name: 
+      Entry: 4
+      Data: 1
+    - Name: 
+      Entry: 4
+      Data: 2
+    - Name: 
+      Entry: 4
+      Data: 3
+    - Name: 
+      Entry: 8
+      Data: 
   jokerHiddenTitleField: 
   assetPath: Assets/SO's/Animations/0002 Sword Slash 002.asset
   newName: 0002 Sword (Slash) 002
   prefab: {fileID: 1691668335544622, guid: 059a708796981884486e3d98179f462e, type: 3}
+  animationSize: {x: 1, y: 2, z: 3}
   delay: 0
+  delayBeforeChainedAnimation: 0
   chainedAnimation: {fileID: 0}
