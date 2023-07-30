@@ -284,9 +284,9 @@ ParticleSystem:
         m_NumAlphaKeys: 2
     startSize:
       serializedVersion: 2
-      minMaxState: 3
-      scalar: 7
-      minScalar: 6
+      minMaxState: 0
+      scalar: 55
+      minScalar: 12
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -337,9 +337,9 @@ ParticleSystem:
         m_RotationOrder: 4
     startSizeY:
       serializedVersion: 2
-      minMaxState: 3
-      scalar: 8
-      minScalar: 12
+      minMaxState: 0
+      scalar: 90
+      minScalar: 24
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -390,9 +390,9 @@ ParticleSystem:
         m_RotationOrder: 4
     startSizeZ:
       serializedVersion: 2
-      minMaxState: 3
-      scalar: 6
-      minScalar: 7
+      minMaxState: 0
+      scalar: 55
+      minScalar: 14
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -4905,7 +4905,7 @@ GameObject:
   - component: {fileID: 6132289877977704782}
   - component: {fileID: 5461458455778759929}
   m_Layer: 0
-  m_Name: AFX_Evolution_Blast_01
+  m_Name: AFX_Evolution_Blast_02
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5178,9 +5178,9 @@ ParticleSystem:
         m_NumAlphaKeys: 2
     startSize:
       serializedVersion: 2
-      minMaxState: 3
-      scalar: 6
-      minScalar: 5
+      minMaxState: 0
+      scalar: 55
+      minScalar: 10
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -5231,9 +5231,9 @@ ParticleSystem:
         m_RotationOrder: 4
     startSizeY:
       serializedVersion: 2
-      minMaxState: 3
-      scalar: 8
-      minScalar: 12
+      minMaxState: 0
+      scalar: 90
+      minScalar: 24
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -5284,9 +5284,9 @@ ParticleSystem:
         m_RotationOrder: 4
     startSizeZ:
       serializedVersion: 2
-      minMaxState: 3
-      scalar: 5
-      minScalar: 6
+      minMaxState: 0
+      scalar: 55
+      minScalar: 12
       maxCurve:
         serializedVersion: 2
         m_Curve:

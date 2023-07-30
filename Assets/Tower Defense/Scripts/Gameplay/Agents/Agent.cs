@@ -331,42 +331,21 @@ public abstract class Agent : MonoBehaviour, IPoolable
     // Public (Methods) [START]
     public void DoSpawnFXs()
     {
-        if (!mainCollider.enabled || !mainCollider.gameObject.activeSelf || !mainCollider.gameObject.activeInHierarchy)
-        {
-            Invoke("DoSpawnFXs", 0.1f);
-        }
-        else
-        {
-            Animating.InvokeAnimation(GetAgent().animations.GetValueOrDefault("spawn"), transform.position, transform.rotation, mainCollider.bounds.size);
-            AudioPlaying.InvokeSound(GetAgent().sounds.GetValueOrDefault("spawn"), transform.position);
-        }
+        Animating.InvokeAnimation(GetAgent().animations.GetValueOrDefault("spawn"), transform.position, transform.rotation);
+        AudioPlaying.InvokeSound(GetAgent().sounds.GetValueOrDefault("spawn"), transform.position);
     }
     public void DoDeathFXs(float pDuration = 1f)
     {
-        if (!mainCollider.enabled || !mainCollider.gameObject.activeSelf || !mainCollider.gameObject.activeInHierarchy)
-        {
-            Invoke("DoDeathFXs", 0.1f);
-        }
-        else
-        {
-            Animating.InvokeAnimation(GetAgent().animations.GetValueOrDefault("death"), transform.position, transform.rotation, mainCollider.bounds.size, pDuration);
-            AudioPlaying.InvokeSound(GetAgent().sounds.GetValueOrDefault("death"), transform.position);
-        }
+        Animating.InvokeAnimation(GetAgent().animations.GetValueOrDefault("death"), transform.position, transform.rotation, pDuration);
+        AudioPlaying.InvokeSound(GetAgent().sounds.GetValueOrDefault("death"), transform.position);
     }
     public void DoEvolutionFXs()
     {
-        if (!mainCollider.enabled || !mainCollider.gameObject.activeSelf || !mainCollider.gameObject.activeInHierarchy)
-        {
-            Invoke("DoEvolutionFXs", 0.1f);
-        }
-        else
-        {
-            if (GetAgent().animations.GetValueOrDefault("evolution") != null)
-                Animating.InvokeAnimation(GetAgent().animations.GetValueOrDefault("evolution"), transform.position, transform.rotation, mainCollider.bounds.size);
+        if (GetAgent().animations.GetValueOrDefault("evolution") != null)
+            Animating.InvokeAnimation(GetAgent().animations.GetValueOrDefault("evolution"), transform.position, transform.rotation);
 
-            if (GetAgent().sounds.GetValueOrDefault("evolution") != null)
-                AudioPlaying.InvokeSound(GetAgent().sounds.GetValueOrDefault("evolution"), transform.position);
-        }
+        if (GetAgent().sounds.GetValueOrDefault("evolution") != null)
+            AudioPlaying.InvokeSound(GetAgent().sounds.GetValueOrDefault("evolution"), transform.position);
     }
     public void AddMovementPrevention() => isMovementPrevented.Add(true);
     public void RemoveMovementPrevention()

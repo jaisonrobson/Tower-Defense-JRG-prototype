@@ -51,7 +51,7 @@ public class RangedAttackEnemyDetectionColliderController : MonoBehaviour
 
                                 Transform animationOrigin = raa.Invoker.GetAnimationOriginOfAttack(raa.Attack).animationOrigin;
 
-                                Animating.InvokeAnimation(raa.Attack.finalAnimation, enemy.transform.position, animationOrigin.rotation, Vector3.one, raa.Duration);
+                                Animating.InvokeAnimation(raa.Attack.finalAnimation, enemy.transform.position, animationOrigin.rotation, raa.Duration);
                                 AudioPlaying.InvokeSound(raa.Attack.finalSound, enemy.transform.position);
                             }
 

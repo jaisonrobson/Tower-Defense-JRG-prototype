@@ -186,9 +186,9 @@ LEGENDA:
 (-) Fazer com que os agentes possuam obrigatoriamente uma animacao e um som de evolucao.
 
 ( ) Fazer com que o algoritmo AnimationFX utilize a estrategia de inscricao de metodos nos metodos OnEnable e OnDisable quando a animacao for do tipo Trail, para que o mesmo seja atribuido como filho na hierarquia de objetos do objeto em questao que se esta sendo seguido.
-( ) Criar um algoritmo para as animacoes que vai tratar o tamanho da animacao no SO, se tamanho natural for maior que a escala do colisor, vai diminuir/dividir de forma equivalente, se o tamanho natural for menor, vai multiplicar/aumentar a escala da animacao.
-( ) Caso o algoritmo de escala de animacoes fique bom, fazer a medicao de todas as animacoes e configurar nos SOs.
-( ) Fazer com que as AnimationFX fiquem do tamanho do colisor principal do agente, ou sigam algum tipo de ponto de origem do agente. (No caso das torres que compartilham animacoes com agentes menores, precisam que as animacoes mudem de tamanho pois acabam ficando dentro da estrutura.)
+(-) Criar um algoritmo para as animacoes que vai tratar o tamanho da animacao no SO, se tamanho natural for maior que a escala do colisor, vai diminuir/dividir de forma equivalente, se o tamanho natural for menor, vai multiplicar/aumentar a escala da animacao.
+(-) Caso o algoritmo de escala de animacoes fique bom, fazer a medicao de todas as animacoes e configurar nos SOs.
+(-) Fazer com que as AnimationFX fiquem do tamanho do colisor principal do agente, ou sigam algum tipo de ponto de origem do agente. (No caso das torres que compartilham animacoes com agentes menores, precisam que as animacoes mudem de tamanho pois acabam ficando dentro da estrutura.)
 
 ----------------------------------------------------------------------------------------------------------------------------------------------------------------
 BUGS E VALIDAÇÕES:

@@ -6,7 +6,7 @@ using Core.Patterns;
 
 public static class Animating
 {
-    public static void InvokeAnimation(AnimationSO pAnimSO, Vector3 pPosition, Quaternion pRotation, Vector3 pSizeScale, float pDuration = 1f)
+    public static void InvokeAnimation(AnimationSO pAnimSO, Vector3 pPosition, Quaternion pRotation, float pDuration = 1f)
     {
         if (pAnimSO == null)
             return;
@@ -16,7 +16,6 @@ public static class Animating
             (newPoolable) => {
                 newPoolable.transform.position = pPosition;
                 newPoolable.transform.rotation = pRotation;
-                newPoolable.transform.localScale = pSizeScale; //esta acontecendo um problema ao alterar a escala assim.
             }
         );
 
