@@ -190,9 +190,10 @@ LEGENDA:
 (-) Caso o algoritmo de escala de animacoes fique bom, fazer a medicao de todas as animacoes e configurar nos SOs.
 (-) Fazer com que as AnimationFX fiquem do tamanho do colisor principal do agente, ou sigam algum tipo de ponto de origem do agente. (No caso das torres que compartilham animacoes com agentes menores, precisam que as animacoes mudem de tamanho pois acabam ficando dentro da estrutura.)
 
+(X) Fazer com que ao tentar posicionar uma torre o custo/valor dela seja cobrado do jogador, caso jogador nao tenha os pontos necessarios, entao nao posicionar a torre.
 ( ) Criar elementos de interface para controle de posicionamento das torres. (sera criado botoes dinamicamente para selecionar as torres do mapa especifico que esta sendo jogado).
 ( ) Fazer com que ao selecionar uma torre, apareca na interface a torre que esta sendo posicionada. (uma especie de pre-selecao da estrutura)
-( ) Fazer com que as estatisticas e informacoes detalhadas (provavelmente abrindo outra janela) aparecam ao pressionar algum botao proximo da torre na interface.
+( ) Fazer com que as estatisticas da torre selecionada apareca numa regiao da tela enquanto o jogador estiver tentando posiciona-la.
 
 ----------------------------------------------------------------------------------------------------------------------------------------------------------------
 BUGS E VALIDAÇÕES:

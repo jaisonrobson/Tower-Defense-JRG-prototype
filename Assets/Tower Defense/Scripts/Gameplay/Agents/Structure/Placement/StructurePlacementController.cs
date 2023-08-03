@@ -19,11 +19,13 @@ public class StructurePlacementController : Singleton<StructurePlacementControll
     // Private (Variables) [START]
     private Camera mainCamera;
     private GameObject currentPlacingStructure;
+    private PlayableAgentSO currentPlacingPlayableAgentSO;
     private List<PlayableAgentSO> levelStructures = new List<PlayableAgentSO>();
     // Private (Variables) [END]
 
     // Public (Properties) [START]
     public bool IsPlacing { get { return currentPlacingStructure != null; } }
+    public bool CanBuyStructure { get { return currentPlacingPlayableAgentSO != null && PlayerManager.instanceExists && PlayerManager.instance.CanDecreasePoints(currentPlacingPlayableAgentSO.cost); } }
     // Public (Properties) [END]
 
     // (Unity) Methods [START]
@@ -102,9 +104,14 @@ public class StructurePlacementController : Singleton<StructurePlacementControll
                     {
                         if (currentPlacingStructure.GetComponentInChildren<StructurePlacementCollisionManager>().CanPlaceStructure())
                         {
-                            currentPlacingStructure.GetComponent<Agent>().Alignment = MapManager.instance.map.playerAlignment.alignment;
-                            currentPlacingStructure.GetComponent<PlayableStructure>().PlaceStructure();
-                            currentPlacingStructure = null;
+                            if (CanBuyStructure)
+                            {
+                                PlayerManager.instance.DecreasePoints(currentPlacingPlayableAgentSO.cost);
+
+                                currentPlacingStructure.GetComponent<Agent>().Alignment = MapManager.instance.map.playerAlignment.alignment;
+                                currentPlacingStructure.GetComponent<PlayableStructure>().PlaceStructure();
+                                currentPlacingStructure = null;
+                            }
                         }
                     }
                 }
@@ -115,10 +122,11 @@ public class StructurePlacementController : Singleton<StructurePlacementControll
     {
         if (currentPlacingStructure != null)
         {
-            if (Input.GetKey(KeyCode.Escape) || !currentPlacingStructure.activeInHierarchy)
+            if (Input.GetKey(KeyCode.Escape) || Input.GetKey(KeyCode.Mouse1) || !currentPlacingStructure.activeInHierarchy)
             {
                 Poolable.TryPool(currentPlacingStructure);
                 currentPlacingStructure = null;
+                currentPlacingPlayableAgentSO = null;
             }
         }
     }
@@ -132,6 +140,7 @@ public class StructurePlacementController : Singleton<StructurePlacementControll
                 if (Input.GetKey(i.ToString()))
                 {
                     InstantiateGhost(levelStructures.ElementAt(i).agent.prefab);
+                    currentPlacingPlayableAgentSO = levelStructures.ElementAt(i);
                 }
             }
         }
