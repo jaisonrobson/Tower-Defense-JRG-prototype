@@ -125,9 +125,9 @@ public class AnimationFX : MonoBehaviour, IPoolable
     }
     private void HandleAnimationFinishing()
     {
-        if (didPlayedSystems && !mainSystem.isPlaying)
+        if (didPlayedSystems && !mainSystem.isPlaying && !isTrailAnimation)
         {
-            if (AnimationSO != null)
+            if (AnimationSO != null && AnimationSO.chainedAnimation != null)
             {
                 if (didPlayedChainedAnimation)
                     Poolable.TryPool(gameObject);
@@ -138,15 +138,18 @@ public class AnimationFX : MonoBehaviour, IPoolable
     }
     private void HandleTrailAnimationObjectFollowing()
     {
-        if (isTrailAnimation && ObjectToFollow != null && ObjectToFollow.activeSelf && ObjectToFollow.activeInHierarchy && rac != null && !rac.IsRangedAttackDurationEnded)
+        if (isTrailAnimation)
         {
-            transform.position = ObjectToFollow.transform.position;
-        }
-        else if (isTrailAnimation && ObjectToFollow != null && (!ObjectToFollow.activeSelf || !ObjectToFollow.activeInHierarchy || (rac != null && rac.IsRangedAttackDurationEnded)) && !isTryingToPool)
-        {
-            isTryingToPool = true;
+            if (ObjectToFollow != null && ObjectToFollow.activeSelf && ObjectToFollow.activeInHierarchy && rac != null && !rac.IsRangedAttackDurationEnded)
+            {
+                transform.position = ObjectToFollow.transform.position;
+            }
+            else if (ObjectToFollow != null && (!ObjectToFollow.activeSelf || !ObjectToFollow.activeInHierarchy || (rac != null && rac.IsRangedAttackDurationEnded)) && !isTryingToPool)
+            {
+                isTryingToPool = true;
 
-            Invoke(nameof(DelayedPool), 1f);
+                Invoke(nameof(DelayedPool), 1f);
+            }
         }
     }
     private void DelayedPool()

@@ -4810,7 +4810,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   initialPoolCapacity: 10
-  poolType: 19
+  poolType: 20
   prefabInitializationActions:
     m_PersistentCalls:
       m_Calls: []

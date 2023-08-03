@@ -190,6 +190,10 @@ LEGENDA:
 (-) Caso o algoritmo de escala de animacoes fique bom, fazer a medicao de todas as animacoes e configurar nos SOs.
 (-) Fazer com que as AnimationFX fiquem do tamanho do colisor principal do agente, ou sigam algum tipo de ponto de origem do agente. (No caso das torres que compartilham animacoes com agentes menores, precisam que as animacoes mudem de tamanho pois acabam ficando dentro da estrutura.)
 
+( ) Criar elementos de interface para controle de posicionamento das torres. (sera criado botoes dinamicamente para selecionar as torres do mapa especifico que esta sendo jogado).
+( ) Fazer com que ao selecionar uma torre, apareca na interface a torre que esta sendo posicionada. (uma especie de pre-selecao da estrutura)
+( ) Fazer com que as estatisticas e informacoes detalhadas (provavelmente abrindo outra janela) aparecam ao pressionar algum botao proximo da torre na interface.
+
 ----------------------------------------------------------------------------------------------------------------------------------------------------------------
 BUGS E VALIDAÇÕES:
 (X) A WeaknessesSO possui uma matrix de floats que nao esta sendo corretamente serializada pela UNITY nem pelo ODIN, verificar o motivo e talvez refazer a serializacao manualmente.
@@ -223,4 +227,4 @@ BUGS E VALIDAÇÕES:
 (X) Corrigir animacao quando um agente criatura esta batendo num agente estrutura, a criatura nao consegue ficar em estado Idle, ela apenas alterna entre Walk e Attack.
 ( ) Encontrado problema onde as vezes os agentes subspawns atacam os seus mestres logo antes de comecarem a atacar seus inimigos prioritarios. (Talvez o bug esteja no ActualGoal ou algo assim.) (Fazer uma verificacao se o objeto mestre for do mesmo alinhamento cancela o ataque.)
 (X) Corrigir o pause para parar o tempo tambem. (verificar como a unity faz, e verificar como o pessoal faz.)
-( ) Verificar o algoritmo de AnimationFX nao esta finalizando adequadamente as animacoes.
+(-) Verificar o algoritmo de AnimationFX nao esta finalizando adequadamente as animacoes.
