@@ -67,14 +67,12 @@ public class StructurePlacementController : Singleton<StructurePlacementControll
             }
         }
     }
-
     private void HandleInput()
     {
         HandleGhostInstantiation();
         HandlePlacementCancelling();
         HandleStructurePlacement();
     }
-
     private void HandleStructureWorldPositioning()
     {
         if (currentPlacingStructure != null && currentPlacingStructure.activeInHierarchy)
@@ -87,7 +85,6 @@ public class StructurePlacementController : Singleton<StructurePlacementControll
             }
         }
     }
-
     private void HandleStructurePlacement()
     {
         if (currentPlacingStructure != null && currentPlacingStructure.activeInHierarchy)
@@ -110,7 +107,7 @@ public class StructurePlacementController : Singleton<StructurePlacementControll
 
                                 currentPlacingStructure.GetComponent<Agent>().Alignment = MapManager.instance.map.playerAlignment.alignment;
                                 currentPlacingStructure.GetComponent<PlayableStructure>().PlaceStructure();
-                                currentPlacingStructure = null;
+                                ResetPlacementVariables();
                             }
                         }
                     }
@@ -124,34 +121,53 @@ public class StructurePlacementController : Singleton<StructurePlacementControll
         {
             if (Input.GetKey(KeyCode.Escape) || Input.GetKey(KeyCode.Mouse1) || !currentPlacingStructure.activeInHierarchy)
             {
-                Poolable.TryPool(currentPlacingStructure);
-                currentPlacingStructure = null;
-                currentPlacingPlayableAgentSO = null;
+                ResetPlacement();
             }
         }
     }
-
     private void HandleGhostInstantiation()
     {
-        if (currentPlacingStructure == null)
+        for (int i = 0; i < levelStructures.Count; i++)
         {
-            for (int i = 0; i < levelStructures.Count; i++)
+            if (Input.GetKey(i.ToString()))
             {
-                if (Input.GetKey(i.ToString()))
-                {
-                    InstantiateGhost(levelStructures.ElementAt(i).agent.prefab);
-                    currentPlacingPlayableAgentSO = levelStructures.ElementAt(i);
-                }
+                SelectStructure(levelStructures.ElementAt(i));
             }
         }
     }
+    private void ResetPlacement()
+    {
+        Poolable.TryPool(currentPlacingStructure);
 
+        ResetPlacementVariables();
+    }
+    private void ResetPlacementVariables()
+    {
+        currentPlacingStructure = null;
+        currentPlacingPlayableAgentSO = null;
+    }
     private void InstantiateGhost(GameObject structure)
     {
         currentPlacingStructure = Poolable.TryGetPoolable(structure);
     }
+    private void SelectStructure(PlayableAgentSO pPASO)
+    {
+        if (currentPlacingStructure != null)
+        {
+            ResetPlacement();
+        }
 
+        InstantiateGhost(pPASO.agent.prefab);
+        currentPlacingPlayableAgentSO = pPASO;
+    }
     // Private Methods [END]
+
+    // Public (Methods) [START]
+    public void SelectPlacementStructure(PlayableAgentSO pPASO)
+    {
+        SelectStructure(pPASO);
+    }
+    // Public (Methods) [END]
 }
 
 ////////////////////////////////////////////////////////////////////////////////
