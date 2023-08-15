@@ -192,8 +192,8 @@ LEGENDA:
 
 (X) Fazer com que ao tentar posicionar uma torre o custo/valor dela seja cobrado do jogador, caso jogador nao tenha os pontos necessarios, entao nao posicionar a torre.
 (X) Criar elementos de interface para controle de posicionamento das torres. (sera criado botoes dinamicamente para selecionar as torres do mapa especifico que esta sendo jogado).
-( ) Fazer com que ao selecionar uma torre, apareca na interface a torre que esta sendo posicionada. (uma especie de pre-selecao da estrutura)
-( ) Fazer com que as estatisticas da torre selecionada apareca numa regiao da tela enquanto o jogador estiver tentando posiciona-la.
+(X) Fazer com que ao selecionar uma torre, apareca na interface a torre que esta sendo posicionada. (uma especie de pre-selecao da estrutura)
+(X) Fazer com que as estatisticas da torre selecionada apareca numa regiao da tela enquanto o jogador estiver tentando posiciona-la.
 
 ----------------------------------------------------------------------------------------------------------------------------------------------------------------
 BUGS E VALIDAÇÕES:

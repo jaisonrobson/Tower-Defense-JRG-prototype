@@ -25,6 +25,7 @@ public class StructurePlacementController : Singleton<StructurePlacementControll
 
     // Public (Properties) [START]
     public bool IsPlacing { get { return currentPlacingStructure != null; } }
+    public PlayableAgentSO CurrentPlacingPlayableAgent { get { return currentPlacingPlayableAgentSO; } }
     public bool CanBuyStructure { get { return currentPlacingPlayableAgentSO != null && PlayerManager.instanceExists && PlayerManager.instance.CanDecreasePoints(currentPlacingPlayableAgentSO.cost); } }
     // Public (Properties) [END]
 
