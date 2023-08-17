@@ -9,12 +9,14 @@ using Core.Patterns;
 public class PlayerManager : Singleton<PlayerManager>
 {
     // Private (Variables) [START]
+    private bool isLockingPlayerControl;
     private bool isPlayerAlive;
     private int points;
     // Private (Variables) [END]
 
     // Public (Properties) [START]
     public bool IsPlayerAlive { get { return isPlayerAlive; } }
+    public bool IsLockingPlayerControl { get { return isLockingPlayerControl; } }
     public int Points { get { return points; } }
     // Public (Properties) [END]
 
@@ -61,6 +63,8 @@ public class PlayerManager : Singleton<PlayerManager>
             points -= Mathf.Abs(pQuantity);
     }
     public bool CanDecreasePoints(int pQuantity) => points >= Mathf.Abs(pQuantity);
+    public void LockPlayerControl() => isLockingPlayerControl = true;
+    public void UnlockPlayerControl() => isLockingPlayerControl = false;
     // Public (Methods) [END]
 }
 

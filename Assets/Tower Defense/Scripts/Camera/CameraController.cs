@@ -48,15 +48,18 @@ public class CameraController : Singleton<CameraController>
 
     void LateUpdate()
     {
-        HandleCameraTargetLook();
+        if (!PlayerManager.instance.IsLockingPlayerControl)
+        {
+            HandleCameraTargetLook();
 
-        HandleSpeedInput();
-        HandleHorizontalMovementInput();
-        HandleVerticalMovementInput();
-        HandleRotationInput();
+            HandleSpeedInput();
+            HandleHorizontalMovementInput();
+            HandleVerticalMovementInput();
+            HandleRotationInput();
 
-        HandleMovement();
-        HandleRotation();
+            HandleMovement();
+            HandleRotation();
+        }
     }
 
     // Methods [START]

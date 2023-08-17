@@ -12,7 +12,10 @@ public class SelectionController : Singleton<SelectionController>
     // (Unity) Methods [START]
     private void Update()
     {
-        HandleInput();
+        if (!PlayerManager.instance.IsLockingPlayerControl)
+        {
+            HandleInput();
+        }
     }
     // (Unity) Methods [END]
 

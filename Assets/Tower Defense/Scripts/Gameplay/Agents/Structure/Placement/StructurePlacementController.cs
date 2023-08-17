@@ -39,8 +39,11 @@ public class StructurePlacementController : Singleton<StructurePlacementControll
 
     void FixedUpdate()
     {
-        HandleStructureWorldPositioning();
-        HandleInput();
+        if (!PlayerManager.instance.IsLockingPlayerControl)
+        {
+            HandleStructureWorldPositioning();
+            HandleInput();
+        }
     }
 
     void OnDrawGizmos()

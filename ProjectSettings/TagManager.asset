@@ -28,6 +28,7 @@ TagManager:
   - PA_SFX_STRUCTURES
   - PA_SFX_MISCELANOUS
   - PA_AFX_MISCELANOUS
+  - Panel_Confirmation
   layers:
   - Default
   - TransparentFX

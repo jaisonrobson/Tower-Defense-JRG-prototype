@@ -195,6 +195,12 @@ LEGENDA:
 (X) Fazer com que ao selecionar uma torre, apareca na interface a torre que esta sendo posicionada. (uma especie de pre-selecao da estrutura)
 (X) Fazer com que as estatisticas da torre selecionada apareca numa regiao da tela enquanto o jogador estiver tentando posiciona-la.
 
+(O) Criar interface de configuracoes
+(X) Criar botao de saida da jogatina atual para o menu principal (com interface/botoes de confirmacao)
+( ) Criar botao para acesso a configuracoes de video
+( ) Criar botao para acesso a configuracoes de audio
+( ) Criar botao para acesso a creditos do jogo
+
 ----------------------------------------------------------------------------------------------------------------------------------------------------------------
 BUGS E VALIDAÇÕES:
 (X) A WeaknessesSO possui uma matrix de floats que nao esta sendo corretamente serializada pela UNITY nem pelo ODIN, verificar o motivo e talvez refazer a serializacao manualmente.
