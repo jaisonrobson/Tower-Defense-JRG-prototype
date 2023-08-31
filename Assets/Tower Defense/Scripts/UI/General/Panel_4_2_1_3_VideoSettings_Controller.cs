@@ -26,6 +26,12 @@ public class Panel_4_2_1_3_VideoSettings_Controller : MonoBehaviour
     [Required]
     [SceneObjectsOnly]
     public BetterDropdown textureQualityDropdown;
+    [Required]
+    [SceneObjectsOnly]
+    public GameObject videoSettingsConfirmationScreen;
+    [Required]
+    [SceneObjectsOnly]
+    public BetterText videoSettingsConfirmationTextCounting;
     // Public (Variables) [END]
 
 
@@ -96,24 +102,32 @@ public class Panel_4_2_1_3_VideoSettings_Controller : MonoBehaviour
     {
         resolutionDropdown.ClearOptions();
         resolutionDropdown.AddOptions(resolutions.ToList().ConvertAll<string>(r => r.width + " x " + r.height));
+        resolutionDropdown.value = resolutions.ToList().IndexOf( resolutions.Where(r => r.width == Screen.currentResolution.width && r.height == Screen.currentResolution.height).First() );
 
         fullscreenToggle.isOn = actualIsFullScreen;
 
         graphicsQualityDropdown.ClearOptions();
         graphicsQualityDropdown.AddOptions(QualitySettings.names.ToList());
+        graphicsQualityDropdown.value = QualitySettings.GetQualityLevel();
 
         List<string> antiAliasingOptions = new List<string>() { "Disabled", "2x MSAA", "4x MSAA", "8x MSAA"};
         antiAliasingDropdown.ClearOptions();
         antiAliasingDropdown.AddOptions(antiAliasingOptions);
+        antiAliasingDropdown.value = QualitySettings.antiAliasing;
 
         List<string> textureQualityOptions = new List<string>() { "Full Resolution", "Half Resolution", "1/4 Resolution", "1/8 Resolution" };
         textureQualityDropdown.ClearOptions();
         textureQualityDropdown.AddOptions(textureQualityOptions);
+        textureQualityDropdown.value = QualitySettings.masterTextureLimit;
     }
     private void HandleSettingsReversion()
     {
+        videoSettingsConfirmationTextCounting.text = Mathf.Abs(Mathf.RoundToInt(Time.time - timeUntilRevert)).ToString();
+
         if (isRevertingSettings && Time.time > timeUntilRevert)
         {
+            videoSettingsConfirmationScreen.SetActive(false);
+
             isRevertingSettings = false;
             timeUntilRevert = 0f;
 
@@ -152,6 +166,26 @@ public class Panel_4_2_1_3_VideoSettings_Controller : MonoBehaviour
     // Private (Methods) [END]
 
     // Public (Methods) [START]
+    public void ResetDropdownValuesToBefore()
+    {
+        resolutionDropdown.value = resolutions.ToList().IndexOf(resolutions.Where(r => r.width == beforeResolution.width && r.height == beforeResolution.height).First());
+
+        fullscreenToggle.isOn = beforeIsFullScreen;
+
+        graphicsQualityDropdown.value = beforeGraphicsQuality;
+
+        antiAliasingDropdown.value = beforeAntiAliasing;
+
+        textureQualityDropdown.value = beforeTextureQuality;
+    }
+    public void CancelSettingsUpdate()
+    {
+        isRevertingSettings = false;
+        timeUntilRevert = 0f;
+
+        ResetActualVariables();
+        ApplyActualVariablesToUnity();
+    }
     public void TryUpdateSettings()
     {
         isRevertingSettings = true;
@@ -166,13 +200,11 @@ public class Panel_4_2_1_3_VideoSettings_Controller : MonoBehaviour
 
         ResetBeforeVariables();
     }
-    /*
     public void UpdateIsFullScreen(bool pIsFullScreen) => actualIsFullScreen = pIsFullScreen;
-    public void UpdateResolution(Resolution pResolution) => actualResolution = pResolution;
+    public void UpdateResolution(int pResolutionDropdownIndex) => actualResolution = resolutions[pResolutionDropdownIndex];
     public void UpdateGraphicsQuality(int pGraphicsQuality) => actualGraphicsQuality = pGraphicsQuality;
     public void UpdateTextureQuality(int pTextureQuality) => actualTextureQuality = pTextureQuality;
     public void UpdateAntiAliasing(int pAntiAliasing) => actualAntiAliasing = pAntiAliasing;
-    */
     // Public (Methods) [END]
 }
 
