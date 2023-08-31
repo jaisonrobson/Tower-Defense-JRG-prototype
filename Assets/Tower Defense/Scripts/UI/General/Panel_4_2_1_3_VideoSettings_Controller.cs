@@ -81,7 +81,7 @@ public class Panel_4_2_1_3_VideoSettings_Controller : MonoBehaviour
         isRevertingSettings = false;
         timeUntilRevert = 0f;
 
-        resolutions = Screen.resolutions;
+        resolutions = GetUniqueResolutions();
 
         actualIsFullScreen = Screen.fullScreen;
         beforeIsFullScreen = Screen.fullScreen;
@@ -100,6 +100,8 @@ public class Panel_4_2_1_3_VideoSettings_Controller : MonoBehaviour
     }
     private void InitializeUI()
     {
+
+
         resolutionDropdown.ClearOptions();
         resolutionDropdown.AddOptions(resolutions.ToList().ConvertAll<string>(r => r.width + " x " + r.height));
         resolutionDropdown.value = resolutions.ToList().IndexOf( resolutions.Where(r => r.width == Screen.currentResolution.width && r.height == Screen.currentResolution.height).First() );
@@ -134,6 +136,14 @@ public class Panel_4_2_1_3_VideoSettings_Controller : MonoBehaviour
             ResetActualVariables();
             ApplyActualVariablesToUnity();
         }
+    }
+    private Resolution[] GetUniqueResolutions()
+    {
+        Resolution[] allRes = Screen.resolutions;
+
+        allRes = allRes.GroupBy(r => r.width + r.height).Select(res => res.First()).ToArray();
+
+        return allRes;
     }
     private void ResetActualVariables()
     {
