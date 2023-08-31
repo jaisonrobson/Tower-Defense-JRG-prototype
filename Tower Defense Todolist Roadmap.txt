@@ -197,7 +197,7 @@ LEGENDA:
 
 (O) Criar interface de configuracoes
 (X) Criar botao de saida da jogatina atual para o menu principal (com interface/botoes de confirmacao)
-( ) Criar botao para acesso a configuracoes de video
+(X) Criar botao para acesso a configuracoes de video
 (X) Criar botao para acesso a configuracoes de audio
 ( ) Criar botao para acesso a creditos do jogo
 
