@@ -16,6 +16,9 @@ public class AlignmentMaterialsSO : BaseOptionDataSO
 	[Required]
 	public Material ghost_structures;
 
+	[Required]
+	public Material area_highlighting;
+
 	// Validation Methods [START]
 #if UNITY_EDITOR
 	private bool Validate_NotRepeated_Alignment()

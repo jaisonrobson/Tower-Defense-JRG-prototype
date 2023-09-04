@@ -53,7 +53,10 @@ public class AgentEnemyDetectionCreator : MonoBehaviour
         AlignmentEnum ae = GetComponent<Agent>().Alignment;
         AlignmentMaterialsSO alignmentMaterial = amSOs.Where(am => am.alignment.alignment == ae).FirstOrDefault();
         if (edGObjAreaDisplay != null && alignmentMaterial != null)
-            edGObjAreaDisplay.GetComponent<MeshRenderer>().material = alignmentMaterial.ghost_structures;
+        {
+            edGObjAreaDisplay.GetComponent<MeshRenderer>().material = alignmentMaterial.area_highlighting;
+            edGObjAreaDisplay.GetComponent<MeshRenderer>().shadowCastingMode = UnityEngine.Rendering.ShadowCastingMode.Off;
+        }
     }
     private void MoldCollider()
     {
@@ -105,7 +108,7 @@ public class AgentEnemyDetectionCreator : MonoBehaviour
         edGObjAreaDisplay.transform.SetParent(edcGObj.transform, false);
         edGObjAreaDisplay.transform.localPosition = new Vector3(0, 0, 0);
         edGObjAreaDisplay.transform.rotation = new Quaternion(0, 0, 0, 0);
-        edGObjAreaDisplay.transform.localScale = new Vector3(areaSize * 2, 0.01f, areaSize * 2);
+        edGObjAreaDisplay.transform.localScale = new Vector3(areaSize * 2, areaSize * 2, areaSize * 2);
         edGObjAreaDisplay.name = "Enemy Detection Area Display";
         mf.mesh = areaDisplayMesh;
     }

@@ -316,7 +316,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 3bf78c44b8aaf884db118b0b1277553e, type: 2}
+  - {fileID: 2100000, guid: 932623737478c4b4596ffa3c25282e7a, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1050,7 +1050,8 @@ MonoBehaviour:
   layer:
     serializedVersion: 2
     m_Bits: 4096
-  areaDisplayMesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
+  areaDisplayMesh: {fileID: 5268025629903592654, guid: 237fd1f6c027ee241a5049f681d102e8,
+    type: 3}
 --- !u!114 &2547617012058454569
 MonoBehaviour:
   m_ObjectHideFlags: 0

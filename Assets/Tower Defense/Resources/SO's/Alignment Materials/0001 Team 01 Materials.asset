@@ -27,3 +27,4 @@ MonoBehaviour:
   newName: 0001 Team 01 Materials
   alignment: {fileID: 11400000, guid: 42320215e4f4f594995739e465c3bee5, type: 2}
   ghost_structures: {fileID: 2100000, guid: aa83d2167d3fd8040ba3d9c722a75c06, type: 2}
+  area_highlighting: {fileID: 2100000, guid: a614c002bdbe8fd4b876191f9e542c6a, type: 2}

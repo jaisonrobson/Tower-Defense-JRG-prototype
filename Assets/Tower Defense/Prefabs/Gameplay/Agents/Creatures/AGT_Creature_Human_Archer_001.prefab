@@ -580,7 +580,8 @@ MonoBehaviour:
   layer:
     serializedVersion: 2
     m_Bits: 4096
-  areaDisplayMesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
+  areaDisplayMesh: {fileID: 5268025629903592654, guid: 237fd1f6c027ee241a5049f681d102e8,
+    type: 3}
 --- !u!1 &866504793620535770
 GameObject:
   m_ObjectHideFlags: 0

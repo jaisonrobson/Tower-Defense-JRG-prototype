@@ -26,3 +26,4 @@ MonoBehaviour:
   newName: 
   alignment: {fileID: 11400000, guid: f0c47d80a9552f344b6d14061c69bbc2, type: 2}
   ghost_structures: {fileID: 2100000, guid: ad1b226cb7adb2545b551a590ec84315, type: 2}
+  area_highlighting: {fileID: 2100000, guid: a2b68e954f71ba84d81684ac550d1373, type: 2}

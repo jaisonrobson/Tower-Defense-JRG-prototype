@@ -201,7 +201,7 @@ LEGENDA:
 (X) Criar botao para acesso a configuracoes de audio
 (X) Criar botao para acesso a creditos do jogo
 
-( ) Criar ou procurar um shader, que exiba a area de entorno da regiao da torre adequadamente em diferentes terrenos/elevações, tanto para o posicionamento quanto para a distancia de ataque.
+(X) Criar ou procurar um shader, que exiba a area de entorno da regiao da torre adequadamente em diferentes terrenos/elevações, tanto para o posicionamento quanto para a distancia de ataque.
 
 ----------------------------------------------------------------------------------------------------------------------------------------------------------------
 BUGS E VALIDAÇÕES:
