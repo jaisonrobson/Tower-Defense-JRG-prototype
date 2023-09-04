@@ -195,11 +195,13 @@ LEGENDA:
 (X) Fazer com que ao selecionar uma torre, apareca na interface a torre que esta sendo posicionada. (uma especie de pre-selecao da estrutura)
 (X) Fazer com que as estatisticas da torre selecionada apareca numa regiao da tela enquanto o jogador estiver tentando posiciona-la.
 
-(O) Criar interface de configuracoes
+(X) Criar interface de configuracoes
 (X) Criar botao de saida da jogatina atual para o menu principal (com interface/botoes de confirmacao)
 (X) Criar botao para acesso a configuracoes de video
 (X) Criar botao para acesso a configuracoes de audio
 (X) Criar botao para acesso a creditos do jogo
+
+( ) Criar ou procurar um shader, que exiba a area de entorno da regiao da torre adequadamente em diferentes terrenos/elevações, tanto para o posicionamento quanto para a distancia de ataque.
 
 ----------------------------------------------------------------------------------------------------------------------------------------------------------------
 BUGS E VALIDAÇÕES:
@@ -235,3 +237,4 @@ BUGS E VALIDAÇÕES:
 ( ) Encontrado problema onde as vezes os agentes subspawns atacam os seus mestres logo antes de comecarem a atacar seus inimigos prioritarios. (Talvez o bug esteja no ActualGoal ou algo assim.) (Fazer uma verificacao se o objeto mestre for do mesmo alinhamento cancela o ataque.)
 (X) Corrigir o pause para parar o tempo tambem. (verificar como a unity faz, e verificar como o pessoal faz.)
 (-) Verificar o algoritmo de AnimationFX nao esta finalizando adequadamente as animacoes.
+(X) Corrigir o problema onde ao tentar posicionar uma torre enquanto a interface do jogo estiver por cima do mouse, a torre acaba sendo posicionada. (o ideal e que a interface exerca prioridade no clique ao inves do jogo.)

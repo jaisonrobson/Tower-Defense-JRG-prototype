@@ -94,7 +94,7 @@ public class StructurePlacementController : Singleton<StructurePlacementControll
         if (currentPlacingStructure != null && currentPlacingStructure.activeInHierarchy)
         {
             //Placement
-            if (Input.GetMouseButtonDown(0))
+            if (Input.GetMouseButtonUp(0) && !OverlayInterfaceManager.instance.IsOverUI())
             {
                 Vector3 structureGhostPosition = currentPlacingStructure.transform.position;
                 structureGhostPosition.y += 1000f;
@@ -131,11 +131,11 @@ public class StructurePlacementController : Singleton<StructurePlacementControll
     }
     private void HandleGhostInstantiation()
     {
-        for (int i = 0; i < levelStructures.Count; i++)
-        {
+        for (int i = 1; i < levelStructures.Count+1; i++)
+        {   
             if (Input.GetKey(i.ToString()))
             {
-                SelectStructure(levelStructures.ElementAt(i));
+                SelectStructure(levelStructures.ElementAt(i-1));
             }
         }
     }
