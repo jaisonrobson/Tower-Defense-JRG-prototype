@@ -10,7 +10,7 @@ public class FlagPositioningOEListener : ObservableEventListener
     // (Unity) Methods [START]
     protected override void OnEnable()
     {
-        oEvent = Resources.LoadAll<ObservableEvent>("SO's").ToList().Where(oe => oe.name == "FlagPositioning").FirstOrDefault();
+        oEvent = Resources.LoadAll<ObservableEvent>("Observable Events").ToList().Where(oe => oe.name == "FlagPositioning").FirstOrDefault();
 
         base.OnEnable();
     }
