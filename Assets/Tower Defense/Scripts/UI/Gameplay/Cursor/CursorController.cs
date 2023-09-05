@@ -15,7 +15,7 @@ public class CursorController : Singleton<CursorController>
     [ShowInInspector]
     [HideInEditorMode]
     [ReadOnly]
-    private CursorTypeEnum selectedCursor = CursorTypeEnum.ARROW_01;
+    private CursorTypeEnum selectedCursor = CursorTypeEnum.HAND_01;
     [ShowInInspector]
     [HideInEditorMode]
     [ReadOnly]
@@ -45,6 +45,11 @@ public class CursorController : Singleton<CursorController>
         currentFrame = 0;
         frameTimer = 0f;
     }
+    public void ResetCursorModeAndCommand()
+    {
+        PlayerCommandsManager.instance.Command = PlayerCommandEnum.IDLE;
+        CursorManager.instance.Mode = CursorModeEnum.IDLE;
+    }
     // Public (Methods) [END]
 
     // Private (Methods) [START]
@@ -69,6 +74,11 @@ public class CursorController : Singleton<CursorController>
                     didFilter = true;
 
                     HandleCursorAimMode();
+                    break;
+                case CursorModeEnum.CASTING_CONSTRUCTION:
+                    didFilter = true;
+
+                    HandleCursorConstructionMode();
                     break;
             }
         }
@@ -104,12 +114,19 @@ public class CursorController : Singleton<CursorController>
             CursorManager.instance.flagPositioning.Occurred(SelectionManager.instance.SelectedAgents.FirstOrDefault().gameObject);
         }
     }
+    private void HandleCursorConstructionMode()
+    {
+        if (Input.GetMouseButton(0))
+            ChangeSelectedCursor(CursorTypeEnum.HAMMER_02);
+        else
+            ChangeSelectedCursor(CursorTypeEnum.HAMMER_01);
+    }
     private void HandleCursorIdleMode()
     {
         if (Input.GetMouseButton(0))
-            ChangeSelectedCursor(CursorTypeEnum.ARROW_02);
+            ChangeSelectedCursor(CursorTypeEnum.HAND_02);
         else
-            ChangeSelectedCursor(CursorTypeEnum.ARROW_01);
+            ChangeSelectedCursor(CursorTypeEnum.HAND_01);
     }
     private void HandleCursorUpdate()
     {

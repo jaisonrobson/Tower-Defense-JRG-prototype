@@ -87,7 +87,7 @@ public class AgentEnemyDetectionCreator : MonoBehaviour
         edcGObj.transform.localPosition = new Vector3(0, 0, 0);
         edcGObj.transform.rotation = new Quaternion(0, 0, 0, 0);
         edcGObj.name = "Enemy Detection";
-        edcGObj.layer = (int)Mathf.Log(layer.value, 2);        
+        edcGObj.layer = (int)Mathf.Log(layer.value, 2);
         edcGObj.GetComponent<Rigidbody>().useGravity = false;
         edcGObj.GetComponent<Rigidbody>().isKinematic = true;
     }

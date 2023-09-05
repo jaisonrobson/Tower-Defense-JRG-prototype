@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: 6517856230880950417}
   - component: {fileID: 3663609285571943068}
   - component: {fileID: 7372366985052864324}
+  - component: {fileID: 4432491757102778692}
   m_Layer: 6
   m_Name: AGT_Structure_Catalyst_Human
   m_TagString: Untagged
@@ -172,6 +173,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e561822cfd4919546b96a9de77a4dd28, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &4432491757102778692
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3599636120088407017}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbdc473b6bfb3524f985555da5c9e1bf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  layer:
+    serializedVersion: 2
+    m_Bits: 1
+  agentSelectionSprite: {fileID: 21300000, guid: 04f215e62bffca04983473eaee816dbf,
+    type: 3}
 --- !u!1 &4189006527863285831
 GameObject:
   m_ObjectHideFlags: 0

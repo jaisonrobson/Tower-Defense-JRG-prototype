@@ -166,7 +166,7 @@ GameObject:
   - component: {fileID: 7425847823203178403}
   - component: {fileID: 4138265459464867846}
   - component: {fileID: 8194903654417369413}
-  m_Layer: 6
+  m_Layer: 13
   m_Name: SpawnRender
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -733,6 +733,7 @@ GameObject:
   - component: {fileID: -7911851480160468227}
   - component: {fileID: -7363313162276738765}
   - component: {fileID: 9054177663877072058}
+  - component: {fileID: 4435026063778608575}
   m_Layer: 6
   m_Name: AGT_Structure_Knight_02
   m_TagString: Untagged
@@ -900,6 +901,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5bfa2c780eeeae741b9c53dfc4df2968, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &4435026063778608575
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5745024236169404579}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbdc473b6bfb3524f985555da5c9e1bf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  layer:
+    serializedVersion: 2
+    m_Bits: 1
+  agentSelectionSprite: {fileID: 21300000, guid: 04f215e62bffca04983473eaee816dbf,
+    type: 3}
 --- !u!1 &5997257887149445496
 GameObject:
   m_ObjectHideFlags: 0

@@ -149,6 +149,7 @@ public class StructurePlacementController : Singleton<StructurePlacementControll
     {
         currentPlacingStructure = null;
         currentPlacingPlayableAgentSO = null;
+        CursorController.instance.ResetCursorModeAndCommand();
     }
     private void InstantiateGhost(GameObject structure)
     {
@@ -163,6 +164,9 @@ public class StructurePlacementController : Singleton<StructurePlacementControll
 
         InstantiateGhost(pPASO.agent.prefab);
         currentPlacingPlayableAgentSO = pPASO;
+
+        PlayerCommandsManager.instance.Command = PlayerCommandEnum.CASTING;
+        CursorManager.instance.Mode = CursorModeEnum.CASTING_CONSTRUCTION;
     }
     // Private Methods [END]
 

@@ -109,7 +109,7 @@ GameObject:
   - component: {fileID: 7395702639904956452}
   - component: {fileID: 4089597899476445057}
   - component: {fileID: 8076392745059434178}
-  m_Layer: 6
+  m_Layer: 13
   m_Name: SpawnRender
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -701,6 +701,7 @@ GameObject:
   - component: {fileID: 1413090019646977402}
   - component: {fileID: 1765262262058049204}
   - component: {fileID: 8937920678716076861}
+  - component: {fileID: 3719446818905061603}
   m_Layer: 6
   m_Name: AGT_Structure_Archer_05
   m_TagString: Untagged
@@ -865,6 +866,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5bfa2c780eeeae741b9c53dfc4df2968, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &3719446818905061603
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5626495698631726884}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbdc473b6bfb3524f985555da5c9e1bf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  layer:
+    serializedVersion: 2
+    m_Bits: 1
+  agentSelectionSprite: {fileID: 21300000, guid: 04f215e62bffca04983473eaee816dbf,
+    type: 3}
 --- !u!1 &5950859689085757183
 GameObject:
   m_ObjectHideFlags: 0
