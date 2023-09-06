@@ -203,6 +203,74 @@ LEGENDA:
 
 (X) Criar ou procurar um shader, que exiba a area de entorno da regiao da torre adequadamente em diferentes terrenos/elevações, tanto para o posicionamento quanto para a distancia de ataque.
 
+( ) Criar um sistema de disponibilidade de evolucao de torres para o jogador de acordo com o mapa (ex: algumas torres nao estaram desbloqueadas para uso naquele mapa, nem por evolucao, ou evolucoes especificas).
+
+---Blender
+( ) Criar as estruturas que o jogador vai usar para jogar.
+
+( ) Criar o nucleo do jogador
+( ) Criar o catalisador do jogador
+( ) Criar o gerador do jogador
+
+( ) Criar a torre de cavaleiro do jogador nivel 1
+( ) Criar a torre de cavaleiro do jogador nivel 2
+( ) Criar a torre de cavaleiro do jogador nivel 3
+( ) Criar a torre de cavaleiro do jogador variacao 4-1
+( ) Criar a torre de cavaleiro do jogador variacao 4-2
+
+( ) Criar a torre de arqueiro do jogador nivel 1
+( ) Criar a torre de arqueiro do jogador nivel 2
+( ) Criar a torre de arqueiro do jogador nivel 3
+( ) Criar a torre de arqueiro do jogador variacao 4-1
+( ) Criar a torre de arqueiro do jogador variacao 4-2
+
+( ) Criar a torre de mago do jogador nivel 1
+( ) Criar a torre de mago do jogador nivel 2
+( ) Criar a torre de mago do jogador nivel 3
+( ) Criar a torre de mago do jogador variacao 4-1
+( ) Criar a torre de mago do jogador variacao 4-2
+
+( ) Criar a torre de catapulta do jogador nivel 1
+( ) Criar a torre de catapulta do jogador variacao 2-1
+( ) Criar a torre de catapulta do jogador variacao 2-2
+
+( ) Criar a torre de alquimista do jogador nivel 1
+( ) Criar a torre de alquimista do jogador variacao 2-1
+( ) Criar a torre de alquimista do jogador variacao 2-2
+
+( ) Criar a torre de armadilheiro do jogador nivel 1
+( ) Criar a torre de armadilheiro do jogador variacao 2-1
+( ) Criar a torre de armadilheiro do jogador variacao 2-2
+
+( ) Criar estruturas de cenario que geralmente ficaram em volta (muros do jogador), arvores, montanhas, estradas etc.
+
+( ) Criar muralha de castelo (inter-conectaveis)
+( ) Criar porta da muralha de castelo (inter-conectavel)
+
+( ) Criar arvore 1
+( ) Criar arvore 2
+( ) Criar arvore 3
+
+( ) Criar pedra 1
+( ) Criar pedra 2
+( ) Criar pedra 3
+
+( ) Criar pequena elevacao 1
+( ) Criar pequena elevacao 2
+( ) Criar pequena elevacao 3
+
+( ) Criar media elevacao 1
+( ) Criar media elevacao 2
+( ) Criar media elevacao 3
+
+( ) Criar grande elevacao 1
+( ) Criar grande elevacao 2
+( ) Criar grande elevacao 3
+
+
+---Substance Painter
+
+
 ----------------------------------------------------------------------------------------------------------------------------------------------------------------
 BUGS E VALIDAÇÕES:
 (X) A WeaknessesSO possui uma matrix de floats que nao esta sendo corretamente serializada pela UNITY nem pelo ODIN, verificar o motivo e talvez refazer a serializacao manualmente.
