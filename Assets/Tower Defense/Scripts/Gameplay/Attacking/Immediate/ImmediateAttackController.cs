@@ -41,7 +41,7 @@ public class ImmediateAttackController : AttackController
         {
             AddAffectedAgent(IAA.Target);
 
-            IAA.Target.OnReceiveDamage(IAA.Alignment, IAA.Damage, IAA.Attack, IAA.Invoker);
+            IAA.Target.OnReceiveDamageByDirectAttack(IAA.Alignment, IAA.Damage, IAA.Attack, IAA.Invoker);
 
             IAA.Attack.onHitProbabilityStatusAffectors
                 .ToList()

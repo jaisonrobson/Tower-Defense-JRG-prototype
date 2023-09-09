@@ -41,7 +41,7 @@ public class MapManager : Singleton<MapManager>
     // Public (Variables) [END]
 
     // Public (Properties) [START]
-    public bool IsAnyPlayerMainEntityAlive{ get { return mapEntityHooks.All(meh => meh.alignment == map.playerAlignment.alignment && IsStructureAlive(meh.spawnedEntity)); } }
+    public bool IsAnyPlayerMainEntityAlive{ get { return mapEntityHooks.Any(meh => meh.alignment == map.playerAlignment.alignment && IsStructureAlive(meh.spawnedEntity)); } }
     public List<GameObject> PlayerMainEntities { get { return mapEntityHooks.Where(meh => meh.alignment == map.playerAlignment.alignment).OrderBy(meh => meh.priority).Select(meh => meh.spawnedEntity).ToList(); } }
     public int PlayerInitialPointsQuantity { get { return map.playerInitialPoints; } }
     // Public (Properties) [END]

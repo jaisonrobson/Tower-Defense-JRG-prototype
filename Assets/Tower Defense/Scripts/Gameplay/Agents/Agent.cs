@@ -10,6 +10,8 @@ using Core.Math;
 using Core.Patterns;
 using Core.Physics;
 using Core.General;
+using DestroyIt;
+
 public struct PriorityGoal
 {
     public bool ignoreBattle;
@@ -314,6 +316,20 @@ public abstract class Agent : MonoBehaviour, IPoolable
         else
             isAttackPrevented = new List<bool>();
     }
+    private void ResetIndependentAssets()
+    {
+        RefreshDestructibles();
+    }
+    private void RefreshDestructibles()
+    {
+        List<Destructible> destructibles = GetComponentsInChildren<Destructible>().ToList();
+
+        destructibles.ForEach(dt =>
+        {
+            dt.TotalHitPoints = MaxHealth;
+            dt.CurrentHitPoints = ActualHealth;
+        });
+    }
     private void FilterActualGoal()
     {
         if (actualGoal != null && !actualGoal.gameObject.activeInHierarchy)
@@ -326,6 +342,21 @@ public abstract class Agent : MonoBehaviour, IPoolable
     private void FilterPriorityGoals()
     {
         priorityGoals = priorityGoals.ToList().Where(pg => pg.goal.gameObject.activeInHierarchy == true && !pg.goal.IsDead).ToArray();
+    }
+    private void OnReceiveDamage(float value, Agent pDealer)
+    {
+        float healthBefore = actualHealth;
+
+        actualHealth = Mathf.Clamp(actualHealth - value, 0f, MaxHealth);
+
+        if (Mathf.Equals(actualHealth, 0f) && healthBefore > 0f)
+            pDealer?.OnReceiveExperience(OnDieExperience);
+
+        GetComponent<AgentUI>().GenerateFloatingText(-value);
+
+        onReceiveDamageAction?.Invoke();
+
+        RefreshDestructibles();
     }
     // Private (Methods) [END]
 
@@ -461,7 +492,7 @@ public abstract class Agent : MonoBehaviour, IPoolable
     }
     public int GenerateEvasionChance() { return RNG.Int(evasion.x, evasion.y); }
     public bool TryToEvade() { return RNG.Int(0, 100) < GenerateEvasionChance(); }
-    public bool OnReceiveDamage(AlignmentEnum dealerAlignment, float dealerDamage, AttackSO dealerAttack, Agent pDealer)
+    public bool OnReceiveDamageByDirectAttack(AlignmentEnum dealerAlignment, float dealerDamage, AttackSO dealerAttack, Agent pDealer)
     {
         bool result = false;
 
@@ -477,23 +508,14 @@ public abstract class Agent : MonoBehaviour, IPoolable
             finalValue = dealerAttack.formula.CalculateFormulaFromValue(rawValue);
             finalValue *= WeaknessesManager.instance.GetWeakness(dealerAttack.nature, GetAgent().nature);
 
-            float healthBefore = actualHealth;
-
-            actualHealth = Mathf.Clamp(actualHealth - finalValue, 0f, MaxHealth);
-
-            if (Mathf.Equals(actualHealth, 0f) && healthBefore > 0f)
-                pDealer?.OnReceiveExperience(OnDieExperience);
-
-            GetComponent<AgentUI>().GenerateFloatingText(-finalValue);
-
-            onReceiveDamageAction?.Invoke();
+            OnReceiveDamage(finalValue, pDealer);
 
             result = true;
         }
 
         return result;
     }
-    public bool OnReceiveDamage(AlignmentEnum dealerAlignment, float dealerDamage, StatusAffectorSO dealerStatus, Agent pDealer)
+    public bool OnReceiveDamageByStatus(AlignmentEnum dealerAlignment, float dealerDamage, StatusAffectorSO dealerStatus, Agent pDealer)
     {
         bool result = false;
 
@@ -509,16 +531,7 @@ public abstract class Agent : MonoBehaviour, IPoolable
             finalValue = rawValue;
             finalValue *= WeaknessesManager.instance.GetWeakness(dealerStatus.status.nature, GetAgent().nature);
 
-            float healthBefore = actualHealth;
-
-            actualHealth = Mathf.Clamp(actualHealth - finalValue, 0f, MaxHealth);
-
-            if (Mathf.Equals(actualHealth, 0f) && healthBefore > 0f)
-                pDealer?.OnReceiveExperience(OnDieExperience);
-
-            GetComponent<AgentUI>().GenerateFloatingText(-finalValue);
-
-            onReceiveDamageAction?.Invoke();
+            OnReceiveDamage(finalValue, pDealer);
 
             result = true;
         }
@@ -575,6 +588,8 @@ public abstract class Agent : MonoBehaviour, IPoolable
 
         if (GetComponent<AgentFsmAi>() != null)
             GetComponent<AgentFsmAi>().PoolRetrievalAction(poolable);
+
+        ResetIndependentAssets();
     }
     public virtual void PoolInsertionAction(Poolable poolable)
     {

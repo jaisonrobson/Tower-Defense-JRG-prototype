@@ -29,6 +29,7 @@ TagManager:
   - PA_SFX_MISCELANOUS
   - PA_AFX_MISCELANOUS
   - Panel_Confirmation
+  - ClingPoint
   layers:
   - Default
   - TransparentFX
@@ -44,7 +45,7 @@ TagManager:
   - Creature
   - AgentEnemyDetectionCollider
   - Highlighting
-  - 
+  - DestroyItDebris
   - 
   - 
   - 

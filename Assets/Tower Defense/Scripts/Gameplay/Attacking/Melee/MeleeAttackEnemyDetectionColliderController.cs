@@ -39,7 +39,7 @@ public class MeleeAttackEnemyDetectionColliderController : MonoBehaviour
                         {
                             mac.AddAffectedAgent(enemy);
 
-                            enemy.OnReceiveDamage(maa.Alignment, maa.Damage, maa.Attack, maa.Invoker);
+                            enemy.OnReceiveDamageByDirectAttack(maa.Alignment, maa.Damage, maa.Attack, maa.Invoker);
 
                             maa.Attack.onHitProbabilityStatusAffectors
                                     .ToList()

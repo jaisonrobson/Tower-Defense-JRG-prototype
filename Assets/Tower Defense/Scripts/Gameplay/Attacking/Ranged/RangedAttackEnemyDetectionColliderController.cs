@@ -43,7 +43,7 @@ public class RangedAttackEnemyDetectionColliderController : MonoBehaviour
                             {
                                 rac.AddAffectedAgent(enemy);
 
-                                enemy.OnReceiveDamage(raa.Alignment, raa.Damage, raa.Attack, raa.Invoker);
+                                enemy.OnReceiveDamageByDirectAttack(raa.Alignment, raa.Damage, raa.Attack, raa.Invoker);
 
                                 raa.Attack.onHitProbabilityStatusAffectors
                                     .ToList()

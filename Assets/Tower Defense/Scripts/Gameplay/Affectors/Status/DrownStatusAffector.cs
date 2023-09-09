@@ -61,7 +61,7 @@ public class DrownStatusAffector : StatusAffector
     {
         base.ExecuteTurnActions();
 
-        Target.OnReceiveDamage(Alignment, Damage, statusAffectorSO, Invoker);
+        Target.OnReceiveDamageByStatus(Alignment, Damage, statusAffectorSO, Invoker);
     }
     protected override void InitializeStatusActions()
     {

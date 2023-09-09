@@ -15,8 +15,6 @@ public class FSMStateStructureDie : FSMStateStructure
     // Public (Methods) [START]
     public override void Enter()
     {
-        anim.SetTrigger("isDying");
-
         structure.mainCollider.enabled = false;
 
         structureFSMAi.StartDying();

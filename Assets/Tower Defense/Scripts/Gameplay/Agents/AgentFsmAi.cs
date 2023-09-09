@@ -298,7 +298,7 @@ public abstract class AgentFsmAi : MonoBehaviour
     public void StartDying()
     {
         isDying = true;
-        timeUntilCompletelyDie = 3f;
+        timeUntilCompletelyDie = 5f;
 
         agent.DoDeathFXs(timeUntilCompletelyDie);
     }

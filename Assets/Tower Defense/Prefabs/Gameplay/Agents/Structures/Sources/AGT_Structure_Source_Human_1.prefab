@@ -112,7 +112,7 @@ GameObject:
   - component: {fileID: 7227657633565506965}
   - component: {fileID: 7892645671881061120}
   m_Layer: 6
-  m_Name: AGT_Structure_Source_Human
+  m_Name: AGT_Structure_Source_Human_1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
