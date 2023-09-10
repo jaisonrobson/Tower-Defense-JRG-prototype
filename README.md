@@ -9,6 +9,7 @@ Technologies used:
 * Odin Validator
 * Odin Serialized Structures
 * System LINQ
+* DestroyIt
 
 --- Design Patterns
 * Singleton Pattern
