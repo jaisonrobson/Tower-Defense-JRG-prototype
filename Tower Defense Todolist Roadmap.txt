@@ -217,7 +217,9 @@ LEGENDA:
 ( ) Criar o catalisador do jogador
 ( ) Criar o gerador do jogador
 
-( ) Criar a torre de cavaleiro do jogador nivel 1
+(X) Criar a torre de cavaleiro do jogador nivel 1
+( ) Remover quantidade de destroços da torre do cavaleiro nivel 1 (limitar destroços a apenas 100 ou 200 no maximo por entidade/modelo.)
+
 ( ) Criar a torre de cavaleiro do jogador nivel 2
 ( ) Criar a torre de cavaleiro do jogador nivel 3
 ( ) Criar a torre de cavaleiro do jogador variacao 4-1
@@ -317,3 +319,4 @@ BUGS E VALIDAÇÕES:
 (-) Verificar o algoritmo de AnimationFX nao esta finalizando adequadamente as animacoes.
 (X) Corrigir o problema onde ao tentar posicionar uma torre enquanto a interface do jogo estiver por cima do mouse, a torre acaba sendo posicionada. (o ideal e que a interface exerca prioridade no clique ao inves do jogo.)
 (X) Corrigir problema quando os inimigos derrotam o CATALISADOR, e vão em direção ao GERADOR, não conseguem mais atacar, a IA fica paralisada no mesmo estado.
+( ) Encontrado bug quando houver apenas um inimigo vivo, e o mesmo evoluir, o jogo brevemente ira pensar que acabou porque ao evoluir o inimigo some por alguns instantes, e entao o jogo acha que nao existe mais inimigos vivos e encerra como jogador vitorioso.
