@@ -124,7 +124,7 @@ MonoBehaviour:
   isPlayable: 0
   experienceToEvolve: 0
   experienceOnDie: 1000
-  health: 15
+  health: 50
   damage: 0
   attackVelocity: 0.3
   attackRange: 25

@@ -8243,8 +8243,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_IgnoreLayout: 0
-  m_MinWidth: 75
-  m_MinHeight: 75
+  m_MinWidth: 162.1875
+  m_MinHeight: 162.1875
   m_PreferredWidth: -1
   m_PreferredHeight: -1
   m_FlexibleWidth: -1
@@ -15342,7 +15342,7 @@ MonoBehaviour:
   m_MinWidth: -1
   m_MinHeight: 50
   m_PreferredWidth: -1
-  m_PreferredHeight: 12.5
+  m_PreferredHeight: 27.031248
   m_FlexibleWidth: -1
   m_FlexibleHeight: 0
   m_LayoutPriority: 1
@@ -17406,8 +17406,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_IgnoreLayout: 0
-  m_MinWidth: 75
-  m_MinHeight: 75
+  m_MinWidth: 162.1875
+  m_MinHeight: 162.1875
   m_PreferredWidth: -1
   m_PreferredHeight: -1
   m_FlexibleWidth: -1
@@ -24364,7 +24364,7 @@ MonoBehaviour:
   m_StartCorner: 0
   m_StartAxis: 0
   m_CellSize: {x: 50, y: 50}
-  m_Spacing: {x: 1.75, y: 1.75}
+  m_Spacing: {x: 3.7843747, y: 3.7843747}
   m_Constraint: 0
   m_ConstraintCount: 2
   paddingSizerFallback:
@@ -50230,8 +50230,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_IgnoreLayout: 0
-  m_MinWidth: 75
-  m_MinHeight: 75
+  m_MinWidth: 162.1875
+  m_MinHeight: 162.1875
   m_PreferredWidth: -1
   m_PreferredHeight: -1
   m_FlexibleWidth: -1
@@ -51061,10 +51061,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Padding:
-    m_Left: 12
-    m_Right: 12
+    m_Left: 36
+    m_Right: 36
     m_Top: 0
-    m_Bottom: 9
+    m_Bottom: 27
   m_ChildAlignment: 1
   m_Spacing: 0
   m_ChildForceExpandWidth: 1
@@ -55437,8 +55437,8 @@ MonoBehaviour:
   m_VerticalScrollbar: {fileID: 1944746939}
   m_HorizontalScrollbarVisibility: 2
   m_VerticalScrollbarVisibility: 2
-  m_HorizontalScrollbarSpacing: -1.3872833
-  m_VerticalScrollbarSpacing: -1.3872833
+  m_HorizontalScrollbarSpacing: -3
+  m_VerticalScrollbarSpacing: -3
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -57256,7 +57256,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1539831355}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -15.98, y: 0.5, z: -28.74}
+  m_LocalPosition: {x: -47.1, y: 0.5, z: 14.84}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -58521,8 +58521,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_IgnoreLayout: 0
-  m_MinWidth: 75
-  m_MinHeight: 75
+  m_MinWidth: 162.1875
+  m_MinHeight: 162.1875
   m_PreferredWidth: -1
   m_PreferredHeight: -1
   m_FlexibleWidth: -1
@@ -67541,8 +67541,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_IgnoreLayout: 0
-  m_MinWidth: 75
-  m_MinHeight: 75
+  m_MinWidth: 162.1875
+  m_MinHeight: 162.1875
   m_PreferredWidth: -1
   m_PreferredHeight: -1
   m_FlexibleWidth: -1
@@ -69914,8 +69914,8 @@ MonoBehaviour:
   m_VerticalScrollbar: {fileID: 1377293223}
   m_HorizontalScrollbarVisibility: 2
   m_VerticalScrollbarVisibility: 2
-  m_HorizontalScrollbarSpacing: -1.3872833
-  m_VerticalScrollbarSpacing: -1.3872833
+  m_HorizontalScrollbarSpacing: -3
+  m_VerticalScrollbarSpacing: -3
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []

@@ -318,7 +318,7 @@ public abstract class Agent : MonoBehaviour, IPoolable
     }
     private void ResetIndependentAssets()
     {
-        RefreshDestructibles();
+        ResetDestructibles();
     }
     private void RefreshDestructibles()
     {
@@ -328,6 +328,26 @@ public abstract class Agent : MonoBehaviour, IPoolable
         {
             dt.TotalHitPoints = MaxHealth;
             dt.CurrentHitPoints = ActualHealth;
+        });
+    }
+    private void ResetDestructibles()
+    {
+        List<Destructible> destructibles = GetComponentsInChildren<Destructible>(true).ToList();
+
+        destructibles.ForEach(dt =>
+        {
+            dt.gameObject.layer = LayerMask.NameToLayer("Structure");
+            dt.TotalHitPoints = MaxHealth;
+            dt.CurrentHitPoints = MaxHealth;
+
+            dt.destroyedPrefabParent
+                .GetComponentsInChildren<Transform>(true)
+                .Where(t => t != dt.destroyedPrefabParent.transform)
+                .ToList()
+                .ForEach(debrisToDestroy => Destroy(debrisToDestroy.gameObject));
+
+            dt.gameObject.SetActive(true);
+            dt.ResetDamageLevel();
         });
     }
     private void FilterActualGoal()

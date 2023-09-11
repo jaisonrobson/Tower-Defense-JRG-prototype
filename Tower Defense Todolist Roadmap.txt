@@ -204,8 +204,8 @@ LEGENDA:
 (X) Criar ou procurar um shader, que exiba a area de entorno da regiao da torre adequadamente em diferentes terrenos/elevações, tanto para o posicionamento quanto para a distancia de ataque.
 ( ) Procurar um shader para servir de dissolução dos destroços das estruturas e corpos dos agentes apos morrerem. (Dissolve Shader, Dithering.) ou verificar como a remoção/transição de meshes ocorre nos jogos.
 
-( ) Fazer com que o sistema Asset DestroyIT funcione com o sistema de pooling do projeto (ao receber dano o agente deve notificar o destroy it, ao poolar o agente, deve ser feito uma limpeza dos debris da morte da estrutura e revitalizar as variaveis do algoritmo DestroyIt dentro do objeto do agente.)
-( ) Verificar a necessidade de resetar o Damage Level do Destructible no agente apos ser repoolado para usar novamente.
+(X) Fazer com que o sistema Asset DestroyIT funcione com o sistema de pooling do projeto (ao receber dano o agente deve notificar o destroy it, ao poolar o agente, deve ser feito uma limpeza dos debris da morte da estrutura e revitalizar as variaveis do algoritmo DestroyIt dentro do objeto do agente.)
+(X) Verificar a necessidade de resetar o Damage Level do Destructible no agente apos ser repoolado para usar novamente.
 
 ( ) Criar um sistema de disponibilidade de evolucao de torres para o jogador de acordo com o mapa (ex: algumas torres nao estaram desbloqueadas para uso naquele mapa, nem por evolucao, ou evolucoes especificas).
 

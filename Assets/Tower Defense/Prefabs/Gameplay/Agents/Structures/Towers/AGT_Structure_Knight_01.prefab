@@ -895,7 +895,7 @@ MonoBehaviour:
     healthPercent: 20
     hasError: 0
     visibleDamageLevel: 8
-  destroyedPrefab: {fileID: 3778297645321946493, guid: dacd86f3078196943a53b4d886cd3d03,
+  destroyedPrefab: {fileID: 5590738286485110658, guid: 568d8402186930f47bff2da4bae7f79a,
     type: 3}
   destroyedPrefabParent: {fileID: 2948340394024452138}
   fallbackParticle: {fileID: 19800004, guid: 6b46cad447c64dd48b8b715df6e3d2ad, type: 3}
@@ -910,17 +910,17 @@ MonoBehaviour:
   unparentOnDestroy: []
   disableKinematicOnUparentedChildren: 1
   replaceMaterials:
-  - SourceMaterial: {fileID: 2100000, guid: a210b46155a8a8c44a3452b82df06d0b, type: 2}
+  - SourceMaterial: {fileID: 2100000, guid: 75cd5f3f965eea547bd600616ec04e2b, type: 2}
     ReplacementMaterial: {fileID: 2100000, guid: 07708c3e2053a2f46b9e1491926452bd,
       type: 2}
-  - SourceMaterial: {fileID: 2100000, guid: d901fe76b2c505343a74d21e2e558c3c, type: 2}
-    ReplacementMaterial: {fileID: 2100000, guid: 07708c3e2053a2f46b9e1491926452bd,
-      type: 2}
-  - SourceMaterial: {fileID: 2100000, guid: 5885a1070b5c2044d82a4a0bf91a8559, type: 2}
-    ReplacementMaterial: {fileID: 2100000, guid: 66f9f220584e46b46aec21d52aed3c56,
-      type: 2}
-  - SourceMaterial: {fileID: 2100000, guid: 58e65c2d5c760f3419d2a6940d3cb866, type: 2}
+  - SourceMaterial: {fileID: 2100000, guid: 14c14fc6df319374faba3b2c207596c1, type: 2}
     ReplacementMaterial: {fileID: 2100000, guid: 7722d280bf0692848889316408d87707,
+      type: 2}
+  - SourceMaterial: {fileID: 2100000, guid: f23525bb165546b459d4667045f2fda6, type: 2}
+    ReplacementMaterial: {fileID: 2100000, guid: 07708c3e2053a2f46b9e1491926452bd,
+      type: 2}
+  - SourceMaterial: {fileID: 2100000, guid: 4a024b5519dd7c945bfaebb99970f8e1, type: 2}
+    ReplacementMaterial: {fileID: 2100000, guid: 66f9f220584e46b46aec21d52aed3c56,
       type: 2}
   replaceParticleMats: []
   canBeDestroyed: 1
