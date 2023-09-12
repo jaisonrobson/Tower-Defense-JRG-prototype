@@ -218,9 +218,8 @@ LEGENDA:
 ( ) Criar o gerador do jogador
 
 (X) Criar a torre de cavaleiro do jogador nivel 1
-( ) Remover quantidade de destroços da torre do cavaleiro nivel 1 (limitar destroços a apenas 100 ou 200 no maximo por entidade/modelo.)
-
-( ) Criar a torre de cavaleiro do jogador nivel 2
+(X) Remover quantidade de destroços da torre do cavaleiro nivel 1 (limitar destroços a apenas 100 ou 200 no maximo por entidade/modelo.)
+(X) Criar a torre de cavaleiro do jogador nivel 2
 ( ) Criar a torre de cavaleiro do jogador nivel 3
 ( ) Criar a torre de cavaleiro do jogador variacao 4-1
 ( ) Criar a torre de cavaleiro do jogador variacao 4-2
