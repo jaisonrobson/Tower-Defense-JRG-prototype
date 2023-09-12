@@ -125,7 +125,7 @@ MonoBehaviour:
   experienceToEvolve: 10
   experienceOnDie: 2
   health: 20
-  damage: 6
+  damage: 30
   attackVelocity: 1.5
   attackRange: 1.5
   velocity: 6
