@@ -209,6 +209,7 @@ LEGENDA:
 
 ( ) Criar um sistema de disponibilidade de evolucao de torres para o jogador de acordo com o mapa (ex: algumas torres nao estaram desbloqueadas para uso naquele mapa, nem por evolucao, ou evolucoes especificas).
 
+( ) Ajustar o tamanho de todas as texturas de todos os modelos ate o momento criados para 4096 4K
 
 ---Blender
 ( ) Criar as estruturas que o jogador vai usar para jogar.
@@ -220,8 +221,8 @@ LEGENDA:
 (X) Criar a torre de cavaleiro do jogador nivel 1
 (X) Remover quantidade de destroços da torre do cavaleiro nivel 1 (limitar destroços a apenas 100 ou 200 no maximo por entidade/modelo.)
 (X) Criar a torre de cavaleiro do jogador nivel 2
-( ) Criar a torre de cavaleiro do jogador nivel 3
-( ) Criar a torre de cavaleiro do jogador variacao 4-1
+(X) Criar a torre de cavaleiro do jogador nivel 3
+(X) Criar a torre de cavaleiro do jogador variacao 4-1
 ( ) Criar a torre de cavaleiro do jogador variacao 4-2
 
 ( ) Criar a torre de arqueiro do jogador nivel 1

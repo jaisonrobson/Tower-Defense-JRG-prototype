@@ -148,7 +148,7 @@ MonoBehaviour:
   isMovable: 0
   isAggressive: 1
   isPlayable: 1
-  experienceToEvolve: 0
+  experienceToEvolve: 100
   experienceOnDie: 100
   health: 75
   damage: 40
@@ -157,7 +157,8 @@ MonoBehaviour:
   velocity: 3
   visibilityArea: 25
   evasion: {x: 0, y: 10}
-  evolutionTree: []
+  evolutionTree:
+  - {fileID: 11400000, guid: b407c9d2e697a17438b785beac0dd983, type: 2}
   attacks:
   - {fileID: 11400000, guid: ee527f0a67e809846815e8a4fcc28fb7, type: 2}
   subspawns:
