@@ -23,7 +23,9 @@ public enum PoolableTypeEnum
     AFX_MISCELANOUS,
     SFX_CREATURES,
     SFX_STRUCTURES,
-    SFX_MISCELANOUS
+    SFX_MISCELANOUS,
+    UI_BUTTON,
+    UI_HORIZONTALLAYOUT,
 }
 
 ////////////////////////////////////////////////////////////////////////////////

@@ -6,7 +6,7 @@ using Sirenix.OdinInspector;
 
 [RequireComponent(typeof(Slider))]
 [RequireComponent(typeof(Billboard))]
-public class SliderController : MonoBehaviour
+public class SliderController : WorldspaceInterfaceObjectController
 {
     // Private (Variables) [START]
     private Slider slider;
@@ -27,14 +27,6 @@ public class SliderController : MonoBehaviour
     [HideInEditorMode]
     [ReadOnly]
     private Color color = new Color32(255, 0, 0, 255);
-    [ShowInInspector]
-    [HideInEditorMode]
-    [ReadOnly]
-    private Transform targetToFollow;
-    [ShowInInspector]
-    [HideInEditorMode]
-    [ReadOnly]
-    private float targetHeightOffset = 0f;
     // Private (Variables) [END]
 
     // Public (Properties) [START]
@@ -45,35 +37,23 @@ public class SliderController : MonoBehaviour
     // Public (Properties) [END]
 
     // (Unity) Methods [START]
-    void Start()
+    protected override void Start()
     {
+        base.Start();
+
         slider = GetComponent<Slider>();
         fill = slider.fillRect.GetComponent<Image>();
     }
-    void Update()
+    protected override void Update()
     {
+        base.Update();
+
         slider.minValue = minValue;
         slider.maxValue = maxValue;
         slider.value = value;
         fill.color = color;
-        transform.position = new Vector3(targetToFollow.position.x, targetToFollow.position.y + targetHeightOffset, targetToFollow.position.z);
     }
     // (Unity) Methods [END]
-
-    // Public (Methods) [START]
-    public void SetTarget(Transform target) { targetToFollow = target; }
-    public void SetTargetHeightOffset(float offset) { targetHeightOffset = offset + 1f; }
-    public void ShowSlider()
-    {
-        if (slider != null)
-            slider.gameObject.SetActive(true);
-    }
-    public void HideSlider()
-    {
-        if (slider != null)
-            slider.gameObject.SetActive(false);
-    }
-    // Public (Methods) [END]
 }
 
 ////////////////////////////////////////////////////////////////////////////////

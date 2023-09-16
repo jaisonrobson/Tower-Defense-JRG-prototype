@@ -5,6 +5,8 @@ using UnityEngine;
 using Sirenix.OdinInspector;
 using Core.Patterns;
 
+using TheraBytes.BetterUi;
+
 [HideMonoScript]
 public class AgentUI : MonoBehaviour
 {
@@ -15,6 +17,7 @@ public class AgentUI : MonoBehaviour
 
     // Private (Variables) [START]
     private SliderController spawnedHealthSlider;
+    private StatusesHorizontalLayoutController spawnedStatusesHorizontalLayout;
     private Agent agent;
     // Private (Variables) [END]    
 
@@ -26,8 +29,10 @@ public class AgentUI : MonoBehaviour
     private void Update()
     {
         CreateHealthSlider();
+        CreateStatusesHorizontalLayout();
 
         UpdateHealthSlider();
+        HandleStatusesHorizontalLayoutVisibility();
     }
     // (Unity) Methods [END]
 
@@ -35,6 +40,27 @@ public class AgentUI : MonoBehaviour
     private void InitializeVariables()
     {
         agent = GetComponent<Agent>();
+    }
+    private void CreateStatusesHorizontalLayout()
+    {
+        if (agent.GetComponent<PlayableStructure>() != null && !agent.GetComponent<PlayableStructure>().IsPlaced)
+            return;
+
+        if (spawnedStatusesHorizontalLayout == null)
+        {
+            spawnedStatusesHorizontalLayout = Poolable.TryGetPoolable(WorldSpaceInterfaceManager.instance.horizontalLayoutSmallStatuses).GetComponent<StatusesHorizontalLayoutController>();
+            spawnedStatusesHorizontalLayout.transform.SetPositionAndRotation(Vector3.zero, Quaternion.identity);
+            spawnedStatusesHorizontalLayout.SetTarget(transform);
+            spawnedStatusesHorizontalLayout.SetTargetHeightOffset(agent.mainCollider.bounds.max.y + 2f);
+            spawnedStatusesHorizontalLayout.agent = agent;
+        }
+    }
+    private void HandleStatusesHorizontalLayoutVisibility()
+    {
+        if (spawnedStatusesHorizontalLayout != null)
+        {
+            spawnedStatusesHorizontalLayout.Show();
+        }
     }
     private void CreateHealthSlider()
     {
@@ -58,10 +84,10 @@ public class AgentUI : MonoBehaviour
         if (spawnedHealthSlider != null)
         {
             if (agent.ActualHealth == agent.MaxHealth)
-                spawnedHealthSlider.HideSlider();
+                spawnedHealthSlider.Hide();
             else
             {
-                spawnedHealthSlider.ShowSlider();
+                spawnedHealthSlider.Show();
 
                 spawnedHealthSlider.Value = agent.ActualHealth;
             }
@@ -83,6 +109,7 @@ public class AgentUI : MonoBehaviour
     public void TryPool()
     {
         HealthSliderTryPool();
+        StatusesHorizontalLayoutTryPool();
     }
     public void HealthSliderTryPool()
     {
@@ -90,6 +117,13 @@ public class AgentUI : MonoBehaviour
             Poolable.TryPool(spawnedHealthSlider.gameObject);
 
         spawnedHealthSlider = null;
+    }
+    public void StatusesHorizontalLayoutTryPool()
+    {
+        if (spawnedStatusesHorizontalLayout != null)
+            Poolable.TryPool(spawnedStatusesHorizontalLayout.gameObject);
+
+        spawnedStatusesHorizontalLayout = null;
     }
     // Public (Methods) [END]
 }

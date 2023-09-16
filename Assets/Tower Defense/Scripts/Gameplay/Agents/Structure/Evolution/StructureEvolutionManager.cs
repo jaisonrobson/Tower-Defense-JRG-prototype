@@ -109,9 +109,13 @@ public class StructureEvolutionManager : Singleton<StructureEvolutionManager>
 
 
     // Public (Methods) [START]
-    public void EvolveStructure()
-    {
+    public void EvolveSelectedStructure() {
         PlayableStructure ps = SelectionManager.instance.SelectedAgents.First()?.GetComponent<PlayableStructure>();
+
+        EvolveSpecificStructure(ps);
+    }
+    public void EvolveSpecificStructure(PlayableStructure ps)
+    {
         if (ps != null)
         {
             if (ps.HasEvolution) {
@@ -126,7 +130,6 @@ public class StructureEvolutionManager : Singleton<StructureEvolutionManager>
                     SelectionManager.instance.RemoveSelectable(ps.GetComponent<Selectable>());
                 }
             }
-            
         }
     }
     public void EvolveSelectedEvolution(AgentSO pSelectedEvolution)

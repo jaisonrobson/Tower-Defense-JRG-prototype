@@ -49,6 +49,23 @@ public class WorldSpaceInterfaceManager : Singleton<WorldSpaceInterfaceManager>
     [AssetsOnly]
     [BoxGroup("Prefabs")]
     public GameObject textFloatingValueExtraLarge;
+
+    [PropertySpace(5f)]
+
+    [Required]
+    [AssetsOnly]
+    [BoxGroup("Prefabs")]
+    [Title("Buttons")]
+    public GameObject buttonLevelUp;
+
+    [PropertySpace(5f)]
+
+    [Required]
+    [AssetsOnly]
+    [BoxGroup("Prefabs")]
+    [Title("Horizontal Layouts")]
+    public GameObject horizontalLayoutSmallStatuses;
+
     // Public (Variables) [END]
 
     // Public (Methods) [START]
@@ -96,6 +113,8 @@ public class WorldSpaceInterfaceManager : Singleton<WorldSpaceInterfaceManager>
 
         return result;
     }
+
+    public GameObject GetLevelUpButton() => buttonLevelUp;
     // Public (Methods) [END]
 }
 

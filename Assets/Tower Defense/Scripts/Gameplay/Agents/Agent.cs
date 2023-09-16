@@ -247,6 +247,8 @@ public abstract class Agent : MonoBehaviour, IPoolable
     public bool IsStructure { get { return GetAgent().type == AgentTypeEnum.STRUCTURE; } }
     public int OnDieExperience { get { return actualExperience + GetAgent().experienceOnDie; } }
     public bool CanEvolve { get { return actualExperience == experienceToEvolve && GetAgent() != null && GetAgent().evolutionTree != null && GetAgent().evolutionTree.Count > 0; } }
+    public List<StatusEnum> NotAffectingStatuses { get { return Enumerable.Range(0, Enum.GetValues(typeof(StatusEnum)).Length).ToList().Where(status => affectingStatuses.All(sa => sa.statusAffectorSO.status.status != (StatusEnum)status)).Select(element => (StatusEnum)element).ToList(); } }
+    public List<StatusEnum> AffectingStatuses { get { return affectingStatuses.Select(sa => sa.statusAffectorSO.status.status).ToList(); } }
     // Public (Properties) [END]
 
     // (Unity) Methods [START]

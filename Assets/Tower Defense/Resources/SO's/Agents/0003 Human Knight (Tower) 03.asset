@@ -159,6 +159,7 @@ MonoBehaviour:
   evasion: {x: 0, y: 10}
   evolutionTree:
   - {fileID: 11400000, guid: b407c9d2e697a17438b785beac0dd983, type: 2}
+  - {fileID: 11400000, guid: 35c8ba34b230fe74ea20b5191e0ed7d8, type: 2}
   attacks:
   - {fileID: 11400000, guid: ee527f0a67e809846815e8a4fcc28fb7, type: 2}
   subspawns:

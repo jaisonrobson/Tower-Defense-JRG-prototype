@@ -3899,6 +3899,42 @@ Canvas:
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_TargetDisplay: 0
+--- !u!1 &115628286
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 115628287}
+  m_Layer: 5
+  m_Name: ---Buttons
+  m_TagString: PA_UI_BUTTON
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &115628287
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 115628286}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1927220472}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &121029779
 GameObject:
   m_ObjectHideFlags: 0
@@ -7405,6 +7441,42 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 203629062}
   m_CullTransparentMesh: 1
+--- !u!1 &205293394
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 205293395}
+  m_Layer: 5
+  m_Name: ---Horizontal Layouts
+  m_TagString: PA_UI_HORIZONTALLAYOUT
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &205293395
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 205293394}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1927220472}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &206259905
 GameObject:
   m_ObjectHideFlags: 0
@@ -8243,8 +8315,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_IgnoreLayout: 0
-  m_MinWidth: 161.25
-  m_MinHeight: 161.25
+  m_MinWidth: 75
+  m_MinHeight: 75
   m_PreferredWidth: -1
   m_PreferredHeight: -1
   m_FlexibleWidth: -1
@@ -17406,8 +17478,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_IgnoreLayout: 0
-  m_MinWidth: 161.25
-  m_MinHeight: 161.25
+  m_MinWidth: 75
+  m_MinHeight: 75
   m_PreferredWidth: -1
   m_PreferredHeight: -1
   m_FlexibleWidth: -1
@@ -24364,7 +24436,7 @@ MonoBehaviour:
   m_StartCorner: 0
   m_StartAxis: 0
   m_CellSize: {x: 50, y: 50}
-  m_Spacing: {x: 3.7625003, y: 3.7625003}
+  m_Spacing: {x: 1.75, y: 1.75}
   m_Constraint: 0
   m_ConstraintCount: 2
   paddingSizerFallback:
@@ -32088,6 +32160,10 @@ MonoBehaviour:
   textFloatingValueLarge: {fileID: 1590262163305753118, guid: efe6b78d6ab14ad45966f633ebd6c87c,
     type: 3}
   textFloatingValueExtraLarge: {fileID: 1590262163305753118, guid: 3f0680c3b2b8ea34d966a1347816c395,
+    type: 3}
+  buttonLevelUp: {fileID: 8148053699859189583, guid: 50d1fb3a16a6bf249a7c6fcd8a6a2baf,
+    type: 3}
+  horizontalLayoutSmallStatuses: {fileID: 1628259258267734694, guid: 08292134144c20b4ba861e88cf9d38db,
     type: 3}
 --- !u!1001 &884417350
 PrefabInstance:
@@ -40191,6 +40267,10 @@ MonoBehaviour:
     transform: {fileID: 1908634139}
   - type: 20
     transform: {fileID: 756035087}
+  - type: 24
+    transform: {fileID: 115628287}
+  - type: 25
+    transform: {fileID: 205293395}
   poolables: []
 --- !u!1 &1093054763
 GameObject:
@@ -50230,8 +50310,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_IgnoreLayout: 0
-  m_MinWidth: 161.25
-  m_MinHeight: 161.25
+  m_MinWidth: 75
+  m_MinHeight: 75
   m_PreferredWidth: -1
   m_PreferredHeight: -1
   m_FlexibleWidth: -1
@@ -51061,10 +51141,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Padding:
-    m_Left: 36
-    m_Right: 36
+    m_Left: 12
+    m_Right: 12
     m_Top: 0
-    m_Bottom: 27
+    m_Bottom: 9
   m_ChildAlignment: 1
   m_Spacing: 0
   m_ChildForceExpandWidth: 1
@@ -55437,8 +55517,8 @@ MonoBehaviour:
   m_VerticalScrollbar: {fileID: 1944746939}
   m_HorizontalScrollbarVisibility: 2
   m_VerticalScrollbarVisibility: 2
-  m_HorizontalScrollbarSpacing: -2.9826593
-  m_VerticalScrollbarSpacing: -2.9826593
+  m_HorizontalScrollbarSpacing: -1.3872833
+  m_VerticalScrollbarSpacing: -1.3872833
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -58521,8 +58601,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_IgnoreLayout: 0
-  m_MinWidth: 161.25
-  m_MinHeight: 161.25
+  m_MinWidth: 75
+  m_MinHeight: 75
   m_PreferredWidth: -1
   m_PreferredHeight: -1
   m_FlexibleWidth: -1
@@ -67370,7 +67450,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 461809207}
         m_TargetAssemblyTypeName: StructureEvolutionManager, Assembly-CSharp
-        m_MethodName: EvolveStructure
+        m_MethodName: EvolveSelectedStructure
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -67541,8 +67621,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_IgnoreLayout: 0
-  m_MinWidth: 161.25
-  m_MinHeight: 161.25
+  m_MinWidth: 75
+  m_MinHeight: 75
   m_PreferredWidth: -1
   m_PreferredHeight: -1
   m_FlexibleWidth: -1
@@ -69914,8 +69994,8 @@ MonoBehaviour:
   m_VerticalScrollbar: {fileID: 1377293223}
   m_HorizontalScrollbarVisibility: 2
   m_VerticalScrollbarVisibility: 2
-  m_HorizontalScrollbarSpacing: -2.9826593
-  m_VerticalScrollbarSpacing: -2.9826593
+  m_HorizontalScrollbarSpacing: -1.3872833
+  m_VerticalScrollbarSpacing: -1.3872833
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -72997,6 +73077,8 @@ RectTransform:
   m_Children:
   - {fileID: 1208686697}
   - {fileID: 192276352}
+  - {fileID: 115628287}
+  - {fileID: 205293395}
   m_Father: {fileID: 113606903}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

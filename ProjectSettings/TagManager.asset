@@ -30,6 +30,8 @@ TagManager:
   - PA_AFX_MISCELANOUS
   - Panel_Confirmation
   - ClingPoint
+  - PA_UI_BUTTON
+  - PA_UI_HORIZONTALLAYOUT
   layers:
   - Default
   - TransparentFX
