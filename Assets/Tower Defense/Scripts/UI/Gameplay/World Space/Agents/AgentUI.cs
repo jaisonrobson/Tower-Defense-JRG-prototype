@@ -51,7 +51,7 @@ public class AgentUI : MonoBehaviour
             spawnedStatusesHorizontalLayout = Poolable.TryGetPoolable(WorldSpaceInterfaceManager.instance.horizontalLayoutSmallStatuses).GetComponent<StatusesHorizontalLayoutController>();
             spawnedStatusesHorizontalLayout.transform.SetPositionAndRotation(Vector3.zero, Quaternion.identity);
             spawnedStatusesHorizontalLayout.SetTarget(transform);
-            spawnedStatusesHorizontalLayout.SetTargetHeightOffset(agent.mainCollider.bounds.max.y + 2f);
+            spawnedStatusesHorizontalLayout.SetTargetHeightOffset(agent.mainCollider.bounds.max.y + 1.5f);
             spawnedStatusesHorizontalLayout.agent = agent;
         }
     }

@@ -7,6 +7,7 @@ using System.Linq;
 using Sirenix.OdinInspector;
 using TheraBytes.BetterUi;
 
+[Serializable]
 public struct StatusHorizontalLayoutElement
 {
     public StatusEnum status;
@@ -51,7 +52,6 @@ public class StatusesHorizontalLayoutController : HorizontalLayoutController
     // Private (Methods) [START]
     private void InitializeVariables()
     {
-        UpdateSpawnedElementsList();
         RefreshLayoutSize();
         InitializeStatusElementsList();
     }
@@ -61,30 +61,16 @@ public class StatusesHorizontalLayoutController : HorizontalLayoutController
 
         statusElements = new List<StatusHorizontalLayoutElement>();
         statusElements.AddRange(Enumerable.Range(0, Enum.GetValues(typeof(StatusEnum)).Length).Select(element => {
+            AddElement(element);
+
             StatusHorizontalLayoutElement shle = new()
             {
                 status = (StatusEnum)element,
-                element = spawnedElements.ElementAt(element)
+                element = spawnedElements.Find(se => se.id == element).element
             };
 
             return shle;
         }));
-    }
-    private void UpdateSpawnedElementsList()
-    {
-        int quantityToInsert = Mathf.Abs(spawnedElements.Count - Enum.GetValues(typeof(StatusEnum)).Length);
-
-        spawnedElements.AddRange(Enumerable.Range(0, quantityToInsert).Select(element => {
-            GameObject newElement = Instantiate(horizontalLayoutElement);
-
-            newElement.transform.SetParent(transform);
-
-            RecalculateLayoutElementSizeValues(newElement);
-
-            return newElement;
-        }));
-
-        spawnedElements.ForEach(el => el.SetActive(false));
     }
     private void HandleStatusesVisibility()
     {

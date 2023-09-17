@@ -25,4 +25,4 @@ MonoBehaviour:
   assetPath: 
   newName: 
   statusAffector: {fileID: 11400000, guid: 145d2afd455ce854688506eca61a4aa8, type: 2}
-  probability: 10
+  probability: 60

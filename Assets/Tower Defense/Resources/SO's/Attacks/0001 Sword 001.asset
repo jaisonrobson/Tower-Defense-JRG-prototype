@@ -35,6 +35,7 @@ MonoBehaviour:
   maximumAttackDistance: 2
   onHitProbabilityStatusAffectors:
   - {fileID: 11400000, guid: 3a4245184ac9f8a42942c2204d9cf11e, type: 2}
+  - {fileID: 11400000, guid: 8a75c263d10ed0841bc767836e26a24c, type: 2}
   selfProbabilityStatusAffectors: []
   initialAnimation: {fileID: 11400000, guid: 95ba08eb5a7cb3e49bccf2db1a7bf255, type: 2}
   trailAnimation: {fileID: 0}

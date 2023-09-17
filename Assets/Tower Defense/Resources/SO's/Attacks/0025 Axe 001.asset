@@ -33,7 +33,8 @@ MonoBehaviour:
   influenceOverAttackVelocity: 50
   minimumAttackDistance: 0
   maximumAttackDistance: 2
-  onHitProbabilityStatusAffectors: []
+  onHitProbabilityStatusAffectors:
+  - {fileID: 11400000, guid: f86c750de4aea9e448e3050d3ebc9168, type: 2}
   selfProbabilityStatusAffectors: []
   initialAnimation: {fileID: 11400000, guid: 1f55c9bf52882d6459dd8812928c335c, type: 2}
   trailAnimation: {fileID: 0}

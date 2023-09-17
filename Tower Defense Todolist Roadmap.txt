@@ -214,6 +214,21 @@ LEGENDA:
 (X) Ajustar uma area horizontal dirigida na interface world space de cada agente para exibir informacoes de status do agente
 ( ) Ajustar uma area horizontal dirigida na interface world space de cada agente para exibir informacoes de disponibilidade de recursos (evolução, etc.)
 
+
+--- Alterações de mecanica
+( ) Fazer um novo projeto e tornar o antigo um backup em um projeto separado antes de comecar a alterar as mecanicas.
+( ) Fazer com que o jogador esteja obrigatoriamente sempre no centro do mapa. (As entidades principais do jogador estarao no centro)
+( ) O jogo não sera mais em varios niveis/mapas, mas apenas um mapa onde o jogador tera que lidar com varios aspectos de rejogabilidade/roguelike/aleatoriedade/rng.
+( ) As estruturas do jogador principais serao tres, heroi, slot de torre 1, slot de torre 2. (Onde o jogador antes de entrar na run/mapa, podera escolher qual sera o heroi e tambem quais serao as torres).
+( ) As estruturas principais demarcaram a condição de derrota (caso ele perda o heroi, o jogo acaba)
+( ) Os spawns dos inimigos sera feito de forma aleatoria ao redor do mapa (literalmente em qualquer regiao em volta do jogador, com certa distancia de demarcação limite do jogador.)
+( ) Sera possivel construir estruturas em volta da area principal, que servirão de forma secundaria para proteger o heroi/nucleo. (por exemplo: armadilhas, torres automatas inferiores.)
+( ) Havera um fog of war em volta de uma area predefinida que sera relevado apos um certo numero de waves. 
+( ) A fog sera limitado a 3 areas de fog of war por Run.
+( ) Ao descobrir uma fog, a quantidade de monstros spawnados sera sempre cada vez maior e mais forte
+( ) O heroi possuira habilidades ativas, que poderao ser usadas em tempo real, para atacar os inimigos.
+( ) Cada heroi possuira habilidades diferentes.
+
 ---Blender
 ( ) Criar as estruturas que o jogador vai usar para jogar.
 

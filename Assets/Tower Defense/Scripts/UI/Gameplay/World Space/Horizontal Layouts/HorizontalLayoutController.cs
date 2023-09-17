@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -5,15 +6,20 @@ using System.Linq;
 using Sirenix.OdinInspector;
 using TheraBytes.BetterUi;
 
+[Serializable]
+public struct HorizontalLayoutElement
+{
+    public int id;
+    public GameObject element;
+}
+
 [HideMonoScript]
 public class HorizontalLayoutController : WorldspaceInterfaceObjectController
 {
     // Public (Variables) [START]
-    [Min(1)]
-    public int maxElements = 5;
     [Min(0)]
     public float spacingSize = 0.5f;
-    [Min(1)]
+    [Min(1f)]
     public float elementSize = 2f;
     [Required]
     [AssetsOnly]
@@ -21,7 +27,7 @@ public class HorizontalLayoutController : WorldspaceInterfaceObjectController
     // Public (Variables) [END]
 
     // Protected (Variables) [START]
-    protected List<GameObject> spawnedElements;
+    protected List<HorizontalLayoutElement> spawnedElements;
     // Protected (Variables) [END]
 
     // (Unity) Methods [START]
@@ -48,34 +54,22 @@ public class HorizontalLayoutController : WorldspaceInterfaceObjectController
     private void InitializeVariables()
     {
         InitializeSpawnedElementsList();
-        RefreshLayoutSize();
     }
     private void InitializeSpawnedElementsList()
     {
         if (spawnedElements == null)
-            spawnedElements = new List<GameObject>();
+            spawnedElements = new List<HorizontalLayoutElement>();
         else
         {
-            spawnedElements.ForEach(element => Destroy(element));
+            spawnedElements.ForEach(element =>  Destroy(element.element));
 
             spawnedElements.Clear();
         }
-
-        spawnedElements.AddRange(Enumerable.Range(0, maxElements).Select(element => {
-            GameObject newElement = Instantiate(horizontalLayoutElement);
-
-            newElement.transform.SetParent(transform);
-
-            RecalculateLayoutElementSizeValues(newElement);
-
-            return newElement;
-        }));
-
-        spawnedElements.ForEach(el => el.SetActive(false));
     }
     // Private (Methods) [END]
 
     // Protected (Methods) [START]
+    protected bool IsElementAlreadyRegistered(int pId) => spawnedElements != null && spawnedElements.Any(se => se.id == pId);
     protected void RefreshLayoutSize()
     {
         GetComponent<BetterAxisAlignedLayoutGroup>().spacing = spacingSize;
@@ -85,7 +79,7 @@ public class HorizontalLayoutController : WorldspaceInterfaceObjectController
         rect.Set(
             rect.x,
             rect.y,
-            (elementSize * maxElements) + (spacingSize * (maxElements - 1)),
+            (elementSize * spawnedElements.Count) + (spacingSize * (spawnedElements.Count - 1)),
             rect.height
         );
     }
@@ -100,6 +94,44 @@ public class HorizontalLayoutController : WorldspaceInterfaceObjectController
         element.GetComponent<BetterLayoutElement>().PreferredWidthSizer.OverrideLastCalculatedSize(elementSize);
     }
     // Protected (Methods) [END]
+
+
+    // Public (Methods) [START]
+    public void AddElement(int pId)
+    {
+        if (IsElementAlreadyRegistered(pId))
+            return;
+
+        GameObject newElement = Instantiate(horizontalLayoutElement);
+
+        newElement.transform.SetParent(transform);
+
+        RecalculateLayoutElementSizeValues(newElement);
+        RefreshLayoutSize();
+
+        HorizontalLayoutElement hle = new()
+        {
+            id = pId,
+            element = newElement
+        };
+
+        spawnedElements.Add(hle);
+
+        newElement.SetActive(false);
+    }
+
+    public void RemoveElement(int pId)
+    {
+        if (!IsElementAlreadyRegistered(pId))
+            return;
+
+        HorizontalLayoutElement hle = spawnedElements.Find(se => se.id == pId);
+
+        Destroy(hle.element);
+
+        spawnedElements.Remove(hle);
+    }
+    // Public (Methods) [END]
 }
 
 ////////////////////////////////////////////////////////////////////////////////
