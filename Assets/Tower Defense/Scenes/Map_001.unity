@@ -8315,8 +8315,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_IgnoreLayout: 0
-  m_MinWidth: 75
-  m_MinHeight: 75
+  m_MinWidth: 162.1875
+  m_MinHeight: 162.1875
   m_PreferredWidth: -1
   m_PreferredHeight: -1
   m_FlexibleWidth: -1
@@ -15414,7 +15414,7 @@ MonoBehaviour:
   m_MinWidth: -1
   m_MinHeight: 50
   m_PreferredWidth: -1
-  m_PreferredHeight: 12.5
+  m_PreferredHeight: 27.031248
   m_FlexibleWidth: -1
   m_FlexibleHeight: 0
   m_LayoutPriority: 1
@@ -17478,8 +17478,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_IgnoreLayout: 0
-  m_MinWidth: 75
-  m_MinHeight: 75
+  m_MinWidth: 162.1875
+  m_MinHeight: 162.1875
   m_PreferredWidth: -1
   m_PreferredHeight: -1
   m_FlexibleWidth: -1
@@ -24436,7 +24436,7 @@ MonoBehaviour:
   m_StartCorner: 0
   m_StartAxis: 0
   m_CellSize: {x: 50, y: 50}
-  m_Spacing: {x: 1.75, y: 1.75}
+  m_Spacing: {x: 3.7843747, y: 3.7843747}
   m_Constraint: 0
   m_ConstraintCount: 2
   paddingSizerFallback:
@@ -31510,7 +31510,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   version: 1
   data:
-    dataString: UEsDBBQAAAgIAACwn+trG88HmgIAAJ8FAAALACQAZ3JhcGgwLmpzb24KACAAAAAAAAEAGAAAgD7V3rGdAQCAPtXesZ0BAIA+1d6xnQGFVNtuGjEQ/RXk5yZaIKRJ31pISCslQaVVHkoejD3LWnjtlS8BEvHvnfEu7IZUqoS05syZyxnP+I0p4ysQwbqpU/LeSmBfeozO7FOvNd7Blq+smatXOHCelAwFkXji/ORBWcT75OZtCcEp8dWsNJEzBKNRuXXljVzB2PrgEc659oAmZwN5G4TeemzbOOya7yt9e3s8CTAB3P9Y0QjNywokVduS+6MDHU+JaFBJw6GqhdVa+aYMFnZVkjnmlY8oAglScZSVCiB+AWpVBPpzfjXq+j/muQcynGXnQ5LHdxPlsEd1bPbN1o0ruV/X9b1wHSnb6PNlqqwOff/BfpWsubPl3TF5RrJCocT6J98J7kOnsV148r76aDZcr/lSw1MB5sFOnY1GojG4SK7Rw2DSCXVUNy5ArFteXeoJGKuPl9RvL2mfxG/HWpVLQs4vamCubWr6NfmAw+v5jgWn0fBNJESpiN8efvFVd4Yaw61yPqCpSWiouqWNjqjsFg/UeBHD2DoDCW1KrsBwHXYzjBK6d5h9tHWynlhuOS1Lk7uxHXbgxCXBLT/LTkwzu2nvysOPWFYzq0yYA3ei6MTzhd3cgy8eY9DKQKuIDA/Yw7E1ph4+/w+3eXQ5Fx23ANsQHUx44GkRsCYcEtl1xTYmDxO1pnlMKij4H1RBv2dqcsExr04we7AmrdC77zPNwSoq+X7ImRgNB8t+dn3JLwZXl8vhWXbNh7CUYpDlo0wMJEtroAz2nOtZ3bTmqnCATKvF4Mgf3rPe1PEq7Z10fDNVr6XtXL8yuZ0LB2Ae6whHseAwCb4S8kYqlDmHEJRJo8feFkxbsQa5OAZapMbebIPjizbKglXqxQZCFmycXrEFI/i4VTMHLwo2lPwQbM/2fwFQSwMEFAAACAgAALCf65UFfJxtAAAAeAAAAAkAJABtZXRhLmpzb24KACAAAAAAAAEAGAAAgD7V3rGdAQCAPtXesZ0BAIA+1d6xnQGrVipLLSrOzM9TslIw0TPSMzTXUVBKL0osyCgGihiCOKWZKSB2tFKyqbFRkqGBpVmiiZGFWZKxroFlonFqUkqykUGaqUGyUYpSLFB9SWVBql9ibipET0BiSUZaZl5KZl66nntRZoo7yGil2FoAUEsBAi0AFAAACAgAALCf62sbzweaAgAAnwUAAAsAJAAAAAAAAAAAAAAAAAAAAGdyYXBoMC5qc29uCgAgAAAAAAABABgAAIA+1d6xnQEAgD7V3rGdAQCAPtXesZ0BUEsBAi0AFAAACAgAALCf65UFfJxtAAAAeAAAAAkAJAAAAAAAAAAAAAAA5wIAAG1ldGEuanNvbgoAIAAAAAAAAQAYAACAPtXesZ0BAIA+1d6xnQEAgD7V3rGdAVBLBQYAAAAAAgACALgAAACfAwAAAAA=
+    dataString: UEsDBBQAAAgIAACwn+sAIHgVmAIAAKAFAAALACQAZ3JhcGgwLmpzb24KACAAAAAAAAEAGAAAgD7V3rGdAQCAPtXesZ0BAIA+1d6xnQGFVNtuGjEQ/RXk5ybaQEiTvrWQkFZKgkqrPJQ8GHuWtfDaK18CJOLfO+Nd2IVUqoS05syZmTMX+50p4ysQwbqJU/LBSmBfeozO7FOvNd7Dhi+tmak32HOelQwFkXji/ORBWcQvyM3bEoJT4qtZaiJnCEajcuvKW7mEkfXBI5xz7QFNzgbyNgi999imcdg23zf69nZ4EmACuP+xohGalxVIUtuSL4Z7Op4S0WAlDYdUC6u18o0MFrZVKnPEKx+xCCRIxbGsJID4BahlEejP+fWw6/+U5x7IcJadD6g8vh0rhz2qY7Nvtm5cyf2q1vfKdaRsw89XSVkd+uGD/TpZc2fL+0PyjMoKhRKrn3wruA+dxnbh8bH6aNZcr/hCw3MB5tFOnI1GojG4SK7RQ3/cCXWoblSAWLW8WuoJGKuPQ7poh7RLxW9GWpULQs4va2CmbWr6DfmAw/F8R8FpNXwTCVES8dvDL77s7lBjuFPOBzQ1CQ2pW9joiMru8ECNFzGMrDOQ0EZyBYbrsJ1ilNCdYfbR1sl6YrnjdFma3I1tfwdOXBLc8rPsxDS163ZWHn7EsppaZcIMuBNFJ54v7PoBfPEUg1YG2orI8Ig9HFlj6uXz/3CbRZdz0XELsAnRwZgHni4CasIlkV1XbGPyMFFr2sdUBQX/g1XQ74WaXHDMqxPMHq1JV+jo+0J7sIxKHi85E8NBf3GR3Vzxy/711WJwlt3wASyk6Gf5MBN9ydI1UAZ7zvW0blozKlyg7nwM7vz+QetNHK/SxZOOryfqrbSd+SuT25lwAObpOIQHh1nwmZC3UmGdMwhBmbR77H3OtBUrkPNDoHnq7O0mOD5vo8xZpV5tIGTORukZmzOCD9dq6uBVwZqS74Pt2O4vUEsDBBQAAAgIAACwn+uVBXycbQAAAHgAAAAJACQAbWV0YS5qc29uCgAgAAAAAAABABgAAIA+1d6xnQEAgD7V3rGdAQCAPtXesZ0Bq1YqSy0qzszPU7JSMNEz0jM011FQSi9KLMgoBooYgjilmSkgdrRSsqmxUZKhgaVZoomRhVmSsa6BZaJxalJKspFBmqlBslGKUixQfUllQapfYm4qRE9AYklGWmZeSmZeup57UWaKO8hopdhaAFBLAQItABQAAAgIAACwn+sAIHgVmAIAAKAFAAALACQAAAAAAAAAAAAAAAAAAABncmFwaDAuanNvbgoAIAAAAAAAAQAYAACAPtXesZ0BAIA+1d6xnQEAgD7V3rGdAVBLAQItABQAAAgIAACwn+uVBXycbQAAAHgAAAAJACQAAAAAAAAAAAAAAOUCAABtZXRhLmpzb24KACAAAAAAAAEAGAAAgD7V3rGdAQCAPtXesZ0BAIA+1d6xnQFQSwUGAAAAAAIAAgC4AAAAnQMAAAAA
     upgradeData: 
     file_cachedStartup: {fileID: 0}
     data_cachedStartup: 
@@ -31582,7 +31582,7 @@ MonoBehaviour:
     seed: 0
     pivotPointRoot: {fileID: 0}
     spreadOutCount: 1
-  showGraphs: 0
+  showGraphs: 1
 --- !u!1 &878090762
 GameObject:
   m_ObjectHideFlags: 0
@@ -50310,8 +50310,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_IgnoreLayout: 0
-  m_MinWidth: 75
-  m_MinHeight: 75
+  m_MinWidth: 162.1875
+  m_MinHeight: 162.1875
   m_PreferredWidth: -1
   m_PreferredHeight: -1
   m_FlexibleWidth: -1
@@ -51141,10 +51141,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Padding:
-    m_Left: 12
-    m_Right: 12
+    m_Left: 36
+    m_Right: 36
     m_Top: 0
-    m_Bottom: 9
+    m_Bottom: 27
   m_ChildAlignment: 1
   m_Spacing: 0
   m_ChildForceExpandWidth: 1
@@ -55517,8 +55517,8 @@ MonoBehaviour:
   m_VerticalScrollbar: {fileID: 1944746939}
   m_HorizontalScrollbarVisibility: 2
   m_VerticalScrollbarVisibility: 2
-  m_HorizontalScrollbarSpacing: -1.3872833
-  m_VerticalScrollbarSpacing: -1.3872833
+  m_HorizontalScrollbarSpacing: -3
+  m_VerticalScrollbarSpacing: -3
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -58601,8 +58601,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_IgnoreLayout: 0
-  m_MinWidth: 75
-  m_MinHeight: 75
+  m_MinWidth: 162.1875
+  m_MinHeight: 162.1875
   m_PreferredWidth: -1
   m_PreferredHeight: -1
   m_FlexibleWidth: -1
@@ -67621,8 +67621,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_IgnoreLayout: 0
-  m_MinWidth: 75
-  m_MinHeight: 75
+  m_MinWidth: 162.1875
+  m_MinHeight: 162.1875
   m_PreferredWidth: -1
   m_PreferredHeight: -1
   m_FlexibleWidth: -1
@@ -69994,8 +69994,8 @@ MonoBehaviour:
   m_VerticalScrollbar: {fileID: 1377293223}
   m_HorizontalScrollbarVisibility: 2
   m_VerticalScrollbarVisibility: 2
-  m_HorizontalScrollbarSpacing: -1.3872833
-  m_VerticalScrollbarSpacing: -1.3872833
+  m_HorizontalScrollbarSpacing: -3
+  m_VerticalScrollbarSpacing: -3
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []

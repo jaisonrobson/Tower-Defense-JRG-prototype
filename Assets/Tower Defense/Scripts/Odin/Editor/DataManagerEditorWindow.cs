@@ -18,6 +18,36 @@ public class DataManagerEditorWindow : OdinMenuEditorWindow
 
     protected override void OnGUI()
     {
+        GUILayout.BeginVertical();
+
+        GUILayoutUtility.GetRect(0, 15);
+
+        GUILayout.EndVertical();
+
+        // Draws a toolbar with the name of the currently selected menu item.
+        SirenixEditorGUI.BeginHorizontalToolbar();
+        {
+            GUILayout.FlexibleSpace();
+
+            if (SirenixEditorGUI.ToolbarButton(new GUIContent("     Import     "))) { }
+            if (SirenixEditorGUI.ToolbarButton(new GUIContent("     Export     "))) { }
+            if (SirenixEditorGUI.ToolbarButton(new GUIContent("     Delete     "))) { }
+            if (SirenixEditorGUI.ToolbarButton(new GUIContent("     Create     ")))
+            {
+                ScriptableObjectCreator.ShowDialog(typesToDisplay, DataManagerEditorWindow.DEFAULTSOASSETSPATH, obj =>
+                {
+                    base.TrySelectMenuItemWithObject(obj); // Selects the newly created item in the editor
+                });
+            }
+        }
+        SirenixEditorGUI.EndHorizontalToolbar();
+
+        GUILayout.BeginVertical();
+
+        GUILayoutUtility.GetRect(0, 15);
+
+        GUILayout.EndVertical();
+
         //Custom GUI drawing
         //Draws the SO Organization Buttons
         if (GUIUtils.SelectButtonList(ref selectedType, typesToDisplay))
@@ -56,14 +86,6 @@ public class DataManagerEditorWindow : OdinMenuEditorWindow
             if (selected != null)
             {
                 GUILayout.Label(selected.Name);
-            }
-
-            if (SirenixEditorGUI.ToolbarButton(new GUIContent("Create Item")))
-            {
-                ScriptableObjectCreator.ShowDialog(typesToDisplay, DataManagerEditorWindow.DEFAULTSOASSETSPATH, obj =>
-                {
-                    base.TrySelectMenuItemWithObject(obj); // Selects the newly created item in the editor
-                });
             }
         }
         SirenixEditorGUI.EndHorizontalToolbar();
