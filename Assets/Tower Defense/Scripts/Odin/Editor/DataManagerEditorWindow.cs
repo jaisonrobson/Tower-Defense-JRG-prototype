@@ -1,16 +1,25 @@
 using Sirenix.OdinInspector.Editor;
 using Sirenix.OdinInspector;
+using Sirenix.Serialization;
 using Sirenix.Utilities;
 using Sirenix.Utilities.Editor;
 using System;
+using System.IO;
 using System.Linq;
 using UnityEditor;
 using UnityEngine;
+using System.EnterpriseServices;
+using System.Collections.Generic;
+using Core.General;
+using static UnityEngine.LightProbeProxyVolume;
+using static UnityEditor.Rendering.InspectorCurveEditor;
 
 [Searchable]
 public class DataManagerEditorWindow : OdinMenuEditorWindow
 {
     public static string DEFAULTSOASSETSPATH = "Assets/Tower Defense/Resources/SO's";
+
+    public string backupSOAssetsPath = "";
 
     private static Type[] typesToDisplay = TypeCache.GetTypesWithAttribute<ManageableDataAttribute>().OrderBy(m => m.Name).ToArray();
 
@@ -29,9 +38,52 @@ public class DataManagerEditorWindow : OdinMenuEditorWindow
         {
             GUILayout.FlexibleSpace();
 
-            if (SirenixEditorGUI.ToolbarButton(new GUIContent("     Import     "))) { }
-            if (SirenixEditorGUI.ToolbarButton(new GUIContent("     Export     "))) { }
-            if (SirenixEditorGUI.ToolbarButton(new GUIContent("     Delete     "))) { }
+            if (SirenixEditorGUI.ToolbarButton(new GUIContent("     Backup Directory     ")))
+            {
+                string dest = EditorUtility.OpenFolderPanel("Select a new Backup Directory", "", "");
+
+                if (!string.IsNullOrEmpty(dest))
+                {
+                    backupSOAssetsPath = dest;
+                }
+            }
+
+            if (SirenixEditorGUI.ToolbarButton(new GUIContent("     Backup     ")))
+            {
+                if (!Directory.Exists(backupSOAssetsPath) || string.IsNullOrEmpty(backupSOAssetsPath))
+                {
+                    EditorUtility.DisplayDialog("Invalid Path", "Invalid backup directory path", "ok");
+
+                    return;
+                }
+
+                string destinationPath = backupSOAssetsPath + "/SO's Backup/"+ DateTime.Now.ToString().Replace("/", "").Replace(":", "").Replace(" ", "") + "/";
+                string destBackupPath = backupSOAssetsPath + "/SO's Backup/";
+
+                if (!Directory.Exists(destBackupPath))
+                {
+                    Directory.CreateDirectory(destBackupPath);
+                    AssetDatabase.Refresh();
+                }
+
+                FileUtil.CopyFileOrDirectory(DEFAULTSOASSETSPATH, destinationPath);
+
+                EditorUtility.RevealInFinder(destinationPath);
+            }
+
+            if (SirenixEditorGUI.ToolbarButton(new GUIContent("     Delete     ")))
+            {
+                BaseOptionDataSO boda = (BaseOptionDataSO) this.MenuTree.Selection.SelectedValue;
+
+                string assetPath = AssetDatabase.GetAssetPath(boda);
+
+                if (EditorUtility.DisplayDialog("Delete Asset", "Do you really want to delete "+boda.name+ " at path:\n\n" + assetPath + " ?", "Yes", "No"))
+                {
+                    File.Delete(assetPath);
+                    AssetDatabase.Refresh();
+                }
+            }
+
             if (SirenixEditorGUI.ToolbarButton(new GUIContent("     Create     ")))
             {
                 ScriptableObjectCreator.ShowDialog(typesToDisplay, DataManagerEditorWindow.DEFAULTSOASSETSPATH, obj =>

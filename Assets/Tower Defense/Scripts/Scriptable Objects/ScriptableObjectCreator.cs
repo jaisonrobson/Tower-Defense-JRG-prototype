@@ -76,11 +76,19 @@
                 AssetDatabase.Refresh();
             }
 
-            dest = EditorUtility.SaveFilePanel("Save object as", dest, "New " + selection.FirstOrDefault().GetNiceName(), "asset");
+            dest = dest + "/" + selection.FirstOrDefault().GetNiceName().Replace("SO", "") + "s/";
 
-            if (!string.IsNullOrEmpty(dest) && PathUtilities.TryMakeRelative(Path.GetDirectoryName(Application.dataPath), dest, out dest))
+            string newAsset = dest + DateTime.Now.ToString().Replace("/", "").Replace(":", "").Replace(" ", "") + ".asset";
+
+            Debug.Log(dest);
+
+            Debug.Log(newAsset);
+
+            //dest = EditorUtility.SaveFilePanel("Save object as", dest, "New " + selection.FirstOrDefault().GetNiceName(), "asset");
+
+            if (!string.IsNullOrEmpty(dest))
             {
-                AssetDatabase.CreateAsset(obj, dest);
+                AssetDatabase.CreateAsset(obj, newAsset);
                 AssetDatabase.Refresh();
 
                 if (this.onScritpableObjectCreated != null)
