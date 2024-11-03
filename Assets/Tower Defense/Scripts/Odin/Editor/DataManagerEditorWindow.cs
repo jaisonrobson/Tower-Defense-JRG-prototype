@@ -36,9 +36,7 @@ public class DataManagerEditorWindow : OdinMenuEditorWindow
         // Draws a toolbar with the name of the currently selected menu item.
         SirenixEditorGUI.BeginHorizontalToolbar();
         {
-            GUILayout.FlexibleSpace();
-
-            if (SirenixEditorGUI.ToolbarButton(new GUIContent("     Backup Directory     ")))
+            if (SirenixEditorGUI.ToolbarButton(new GUIContent("     Set Backup Directory     ")))
             {
                 string dest = EditorUtility.OpenFolderPanel("Select a new Backup Directory", "", "");
 
@@ -48,7 +46,7 @@ public class DataManagerEditorWindow : OdinMenuEditorWindow
                 }
             }
 
-            if (SirenixEditorGUI.ToolbarButton(new GUIContent("     Backup     ")))
+            if (SirenixEditorGUI.ToolbarButton(new GUIContent("     New Backup     ")))
             {
                 if (!Directory.Exists(backupSOAssetsPath) || string.IsNullOrEmpty(backupSOAssetsPath))
                 {
@@ -57,7 +55,7 @@ public class DataManagerEditorWindow : OdinMenuEditorWindow
                     return;
                 }
 
-                string destinationPath = backupSOAssetsPath + "/SO's Backup/"+ DateTime.Now.ToString().Replace("/", "").Replace(":", "").Replace(" ", "") + "/";
+                string destinationPath = backupSOAssetsPath + "/SO's Backup/" + DateTime.Now.ToString().Replace("/", "").Replace(":", "").Replace(" ", "") + "/";
                 string destBackupPath = backupSOAssetsPath + "/SO's Backup/";
 
                 if (!Directory.Exists(destBackupPath))
@@ -71,15 +69,41 @@ public class DataManagerEditorWindow : OdinMenuEditorWindow
                 EditorUtility.RevealInFinder(destinationPath);
             }
 
+            if (SirenixEditorGUI.ToolbarButton(new GUIContent("     Show Backup     ")))
+            {
+                if (!Directory.Exists(backupSOAssetsPath) || string.IsNullOrEmpty(backupSOAssetsPath))
+                {
+                    EditorUtility.DisplayDialog("Invalid Path", "Invalid backup directory path", "ok");
+
+                    return;
+                }
+
+                string destBackupPath = backupSOAssetsPath + "/SO's Backup/";
+
+                if (Directory.Exists(destBackupPath))
+                    EditorUtility.RevealInFinder(destBackupPath);
+                else
+                    EditorUtility.RevealInFinder(backupSOAssetsPath);
+            }
+
+            GUILayout.FlexibleSpace();
+
             if (SirenixEditorGUI.ToolbarButton(new GUIContent("     Delete     ")))
             {
-                BaseOptionDataSO boda = (BaseOptionDataSO) this.MenuTree.Selection.SelectedValue;
+                if (this.MenuTree.Selection.SelectedValue == null)
+                    return;
+
+                BaseOptionDataSO boda = (BaseOptionDataSO)this.MenuTree.Selection.SelectedValue;
 
                 string assetPath = AssetDatabase.GetAssetPath(boda);
 
-                if (EditorUtility.DisplayDialog("Delete Asset", "Do you really want to delete "+boda.name+ " at path:\n\n" + assetPath + " ?", "Yes", "No"))
+                if (EditorUtility.DisplayDialog("Delete Asset", "Do you really want to delete \n\n" + boda.name + "\n\n               at path:\n\n" + assetPath + " ?", "Yes", "No"))
                 {
                     File.Delete(assetPath);
+
+                    if (File.Exists(assetPath + ".meta"))
+                        File.Delete(assetPath+".meta");
+
                     AssetDatabase.Refresh();
                 }
             }
@@ -88,8 +112,25 @@ public class DataManagerEditorWindow : OdinMenuEditorWindow
             {
                 ScriptableObjectCreator.ShowDialog(typesToDisplay, DataManagerEditorWindow.DEFAULTSOASSETSPATH, obj =>
                 {
+                    selectedType = obj.GetType();
+
                     base.TrySelectMenuItemWithObject(obj); // Selects the newly created item in the editor
                 });
+            }
+
+            if (SirenixEditorGUI.ToolbarButton(new GUIContent("     Copy     ")))
+            {
+                if (this.MenuTree.Selection.SelectedValue == null)
+                    return;
+
+                BaseOptionDataSO boda = (BaseOptionDataSO)this.MenuTree.Selection.SelectedValue;
+
+                string assetPath = AssetDatabase.GetAssetPath(boda);
+
+                string assetFolderPath = assetPath.Split("/").SkipLast(1).Aggregate((path, next) => path += "/" + next) + "/" + boda.name + " copy " + DateTime.Now.ToString().Replace("/", "").Replace(":", "").Replace(" ", "") + ".asset";
+
+                AssetDatabase.CopyAsset(assetPath, assetFolderPath);
+                AssetDatabase.Refresh();
             }
         }
         SirenixEditorGUI.EndHorizontalToolbar();
