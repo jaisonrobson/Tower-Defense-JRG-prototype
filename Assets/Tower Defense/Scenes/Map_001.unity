@@ -32165,6 +32165,8 @@ MonoBehaviour:
     type: 3}
   horizontalLayoutSmallStatuses: {fileID: 1628259258267734694, guid: 08292134144c20b4ba861e88cf9d38db,
     type: 3}
+  horizontalLayoutSmallAvailableResources: {fileID: 1628259258267734694, guid: 8de6c61b98362374b9e53ab426a07e11,
+    type: 3}
 --- !u!1001 &884417350
 PrefabInstance:
   m_ObjectHideFlags: 0

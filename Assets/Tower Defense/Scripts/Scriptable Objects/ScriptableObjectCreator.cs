@@ -8,17 +8,18 @@
     using System.Linq;
     using UnityEditor;
     using UnityEngine;
+using UnityEngine.WSA;
 
-    // 
-    // With our custom RPG Editor window, this ScriptableObjectCreator is a replacement for the [CreateAssetMenu] attribute Unity provides.
-    // 
-    // For instance, if we call ScriptableObjectCreator.ShowDialog<Item>(..., ...), it will automatically find all 
-    // ScriptableObjects in your project that inherits from Item and prompts the user with a popup where he 
-    // can choose the type of item he wants to create. We then also provide the ShowDialog with a default path,
-    // to help the user create it in a specific directory.
-    // 
+// 
+// With our custom RPG Editor window, this ScriptableObjectCreator is a replacement for the [CreateAssetMenu] attribute Unity provides.
+// 
+// For instance, if we call ScriptableObjectCreator.ShowDialog<Item>(..., ...), it will automatically find all 
+// ScriptableObjects in your project that inherits from Item and prompts the user with a popup where he 
+// can choose the type of item he wants to create. We then also provide the ShowDialog with a default path,
+// to help the user create it in a specific directory.
+// 
 
-    public static class ScriptableObjectCreator
+public static class ScriptableObjectCreator
     {
         public static void ShowDialog(System.Type[] types, string defaultDestinationPath, Action<UnityEngine.ScriptableObject> onScritpableObjectCreated = null)
         {
@@ -80,11 +81,9 @@
 
             string newAsset = dest + DateTime.Now.ToString().Replace("/", "").Replace(":", "").Replace(" ", "") + ".asset";
 
-            Debug.Log(dest);
 
-            Debug.Log(newAsset);
-
-            //dest = EditorUtility.SaveFilePanel("Save object as", dest, "New " + selection.FirstOrDefault().GetNiceName(), "asset");
+            if (!Directory.Exists(dest))
+                Directory.CreateDirectory(dest);
 
             if (!string.IsNullOrEmpty(dest))
             {

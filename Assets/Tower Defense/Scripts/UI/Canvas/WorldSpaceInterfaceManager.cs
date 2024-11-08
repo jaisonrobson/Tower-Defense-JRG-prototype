@@ -66,6 +66,11 @@ public class WorldSpaceInterfaceManager : Singleton<WorldSpaceInterfaceManager>
     [Title("Horizontal Layouts")]
     public GameObject horizontalLayoutSmallStatuses;
 
+    [Required]
+    [AssetsOnly]
+    [BoxGroup("Prefabs")]
+    public GameObject horizontalLayoutSmallAvailableResources;
+
     // Public (Variables) [END]
 
     // Public (Methods) [START]

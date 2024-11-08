@@ -212,7 +212,7 @@ LEGENDA:
 ( ) Ajustar o tamanho de todas as texturas de todos os modelos ate o momento criados para 4096 4K
 
 (X) Ajustar uma area horizontal dirigida na interface world space de cada agente para exibir informacoes de status do agente
-( ) Ajustar uma area horizontal dirigida na interface world space de cada agente para exibir informacoes de disponibilidade de recursos (evolução, etc.)
+(X) Ajustar uma area horizontal dirigida na interface world space de cada agente para exibir informacoes de disponibilidade de recursos (evolução, etc.), isso deve ser feito no codigo Agent UI
 
 ---Blender
 ( ) Criar as estruturas que o jogador vai usar para jogar.

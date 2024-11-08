@@ -18,6 +18,7 @@ public class AgentUI : MonoBehaviour
     // Private (Variables) [START]
     private SliderController spawnedHealthSlider;
     private StatusesHorizontalLayoutController spawnedStatusesHorizontalLayout;
+    private AvailableResourcesHorizontalLayoutController spawnedAvailableResourcesHorizontalLayout;
     private Agent agent;
     // Private (Variables) [END]    
 
@@ -33,6 +34,7 @@ public class AgentUI : MonoBehaviour
 
         UpdateHealthSlider();
         HandleStatusesHorizontalLayoutVisibility();
+        HandleAvailableResourcesHorizontalLayoutVisibility();
     }
     // (Unity) Methods [END]
 
@@ -54,12 +56,28 @@ public class AgentUI : MonoBehaviour
             spawnedStatusesHorizontalLayout.SetTargetHeightOffset(agent.mainCollider.bounds.max.y + 1.5f);
             spawnedStatusesHorizontalLayout.agent = agent;
         }
+
+        if (spawnedAvailableResourcesHorizontalLayout == null)
+        {
+            spawnedAvailableResourcesHorizontalLayout = Poolable.TryGetPoolable(WorldSpaceInterfaceManager.instance.horizontalLayoutSmallAvailableResources).GetComponent<AvailableResourcesHorizontalLayoutController>();
+            spawnedAvailableResourcesHorizontalLayout.transform.SetPositionAndRotation(Vector3.zero, Quaternion.identity);
+            spawnedAvailableResourcesHorizontalLayout.SetTarget(transform);
+            spawnedAvailableResourcesHorizontalLayout.SetTargetHeightOffset(agent.mainCollider.bounds.max.y + 1.5f);
+            spawnedAvailableResourcesHorizontalLayout.agent = agent;
+        }
     }
     private void HandleStatusesHorizontalLayoutVisibility()
     {
         if (spawnedStatusesHorizontalLayout != null)
         {
             spawnedStatusesHorizontalLayout.Show();
+        }
+    }
+    private void HandleAvailableResourcesHorizontalLayoutVisibility()
+    {
+        if (spawnedAvailableResourcesHorizontalLayout != null)
+        {
+            spawnedAvailableResourcesHorizontalLayout.Show();
         }
     }
     private void CreateHealthSlider()
@@ -110,6 +128,7 @@ public class AgentUI : MonoBehaviour
     {
         HealthSliderTryPool();
         StatusesHorizontalLayoutTryPool();
+        AvailableResourcesHorizontalLayoutTryPool();
     }
     public void HealthSliderTryPool()
     {
@@ -124,6 +143,13 @@ public class AgentUI : MonoBehaviour
             Poolable.TryPool(spawnedStatusesHorizontalLayout.gameObject);
 
         spawnedStatusesHorizontalLayout = null;
+    }
+    public void AvailableResourcesHorizontalLayoutTryPool()
+    {
+        if (spawnedAvailableResourcesHorizontalLayout != null)
+            Poolable.TryPool(spawnedAvailableResourcesHorizontalLayout.gameObject);
+
+        spawnedAvailableResourcesHorizontalLayout = null;
     }
     // Public (Methods) [END]
 }

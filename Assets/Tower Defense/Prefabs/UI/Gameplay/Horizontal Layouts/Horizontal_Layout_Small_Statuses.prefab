@@ -143,7 +143,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 492598682580ed44fadcb1ea97c4b4cd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxElements: 5
   spacingSize: 0.5
   elementSize: 1
   horizontalLayoutElement: {fileID: 2200266994765271186, guid: 2f1e0bb632d2a0b46baa97077a40651a,
