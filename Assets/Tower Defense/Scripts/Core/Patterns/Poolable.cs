@@ -92,7 +92,7 @@ namespace Core.Patterns
 		public static Transform GetParentByType(PoolableTypeEnum type) =>
 			PoolManager.instance.GetPoolableTransformArea(type);
 
-		public Transform GetParent() { return GetParentByType(poolType); }
+		public Transform GetParent() => GetParentByType(poolType);
 	}
 }
 

@@ -40273,6 +40273,8 @@ MonoBehaviour:
     transform: {fileID: 115628287}
   - type: 25
     transform: {fileID: 205293395}
+  - type: 26
+    transform: {fileID: 1194183251}
   poolables: []
 --- !u!1 &1093054763
 GameObject:

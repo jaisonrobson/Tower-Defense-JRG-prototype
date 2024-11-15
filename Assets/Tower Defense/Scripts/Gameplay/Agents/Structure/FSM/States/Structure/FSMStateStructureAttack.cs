@@ -32,7 +32,7 @@ public class FSMStateStructureAttack : FSMStateStructure
         if (structureFSMAi.IsMakingAnyAttack())
             return;
 
-        if (!DidStructureFoundEnemies() || !structureFSMAi.IsAggressive || !structureFSMAi.IsAnyViableAttackUnderEnemyRange())
+        if ((!DidStructureFoundEnemies() && !structureFSMAi.IsAnyAttackNonEnemyTriggered())  || !structureFSMAi.IsAggressive || !structureFSMAi.IsAnyViableAttackUnderEnemyRange())
         {
             nextState = new FSMStateStructureIdle(anim, structure);
             stage = FSMEventEnum.EXIT;

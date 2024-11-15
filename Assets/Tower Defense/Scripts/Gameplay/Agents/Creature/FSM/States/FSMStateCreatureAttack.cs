@@ -58,6 +58,9 @@ public class FSMStateCreatureAttack : FiniteStateMachine
             return;
         }
 
+        if (creatureFsmAi.IsAnyAttackNonEnemyTriggered() && creatureFsmAi.IsAnyAttackNonEnemyTriggeredInRange())
+            return;
+
         if (DidCreatureFoundEnemies() || creatureFsmAi.IsCreatureConfused)
         {
             if (!creatureFsmAi.IsAnyViableAttackUnderEnemyRange())

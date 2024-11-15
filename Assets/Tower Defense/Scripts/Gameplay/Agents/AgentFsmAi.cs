@@ -315,13 +315,14 @@ public abstract class AgentFsmAi : MonoBehaviour
 
             return Vector3.Distance(enemyClosestPoint, agentClosestPoint);
         }
-        else if (attack.type == AttackTypeEnum.SIEGE)        
-            return 0;
         else
             return float.PositiveInfinity;
     }
     public bool IsAttackInRange(AttackSO attack)
     {
+        if (attack.type == AttackTypeEnum.SIEGE)
+            return true;
+
         if (attack.minimumAttackDistance > agent.AttackRange)
             return false;
 
@@ -353,6 +354,7 @@ public abstract class AgentFsmAi : MonoBehaviour
     public bool IsAnyAttackUnderEnemyRange() => timedAttacks.Any(timedAttack => IsAttackInRange(timedAttack.attack));
     public bool IsAllAttacksUnderEnemyRange() => timedAttacks.All(timedAttack => IsAttackInRange(timedAttack.attack));
     public bool IsMakingAnyAttack() => timedAttacks != null && timedAttacks.Any(timedAttack => timedAttack.isMakingAttack);
+    public bool IsAnyAttackNonEnemyTriggered() => timedAttacks != null && timedAttacks.Any(timedAttack => !timedAttack.attack.isEnemyTriggered);
     public virtual void PoolRetrievalAction(Poolable poolable)
     {
         timedAttacks = null;
