@@ -75,10 +75,13 @@ public class CameraController : Singleton<CameraController>
         direction.Normalize();
         direction *= zoomAmout;
 
-        //Mouse
-        if (Input.mouseScrollDelta.y != 0)
+        if (!StructurePlacementController.instance.IsPlacing)
         {
-            newPosition += Input.mouseScrollDelta.y * -direction;
+            //Mouse
+            if (Input.mouseScrollDelta.y != 0)
+            {
+                newPosition += Input.mouseScrollDelta.y * -direction;
+            }
         }
 
         //Keyboard
@@ -112,14 +115,17 @@ public class CameraController : Singleton<CameraController>
             newRotation *= Quaternion.Euler(Vector3.up * (-difference.x / 5f));
         }
 
-        //Keyboard
-        if (Input.GetKey(KeyCode.Q))
+        if (!StructurePlacementController.instance.IsPlacing)
         {
-            newRotation *= Quaternion.Euler(Vector3.up * -rotationAmout);
-        }
-        if (Input.GetKey(KeyCode.E))
-        {
-            newRotation *= Quaternion.Euler(Vector3.up * rotationAmout);
+            //Keyboard
+            if (Input.GetKey(KeyCode.Q))
+            {
+                newRotation *= Quaternion.Euler(Vector3.up * -rotationAmout);
+            }
+            if (Input.GetKey(KeyCode.E))
+            {
+                newRotation *= Quaternion.Euler(Vector3.up * rotationAmout);
+            }
         }
     }
 

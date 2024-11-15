@@ -214,13 +214,16 @@ LEGENDA:
 (X) Ajustar uma area horizontal dirigida na interface world space de cada agente para exibir informacoes de status do agente
 (X) Ajustar uma area horizontal dirigida na interface world space de cada agente para exibir informacoes de disponibilidade de recursos (evolução, etc.), isso deve ser feito no codigo Agent UI
 
-( ) Fazer uma mecanica que permita o jogador rotacionar as estruturas antes de posiciona-las.
+(X) Fazer uma mecanica que permita o jogador rotacionar as estruturas antes de posiciona-las.
+( ) Ajustar os ataques do tipo `Outcome` para rotacionarem no eixo Y de acordo com a direcao entre o invocador e o alvo do ataque.
 
 (X) Criar uma mecanica de ataques de cerco programados, onde o jogador pode determinar que uma torre ataque um espaco ou varios, ela ira continuamente jogar ataques temporizados nos pontos determinados. (ex: toxinas no chao, areas congelantes, fogo no chao, etc.) -- verificar o porque da torre so atacar quando tiver inimigo em volta, talvez o Actual Goal esteja envolvido.
 (X) Mover o codigo de ataques Ranged para um novo codigo de Siege attacks que permitira mais dinamismo em relacao aos estilo de ataques. (hoje o Siege attack usa o mesmo codigo do Ranged)
 (X) Fazer com que o codigo dos ataques dos agentes, realize um ataque por indice no vetor e nao por tipo de ataque (a quantidade de ataques deve ser respeitada, visto que agora cada ataque da lista possui posicionamento proprio).
 
 (X) Criar uma informacao visual ao jogador na interface quando um inimigo consegue esquivar com sucesso de algum ataque.
+
+
 
 ---Blender
 ( ) Criar as estruturas que o jogador vai usar para jogar.

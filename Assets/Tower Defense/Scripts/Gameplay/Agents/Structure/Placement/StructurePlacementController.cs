@@ -117,6 +117,12 @@ public class StructurePlacementController : Singleton<StructurePlacementControll
                     }
                 }
             }
+
+            if (Input.GetKey(KeyCode.E) || Input.mouseScrollDelta.y > 0.0f)
+                currentPlacingStructure.transform.Rotate(Vector3.up, 15f);
+
+            if (Input.GetKey(KeyCode.Q) || Input.mouseScrollDelta.y < 0.0f)
+                currentPlacingStructure.transform.Rotate(Vector3.up, -15f);
         }
     }
     private void HandlePlacementCancelling()
