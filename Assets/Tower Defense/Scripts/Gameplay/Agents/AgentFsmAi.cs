@@ -173,6 +173,8 @@ public abstract class AgentFsmAi : MonoBehaviour
 
                         if (enemyAgent != null)
                             Attacking.InvokeAttack(timedAttacks[i].attack, agent, enemyAgent);
+                        else if (timedAttacks[i].attack.type == AttackTypeEnum.SIEGE)
+                            Attacking.InvokeAttack(timedAttacks[i].attack, agent);
                     }
                 }
 
@@ -302,7 +304,7 @@ public abstract class AgentFsmAi : MonoBehaviour
 
         agent.DoDeathFXs(timeUntilCompletelyDie);
     }
-    public float GetDistanceBetweenAgentAndEnemy()
+    public float GetDistanceBetweenAgentAndDestination(AttackSO attack)
     {
         Agent enemy = agent.GetActualEnemyAgent();
 
@@ -313,6 +315,8 @@ public abstract class AgentFsmAi : MonoBehaviour
 
             return Vector3.Distance(enemyClosestPoint, agentClosestPoint);
         }
+        else if (attack.type == AttackTypeEnum.SIEGE)        
+            return 0;
         else
             return float.PositiveInfinity;
     }
@@ -321,12 +325,12 @@ public abstract class AgentFsmAi : MonoBehaviour
         if (attack.minimumAttackDistance > agent.AttackRange)
             return false;
 
-        if (agent.GetActualEnemyAgent() == null)
+        if (agent.GetActualEnemyAgent() == null && attack.isEnemyTriggered)
             return false;
 
-        float distanceBetweenAgentAndEnemy = GetDistanceBetweenAgentAndEnemy();
+        float distanceBetweenAgentAndDestination = GetDistanceBetweenAgentAndDestination(attack);
 
-        if (distanceBetweenAgentAndEnemy < attack.minimumAttackDistance || distanceBetweenAgentAndEnemy > attack.maximumAttackDistance || distanceBetweenAgentAndEnemy > agent.AttackRange)
+        if (distanceBetweenAgentAndDestination < attack.minimumAttackDistance || distanceBetweenAgentAndDestination > attack.maximumAttackDistance || distanceBetweenAgentAndDestination > agent.AttackRange)
             return false;
 
         return true;
@@ -344,10 +348,11 @@ public abstract class AgentFsmAi : MonoBehaviour
 
         return nearestAttack;
     }
-    public bool IsAnyViableAttackUnderEnemyRange() => timedAttacks.Any(timedAttack => IsAttackInRange(timedAttack.attack) && IsAttackReady(timedAttack));
+    public bool IsAnyAttackNonEnemyTriggeredInRange() => timedAttacks != null && timedAttacks.Any(timedAttack => IsAttackInRange(timedAttack.attack) && IsAttackReady(timedAttack) && !timedAttack.attack.isEnemyTriggered);
+    public bool IsAnyViableAttackUnderEnemyRange() => timedAttacks != null && timedAttacks.Any(timedAttack => IsAttackInRange(timedAttack.attack) && IsAttackReady(timedAttack));
     public bool IsAnyAttackUnderEnemyRange() => timedAttacks.Any(timedAttack => IsAttackInRange(timedAttack.attack));
     public bool IsAllAttacksUnderEnemyRange() => timedAttacks.All(timedAttack => IsAttackInRange(timedAttack.attack));
-    public bool IsMakingAnyAttack() => timedAttacks.Any(timedAttack => timedAttack.isMakingAttack);
+    public bool IsMakingAnyAttack() => timedAttacks != null && timedAttacks.Any(timedAttack => timedAttack.isMakingAttack);
     public virtual void PoolRetrievalAction(Poolable poolable)
     {
         timedAttacks = null;

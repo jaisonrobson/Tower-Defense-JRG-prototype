@@ -37,7 +37,11 @@ public class FSMStatePlayableStructureIdle : FSMStatePlayableStructure
             return;
         }
 
-        if (DidStructureFoundEnemies() && playableStructureFSMAi.IsAggressive && playableStructureFSMAi.IsAnyViableAttackUnderEnemyRange())
+        if (
+            (DidStructureFoundEnemies() || playableStructureFSMAi.IsAnyAttackNonEnemyTriggeredInRange())
+            && playableStructureFSMAi.IsAggressive
+            && playableStructureFSMAi.IsAnyViableAttackUnderEnemyRange()
+           )
         {
             if (playableStructureFSMAi.IsAllAttacksUnderCooldown)
                 return;

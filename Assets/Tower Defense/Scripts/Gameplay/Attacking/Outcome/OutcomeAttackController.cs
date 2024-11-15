@@ -11,7 +11,6 @@ using Core.General;
 public struct OutcomeCollisionConfiguration
 {
     [Required]
-    [AssetsOnly]
     public OutcomeAttackEnemyDetectionColliderController controller;
     [Range(0, 60)]
     [PropertyTooltip("Time in seconds this outcome will be executed before the script start")]

@@ -33,7 +33,19 @@ MonoBehaviour:
       Data: 1|AlignedWaveSO[], Assembly-CSharp
     - Name: 
       Entry: 12
-      Data: 3
+      Data: 7
+    - Name: 
+      Entry: 10
+      Data: 0
+    - Name: 
+      Entry: 10
+      Data: 0
+    - Name: 
+      Entry: 10
+      Data: 0
+    - Name: 
+      Entry: 10
+      Data: 0
     - Name: 
       Entry: 10
       Data: 0
@@ -66,6 +78,7 @@ MonoBehaviour:
   playableAgents:
   - {fileID: 11400000, guid: 5ee3415883f95844a86bbd74306d8aa8, type: 2}
   - {fileID: 11400000, guid: 70a9899fa8622bd4e957eb46d9e5ba63, type: 2}
+  - {fileID: 11400000, guid: 2e2530e3e955f0b4c946dc87537957a7, type: 2}
   playerEntities:
   - {fileID: 11400000, guid: 27eb9add85952394496d57f31ead99d3, type: 2}
   - {fileID: 11400000, guid: 1ba756df7dd6c4f489cc6289caff8286, type: 2}

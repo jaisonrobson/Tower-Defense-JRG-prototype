@@ -47,9 +47,10 @@ public class ImmediateAttackController : AttackController
                 .ToList()
                 .ForEach(sap => StatusAffecting.TryInvokeStatus(sap, IAA.Invoker, IAA.Target));
 
-            Transform animationOrigin = IAA.Invoker.GetAnimationOriginOfAttack(IAA.Attack).animationOrigin;
+            Quaternion localInitialRotation = Quaternion.LookRotation((IAA.Target.transform.position - IAA.Invoker.transform.position).normalized);
+            localInitialRotation = Quaternion.Euler(0, localInitialRotation.eulerAngles.y, 0);
 
-            Animating.InvokeAnimation(IAA.Attack.finalAnimation, IAA.Target.transform.position, animationOrigin.rotation, IAA.Duration);
+            Animating.InvokeAnimation(IAA.Attack.finalAnimation, IAA.Target.transform.position, localInitialRotation, IAA.Duration);
             AudioPlaying.InvokeSound(IAA.Attack.finalSound, IAA.Target.transform.position);
 
             Finished = true;

@@ -6,15 +6,15 @@ using Core.Patterns;
 
 public static class Attacking
 {
-	public static void InvokeAttack(AttackSO attack, Agent invoker, Agent target)
+	public static void InvokeAttack(AttackSO attack, Agent invoker, Agent target = null)
     {
-        if (attack == null || invoker == null || target == null)
+        if (attack == null || invoker == null || (target == null && attack.type != AttackTypeEnum.SIEGE))
             return;
 
         float duration = Mathf.Clamp(invoker.CalculateAttackVelocity(attack), 1f, Mathf.Infinity);
 
-        AttackOrigin attackOriginConfiguration = invoker.GetAttackOriginOfAttack(attack);
-        Transform attackOrigin = attackOriginConfiguration.attackOrigin;
+        AttackPositioning attackOriginConfiguration = invoker.GetActualAttackOrigin(attack);
+        Transform attackOrigin = attackOriginConfiguration.attackPosition;
 
         GameObject newAttack = Poolable.TryGetPoolable(
             attack.prefab,
@@ -23,7 +23,10 @@ public static class Attacking
 
                 pNewAttackPoolable.gameObject.GetComponent<Affector>().Alignment = invoker.Alignment;
                 pNewAttackPoolable.gameObject.GetComponent<Affector>().Invoker = invoker;
-                pNewAttackPoolable.gameObject.GetComponent<Affector>().Target = target;
+
+                if (target != null)
+                    pNewAttackPoolable.gameObject.GetComponent<Affector>().Target = target;
+
                 pNewAttackPoolable.gameObject.GetComponent<AttackAffector>().Attack = attack;
                 pNewAttackPoolable.gameObject.GetComponent<AttackAffector>().Damage = invoker.Damage;
                 pNewAttackPoolable.gameObject.GetComponent<AttackAffector>().Duration = duration;
@@ -53,7 +56,12 @@ public static class Attacking
                         pNewAttackPoolable.gameObject.GetComponent<MeleeAttackAffector>().Origin = localInitialOrigin;
                         pNewAttackPoolable.gameObject.GetComponent<MeleeAttackAffector>().InitialRotation = localInitialRotation;
                         break;
-                    case AttackTypeEnum.IMMEDIATE:
+                    case AttackTypeEnum.SIEGE:
+                        pNewAttackPoolable.gameObject.GetComponent<SiegeAttackAffector>().Origin = attackOrigin.position;
+                        pNewAttackPoolable.gameObject.GetComponent<SiegeAttackAffector>().Destination = invoker.GetActualAttackDestination(attack).attackPosition.position;
+                        pNewAttackPoolable.gameObject.GetComponent<SiegeAttackAffector>().Speed = invoker.CalculateAttackVelocityPerSecond(attack);
+                        break;
+                    default:
                         break;
                 }
             }
@@ -61,7 +69,7 @@ public static class Attacking
 
         newAttack.transform.position = attackOrigin.position;
 
-        Transform animationOrigin = invoker.GetAnimationOriginOfAttack(attack).animationOrigin;
+        Transform animationOrigin = invoker.GetActualAnimationOrigin(attack).animationPosition;
 
         Animating.InvokeAnimation(attack.initialAnimation, animationOrigin.position, animationOrigin.rotation, duration);
         AudioPlaying.InvokeSound(attack.initialSound, invoker.transform.position);
@@ -73,12 +81,12 @@ public static class Attacking
             if (attack.trailSound != null)
                 AudioPlaying.InvokeSound(attack.trailSound, newAttack);
         }
+
+        invoker.FinishActualAttack(attack);
     }
 
     public static void InvokeOutcome(Agent pInvoker, Vector3 pPosition, Vector3 pDirection, AlignmentEnum pAlignment, LayerMask pAffectedsMask, AttackSO pAttack, float pDamage)
     {
-        
-
         GameObject newOutcomeAttack = Poolable.TryGetPoolable(
             pAttack.outcomePrefab,
             (Poolable newOutcomeAttackPoolable) => {
@@ -106,9 +114,7 @@ public static class Attacking
                     mrs.ForEach(mr => mr.material = alignmentMaterial.ghost_structures);
                 }
 
-                Transform animationOrigin = pInvoker.GetAnimationOriginOfAttack(pAttack).animationOrigin;
-
-                Animating.InvokeAnimation(pAttack.finalAnimation, pPosition, animationOrigin.rotation, duration);
+                Animating.InvokeAnimation(pAttack.finalAnimation, pPosition, localInitialRotation, duration);
                 AudioPlaying.InvokeSound(pAttack.finalSound, pPosition);
             }
         );

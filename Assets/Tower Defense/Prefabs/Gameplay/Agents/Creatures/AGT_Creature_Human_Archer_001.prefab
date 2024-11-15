@@ -477,8 +477,10 @@ MonoBehaviour:
   goal: 1
   attacksOrigins:
   - attack: {fileID: 11400000, guid: 4cc0cdb3ba2da8a4c9d927025141b5e9, type: 2}
-    attackOrigin: {fileID: 2145196756236109155}
-    animationOrigin: {fileID: 5264332891399905725}
+    attackPosition: {fileID: 2145196756236109155}
+    animationPosition: {fileID: 5264332891399905725}
+    identityCounter: 1
+  attacksDestinations: []
   agent: {fileID: 11400000, guid: ffb340d53f49e884da0d23968fc4d09b, type: 2}
 --- !u!114 &3377463040264154238
 MonoBehaviour:

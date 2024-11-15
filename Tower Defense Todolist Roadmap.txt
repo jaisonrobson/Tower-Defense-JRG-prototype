@@ -207,12 +207,19 @@ LEGENDA:
 (X) Fazer com que o sistema Asset DestroyIT funcione com o sistema de pooling do projeto (ao receber dano o agente deve notificar o destroy it, ao poolar o agente, deve ser feito uma limpeza dos debris da morte da estrutura e revitalizar as variaveis do algoritmo DestroyIt dentro do objeto do agente.)
 (X) Verificar a necessidade de resetar o Damage Level do Destructible no agente apos ser repoolado para usar novamente.
 
-( ) Criar um sistema de disponibilidade de evolucao de torres para o jogador de acordo com o mapa (ex: algumas torres nao estaram desbloqueadas para uso naquele mapa, nem por evolucao, ou evolucoes especificas).
+(X) Criar um sistema de disponibilidade de evolucao de torres para o jogador de acordo com o mapa (ex: algumas torres nao estaram desbloqueadas para uso naquele mapa, nem por evolucao, ou evolucoes especificas).
 
 ( ) Ajustar o tamanho de todas as texturas de todos os modelos ate o momento criados para 4096 4K
 
 (X) Ajustar uma area horizontal dirigida na interface world space de cada agente para exibir informacoes de status do agente
 (X) Ajustar uma area horizontal dirigida na interface world space de cada agente para exibir informacoes de disponibilidade de recursos (evolução, etc.), isso deve ser feito no codigo Agent UI
+
+( ) Fazer uma mecanica que permita o jogador rotacionar as estruturas antes de posiciona-las.
+
+(X) Criar uma mecanica de ataques de cerco programados, onde o jogador pode determinar que uma torre ataque um espaco ou varios, ela ira continuamente jogar ataques temporizados nos pontos determinados. (ex: toxinas no chao, areas congelantes, fogo no chao, etc.) -- verificar o porque da torre so atacar quando tiver inimigo em volta, talvez o Actual Goal esteja envolvido.
+(X) Mover o codigo de ataques Ranged para um novo codigo de Siege attacks que permitira mais dinamismo em relacao aos estilo de ataques. (hoje o Siege attack usa o mesmo codigo do Ranged)
+(X) Fazer com que o codigo dos ataques dos agentes, realize um ataque por indice no vetor e nao por tipo de ataque (a quantidade de ataques deve ser respeitada, visto que agora cada ataque da lista possui posicionamento proprio).
+
 
 ---Blender
 ( ) Criar as estruturas que o jogador vai usar para jogar.
@@ -226,7 +233,7 @@ LEGENDA:
 (X) Criar a torre de cavaleiro do jogador nivel 2
 (X) Criar a torre de cavaleiro do jogador nivel 3
 (X) Criar a torre de cavaleiro do jogador variacao 4-1
-( ) Criar a torre de cavaleiro do jogador variacao 4-2
+(X) Criar a torre de cavaleiro do jogador variacao 4-2
 
 ( ) Criar a torre de arqueiro do jogador nivel 1
 ( ) Criar a torre de arqueiro do jogador nivel 2
@@ -252,10 +259,11 @@ LEGENDA:
 ( ) Criar a torre de armadilheiro do jogador variacao 2-1
 ( ) Criar a torre de armadilheiro do jogador variacao 2-2
 
-( ) Criar a torre de cavalaria de nivel 1
-( ) Criar a torre de cavalaria de variacao 2-1
-( ) Criar a torre de cavalaria de variacao 2-2
-( ) Criar a torre de cavalaria de variacao 2-3
+( ) Criar armadilha de cerco nivel 1
+( ) Criar armadilha de cerco nivel 2
+
+( ) Criar estrutura tanque de cerco nivel 1
+( ) Criar estrutura tanque de cerco nivel 2
 
 ( ) Criar estruturas de cenario que geralmente ficaram em volta (muros do jogador), arvores, montanhas, estradas etc.
 
@@ -323,3 +331,5 @@ BUGS E VALIDAÇÕES:
 (X) Corrigir o problema onde ao tentar posicionar uma torre enquanto a interface do jogo estiver por cima do mouse, a torre acaba sendo posicionada. (o ideal e que a interface exerca prioridade no clique ao inves do jogo.)
 (X) Corrigir problema quando os inimigos derrotam o CATALISADOR, e vão em direção ao GERADOR, não conseguem mais atacar, a IA fica paralisada no mesmo estado.
 ( ) Encontrado bug quando houver apenas um inimigo vivo, e o mesmo evoluir, o jogo brevemente ira pensar que acabou porque ao evoluir o inimigo some por alguns instantes, e entao o jogo acha que nao existe mais inimigos vivos e encerra como jogador vitorioso.
+(X) Verificar porque os Ranged Attacks nao estao acionando o Outcome Attack a colisao nao esta aparecendo na grande maioria dos tiros de arqueiros. (foi identificado que o outcome so aciona ao Ranged attack encontrar um agente inimigo, para resolver e necessario criar um codigo a parte especifico do siege attack com suas proprias regras.)
+(X) Corrigir a criação dos elementos das listas de destino e origem dos ataques da identidade dos agentes, esta acontecendo um problema quando ha mais de um tipo de ataque diferente no mesmo agente, o codigo esta duplicando ataques incorretamente.

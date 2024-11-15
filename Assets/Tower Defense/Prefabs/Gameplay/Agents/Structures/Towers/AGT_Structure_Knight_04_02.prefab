@@ -369,9 +369,11 @@ MonoBehaviour:
   goal: 3
   attacksOrigins:
   - attack: {fileID: 11400000, guid: ee527f0a67e809846815e8a4fcc28fb7, type: 2}
-    attackOrigin: {fileID: 485459622232900629}
-    animationOrigin: {fileID: 1297697349844859620}
-  agent: {fileID: 11400000, guid: b407c9d2e697a17438b785beac0dd983, type: 2}
+    attackPosition: {fileID: 485459622232900629}
+    animationPosition: {fileID: 1297697349844859620}
+    identityCounter: 1
+  attacksDestinations: []
+  agent: {fileID: 11400000, guid: 35c8ba34b230fe74ea20b5191e0ed7d8, type: 2}
   structure: {fileID: 1891179598013062134}
   ghost: {fileID: 1692023053094792077}
   flagPrefab: {fileID: 7610689757914200102, guid: fb92f925acbde27459bf03ea8e46a445,
@@ -1011,8 +1013,9 @@ MonoBehaviour:
     healthPercent: 20
     hasError: 0
     visibleDamageLevel: 8
-  destroyedPrefab: {fileID: 0}
-  destroyedPrefabParent: {fileID: 0}
+  destroyedPrefab: {fileID: 7356833014128701092, guid: e45b1a8b6a290734c88c1b62884639e1,
+    type: 3}
+  destroyedPrefabParent: {fileID: 3512234041188966870}
   fallbackParticle: {fileID: 19800004, guid: 6b46cad447c64dd48b8b715df6e3d2ad, type: 3}
   fallbackParticleMatOption: 0
   damageEffects: []
@@ -1024,7 +1027,28 @@ MonoBehaviour:
   ignoreCollisionsUnder: 2
   unparentOnDestroy: []
   disableKinematicOnUparentedChildren: 1
-  replaceMaterials: []
+  replaceMaterials:
+  - SourceMaterial: {fileID: 2100000, guid: 75cd5f3f965eea547bd600616ec04e2b, type: 2}
+    ReplacementMaterial: {fileID: 2100000, guid: 2e460a34816aab445b32c822a4e2da66,
+      type: 2}
+  - SourceMaterial: {fileID: 2100000, guid: f23525bb165546b459d4667045f2fda6, type: 2}
+    ReplacementMaterial: {fileID: 2100000, guid: c7d825093d95ead4d84f68be99ac4f61,
+      type: 2}
+  - SourceMaterial: {fileID: 2100000, guid: 6a45f254ee1db46418000871abd63e9e, type: 2}
+    ReplacementMaterial: {fileID: 2100000, guid: 05377480930d4cc46a8b595a93fbc99c,
+      type: 2}
+  - SourceMaterial: {fileID: 2100000, guid: d09557571bc06cc4d86457ae0f0749ce, type: 2}
+    ReplacementMaterial: {fileID: 2100000, guid: 614e81de9c42a424fa0162fcafca42ec,
+      type: 2}
+  - SourceMaterial: {fileID: 2100000, guid: 584ee8850efee6843ac19b30e9b9c639, type: 2}
+    ReplacementMaterial: {fileID: 2100000, guid: 2e460a34816aab445b32c822a4e2da66,
+      type: 2}
+  - SourceMaterial: {fileID: 2100000, guid: 14c14fc6df319374faba3b2c207596c1, type: 2}
+    ReplacementMaterial: {fileID: 2100000, guid: 66f9f220584e46b46aec21d52aed3c56,
+      type: 2}
+  - SourceMaterial: {fileID: 2100000, guid: 5d4590bc80d131f4e80621328e4f41df, type: 2}
+    ReplacementMaterial: {fileID: 2100000, guid: 7722d280bf0692848889316408d87707,
+      type: 2}
   replaceParticleMats: []
   canBeDestroyed: 1
   canBeRepaired: 0
@@ -1036,7 +1060,7 @@ MonoBehaviour:
   chipAwayDebrisMass: 1
   chipAwayDebrisDrag: 0
   chipAwayDebrisAngularDrag: 0.05
-  autoPoolDestroyedPrefab: 1
+  autoPoolDestroyedPrefab: 0
   useFallbackParticle: 1
   centerPointOverride: {x: 0, y: 0, z: 0}
   fallbackParticleScale: {x: 1, y: 1, z: 1}

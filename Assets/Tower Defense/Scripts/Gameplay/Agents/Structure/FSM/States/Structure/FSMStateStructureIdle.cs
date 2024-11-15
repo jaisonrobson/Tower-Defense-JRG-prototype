@@ -29,7 +29,11 @@ public class FSMStateStructureIdle : FSMStateStructure
             return;
         }
 
-        if (DidStructureFoundEnemies() && structureFSMAi.IsAggressive && structureFSMAi.IsAnyViableAttackUnderEnemyRange())
+        if (
+            (DidStructureFoundEnemies() || structureFSMAi.IsAnyAttackNonEnemyTriggeredInRange())
+            && structureFSMAi.IsAggressive
+            && structureFSMAi.IsAnyViableAttackUnderEnemyRange()
+            )
         {
             if (structureFSMAi.IsAllAttacksUnderCooldown)
                 return;

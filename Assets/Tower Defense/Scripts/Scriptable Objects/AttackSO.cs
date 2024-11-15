@@ -13,6 +13,11 @@ public class AttackSO : BaseOptionDataSO
     [EnumToggleButtons]
     public AttackTypeEnum type = AttackTypeEnum.MELEE;
 
+    [BoxGroup("Identity/Box", LabelText = "Identity")]
+    [PropertyTooltip("Does this attack need to have an enemy to be done?")]
+    [ToggleButtons("Yes", "No", trueColor: "@new Color(0.51f, 1f, 0.65f, 1f)", falseColor: "@new Color(1f, 0.56f, 0.51f, 1f)")]
+    public bool isEnemyTriggered = true;
+
     [BoxGroup("Identity/Box")]
     [Required]
     [AssetsOnly]

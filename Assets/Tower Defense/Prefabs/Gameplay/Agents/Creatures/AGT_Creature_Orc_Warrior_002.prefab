@@ -255,11 +255,14 @@ MonoBehaviour:
   goal: 0
   attacksOrigins:
   - attack: {fileID: 11400000, guid: eb7c3507f6d6f04469daff4fdd7dd01a, type: 2}
-    attackOrigin: {fileID: 4222662465684692761}
-    animationOrigin: {fileID: 5151708012653833925}
+    attackPosition: {fileID: 4222662465684692761}
+    animationPosition: {fileID: 5151708012653833925}
+    identityCounter: 1
   - attack: {fileID: 11400000, guid: f34eaf47e97cbb047905a8c8d999d820, type: 2}
-    attackOrigin: {fileID: 4222662465684692761}
-    animationOrigin: {fileID: 5151708012653833925}
+    attackPosition: {fileID: 4222662465684692761}
+    animationPosition: {fileID: 5151708012653833925}
+    identityCounter: 1
+  attacksDestinations: []
   agent: {fileID: 11400000, guid: 101ed3fe9c5033a4fb1726247731e5a5, type: 2}
 --- !u!114 &7397372826749517200
 MonoBehaviour:

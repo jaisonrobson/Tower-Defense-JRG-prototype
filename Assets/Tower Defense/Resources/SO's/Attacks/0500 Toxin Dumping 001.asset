@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 21fea5b699d39684abdcc96e9aa0c498, type: 3}
-  m_Name: 0025 Axe 001
+  m_Name: 0500 Toxin Dumping 001
   m_EditorClassIdentifier: 
   serializationData:
     SerializedFormat: 2
@@ -22,24 +22,25 @@ MonoBehaviour:
     PrefabModifications: []
     SerializationNodes: []
   jokerHiddenTitleField: 
-  assetPath: 
-  newName: 
-  type: 0
-  isEnemyTriggered: 1
-  prefab: {fileID: 4468174954759948787, guid: 338067f75b2a8554e802b1d2e6fb22cf, type: 3}
-  outcomePrefab: {fileID: 0}
-  nature: {fileID: 11400000, guid: efc48cd36c929314495d893e09975cdd, type: 2}
+  assetPath: Assets/Tower Defense/Resources/SO's/Attacks/0500 Toxin Throw 001.asset
+  newName: 0500 Toxin Dumping 001
+  type: 3
+  isEnemyTriggered: 0
+  prefab: {fileID: 3141446317808175434, guid: b6bd2c5d6d81efd438e859f237020d4b, type: 3}
+  outcomePrefab: {fileID: 7020103767167218319, guid: 1ca0ae8a97077544ab0c5d27dbe792c5,
+    type: 3}
+  nature: {fileID: 11400000, guid: ca774d1638191f64c8b3250e09a5f227, type: 2}
   formula: {fileID: 11400000, guid: bf3756c18a6b9fd478d9c0a2fb7ea0ec, type: 2}
-  cooldown: 3
-  influenceOverAttackVelocity: 50
+  cooldown: 5
+  influenceOverAttackVelocity: 100
   minimumAttackDistance: 0
-  maximumAttackDistance: 2
+  maximumAttackDistance: 1.5
   onHitProbabilityStatusAffectors:
   - {fileID: 11400000, guid: f86c750de4aea9e448e3050d3ebc9168, type: 2}
   selfProbabilityStatusAffectors: []
-  initialAnimation: {fileID: 11400000, guid: 1f55c9bf52882d6459dd8812928c335c, type: 2}
+  initialAnimation: {fileID: 11400000, guid: cf2662a26baf05a44b8e8b22ab2904fb, type: 2}
   trailAnimation: {fileID: 0}
-  finalAnimation: {fileID: 11400000, guid: c908572c21388ed408925a7430bb6bdb, type: 2}
-  initialSound: {fileID: 11400000, guid: 3fd75ee68bfb15a44ada661ce00fc311, type: 2}
+  finalAnimation: {fileID: 11400000, guid: cf2662a26baf05a44b8e8b22ab2904fb, type: 2}
+  initialSound: {fileID: 11400000, guid: d0cc945b65d9f3c4f8e52485a60ba2e2, type: 2}
   trailSound: {fileID: 0}
-  finalSound: {fileID: 11400000, guid: 14b0da15b626af548bf19350d1a52d42, type: 2}
+  finalSound: {fileID: 11400000, guid: d0cc945b65d9f3c4f8e52485a60ba2e2, type: 2}

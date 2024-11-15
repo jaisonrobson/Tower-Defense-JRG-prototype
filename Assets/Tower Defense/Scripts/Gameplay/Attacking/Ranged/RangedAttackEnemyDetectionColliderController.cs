@@ -37,7 +37,7 @@ public class RangedAttackEnemyDetectionColliderController : MonoBehaviour
                         {
                             if (raa.Attack.outcomePrefab != null)
                             {
-                                Attacking.InvokeOutcome(raa.Invoker, transform.position, transform.forward, raa.Alignment, raa.AffectedsMask, raa.Attack, raa.Damage);
+                                Attacking.InvokeOutcome(raa.Invoker, transform.position, transform.forward, raa.Alignment, raa.AffectedMasks, raa.Attack, raa.Damage);
                             }
                             else if (!rac.IsAgentAlreadyAffected(enemy))
                             {
@@ -49,9 +49,10 @@ public class RangedAttackEnemyDetectionColliderController : MonoBehaviour
                                     .ToList()
                                     .ForEach(sap => StatusAffecting.TryInvokeStatus(sap, raa.Invoker, enemy));
 
-                                Transform animationOrigin = raa.Invoker.GetAnimationOriginOfAttack(raa.Attack).animationOrigin;
+                                Quaternion localInitialRotation = Quaternion.LookRotation((raa.Origin - enemy.transform.position).normalized);
+                                localInitialRotation = Quaternion.Euler(0, localInitialRotation.eulerAngles.y, 0);
 
-                                Animating.InvokeAnimation(raa.Attack.finalAnimation, enemy.transform.position, animationOrigin.rotation, raa.Duration);
+                                Animating.InvokeAnimation(raa.Attack.finalAnimation, enemy.transform.position, localInitialRotation, raa.Duration);
                                 AudioPlaying.InvokeSound(raa.Attack.finalSound, enemy.transform.position);
                             }
 

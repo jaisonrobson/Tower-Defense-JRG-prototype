@@ -19,7 +19,7 @@ public abstract class Affector : MonoBehaviour, IPoolable
 	public AlignmentEnum Alignment { get; set; }
     [ReadOnly]
     [ShowInInspector]
-    public LayerMask AffectedsMask { get; protected set; }
+    public LayerMask AffectedMasks { get; protected set; }
     [ReadOnly]
     [ShowInInspector]
     public Agent Invoker { get; set; }
@@ -39,7 +39,7 @@ public abstract class Affector : MonoBehaviour, IPoolable
         {
             initialized = true;
 
-            AffectedsMask = LayerMask.GetMask("Creature", "Structure");
+            AffectedMasks = LayerMask.GetMask("Creature", "Structure");
 
             PoolRetrievalAction(GetComponent<Poolable>());
         }
@@ -47,7 +47,7 @@ public abstract class Affector : MonoBehaviour, IPoolable
     // (Unity) Methods [END]
 
     // Public (Methods) [START]
-    public bool IsInLayerMask(int layer) => Utils.IsInLayerMask(layer, AffectedsMask);
+    public bool IsInLayerMask(int layer) => Utils.IsInLayerMask(layer, AffectedMasks);
     public bool IsAlignmentAnOpponent(AlignmentEnum pAlignment) { return AlignmentManager.instance.IsAlignmentAnOpponent(pAlignment, Alignment); }
     public virtual void PoolRetrievalAction(Poolable poolable) { }
     public virtual void PoolInsertionAction(Poolable poolable)

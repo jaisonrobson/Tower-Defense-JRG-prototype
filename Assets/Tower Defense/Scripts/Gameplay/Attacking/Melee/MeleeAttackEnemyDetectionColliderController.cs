@@ -45,9 +45,10 @@ public class MeleeAttackEnemyDetectionColliderController : MonoBehaviour
                                     .ToList()
                                     .ForEach(sap => StatusAffecting.TryInvokeStatus(sap, maa.Invoker, enemy));
 
-                            Transform animationOrigin = maa.Invoker.GetAnimationOriginOfAttack(maa.Attack).animationOrigin;
+                            Quaternion localInitialRotation = Quaternion.LookRotation((maa.Origin - enemy.transform.position).normalized);
+                            localInitialRotation = Quaternion.Euler(0, localInitialRotation.eulerAngles.y, 0);
 
-                            Animating.InvokeAnimation(maa.Attack.finalAnimation, enemy.transform.position, animationOrigin.rotation, maa.Duration);
+                            Animating.InvokeAnimation(maa.Attack.finalAnimation, enemy.transform.position, localInitialRotation, maa.Duration);
                             AudioPlaying.InvokeSound(maa.Attack.finalSound, enemy.transform.position);
                         }
                     }

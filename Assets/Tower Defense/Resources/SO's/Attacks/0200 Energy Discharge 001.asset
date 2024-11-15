@@ -25,6 +25,7 @@ MonoBehaviour:
   assetPath: 
   newName: 
   type: 1
+  isEnemyTriggered: 1
   prefab: {fileID: 3141446317808175434, guid: d1e7e630ea76ec44cbadc5e77de323a0, type: 3}
   outcomePrefab: {fileID: 7020103767167218319, guid: 211807cfc60134040a86ab879c2db420,
     type: 3}

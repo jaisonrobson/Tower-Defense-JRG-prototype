@@ -11,6 +11,9 @@ using Core.Patterns;
 using Core.Physics;
 using Core.General;
 using DestroyIt;
+using System.Runtime.Serialization;
+using Sirenix.Utilities;
+using Unity.VisualScripting;
 
 public struct PriorityGoal
 {
@@ -41,19 +44,49 @@ public struct SubSpawn
 }
 
 [Serializable]
-public struct AttackOrigin
+[PropertyTooltip("This structure can represent the attacks and animations origins and also the destionation, depends of what property is using it.")]
+public struct AttackPositioning
 {
     public AttackSO attack;
     [ChildGameObjectsOnly]
-    public Transform attackOrigin;
+    public Transform attackPosition;
     [ChildGameObjectsOnly]
-    public Transform animationOrigin;
+    public Transform animationPosition;
+    [ReadOnly]
+    public int identityCounter; // This variable validates the quantity that the same attack is present in the agent, ex: 4 bottles of toxin be throwing at 4 different destination directions (same attack happening 4 times at once). every individual toxin must be a different instance of the same attack at the array, this counter manages it.
 
-    public AttackOrigin(AttackSO pAttack)
+    public AttackPositioning(AttackSO pAttack, int pIdentityCounter = 0)
     {
         attack = pAttack;
-        attackOrigin = null;
-        animationOrigin = null;
+        attackPosition = null;
+        animationPosition = null;
+        identityCounter = pIdentityCounter;
+    }
+}
+
+[Serializable]
+public struct LastAttackPositioningMade
+{
+    public AttackSO attack;
+    public int lastPositioningIdentity;
+
+    public LastAttackPositioningMade(AttackSO pAttack, int pLastPositioningIdentity)
+    {
+        attack = pAttack;
+        lastPositioningIdentity = pLastPositioningIdentity;
+    }
+}
+
+[Serializable]
+public struct LastAnimationPositioningMade
+{
+    public AttackSO attack;
+    public int lastPositioningIdentity;
+
+    public LastAnimationPositioningMade(AttackSO pAttack, int pLastPositioningIdentity)
+    {
+        attack = pAttack;
+        lastPositioningIdentity = pLastPositioningIdentity;
     }
 }
 
@@ -78,7 +111,12 @@ public abstract class Agent : MonoBehaviour, IPoolable
     [PropertyOrder(1)]
     [OnInspectorInit("MaintainAttacksOrigin")]
     [ValidateInput("Validate_NotNull_Origins", "Animation or Attack origin cannot be null.")]
-    public List<AttackOrigin> attacksOrigins;
+    public List<AttackPositioning> attacksOrigins;
+    [TitleGroup("Agent Identity/Attacking", Order = 4)]
+    [PropertyOrder(1)]
+    [OnInspectorInit("MaintainAttacksDestinations")]
+    [ValidateInput("Validate_NotNull_Destinations", "Animation or Attack destination cannot be null.")]
+    public List<AttackPositioning> attacksDestinations;
     public UnityAction onReceiveDamageAction;
     // Public (Variables) [END]
 
@@ -205,6 +243,18 @@ public abstract class Agent : MonoBehaviour, IPoolable
     [HideInEditorMode]
     [ReadOnly]
     private List<bool> isAttackPrevented;
+    [TitleGroup("Agent Identity/Affectors")]
+    [PropertyOrder(12)]
+    [ShowInInspector]
+    [HideInEditorMode]
+    [ReadOnly]
+    private List<LastAttackPositioningMade> lastAttackPositioningsMade;
+    [TitleGroup("Agent Identity/Affectors")]
+    [PropertyOrder(13)]
+    [ShowInInspector]
+    [HideInEditorMode]
+    [ReadOnly]
+    private List<LastAttackPositioningMade> lastAnimationPositioningsMade;
     // Private (Variables) [END]
 
     // Protected (Variables) [START]
@@ -317,6 +367,36 @@ public abstract class Agent : MonoBehaviour, IPoolable
             isAttackPrevented.Clear();
         else
             isAttackPrevented = new List<bool>();
+    }
+    private void ResetLastAttackPositioningsMade()
+    {
+        if (lastAttackPositioningsMade == null)
+            lastAttackPositioningsMade = new List<LastAttackPositioningMade>();
+        else
+        {
+            lastAttackPositioningsMade.Clear();
+
+            AgentSO aso = GetAgent();
+
+            aso.attacks.Distinct().ToList().ForEach(at => {
+                lastAttackPositioningsMade.Add(new LastAttackPositioningMade(at, 1));
+            });
+        }
+    }
+    private void ResetLastAnimationPositioningsMade()
+    {
+        if (lastAnimationPositioningsMade == null)
+            lastAnimationPositioningsMade = new List<LastAttackPositioningMade>();
+        else
+        {
+            lastAnimationPositioningsMade.Clear();
+
+            AgentSO aso = GetAgent();
+
+            aso.attacks.Distinct().ToList().ForEach(at => {
+                lastAnimationPositioningsMade.Add(new LastAttackPositioningMade(at, 1));
+            });
+        }
     }
     private void ResetIndependentAssets()
     {
@@ -453,8 +533,34 @@ public abstract class Agent : MonoBehaviour, IPoolable
             0.03f,
             5f
         );
-    public AttackOrigin GetAttackOriginOfAttack(AttackSO pAttack) => attacksOrigins.Where(ao => ao.attack == pAttack).First();
-    public AttackOrigin GetAnimationOriginOfAttack(AttackSO pAttack) => attacksOrigins.Where(ao => ao.attack == pAttack).First();
+    public AttackPositioning GetActualAttackOrigin(AttackSO pAttack) => attacksOrigins.Where(ao => ao.attack == pAttack && ao.identityCounter == lastAttackPositioningsMade.Find(lao => lao.attack == ao.attack).lastPositioningIdentity).First();
+    public AttackPositioning GetActualAnimationOrigin(AttackSO pAttack) => attacksOrigins.Where(ao => ao.attack == pAttack && ao.identityCounter == lastAnimationPositioningsMade.Find(lao => lao.attack == ao.attack).lastPositioningIdentity).First();
+    public AttackPositioning GetActualAttackDestination(AttackSO pAttack) => attacksDestinations.Where(ao => ao.attack == pAttack && ao.identityCounter == lastAttackPositioningsMade.Find(lao => lao.attack == ao.attack).lastPositioningIdentity).First();
+    public AttackPositioning GetActualAnimationDestination(AttackSO pAttack) => attacksDestinations.Where(ao => ao.attack == pAttack && ao.identityCounter == lastAnimationPositioningsMade.Find(lao => lao.attack == ao.attack).lastPositioningIdentity).First();
+    public void FinishActualAttack(AttackSO pAttack)
+    {
+        AgentSO aso = GetAgent();
+
+        lastAttackPositioningsMade = Utils.UpdateValueInStructList(lastAttackPositioningsMade, lapm => {
+            if (lapm.attack == pAttack)
+                if (lapm.lastPositioningIdentity == aso.attacks.Where(atk => atk == lapm.attack).ToList().Count)
+                    lapm.lastPositioningIdentity = 1;
+                else
+                    lapm.lastPositioningIdentity++;
+
+            return lapm;
+        }).ToList();
+
+        lastAnimationPositioningsMade = Utils.UpdateValueInStructList(lastAnimationPositioningsMade, lapm => {
+            if (lapm.attack == pAttack)
+                if (lapm.lastPositioningIdentity == aso.attacks.Where(atk => atk == lapm.attack).ToList().Count)
+                    lapm.lastPositioningIdentity = 1;
+                else
+                    lapm.lastPositioningIdentity++;
+
+            return lapm;
+        }).ToList();
+    }
     public List<PriorityGoal> GetAgentViablePriorityEnemies() { return PriorityGoals.Where(pg => pg.ignoreBattle == false).ToList(); }
     public PriorityGoal GetAgentNearestViablePriorityEnemy() {
         float lastDistance = float.PositiveInfinity;
@@ -602,6 +708,8 @@ public abstract class Agent : MonoBehaviour, IPoolable
         ResetAgentStats();
         ResetMainGoals();
         ResetPreventionLists();
+        ResetLastAttackPositioningsMade();
+        ResetLastAnimationPositioningsMade();
         actualGoal = null;
         onReceiveDamageAction = null;
 
@@ -633,7 +741,7 @@ public abstract class Agent : MonoBehaviour, IPoolable
     private void MaintainAttacksOrigin()
     {
         if (attacksOrigins == null)
-            attacksOrigins = new List<AttackOrigin>();
+            attacksOrigins = new List<AttackPositioning>();
 
         AgentSO agent = GetAgent();
 
@@ -641,15 +749,51 @@ public abstract class Agent : MonoBehaviour, IPoolable
         {
             agent.attacks.ForEach(a =>
             {
-                if (!attacksOrigins.Any(ao => ao.attack == a))
-                    attacksOrigins.Add(new AttackOrigin(a));
+                List<AttackPositioning> aos = attacksOrigins.Where(ao => ao.attack == a).ToList();
+                int timesAttackAppear = aos.Count;
+                int sameAttackRepetitionsCount = agent.attacks.FindAll(atk => atk == a).Count;
+                List<int> missingNumbers = Enumerable.Range(1, sameAttackRepetitionsCount).Where(num => !aos.Any(ao => ao.identityCounter == num)).ToList();
+                int identityNumber = missingNumbers.Count > 0 ? missingNumbers.ElementAt(0) : sameAttackRepetitionsCount;
+
+
+                if (timesAttackAppear < sameAttackRepetitionsCount)
+                    attacksOrigins.Add(new AttackPositioning(a, identityNumber));
             });
         }
     }
     private bool Validate_NotNull_Origins() {
         MaintainAttacksOrigin();
 
-        return attacksOrigins != null && attacksOrigins.Count > 0 ? !attacksOrigins.Any(ao => ao.attackOrigin == null || ao.animationOrigin == null) : true;
+        return attacksOrigins != null && attacksOrigins.Count > 0 ? !attacksOrigins.Any(ao => ao.attackPosition == null || ao.animationPosition == null) : true;
+    }
+    private void MaintainAttacksDestinations()
+    {
+        if (attacksDestinations == null)
+            attacksDestinations = new List<AttackPositioning>();
+
+        AgentSO agent = GetAgent();
+
+        if (agent != null)
+        {
+            // ONLY SIEGE ATTACKS NEEDS DESTINATION COORDINATES at the moment.
+            agent.attacks.Where(a => a.type == AttackTypeEnum.SIEGE).ToList().ForEach(a =>
+            {
+                List<AttackPositioning> ads = attacksDestinations.Where(ad => ad.attack == a).ToList();
+                int timesAttackAppear = ads.Count;
+                int sameAttackRepetitionsCount = agent.attacks.FindAll(atk => atk == a).Count;
+                List<int> missingNumbers = Enumerable.Range(1, sameAttackRepetitionsCount).Where(num => !ads.Any(ad => ad.identityCounter == num)).ToList();
+                int identityNumber = missingNumbers.Count > 0 ? missingNumbers.ElementAt(0) : sameAttackRepetitionsCount;
+
+                if (timesAttackAppear < sameAttackRepetitionsCount)
+                    attacksDestinations.Add(new AttackPositioning(a, identityNumber));
+            });
+        }
+    }
+    private bool Validate_NotNull_Destinations()
+    {
+        MaintainAttacksDestinations();
+
+        return attacksDestinations != null && attacksDestinations.Count > 0 ? !attacksDestinations.Any(ao => ao.attackPosition == null || ao.animationPosition == null) : true;
     }
     // (Validation) Methods [END]
 }
