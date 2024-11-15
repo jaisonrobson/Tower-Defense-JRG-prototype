@@ -35,9 +35,11 @@ public class RangedAttackEnemyDetectionColliderController : MonoBehaviour
 
                         if (rac != null && !rac.Finished)
                         {
+                            Vector3 attackDirection = (raa.Origin - enemy.transform.position).normalized;
+
                             if (raa.Attack.outcomePrefab != null)
                             {
-                                Attacking.InvokeOutcome(raa.Invoker, transform.position, transform.forward, raa.Alignment, raa.AffectedMasks, raa.Attack, raa.Damage);
+                                Attacking.InvokeOutcome(raa.Invoker, transform.position, attackDirection, raa.Alignment, raa.AffectedMasks, raa.Attack, raa.Damage);
                             }
                             else if (!rac.IsAgentAlreadyAffected(enemy))
                             {
@@ -49,7 +51,7 @@ public class RangedAttackEnemyDetectionColliderController : MonoBehaviour
                                     .ToList()
                                     .ForEach(sap => StatusAffecting.TryInvokeStatus(sap, raa.Invoker, enemy));
 
-                                Quaternion localInitialRotation = Quaternion.LookRotation((raa.Origin - enemy.transform.position).normalized);
+                                Quaternion localInitialRotation = Quaternion.LookRotation(attackDirection);
                                 localInitialRotation = Quaternion.Euler(0, localInitialRotation.eulerAngles.y, 0);
 
                                 Animating.InvokeAnimation(raa.Attack.finalAnimation, enemy.transform.position, localInitialRotation, raa.Duration);

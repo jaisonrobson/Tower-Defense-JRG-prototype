@@ -38,13 +38,16 @@ public class SiegeAttackEnemyDetectionColliderController : MonoBehaviour
                     {
                         if (raa.Attack.outcomePrefab != null)
                         {
-                            Quaternion localInitialRotation = Quaternion.LookRotation((raa.Origin - transform.position).normalized);
+                            Vector3 attackDirection = (raa.Origin - transform.position).normalized;
+                            Quaternion localInitialRotation = Quaternion.LookRotation(attackDirection);
                             localInitialRotation = Quaternion.Euler(0, localInitialRotation.eulerAngles.y, 0);
 
                             Animating.InvokeAnimation(raa.Attack.finalAnimation, transform.position, localInitialRotation, raa.Duration);
                             AudioPlaying.InvokeSound(raa.Attack.finalSound, transform.position);
 
-                            Attacking.InvokeOutcome(raa.Invoker, transform.position, transform.forward, raa.Alignment, raa.AffectedMasks, raa.Attack, raa.Damage);
+
+
+                            Attacking.InvokeOutcome(raa.Invoker, transform.position, attackDirection, raa.Alignment, raa.AffectedMasks, raa.Attack, raa.Damage);
                         }
 
                         rac.Finished = true;
