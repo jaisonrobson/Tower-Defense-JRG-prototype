@@ -220,6 +220,7 @@ LEGENDA:
 (X) Mover o codigo de ataques Ranged para um novo codigo de Siege attacks que permitira mais dinamismo em relacao aos estilo de ataques. (hoje o Siege attack usa o mesmo codigo do Ranged)
 (X) Fazer com que o codigo dos ataques dos agentes, realize um ataque por indice no vetor e nao por tipo de ataque (a quantidade de ataques deve ser respeitada, visto que agora cada ataque da lista possui posicionamento proprio).
 
+(X) Criar uma informacao visual ao jogador na interface quando um inimigo consegue esquivar com sucesso de algum ataque.
 
 ---Blender
 ( ) Criar as estruturas que o jogador vai usar para jogar.

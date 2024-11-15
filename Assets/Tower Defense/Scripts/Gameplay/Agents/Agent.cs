@@ -629,7 +629,9 @@ public abstract class Agent : MonoBehaviour, IPoolable
 
         float rawValue = dealerDamage;
 
-        if ((!TryToEvade() || IsAgentUnderStatusConfusion) && rawValue > 0f)
+        bool evaded = TryToEvade();
+
+        if ((!evaded || IsAgentUnderStatusConfusion) && rawValue > 0f)
         {
             float finalValue;
 
@@ -640,6 +642,9 @@ public abstract class Agent : MonoBehaviour, IPoolable
 
             result = true;
         }
+
+        if (evaded)
+            GetComponent<AgentUI>().GenerateFloatingText(0);
 
         return result;
     }
@@ -663,6 +668,8 @@ public abstract class Agent : MonoBehaviour, IPoolable
 
             result = true;
         }
+        else
+            GetComponent<AgentUI>().GenerateFloatingText(0);
 
         return result;
     }
